@@ -1,16 +1,16 @@
 package main
 
 import (
+	"fmt"
 	"github.com/PuerkitoBio/goquery"
-	flags "github.com/jessevdk/go-flags"
+	"github.com/alecthomas/kong"
+	"io"
 	"log"
+	"net/http"
+	"os"
 	"strconv"
 	"strings"
 )
-
-type Options struct {
-	Verbose []bool `short:"v" long:"verbose" description:"Show verbose debug information"`
-}
 
 type PoePortStatus struct {
 	PortIndex            int8
@@ -23,9 +23,9 @@ type PoePortStatus struct {
 	TemperatureInCelsius int32
 }
 
-func parsePortPortStatusCgiResponse(htmlBody string) {
+func parsePortPortStatusCgiResponse(reader io.Reader) {
 	// Load the HTML document
-	doc, err := goquery.NewDocumentFromReader(strings.NewReader(htmlBody))
+	doc, err := goquery.NewDocumentFromReader(reader)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -66,11 +66,50 @@ func parseInt32(text string) int32 {
 	return int32(i64)
 }
 
-func main() {
-	options := Options{}
-	_, err := flags.Parse(&options)
-	if err != nil {
-		panic(err)
+type GlobalOptions struct {
+	Debug   bool
+	Quiet   bool
+	Address string
+}
+
+type PoeCommand struct {
+	PoeStatusCommand PoeStatusCommand `cmd:"" name:"status" default:"1"`
+}
+
+type PoeStatusCommand struct {
+}
+
+func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
+	url := fmt.Sprintf("http://%s/getPoePortStatus.cgi", args.Address)
+	if args.Debug {
+		println("Fetching data from :" + url)
 	}
-	println(options.Verbose)
+	resp, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+	parsePortPortStatusCgiResponse(resp.Body)
+	return nil
+}
+
+var cli struct {
+	Verbose bool   `help:"verbose log messages" short:"d"`
+	Quiet   bool   `help:"no log messages" short:"q"`
+	Address string `required:"" help:"the Netgear switch's IP address or host name to connect to" short:"a"`
+
+	Poe PoeCommand `cmd:"" name:"poe" help:"show POE status or change the configuration"`
+}
+
+func main() {
+	options := kong.Parse(&cli)
+	err := options.Run(&GlobalOptions{
+		Debug:   cli.Verbose,
+		Quiet:   cli.Quiet,
+		Address: cli.Address,
+	})
+	if err != nil {
+		fmt.Printf("Error: %s\n", err.Error())
+		fmt.Println("Use --help argument, to get help on how to use ntgrrc.")
+		os.Exit(1)
+	}
 }
