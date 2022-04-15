@@ -5,7 +5,6 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"github.com/alecthomas/kong"
 	"io"
-	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -23,13 +22,13 @@ type PoePortStatus struct {
 	TemperatureInCelsius int32
 }
 
-func parsePortPortStatusCgiResponse(reader io.Reader) {
-	// Load the HTML document
+func parsePortPortStatusCgiResponse(reader io.Reader) error {
 	doc, err := goquery.NewDocumentFromReader(reader)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
-	var statuses = []PoePortStatus{}
+
+	var statuses []PoePortStatus
 	doc.Find("li.poePortStatusListItem").Each(func(i int, s *goquery.Selection) {
 		id := s.Find("span.poe-port-index span").Text()
 		stat := PoePortStatus{}
@@ -54,6 +53,8 @@ func parsePortPortStatusCgiResponse(reader io.Reader) {
 		})
 		statuses = append(statuses, stat)
 	})
+
+	return nil
 }
 
 func parseFloat32(text string) float32 {
@@ -88,7 +89,10 @@ func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
 	if err != nil {
 		return err
 	}
-	parsePortPortStatusCgiResponse(resp.Body)
+	err = parsePortPortStatusCgiResponse(resp.Body)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
