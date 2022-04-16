@@ -89,6 +89,7 @@ func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
 	if err != nil {
 		return err
 	}
+	defer resp.Body.Close()
 	err = parsePortPortStatusCgiResponse(resp.Body)
 	if err != nil {
 		return err
