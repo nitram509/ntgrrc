@@ -16,7 +16,11 @@ jobs:
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
-      - name: "go build ntgrrc"
-        run: |
-          mkdir bin
-          GOOS=windows GOARCH=amd64 go build -o bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-amd64.exe ntgrrc
+      - name: "prepare bin folder"
+        run: "mkdir bin"
+      - name: "build windows amd64"
+        run: "GOOS=windows GOARCH=amd64 go build -o bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-windows-amd64.exe ntgrrc"
+      - name: "build linux amd64"
+        run: "GOOS=linux GOARCH=amd64 go build -o bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-linux-amd64 ntgrrc"
+      - name: "build darwin amd64"
+        run: "GOOS=darwin GOARCH=amd64 go build -o bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-darwin-amd64 ntgrrc"
