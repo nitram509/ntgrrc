@@ -8,24 +8,27 @@ import (
 	"io"
 	"math"
 	"net/http"
+	"os"
+	"path/filepath"
 	"strings"
 )
 
 const FailedAttempt = "no SID cookie found in response header"
 
 type LoginCommand struct {
+	Address  string `required:"" help:"the Netgear switch's IP address or host name to connect to" short:"a"`
 	Password string `required:"" help:"the admin console's password'" short:"p"`
 }
 
 func (login *LoginCommand) Run(args *GlobalOptions) error {
-	seedValue, err := getSeedValueFromSwitch(args)
+	seedValue, err := getSeedValueFromSwitch(args, login.Address)
 	if err != nil {
 		return err
 	}
 
 	encryptedPwd := encryptPassword(login.Password, seedValue)
 
-	err = doLogin(args, encryptedPwd)
+	err = doLogin(args, login.Address, encryptedPwd)
 	if err != nil {
 		return err
 	}
@@ -33,8 +36,8 @@ func (login *LoginCommand) Run(args *GlobalOptions) error {
 	return nil
 }
 
-func doLogin(args *GlobalOptions, encryptedPwd string) error {
-	url := fmt.Sprintf("http://%s/login.cgi", args.Address)
+func doLogin(args *GlobalOptions, host string, encryptedPwd string) error {
+	url := fmt.Sprintf("http://%s/login.cgi", host)
 	if args.Verbose {
 		println("login attempt: " + url)
 	}
@@ -56,7 +59,37 @@ func doLogin(args *GlobalOptions, encryptedPwd string) error {
 		return errors.New("login request returned 200 OK, but response did not contain a session token (SID cookie value#). " +
 			"this is known behaviour from the switch. please, wait some minutes and tray again later")
 	}
+
+	err = ensureConfigPathExists()
+	if err != nil {
+		return err
+	}
+	if args.Verbose {
+		println("Storing login token " + tokenFilename())
+	}
+	err = os.WriteFile(tokenFilename(), []byte(token), 0644)
+	if err != nil {
+		return err
+	}
 	return nil
+}
+
+func tokenFilename() string {
+	return filepath.Join(dotConfigDirName(), "token")
+}
+
+func ensureConfigPathExists() error {
+	dotConfigNtgrrc := dotConfigDirName()
+	err := os.MkdirAll(dotConfigNtgrrc, os.ModeDir)
+	return err
+}
+
+func dotConfigDirName() string {
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		panic(err)
+	}
+	return filepath.Join(homeDir, ".config", "ntgrrc")
 }
 
 func getSessionToken(resp *http.Response) string {
@@ -70,8 +103,8 @@ func getSessionToken(resp *http.Response) string {
 	return FailedAttempt
 }
 
-func getSeedValueFromSwitch(args *GlobalOptions) (string, error) {
-	url := fmt.Sprintf("http://%s/login.cgi", args.Address)
+func getSeedValueFromSwitch(args *GlobalOptions, host string) (string, error) {
+	url := fmt.Sprintf("http://%s/login.cgi", host)
 	if args.Verbose {
 		println("fetch seed value from: " + url)
 	}

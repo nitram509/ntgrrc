@@ -20,13 +20,11 @@ func parseInt32(text string) int32 {
 type GlobalOptions struct {
 	Verbose bool
 	Quiet   bool
-	Address string
 }
 
 var cli struct {
-	Verbose bool   `help:"verbose log messages" short:"d"`
-	Quiet   bool   `help:"no log messages" short:"q"`
-	Address string `required:"" help:"the Netgear switch's IP address or host name to connect to" short:"a"`
+	Verbose bool `help:"verbose log messages" short:"d"`
+	Quiet   bool `help:"no log messages" short:"q"`
 
 	Poe   PoeCommand   `cmd:"" name:"poe" help:"show POE status or change the configuration"`
 	Login LoginCommand `cmd:"" name:"login" help:"do create a session for further commands (requires admin console password)"`
@@ -37,7 +35,6 @@ func main() {
 	err := options.Run(&GlobalOptions{
 		Verbose: cli.Verbose,
 		Quiet:   cli.Quiet,
-		Address: cli.Address,
 	})
 	if err != nil {
 		fmt.Printf("Error: %s\n", err.Error())

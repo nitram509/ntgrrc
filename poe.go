@@ -1,10 +1,12 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"io"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -25,25 +27,89 @@ type PoeCommand struct {
 }
 
 type PoeStatusCommand struct {
+	Address string `required:"" help:"the Netgear switch's IP address or host name to connect to" short:"a"`
 }
 
 func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
-	url := fmt.Sprintf("http://%s/getPoePortStatus.cgi", args.Address)
+	statusPage, err := requestPoePortStatusPage(args, poe.Address)
+	if err != nil {
+		return err
+	}
+	if len(statusPage) < 10 {
+		return errors.New("empty page. please, (re-)login first")
+	}
+	var statuses []PoePortStatus
+	statuses, err = findPortStatusInHtml(strings.NewReader(statusPage))
+	if err != nil {
+		return err
+	}
+	prettyPrint(statuses)
+	return nil
+}
+
+func prettyPrint(statuses []PoePortStatus) {
+	fmt.Printf("%7s | %12s | %11s | %11s | %12s | %9s | %17s | %s\n",
+		"Port ID",
+		"Status",
+		"Power class",
+		"Voltage (V)",
+		"Current (mA)",
+		"Power (W)",
+		"Temperatuure (°C)",
+		"Error status",
+	)
+
+	for _, status := range statuses {
+		fmt.Printf("%7d | %12s | %11s | %11d | %12d | %9f | %17d | %s\n",
+			status.PortIndex,
+			status.PoePortStatus,
+			status.PoePowerClass,
+			status.VoltageInVolt,
+			status.CurrentInMilliAmps,
+			status.PowerInWatt,
+			status.TemperatureInCelsius,
+			status.ErrorStatus,
+		)
+	}
+}
+
+func requestPoePortStatusPage(args *GlobalOptions, host string) (string, error) {
+	token, err := loadToken(args)
+	if err != nil {
+		return "", err
+	}
+
+	url := fmt.Sprintf("http://%s/getPoePortStatus.cgi", host)
 	if args.Verbose {
 		println("Fetching data from: " + url)
 	}
-	resp, err := http.Get(url)
+
+	req, err := http.NewRequest(http.MethodGet, url, strings.NewReader(""))
 	if err != nil {
-		return err
+		return "", err
+	}
+
+	req.Header.Set("Cookie", "SID="+token)
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
 	}
 	defer resp.Body.Close()
-	var statuses []PoePortStatus
-	statuses, err = findPortStatusInHtml(resp.Body)
-	if err != nil {
-		return err
+	if args.Verbose {
+		println(resp.Status)
 	}
-	print(statuses)
-	return nil
+	bytes, err := io.ReadAll(resp.Body)
+	return string(bytes), err
+}
+
+func loadToken(args *GlobalOptions) (string, error) {
+	if args.Verbose {
+		println("reading token from: " + tokenFilename())
+	}
+	bytes, err := os.ReadFile(tokenFilename())
+	return string(bytes), err
 }
 
 func findPortStatusInHtml(reader io.Reader) ([]PoePortStatus, error) {
