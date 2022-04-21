@@ -1,8 +1,7 @@
 name: build
 on: [release]
 jobs:
-  build-linux-amd64:
-    needs: test
+  build:
     runs-on: ubuntu-latest
     name: "build linux amd64"
     steps:
@@ -12,6 +11,10 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: 1.18
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
       - name: "go build ntgrrc"
         run: |
-          go build ntgrrc
+          mkdir bin
+          GOOS=windows GOARCH=amd64 go build -o bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-amd64.exe ntgrrc
