@@ -1,11 +1,12 @@
 name: build
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - "v*.*.*"
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: "build linux amd64"
+    name: "build binaries"
     steps:
       - name: "checkout"
         uses: actions/checkout@v3
@@ -19,14 +20,54 @@ jobs:
       - name: "prepare bin folder"
         run: "mkdir bin"
       - name: "build windows amd64"
-        run: "GOOS=windows GOARCH=amd64 go build -o bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-windows-amd64.exe ntgrrc"
+        run: |
+          export FILENAME="bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-windows-amd64.exe"
+          GOOS=windows GOARCH=amd64 go build -o $FILENAME ntgrrc
+          sha256sum $FILENAME > $FILENAME.sha256
       - name: "build linux amd64"
-        run: "GOOS=linux GOARCH=amd64 go build -o bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-linux-amd64 ntgrrc"
+        run: |
+          export FILENAME="bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-linux-amd64"
+          GOOS=linux GOARCH=amd64 go build -o $FILENAME ntgrrc
+          sha256sum $FILENAME > $FILENAME.sha256
       - name: "build linux arm64"
-        run: "GOOS=linux GOARCH=arm64 go build -o bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-linux-arm64 ntgrrc"
+        run: |
+          export FILENAME="bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-linux-arm64"
+          GOOS=linux GOARCH=arm64 go build -o $FILENAME ntgrrc
+          sha256sum $FILENAME > $FILENAME.sha256
       - name: "build linux arm"
-        run: "GOOS=linux GOARCH=arm go build -o bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-linux-arm ntgrrc"
+        run: |
+          export FILENAME="bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-linux-arm"
+          GOOS=linux GOARCH=arm GOARM=5 go build -o $FILENAME ntgrrc
+          sha256sum $FILENAME > $FILENAME.sha256
       - name: "build darwin amd64"
-        run: "GOOS=darwin GOARCH=amd64 go build -o bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-darwin-amd64 ntgrrc"
+        run: |
+          export FILENAME="bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-darwin-amd64"
+          GOOS=darwin GOARCH=amd64 go build -o $FILENAME ntgrrc
+          sha256sum $FILENAME > $FILENAME.sha256
       - name: "build darwin arm64"
-        run: "GOOS=darwin GOARCH=arm64 go build -o bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-darwin-arm64 ntgrrc"
+        run: |
+          export FILENAME="bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-darwin-arm64"
+          GOOS=darwin GOARCH=arm64 go build -o $FILENAME ntgrrc
+          sha256sum $FILENAME > $FILENAME.sha256
+      - name: "create release notes from changelog"
+        run: |
+          cat CHANGELOG.md << ---- > release-notes-${{ steps.get_version.outputs.VERSION }}.txt
+      - name: "Release"
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          body_path: release-notes-${{ steps.get_version.outputs.VERSION }}.txt
+          files: |
+            release-notes-${{ steps.get_version.outputs.VERSION }}.txt
+            bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-windows-amd64.exe
+            bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-windows-amd64.exe.sha256
+            bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-linux-amd64
+            bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-linux-amd64.sha256
+            bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-linux-arm64
+            bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-linux-arm64.sha256
+            bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-linux-arm
+            bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-linux-arm.sha256
+            bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-darwin-amd64
+            bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-darwin-amd64.sha256
+            bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-darwin-arm64
+            bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-darwin-arm64.sha256

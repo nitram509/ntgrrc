@@ -48,19 +48,19 @@ func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
 }
 
 func prettyPrint(statuses []PoePortStatus) {
-	fmt.Printf("%7s | %12s | %11s | %11s | %12s | %9s | %17s | %s\n",
+	fmt.Printf("%7s | %12s | %11s | %11s | %12s | %9s | %16s | %s\n",
 		"Port ID",
 		"Status",
 		"Power class",
 		"Voltage (V)",
 		"Current (mA)",
 		"Power (W)",
-		"Temperatuure (°C)",
+		"Temperature (°C)",
 		"Error status",
 	)
 
 	for _, status := range statuses {
-		fmt.Printf("%7d | %12s | %11s | %11d | %12d | %9f | %17d | %s\n",
+		fmt.Printf("%7d | %12s | %11s | %11d | %12d | %9f | %16d | %s\n",
 			status.PortIndex,
 			status.PoePortStatus,
 			status.PoePowerClass,
