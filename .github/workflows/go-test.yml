@@ -1,0 +1,16 @@
+name: go test
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: "go test"
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Setup go
+        uses: actions/setup-go@v2
+        with:
+          go-version: "1.18"
+      - name: "go test ntgrrc"
+        run: |
+          go test ntgrrc   
