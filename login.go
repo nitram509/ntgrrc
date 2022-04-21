@@ -7,8 +7,89 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"io"
 	"math"
+	"net/http"
 	"strings"
 )
+
+const FailedAttempt = "no SID cookie found in response header"
+
+type LoginCommand struct {
+	Password string `required:"" help:"the admin console's password'" short:"p"`
+}
+
+func (login *LoginCommand) Run(args *GlobalOptions) error {
+	seedValue, err := getSeedValueFromSwitch(args)
+	if err != nil {
+		return err
+	}
+
+	encryptedPwd := encryptPassword(login.Password, seedValue)
+
+	err = doLogin(args, encryptedPwd)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func doLogin(args *GlobalOptions, encryptedPwd string) error {
+	url := fmt.Sprintf("http://%s/login.cgi", args.Address)
+	if args.Verbose {
+		println("login attempt: " + url)
+	}
+	formData := "password=" + encryptedPwd
+	resp, err := http.Post(url, "application/x-www-form-urlencoded", strings.NewReader(formData))
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+	if args.Verbose {
+		println(resp.Status)
+	}
+	_, err = io.ReadAll(resp.Body)
+	if err != nil {
+		return err
+	}
+	token := getSessionToken(resp)
+	if token == FailedAttempt && resp.StatusCode == http.StatusOK {
+		return errors.New("login request returned 200 OK, but response did not contain a session token (SID cookie value#). " +
+			"this is known behaviour from the switch. please, wait some minutes and tray again later")
+	}
+	return nil
+}
+
+func getSessionToken(resp *http.Response) string {
+	cookie := resp.Header.Get("Set-Cookie")
+	const SessionIdPrefix = "SID="
+	if strings.HasPrefix(cookie, SessionIdPrefix) {
+		sidVal := cookie[len(SessionIdPrefix):]
+		split := strings.Split(sidVal, ";")
+		return split[0]
+	}
+	return FailedAttempt
+}
+
+func getSeedValueFromSwitch(args *GlobalOptions) (string, error) {
+	url := fmt.Sprintf("http://%s/login.cgi", args.Address)
+	if args.Verbose {
+		println("fetch seed value from: " + url)
+	}
+	resp, err := http.Get(url)
+	if err != nil {
+		return "", err
+	}
+	if args.Verbose {
+		println(resp.Status)
+	}
+	defer resp.Body.Close()
+
+	seedValue, err := getSeedValueFromLoginHtml(resp.Body)
+	if err != nil {
+		return "", err
+	}
+	return seedValue, nil
+}
 
 func getSeedValueFromLoginHtml(reader io.Reader) (string, error) {
 	doc, err := goquery.NewDocumentFromReader(reader)

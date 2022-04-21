@@ -18,7 +18,7 @@ func parseInt32(text string) int32 {
 }
 
 type GlobalOptions struct {
-	Debug   bool
+	Verbose bool
 	Quiet   bool
 	Address string
 }
@@ -28,13 +28,14 @@ var cli struct {
 	Quiet   bool   `help:"no log messages" short:"q"`
 	Address string `required:"" help:"the Netgear switch's IP address or host name to connect to" short:"a"`
 
-	Poe PoeCommand `cmd:"" name:"poe" help:"show POE status or change the configuration"`
+	Poe   PoeCommand   `cmd:"" name:"poe" help:"show POE status or change the configuration"`
+	Login LoginCommand `cmd:"" name:"login" help:"do create a session for further commands (requires admin console password)"`
 }
 
 func main() {
 	options := kong.Parse(&cli)
 	err := options.Run(&GlobalOptions{
-		Debug:   cli.Verbose,
+		Verbose: cli.Verbose,
 		Quiet:   cli.Quiet,
 		Address: cli.Address,
 	})

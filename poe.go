@@ -29,8 +29,8 @@ type PoeStatusCommand struct {
 
 func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
 	url := fmt.Sprintf("http://%s/getPoePortStatus.cgi", args.Address)
-	if args.Debug {
-		println("Fetching data from :" + url)
+	if args.Verbose {
+		println("Fetching data from: " + url)
 	}
 	resp, err := http.Get(url)
 	if err != nil {
