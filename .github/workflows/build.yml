@@ -1,0 +1,15 @@
+name: go test
+on: [release]
+jobs:
+  build-linux-amd64:
+    needs: test
+    runs-on: ubuntu-latest
+    name: "build linux amd64"
+    steps:
+      - name: Setup go
+        uses: actions/setup-go@v2
+        with:
+          go-version: "1.18"
+      - name: "go test ntgrrc"
+        run: |
+          go build ntgrrc
