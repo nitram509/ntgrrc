@@ -26,8 +26,17 @@ var cli struct {
 	Verbose bool `help:"verbose log messages" short:"d"`
 	Quiet   bool `help:"no log messages" short:"q"`
 
-	Poe   PoeCommand   `cmd:"" name:"poe" help:"show POE status or change the configuration"`
-	Login LoginCommand `cmd:"" name:"login" help:"do create a session for further commands (requires admin console password)"`
+	Version VersionCommand `cmd:"" name:"version" help:"show version"`
+	Poe     PoeCommand     `cmd:"" name:"poe" help:"show POE status or change the configuration"`
+	Login   LoginCommand   `cmd:"" name:"login" help:"do create a session for further commands (requires admin console password)"`
+}
+
+type VersionCommand struct {
+}
+
+func (version *VersionCommand) Run(args *GlobalOptions) error {
+	println(VERSION)
+	return nil
 }
 
 func main() {
