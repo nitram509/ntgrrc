@@ -1,5 +1,14 @@
 # ntgrrc
+
 ntgrrc (Netgear Remote Control) a command line (CLI) tool to manage Netgear GS3xx switch series.
+
+Since Netgear does not offer a REST API, this tool uses web scraping techniques to
+manage configuration and show status of the switch.
+
+This tool is still very limited in its features and more testers and contributors
+are very welcome.
+
+Tested with GS305EP, v1.0.8 firmware.
 
 ## download-installation
 
@@ -37,5 +46,3 @@ Port ID |       Status | Power class | Voltage (V) | Current (mA) | Power (W) | 
       4 |    Searching |             |           0 |            0 |  0.000000 |               33 | No Error
 
 ```
-
-
