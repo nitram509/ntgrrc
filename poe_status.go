@@ -43,18 +43,18 @@ func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
 	if err != nil {
 		return err
 	}
-	prettyPrint(statuses)
+	prettyPrintStatus(statuses)
 	return nil
 }
 
-func prettyPrint(statuses []PoePortStatus) {
+func prettyPrintStatus(statuses []PoePortStatus) {
 	fmt.Printf("%7s | %12s | %11s | %11s | %12s | %9s | %16s | %s\n",
 		"Port ID",
 		"Status",
-		"Power class",
+		"PortPwr class",
 		"Voltage (V)",
 		"Current (mA)",
-		"Power (W)",
+		"PortPwr (W)",
 		"Temperature (°C)",
 		"Error status",
 	)
@@ -120,8 +120,9 @@ func findPortStatusInHtml(reader io.Reader) ([]PoePortStatus, error) {
 
 	var statuses []PoePortStatus
 	doc.Find("li.poePortStatusListItem").Each(func(i int, s *goquery.Selection) {
-		id := s.Find("span.poe-port-index span").Text()
 		stat := PoePortStatus{}
+
+		id := s.Find("span.poe-port-index span").Text()
 		var id64, _ = strconv.ParseInt(id, 10, 8)
 		stat.PortIndex = int8(id64)
 
