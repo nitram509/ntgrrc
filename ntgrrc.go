@@ -47,7 +47,6 @@ func main() {
 	})
 	if err != nil {
 		fmt.Printf("Error: %s\n", err.Error())
-		fmt.Println("Use --help argument, to get help on how to use ntgrrc.")
 		os.Exit(1)
 	}
 }
