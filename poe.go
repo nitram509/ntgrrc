@@ -35,8 +35,8 @@ func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
 	if err != nil {
 		return err
 	}
-	if len(statusPage) < 10 {
-		return errors.New("empty page. please, (re-)login first")
+	if len(statusPage) < 10 || strings.Contains(statusPage, "/login.cgi") {
+		return errors.New("no content. please, (re-)login first")
 	}
 	var statuses []PoePortStatus
 	statuses, err = findPortStatusInHtml(strings.NewReader(statusPage))
