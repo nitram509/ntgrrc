@@ -1,8 +1,9 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
-## v0.1.1
+## v0.2.0
 
+* show POE port settings
 * fix detection of not logged in
 
 ## v0.1.0

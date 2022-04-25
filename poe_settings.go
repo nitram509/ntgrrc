@@ -41,7 +41,7 @@ func (poe *PoeShowSettingsCommand) Run(args *GlobalOptions) error {
 }
 
 func prettyPrintSettings(settings []PoePortSetting) {
-	fmt.Printf("%7s | %11s | %4s | %8s | %10s | %9s | %4s\n",
+	fmt.Printf("%7s | %10s | %11s | %8s | %10s | %9s | %20s\n",
 		"Port ID",
 		"Port Power",
 		"Mode",
@@ -52,23 +52,77 @@ func prettyPrintSettings(settings []PoePortSetting) {
 	)
 
 	for _, setting := range settings {
-		fmt.Printf("%7d | %11s | %4s | %8s | %10s | %9s | %4s\n",
+		fmt.Printf("%7d | %10s | %11s | %8s | %10s | %9s | %20s\n",
 			setting.PortIndex,
-			asStringPortPower(setting.PortPwr),
-			setting.PwrMode,
-			setting.PortPrio,
-			setting.LimitType,
+			asTextPortPower(setting.PortPwr),
+			asTextPwrMode(setting.PwrMode),
+			asTextPortPrio(setting.PortPrio),
+			asTextLimitType(setting.LimitType),
 			setting.PwrLimit,
-			setting.DetecType,
+			asTextDetecType(setting.DetecType),
 		)
 	}
 }
 
-func asStringPortPower(portPwr bool) string {
+func asTextPortPower(portPwr bool) string {
 	if portPwr {
-		return "activated"
+		return "enabled"
 	}
-	return "deactivated"
+	return "disabled"
+}
+
+func asTextPwrMode(pwrMode string) string {
+	switch pwrMode {
+	case "0":
+		return "802.3af"
+	case "1":
+		return "legacy"
+	case "2":
+		return "pre-802.3at"
+	case "3":
+		return "802.3at"
+	default:
+		return "unknown"
+	}
+}
+
+func asTextPortPrio(portPrio string) string {
+	switch portPrio {
+	case "0":
+		return "low"
+	case "2":
+		return "high"
+	case "3":
+		return "critical"
+	default:
+		return "unknown"
+	}
+}
+
+func asTextLimitType(limitType string) string {
+	switch limitType {
+	case "0":
+		return "none"
+	case "1":
+		return "class"
+	case "2":
+		return "user"
+	default:
+		return "unknown"
+	}
+}
+
+func asTextDetecType(detecType string) string {
+	switch detecType {
+	case "2":
+		return "IEEE 802"
+	case "3":
+		return "4pt 802.3af + Legacy"
+	case "1":
+		return "Legacy"
+	default:
+		return "unknown"
+	}
 }
 
 func requestPoePortConfigPage(args *GlobalOptions, host string) (string, error) {

@@ -28,15 +28,24 @@ ntgrrc login --address gs305ep --password secret
 ```
 
 
-### show Power Over Ethernet (POE) status
+### show Power Over Ethernet (POE)
 
-Once a session is created, you can fetch POE status.
+Once a session is created, you can fetch POE settings and status.
 
-```shell
-ntgrrc poe status --address gs305ep
+#### Settings 
+
+```ntgrrc poe settings --address gs305ep```
+
+```text
+Port ID | Port Power |        Mode | Priority | Limit Type | Limit (W) |                 Type
+      1 |   disabled |     802.3at |      low |       user |      30.0 |             IEEE 802
+      2 |    enabled |     802.3at |      low |       user |      30.0 |             IEEE 802
+      3 |    enabled |     802.3at |      low |       user |      30.0 |             IEEE 802
+      4 |    enabled |     802.3at |      low |       user |      30.0 |             IEEE 802
 ```
+#### Status
 
-will return a pretty printed table like this...
+```ntgrrc poe status --address gs305ep```
 
 ```text
 Port ID |       Status | Power class | Voltage (V) | Current (mA) | Power (W) | Temperature (°C) | Error status
@@ -44,5 +53,4 @@ Port ID |       Status | Power class | Voltage (V) | Current (mA) | Power (W) | 
       2 |    Searching |             |           0 |            0 |  0.000000 |               33 | No Error
       3 |    Searching |             |           0 |            0 |  0.000000 |               33 | No Error
       4 |    Searching |             |           0 |            0 |  0.000000 |               33 | No Error
-
 ```
