@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"io"
-	"net/http"
-	"os"
 	"strconv"
 	"strings"
 )
@@ -23,7 +21,8 @@ type PoePortStatus struct {
 }
 
 type PoeCommand struct {
-	PoeStatusCommand PoeStatusCommand `cmd:"" name:"status" default:"1"`
+	PoeStatusCommand       PoeStatusCommand       `cmd:"" name:"status" default:"1"`
+	PoeShowSettingsCommand PoeShowSettingsCommand `cmd:"" name:"settings"`
 }
 
 type PoeStatusCommand struct {
@@ -74,42 +73,8 @@ func prettyPrintStatus(statuses []PoePortStatus) {
 }
 
 func requestPoePortStatusPage(args *GlobalOptions, host string) (string, error) {
-	token, err := loadToken(args)
-	if err != nil {
-		return "", err
-	}
-
 	url := fmt.Sprintf("http://%s/getPoePortStatus.cgi", host)
-	if args.Verbose {
-		println("Fetching data from: " + url)
-	}
-
-	req, err := http.NewRequest(http.MethodGet, url, strings.NewReader(""))
-	if err != nil {
-		return "", err
-	}
-
-	req.Header.Set("Cookie", "SID="+token)
-
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		return "", err
-	}
-	defer resp.Body.Close()
-	if args.Verbose {
-		println(resp.Status)
-	}
-	bytes, err := io.ReadAll(resp.Body)
-	return string(bytes), err
-}
-
-func loadToken(args *GlobalOptions) (string, error) {
-	if args.Verbose {
-		println("reading token from: " + tokenFilename())
-	}
-	bytes, err := os.ReadFile(tokenFilename())
-	return string(bytes), err
+	return requestPage(args, url)
 }
 
 func findPortStatusInHtml(reader io.Reader) ([]PoePortStatus, error) {
