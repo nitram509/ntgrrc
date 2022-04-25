@@ -18,7 +18,7 @@ func TestFindPortStatusInHtml(t *testing.T) {
 	status := statuses[0]
 	then.AssertThat(t, status.PortIndex, is.EqualTo(int8(1)))
 	then.AssertThat(t, status.PoePowerClass, is.EqualTo("0"))
-	then.AssertThat(t, status.PoePortStatus, is.EqualTo("Delivering PortPwr"))
+	then.AssertThat(t, status.PoePortStatus, is.EqualTo("Delivering Power"))
 	then.AssertThat(t, status.VoltageInVolt, is.EqualTo(int32(53)))
 	then.AssertThat(t, status.CurrentInMilliAmps, is.EqualTo(int32(82)))
 	then.AssertThat(t, status.PowerInWatt, is.EqualTo(float32(4.4)))
