@@ -49,7 +49,7 @@ Port ID | Port Power |        Mode | Priority | Limit Type | Limit (W) |        
 
 ```text
 Port ID |       Status | Power class | Voltage (V) | Current (mA) | Power (W) | Temperature (°C) | Error status
-      1 |    Searching |             |           0 |            0 |  0.000000 |               32 | No Error
+      1 |     Disabled |             |           0 |            0 |  0.000000 |               32 | No Error
       2 |    Searching |             |           0 |            0 |  0.000000 |               33 | No Error
       3 |    Searching |             |           0 |            0 |  0.000000 |               33 | No Error
       4 |    Searching |             |           0 |            0 |  0.000000 |               33 | No Error
