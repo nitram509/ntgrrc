@@ -59,7 +59,7 @@ func prettyPrintStatus(statuses []PoePortStatus) {
 	)
 
 	for _, status := range statuses {
-		fmt.Printf("%7d | %12s | %11s | %11d | %12d | %9f | %16d | %s\n",
+		fmt.Printf("%7d | %12s | %13s | %11d | %12d | %11f | %16d | %s\n",
 			status.PortIndex,
 			status.PoePortStatus,
 			status.PoePowerClass,
