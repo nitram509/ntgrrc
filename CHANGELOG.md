@@ -1,6 +1,10 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.3.0
+
+* support logins to multiple host at one moment in time
+
 ## v0.2.0
 
 * show POE port settings

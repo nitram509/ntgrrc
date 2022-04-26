@@ -3,20 +3,11 @@ package main
 import (
 	"io"
 	"net/http"
-	"os"
 	"strings"
 )
 
-func loadToken(args *GlobalOptions) (string, error) {
-	if args.Verbose {
-		println("reading token from: " + tokenFilename())
-	}
-	bytes, err := os.ReadFile(tokenFilename())
-	return string(bytes), err
-}
-
-func requestPage(args *GlobalOptions, url string) (string, error) {
-	token, err := loadToken(args)
+func requestPage(args *GlobalOptions, host string, url string) (string, error) {
+	token, err := loadToken(args, host)
 	if err != nil {
 		return "", err
 	}

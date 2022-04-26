@@ -127,7 +127,7 @@ func asTextDetecType(detecType string) string {
 
 func requestPoePortConfigPage(args *GlobalOptions, host string) (string, error) {
 	url := fmt.Sprintf("http://%s/PoEPortConfig.cgi", host)
-	return requestPage(args, url)
+	return requestPage(args, host, url)
 }
 
 func findPortSettingsInHtml(reader io.Reader) ([]PoePortSetting, error) {

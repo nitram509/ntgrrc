@@ -8,8 +8,6 @@ import (
 	"io"
 	"math"
 	"net/http"
-	"os"
-	"path/filepath"
 	"strings"
 )
 
@@ -60,36 +58,12 @@ func doLogin(args *GlobalOptions, host string, encryptedPwd string) error {
 			"this is known behaviour from the switch. please, wait some minutes and tray again later")
 	}
 
-	err = ensureConfigPathExists()
+	err = storeToken(args, host, token)
 	if err != nil {
 		return err
 	}
-	if args.Verbose {
-		println("Storing login token " + tokenFilename())
-	}
-	err = os.WriteFile(tokenFilename(), []byte(token), 0644)
-	if err != nil {
-		return err
-	}
+
 	return nil
-}
-
-func tokenFilename() string {
-	return filepath.Join(dotConfigDirName(), "token")
-}
-
-func ensureConfigPathExists() error {
-	dotConfigNtgrrc := dotConfigDirName()
-	err := os.MkdirAll(dotConfigNtgrrc, os.ModeDir)
-	return err
-}
-
-func dotConfigDirName() string {
-	homeDir, err := os.UserHomeDir()
-	if err != nil {
-		panic(err)
-	}
-	return filepath.Join(homeDir, ".config", "ntgrrc")
 }
 
 func getSessionToken(resp *http.Response) string {

@@ -74,7 +74,7 @@ func prettyPrintStatus(statuses []PoePortStatus) {
 
 func requestPoePortStatusPage(args *GlobalOptions, host string) (string, error) {
 	url := fmt.Sprintf("http://%s/getPoePortStatus.cgi", host)
-	return requestPage(args, url)
+	return requestPage(args, host, url)
 }
 
 func findPortStatusInHtml(reader io.Reader) ([]PoePortStatus, error) {
