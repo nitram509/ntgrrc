@@ -8,7 +8,7 @@ manage configuration and show status of the switch.
 This tool is still very limited in its features and more testers and contributors
 are very welcome.
 
-Tested with GS305EP, v1.0.8 firmware.
+Tested with GS305EP (firmware v1.0.8) and GS305EPP (firmware v1.0.8).
 
 ## download-installation
 
