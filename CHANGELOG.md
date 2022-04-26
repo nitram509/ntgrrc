@@ -5,10 +5,14 @@
 
 * support logins to multiple host at one moment in time
 
+----
+
 ## v0.2.0
 
 * show POE port settings
 * fix detection of not logged in
+
+----
 
 ## v0.1.0
 
