@@ -4,6 +4,7 @@ import (
 	"io"
 	"net/http"
 	"strings"
+	"time"
 )
 
 func requestPage(args *GlobalOptions, host string, url string) (string, error) {
@@ -23,7 +24,10 @@ func requestPage(args *GlobalOptions, host string, url string) (string, error) {
 
 	req.Header.Set("Cookie", "SID="+token)
 
-	client := &http.Client{}
+	client := &http.Client{
+		Timeout: 3 * time.Second,
+	}
+
 	resp, err := client.Do(req)
 	if err != nil {
 		return "", err

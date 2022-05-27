@@ -4,9 +4,11 @@ import (
 	"errors"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
+	influxdb2 "github.com/influxdata/influxdb-client-go/v2"
 	"io"
 	"strconv"
 	"strings"
+	"time"
 )
 
 type PoePortStatus struct {
@@ -30,23 +32,29 @@ type PoeStatusCommand struct {
 }
 
 func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
-	statusPage, err := requestPoePortStatusPage(args, poe.Address)
-	if err != nil {
-		return err
+	for i := 0; i < 10000; i++ {
+		statusPage, err := requestPoePortStatusPage(args, poe.Address)
+		if err != nil {
+			if strings.Contains(err.Error(), "Timeout") {
+				continue
+			}
+			return err
+		}
+		if len(statusPage) < 10 || strings.Contains(statusPage, "/login.cgi") {
+			return errors.New("no content. please, (re-)login first")
+		}
+		var statuses []PoePortStatus
+		statuses, err = findPortStatusInHtml(strings.NewReader(statusPage))
+		if err != nil {
+			return err
+		}
+		printStatusInfluxDB(poe.Address, statuses)
+		time.Sleep(2500 * time.Millisecond)
 	}
-	if len(statusPage) < 10 || strings.Contains(statusPage, "/login.cgi") {
-		return errors.New("no content. please, (re-)login first")
-	}
-	var statuses []PoePortStatus
-	statuses, err = findPortStatusInHtml(strings.NewReader(statusPage))
-	if err != nil {
-		return err
-	}
-	prettyPrintStatus(statuses)
 	return nil
 }
 
-func prettyPrintStatus(statuses []PoePortStatus) {
+func printStatusTextTable(statuses []PoePortStatus) {
 	fmt.Printf("%7s | %12s | %11s | %11s | %12s | %9s | %16s | %s\n",
 		"Port ID",
 		"Status",
@@ -69,6 +77,29 @@ func prettyPrintStatus(statuses []PoePortStatus) {
 			status.TemperatureInCelsius,
 			status.ErrorStatus,
 		)
+	}
+}
+
+func printStatusInfluxDB(address string, statuses []PoePortStatus) {
+	timestamp := time.Now().UnixMilli()
+
+	// You can generate a Token from the "Tokens Tab" in the UI
+	const token = ""
+	const bucket = "ntgrrc"
+	const org = "ntgrrc"
+
+	client := influxdb2.NewClient("http://localhost:8086", token)
+	client.Options().SetPrecision(time.Millisecond)
+	// always close client at the end
+	defer client.Close()
+
+	for _, status := range statuses {
+		writeAPI := client.WriteAPI(org, bucket)
+		writeAPI.WriteRecord(fmt.Sprintf("voltage,host=%s,port=%d value=%di %d", address, status.PortIndex, status.VoltageInVolt, timestamp))
+		writeAPI.WriteRecord(fmt.Sprintf("current,host=%s,port=%d value=%di %d\n", address, status.PortIndex, status.CurrentInMilliAmps, timestamp))
+		writeAPI.WriteRecord(fmt.Sprintf("power,host=%s,port=%d value=%f %d\n", address, status.PortIndex, status.PowerInWatt, timestamp))
+		writeAPI.WriteRecord(fmt.Sprintf("temperature,host=%s,port=%d value=%di %d\n", address, status.PortIndex, status.TemperatureInCelsius, timestamp))
+		writeAPI.Flush()
 	}
 }
 
