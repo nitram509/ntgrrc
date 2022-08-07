@@ -8,20 +8,31 @@ manage configuration and show status of the switch.
 This tool is still very limited in its features and more testers and contributors
 are very welcome.
 
-Tested with GS305EP, v1.0.8 firmware.
+### Supported firmware versions
 
-## download-installation
+| Firmware  | GS305EP | GS305EPP |
+|-----------|---------|----------|
+| V1.0.0.8  | ✅       | ✅        |
+| v1.0.0.10 | ✅       | ✅        |
+
+
+## download & installation
 
 This tool is build with the Go programming language
 and pre-build binaries for Windows, Linux, and MacOSX are available for [download](https://github.com/nitram509/ntgrrc/releases).
 
+Just download the fitting binary for your operating system und put it somewhere in your PATH.
 
 ## usage
 
 ### login
 
-For better performance, login a subsequent actions are separated.
-So, please create a session via login first.
+For better performance, **login first**.
+The login action will store a token to a file called ```~/.config/ntgrrc/token-12345678```
+and thus subsequent actions will use it and are authenticated.
+
+Note: if you have multiple Netgear switches, ntgrrc **supports multiple parallel tokens**/sessions,
+because the token file's name is derived from the provided ```--address``` device name.
 
 ```shell
 ntgrrc login --address gs305ep --password secret
