@@ -5,8 +5,8 @@ ntgrrc (Netgear Remote Control) a command line (CLI) tool to manage Netgear mana
 Since Netgear does not offer a REST API, this tool uses web scraping techniques to
 manage configuration and show status of the switch.
 
-This tool is still very limited in its features and more testers and contributors
-are very welcome.
+This tool is still very limited in its features and more testers and **contributors
+are very welcome**.
 
 ### Supported firmware versions
 
