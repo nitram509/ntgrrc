@@ -32,6 +32,15 @@ Just download the fitting binary for your operating system und put it somewhere 
 
 ## usage
 
+### help
+
+```shell
+ntgrrc --help
+```
+
+<!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./help.txt) -->
+<!-- MARKDOWN-AUTO-DOCS:END -->
+
 ### login
 
 For better performance, **login first**.
