@@ -1,6 +1,12 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.3.1
+
+* fix version information in the binaries
+
+----
+
 ## v0.3.0
 
 * support logins to multiple host at one moment in time
