@@ -28,7 +28,7 @@ func TestFindPortConfigInHtml(t *testing.T) {
 	then.AssertThat(t, setting.PortPwr, is.EqualTo(true))
 }
 
-func TestPrettyPrint(t *testing.T) {
+func TestPrettyPrintSettings(t *testing.T) {
 	settings, err := findPortSettingsInHtml(strings.NewReader(getPoePortConfigCgiHtml))
 
 	then.AssertThat(t, err, is.Nil())

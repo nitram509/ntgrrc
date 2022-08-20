@@ -26,5 +26,14 @@ func TestFindPortStatusInHtml(t *testing.T) {
 	then.AssertThat(t, status.ErrorStatus, is.EqualTo("No Error"))
 }
 
+func TestPrettyPrintStatus(t *testing.T) {
+	statuses, err := findPortStatusInHtml(strings.NewReader(getPoePortStatusCgiHtml))
+
+	then.AssertThat(t, err, is.Nil())
+	then.AssertThat(t, statuses, has.Length(4))
+
+	prettyPrintStatus(statuses)
+}
+
 //go:embed test-data/getPoePortStatus.cgi.html
 var getPoePortStatusCgiHtml string

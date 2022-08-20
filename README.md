@@ -18,13 +18,6 @@ are very welcome**.
 | v1.0.0.10 | ✅       | ✅        |          |
 | ?         |         |          | ✅        |
 
-| Port ID | Port Power | Mode    | Priority | Limit Type | Limit (W) | Type     |
-|---------|------------|---------|----------|------------|-----------|----------|
-| 1       | disabled   | 802.3at | low      | user       | 30.0      | IEEE 802 |
-| 2       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
-| 3       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
-| 4       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
-
 Legend: \
 ✅ = successfully tested \
 ?  = unknown
@@ -90,23 +83,32 @@ Once a session is created, you can fetch POE settings and status.
 
 #### Settings 
 
+The switch's settings are printed in Markdown table format.
+This means, separated by | (pipe) and optional suffixes with blanks.
+
 ```ntgrrc poe settings --address gs305ep```
 
 ```text
-Port ID | Port Power |        Mode | Priority | Limit Type | Limit (W) |                 Type
-      1 |   disabled |     802.3at |      low |       user |      30.0 |             IEEE 802
-      2 |    enabled |     802.3at |      low |       user |      30.0 |             IEEE 802
-      3 |    enabled |     802.3at |      low |       user |      30.0 |             IEEE 802
-      4 |    enabled |     802.3at |      low |       user |      30.0 |             IEEE 802
+| Port ID | Port Power | Mode    | Priority | Limit Type | Limit (W) | Type     |
+|---------|------------|---------|----------|------------|-----------|----------|
+| 1       | disabled   | 802.3at | low      | user       | 30.0      | IEEE 802 |
+| 2       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
+| 3       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
+| 4       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
 ```
+
 #### Status
+
+The switch's POE status are printed in Markdown table format.
+This means, separated by | (pipe) and optional suffixes with blanks.
 
 ```ntgrrc poe status --address gs305ep```
 
 ```text
-Port ID |       Status | Power class | Voltage (V) | Current (mA) | Power (W) | Temperature (°C) | Error status
-      1 |     Disabled |             |           0 |            0 |  0.000000 |               32 | No Error
-      2 |    Searching |             |           0 |            0 |  0.000000 |               33 | No Error
-      3 |    Searching |             |           0 |            0 |  0.000000 |               33 | No Error
-      4 |    Searching |             |           0 |            0 |  0.000000 |               33 | No Error
+| Port ID | Status           | PortPwr class | Voltage (V) | Current (mA) | PortPwr (W) | Temp. (°C) | Error status |
+|---------|------------------|---------------|-------------|--------------|-------------|------------|--------------|
+| 1       | Delivering Power | 0             | 53          | 82           | 4.40        | 30         | No Error     |
+| 2       | Searching        |               | 0           | 0            | 0.00        | 30         | No Error     |
+| 3       | Searching        |               | 0           | 0            | 0.00        | 30         | No Error     |
+| 4       | Searching        |               | 0           | 0            | 0.00        | 30         | No Error     |
 ```

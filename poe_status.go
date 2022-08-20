@@ -47,29 +47,21 @@ func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
 }
 
 func prettyPrintStatus(statuses []PoePortStatus) {
-	fmt.Printf("%7s | %12s | %11s | %11s | %12s | %9s | %16s | %s\n",
-		"Port ID",
-		"Status",
-		"PortPwr class",
-		"Voltage (V)",
-		"Current (mA)",
-		"PortPwr (W)",
-		"Temperature (°C)",
-		"Error status",
-	)
-
+	var header = []string{"Port ID", "Status", "PortPwr class", "Voltage (V)", "Current (mA)", "PortPwr (W)", "Temp. (°C)", "Error status"}
+	var content [][]string
 	for _, status := range statuses {
-		fmt.Printf("%7d | %12s | %13s | %11d | %12d | %11f | %16d | %s\n",
-			status.PortIndex,
-			status.PoePortStatus,
-			status.PoePowerClass,
-			status.VoltageInVolt,
-			status.CurrentInMilliAmps,
-			status.PowerInWatt,
-			status.TemperatureInCelsius,
-			status.ErrorStatus,
-		)
+		var row []string
+		row = append(row, fmt.Sprintf("%d", status.PortIndex))
+		row = append(row, status.PoePortStatus)
+		row = append(row, status.PoePowerClass)
+		row = append(row, fmt.Sprintf("%d", status.VoltageInVolt))
+		row = append(row, fmt.Sprintf("%d", status.CurrentInMilliAmps))
+		row = append(row, fmt.Sprintf("%.2f", status.PowerInWatt))
+		row = append(row, fmt.Sprintf("%d", status.TemperatureInCelsius))
+		row = append(row, status.ErrorStatus)
+		content = append(content, row)
 	}
+	printMarkdownTable(header, content)
 }
 
 func requestPoePortStatusPage(args *GlobalOptions, host string) (string, error) {
