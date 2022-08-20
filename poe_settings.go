@@ -41,26 +41,50 @@ func (poe *PoeShowSettingsCommand) Run(args *GlobalOptions) error {
 }
 
 func prettyPrintSettings(settings []PoePortSetting) {
-	fmt.Printf("%7s | %10s | %11s | %8s | %10s | %9s | %20s\n",
-		"Port ID",
-		"Port Power",
-		"Mode",
-		"Priority",
-		"Limit Type",
-		"Limit (W)",
-		"Type",
-	)
+
+	var header = []string{"Port ID", "Port Power", "Mode", "Priority", "Limit Type", "Limit (W)", "Type"}
+	var lengths = []int{len(header[0]), len(header[1]), len(header[2]), len(header[3]), len(header[4]), len(header[5]), len(header[6])}
 
 	for _, setting := range settings {
-		fmt.Printf("%7d | %10s | %11s | %8s | %10s | %9s | %20s\n",
-			setting.PortIndex,
-			asTextPortPower(setting.PortPwr),
-			asTextPwrMode(setting.PwrMode),
-			asTextPortPrio(setting.PortPrio),
-			asTextLimitType(setting.LimitType),
-			setting.PwrLimit,
-			asTextDetecType(setting.DetecType),
-		)
+		lengths[0] = max(lengths[0], len(fmt.Sprintf("%d", setting.PortIndex)))
+		lengths[1] = max(lengths[1], len(asTextPortPower(setting.PortPwr)))
+		lengths[2] = max(lengths[2], len(asTextPwrMode(setting.PwrMode)))
+		lengths[3] = max(lengths[3], len(asTextPortPrio(setting.PortPrio)))
+		lengths[4] = max(lengths[4], len(asTextLimitType(setting.LimitType)))
+		lengths[5] = max(lengths[5], len(setting.PwrLimit))
+		lengths[6] = max(lengths[6], len(asTextDetecType(setting.DetecType)))
+	}
+
+	print("|")
+	for i, h := range header {
+		print(" " + suffixToLength(h, lengths[i]) + " ")
+		print("|")
+	}
+	println("")
+
+	print("|")
+	for _, l := range lengths {
+		print(strings.Repeat("-", l+2)) // a single space for one suffix and one prefix
+		print("|")
+	}
+	println("")
+
+	for _, setting := range settings {
+		print("| ")
+		print(suffixToLength(fmt.Sprintf("%d", setting.PortIndex), lengths[0]+1))
+		print("| ")
+		print(suffixToLength(asTextPortPower(setting.PortPwr), lengths[1]+1))
+		print("| ")
+		print(suffixToLength(asTextPwrMode(setting.PwrMode), lengths[2]+1))
+		print("| ")
+		print(suffixToLength(asTextPortPrio(setting.PortPrio), lengths[3]+1))
+		print("| ")
+		print(suffixToLength(asTextLimitType(setting.LimitType), lengths[4]+1))
+		print("| ")
+		print(suffixToLength(setting.PwrLimit, lengths[5]+1))
+		print("| ")
+		print(suffixToLength(asTextDetecType(setting.DetecType), lengths[6]+1))
+		println("|")
 	}
 }
 

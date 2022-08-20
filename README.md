@@ -18,6 +18,13 @@ are very welcome**.
 | v1.0.0.10 | ✅       | ✅        |          |
 | ?         |         |          | ✅        |
 
+| Port ID | Port Power | Mode    | Priority | Limit Type | Limit (W) | Type     |
+|---------|------------|---------|----------|------------|-----------|----------|
+| 1       | disabled   | 802.3at | low      | user       | 30.0      | IEEE 802 |
+| 2       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
+| 3       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
+| 4       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
+
 Legend: \
 ✅ = successfully tested \
 ?  = unknown
