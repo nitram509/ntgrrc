@@ -10,10 +10,17 @@ are very welcome.
 
 ### Supported firmware versions
 
-| Firmware  | GS305EP | GS305EPP |
-|-----------|---------|----------|
-| V1.0.0.8  | ✅       | ✅        |
-| v1.0.0.10 | ✅       | ✅        |
+
+
+| Firmware  | GS305EP | GS305EPP | GS308EPP |
+|-----------|---------|----------|----------|
+| V1.0.0.8  | ✅       | ✅        |          |
+| v1.0.0.10 | ✅       | ✅        |          |
+| ?         |         |          | ✅        |
+
+Legend: \
+✅ = successfully tested \
+?  = unknown
 
 
 ## download & installation
