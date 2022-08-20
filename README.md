@@ -39,6 +39,28 @@ ntgrrc --help
 ```
 
 <!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./help.txt) -->
+<!-- The below code snippet is automatically added from ./help.txt -->
+```txt
+Usage: ntgrrc <command>
+
+Flags:
+  -h, --help       Show context-sensitive help.
+  -d, --verbose    verbose log messages
+  -q, --quiet      no log messages
+
+Commands:
+  version
+    show version
+
+  poe status --address=STRING
+
+  poe settings --address=STRING
+
+  login --address=STRING --password=STRING
+    do create a session for further commands (requires admin console password)
+
+Run "ntgrrc <command> --help" for more information on a command.
+```
 <!-- MARKDOWN-AUTO-DOCS:END -->
 
 ### login
