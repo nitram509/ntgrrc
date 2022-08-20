@@ -22,32 +22,32 @@ jobs:
       - name: "build windows amd64"
         run: |
           export FILENAME="bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-windows-amd64.exe"
-          GOOS=windows GOARCH=amd64 go build -o $FILENAME ntgrrc
+          GOOS=windows GOARCH=amd64 go build -ldflags="-X main.VERSION=${{ steps.get_version.outputs.VERSION }}" -o $FILENAME ntgrrc
           sha256sum $FILENAME > $FILENAME.sha256
       - name: "build linux amd64"
         run: |
           export FILENAME="bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-linux-amd64"
-          GOOS=linux GOARCH=amd64 go build -o $FILENAME ntgrrc
+          GOOS=linux GOARCH=amd64 go build -ldflags="-X main.VERSION=${{ steps.get_version.outputs.VERSION }}" -o $FILENAME ntgrrc
           sha256sum $FILENAME > $FILENAME.sha256
       - name: "build linux arm64"
         run: |
           export FILENAME="bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-linux-arm64"
-          GOOS=linux GOARCH=arm64 go build -o $FILENAME ntgrrc
+          GOOS=linux GOARCH=arm64 go build -ldflags="-X main.VERSION=${{ steps.get_version.outputs.VERSION }}" -o $FILENAME ntgrrc
           sha256sum $FILENAME > $FILENAME.sha256
       - name: "build linux arm"
         run: |
           export FILENAME="bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-linux-arm"
-          GOOS=linux GOARCH=arm GOARM=5 go build -o $FILENAME ntgrrc
+          GOOS=linux GOARCH=arm GOARM=5 go build -ldflags="-X main.VERSION=${{ steps.get_version.outputs.VERSION }}" -o $FILENAME ntgrrc
           sha256sum $FILENAME > $FILENAME.sha256
       - name: "build darwin amd64"
         run: |
           export FILENAME="bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-darwin-amd64"
-          GOOS=darwin GOARCH=amd64 go build -o $FILENAME ntgrrc
+          GOOS=darwin GOARCH=amd64 go build -ldflags="-X main.VERSION=${{ steps.get_version.outputs.VERSION }}" -o $FILENAME ntgrrc
           sha256sum $FILENAME > $FILENAME.sha256
       - name: "build darwin arm64"
         run: |
           export FILENAME="bin/ntgrrc-${{ steps.get_version.outputs.VERSION }}-darwin-arm64"
-          GOOS=darwin GOARCH=arm64 go build -o $FILENAME ntgrrc
+          GOOS=darwin GOARCH=arm64 go build -ldflags="-X main.VERSION=${{ steps.get_version.outputs.VERSION }}" -o $FILENAME ntgrrc
           sha256sum $FILENAME > $FILENAME.sha256
       - name: "create release notes from changelog"
         run: |

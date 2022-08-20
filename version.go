@@ -1,3 +1,4 @@
 package main
 
-const VERSION = "v0.1.0"
+// VERSION will be set at compile time - see Github actions...
+var VERSION = "dev"
