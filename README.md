@@ -88,7 +88,7 @@ This means, separated by | (pipe) and optional suffixes with blanks.
 
 ```ntgrrc poe settings --address gs305ep```
 
-```text
+```markdown
 | Port ID | Port Power | Mode    | Priority | Limit Type | Limit (W) | Type     |
 |---------|------------|---------|----------|------------|-----------|----------|
 | 1       | disabled   | 802.3at | low      | user       | 30.0      | IEEE 802 |
@@ -104,7 +104,7 @@ This means, separated by | (pipe) and optional suffixes with blanks.
 
 ```ntgrrc poe status --address gs305ep```
 
-```text
+```markdown
 | Port ID | Status           | PortPwr class | Voltage (V) | Current (mA) | PortPwr (W) | Temp. (°C) | Error status |
 |---------|------------------|---------------|-------------|--------------|-------------|------------|--------------|
 | 1       | Delivering Power | 0             | 53          | 82           | 4.40        | 30         | No Error     |
