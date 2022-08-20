@@ -1,6 +1,13 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.4.0
+
+* add print POW status and settings as Markdown table, looks better and potentially could be rendered to HTML
+* change, minor rename in table header "Temperature" -> "Temp."
+
+----
+
 ## v0.3.1
 
 * fix version information in the binaries
