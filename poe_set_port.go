@@ -22,17 +22,7 @@ type PoeSetPowerCommand struct {
 }
 
 func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
-
-	settingsPage, err := requestPoePortConfigPage(args, poe.Address)
-	if err != nil {
-		return err
-	}
-	if len(settingsPage) < 10 || strings.Contains(settingsPage, "/login.cgi") {
-		return errors.New("no content. please, (re-)login first")
-	}
-
-	var settings []PoePortSetting
-	settings, err = findPortSettingsInHtml(strings.NewReader(settingsPage))
+	settings, err := requestPoeConfiguration(args, poe.Address)
 	if err != nil {
 		return err
 	}
@@ -50,16 +40,6 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 	if err != nil {
 		return err
 	}
-
-	fmt.Printf("%7s | %10s | %11s | %8s | %10s | %9s | %20s\n",
-		"Port ID",
-		"Port Power",
-		"Mode",
-		"Priority",
-		"Limit Type",
-		"Limit (W)",
-		"Type",
-	)
 
 	for _, switchPort := range poe.Ports {
 		if switchPort > len(settings) || switchPort < 1 {
@@ -93,27 +73,45 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 		if err != nil {
 			return err
 		}
-		
-		if result == "SUCCESS" {
-			portPower, err := strconv.ParseBool(poeSettings.Get("ADMIN_MODE"))
-			if err != nil {
-				return errors.New("error displaying port power setting")
-			}
 
-			fmt.Printf("%7d | %10s | %11s | %8s | %10s | %9s | %20s\n",
-				switchPort,
-				asTextPortPower(portPower),
-				asTextPwrMode(poeSettings.Get("POW_MOD")),
-				asTextPortPrio(poeSettings.Get("PORT_PRIO")),
-				asTextLimitType(poeSettings.Get("POW_LIMT_TYP")),
-				poeSettings.Get("POW_LIMT"),
-				asTextDetecType(poeSettings.Get("DETEC_TYP")),
-			)
-		} else {
+		if result != "SUCCESS" {
 			return errors.New(result)
 		}
 	}
+
+	var changedPorts []PoePortSetting
+	settings, err = requestPoeConfiguration(args, poe.Address)
+	for _, configuredPort := range poe.Ports {
+		for _, portSetting := range settings {
+			if int(portSetting.PortIndex) == configuredPort {
+				changedPorts = append(changedPorts, portSetting)
+			}
+		}
+	}
+
+	prettyPrintSettings(changedPorts)
+
 	return err
+}
+
+func requestPoeConfiguration(args *GlobalOptions, host string) ([]PoePortSetting, error) {
+	
+	var settings []PoePortSetting
+	settingsPage, err := requestPoePortConfigPage(args, host)
+	if err != nil {
+		return settings, err
+	}
+
+	if len(settingsPage) < 10 || strings.Contains(settingsPage, "/login.cgi") {
+		return settings, errors.New("no content. please, (re-)login first")
+	}
+
+	settings, err = findPortSettingsInHtml(strings.NewReader(settingsPage))
+	if err != nil {
+		return settings, err
+	}
+
+	return settings, nil
 }
 
 func requestPoeSettingsUpdate(args *GlobalOptions, host string, data string) (string, error) {
@@ -171,7 +169,6 @@ func compareSettings(name string, defaultValue string, newValue string) string {
 	case "DetecType":
 		detecType := asNumDetecType(newValue)
 		if detecType == "unknown" {
-
 			return defaultValue
 		}
 		return detecType
