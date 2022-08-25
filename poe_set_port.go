@@ -21,8 +21,16 @@ type PoeSetPowerCommand struct {
 	DetecType string `optional:"" help:"port detection type (ex: IEEE 802, legacy)" name:"detect-type"`
 }
 
+type PoeExt struct {
+	Hash         string
+	PortMaxPower string
+}
+
 func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
-	settings, hash, err := requestPoeConfiguration(args, poe.Address)
+
+	poeExt := &PoeExt{}
+
+	settings, err := requestPoeConfiguration(args, poe.Address, poeExt)
 	if err != nil {
 		return err
 	}
@@ -43,33 +51,33 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 			}
 		}
 
-		portPrio, err := compareSettings("PortPrio", portSetting.PortPrio, poe.PortPrio)
+		portPrio, err := compareSettings("PortPrio", portSetting.PortPrio, poe.PortPrio, poeExt)
 		if err != nil {
 			return err
 		}
 
-		pwrMode, err := compareSettings("PwrMode", portSetting.PwrMode, poe.PwrMode)
+		pwrMode, err := compareSettings("PwrMode", portSetting.PwrMode, poe.PwrMode, poeExt)
 		if err != nil {
 			return err
 		}
 
-		pwrLimitType, err := compareSettings("LimitType", portSetting.LimitType, poe.LimitType)
+		pwrLimitType, err := compareSettings("LimitType", portSetting.LimitType, poe.LimitType, poeExt)
 		if err != nil {
 			return err
 		}
 
-		pwrLimit, err := compareSettings("PwrLimit", portSetting.PwrLimit, poe.PwrLimit)
+		pwrLimit, err := compareSettings("PwrLimit", portSetting.PwrLimit, poe.PwrLimit, poeExt)
 		if err != nil {
 			return err
 		}
 
-		detecType, err := compareSettings("DetecType", portSetting.DetecType, poe.DetecType)
+		detecType, err := compareSettings("DetecType", portSetting.DetecType, poe.DetecType, poeExt)
 		if err != nil {
 			return err
 		}
 
 		poeSettings := url.Values{
-			"hash":         {hash},
+			"hash":         {poeExt.Hash},
 			"ACTION":       {"Apply"},
 			"portID":       {strconv.Itoa(int(switchPort - 1))},
 			"ADMIN_MODE":   {adminMode},
@@ -91,7 +99,7 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 	}
 
 	var changedPorts []PoePortSetting
-	settings, hash, err = requestPoeConfiguration(args, poe.Address)
+	settings, err = requestPoeConfiguration(args, poe.Address, poeExt)
 
 	for _, configuredPort := range poe.Ports {
 		for _, portSetting := range settings {
@@ -106,32 +114,35 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 	return err
 }
 
-func requestPoeConfiguration(args *GlobalOptions, host string) ([]PoePortSetting, string, error) {
-	
+func requestPoeConfiguration(args *GlobalOptions, host string, poeExt *PoeExt) ([]PoePortSetting, error) {
+
 	var settings []PoePortSetting
-	var hash string
 
 	settingsPage, err := requestPoePortConfigPage(args, host)
 	if err != nil {
-		return settings, hash, err
+		return settings, err
 	}
 
 	if len(settingsPage) < 10 || strings.Contains(settingsPage, "/login.cgi") {
-		return settings, hash, errors.New("no content. please, (re-)login first")
+		return settings, errors.New("no content. please, (re-)login first")
 	}
 
 	settings, err = findPortSettingsInHtml(strings.NewReader(settingsPage))
 	if err != nil {
-		return settings, hash, err
+		return settings, err
 	}
 
-	hash, err = findHashInHtml(strings.NewReader(settingsPage))
+	poeExt.Hash, err = findHashInHtml(strings.NewReader(settingsPage))
 	if err != nil {
-		return settings, hash, err
+		return settings, err
 	}
 
+	poeExt.PortMaxPower, err = findMaxPwrLimitInHtml(strings.NewReader(settingsPage))
+	if err != nil {
+		return settings, err
+	}
 
-	return settings, hash, nil
+	return settings, nil
 }
 
 func requestPoeSettingsUpdate(args *GlobalOptions, host string, data string) (string, error) {
@@ -158,14 +169,14 @@ func findMaxPwrLimitInHtml(reader io.Reader) (string, error) {
 		return "", err
 	}
 
-	limit, exists := doc.Find("input#pwrLimit").Attr("value")
+	limit, exists := doc.Find("input.pwrLimit").Attr("value")
 	if !exists {
 		return "", errors.New("could not find power limit.")
 	}
 	return limit, err
 }
 
-func compareSettings(name string, defaultValue string, newValue string) (string, error) {
+func compareSettings(name string, defaultValue string, newValue string, poeExt *PoeExt) (string, error) {
 	if len(newValue) == 0 {
 		return defaultValue, nil
 	}
@@ -191,6 +202,20 @@ func compareSettings(name string, defaultValue string, newValue string) (string,
 		return limitType, nil
 	case "PwrLimit":
 		if defaultValue != newValue {
+			value, err := strconv.Atoi(strings.Replace(newValue, ".", "", -1))
+			if err != nil {
+				return defaultValue, errors.New("unable to check power limit")
+			}
+
+			limit, err := strconv.Atoi(strings.Replace(poeExt.PortMaxPower, ".", "", -1))
+			if err != nil {
+				return defaultValue, errors.New("unable to check power limit")
+			}
+
+			if value > limit || value < 30 {
+				return defaultValue, errors.New(fmt.Sprintf("provided power limit (W) is out of range. Minimum: %s <> Maximum: %s", "3.0", poeExt.PortMaxPower))
+			}
+
 			return newValue, nil
 		}
 		return defaultValue, nil
