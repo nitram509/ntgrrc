@@ -22,21 +22,7 @@ type PoeSetPowerCommand struct {
 }
 
 func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
-	settings, err := requestPoeConfiguration(args, poe.Address)
-	if err != nil {
-		return err
-	}
-
-	hashPage, err := requestHash(args, poe.Address)
-	if err != nil {
-		return err
-	}
-
-	if len(hashPage) < 10 || strings.Contains(hashPage, "/login.cgi") {
-		return errors.New("no content. please, (re-)login first")
-	}
-
-	hash, err := findHashInHtml(strings.NewReader(hashPage))
+	settings, hash, err := requestPoeConfiguration(args, poe.Address)
 	if err != nil {
 		return err
 	}
@@ -105,7 +91,8 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 	}
 
 	var changedPorts []PoePortSetting
-	settings, err = requestPoeConfiguration(args, poe.Address)
+	settings, hash, err = requestPoeConfiguration(args, poe.Address)
+
 	for _, configuredPort := range poe.Ports {
 		for _, portSetting := range settings {
 			if int(portSetting.PortIndex) == configuredPort {
@@ -119,34 +106,37 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 	return err
 }
 
-func requestPoeConfiguration(args *GlobalOptions, host string) ([]PoePortSetting, error) {
+func requestPoeConfiguration(args *GlobalOptions, host string) ([]PoePortSetting, string, error) {
 	
 	var settings []PoePortSetting
+	var hash string
+
 	settingsPage, err := requestPoePortConfigPage(args, host)
 	if err != nil {
-		return settings, err
+		return settings, hash, err
 	}
 
 	if len(settingsPage) < 10 || strings.Contains(settingsPage, "/login.cgi") {
-		return settings, errors.New("no content. please, (re-)login first")
+		return settings, hash, errors.New("no content. please, (re-)login first")
 	}
 
 	settings, err = findPortSettingsInHtml(strings.NewReader(settingsPage))
 	if err != nil {
-		return settings, err
+		return settings, hash, err
 	}
 
-	return settings, nil
+	hash, err = findHashInHtml(strings.NewReader(settingsPage))
+	if err != nil {
+		return settings, hash, err
+	}
+
+
+	return settings, hash, nil
 }
 
 func requestPoeSettingsUpdate(args *GlobalOptions, host string, data string) (string, error) {
 	url := fmt.Sprintf("http://%s/PoEPortConfig.cgi", host)
 	return postPage(args, host, url, data)
-}
-
-func requestHash(args *GlobalOptions, host string) (string, error) {
-	url := fmt.Sprintf("http://%s/PoEPortConfig.cgi", host)
-	return requestPage(args, host, url)
 }
 
 func findHashInHtml(reader io.Reader) (string, error) {
@@ -160,6 +150,19 @@ func findHashInHtml(reader io.Reader) (string, error) {
 		return "", errors.New("could not find hash.")
 	}
 	return hash, err
+}
+
+func findMaxPwrLimitInHtml(reader io.Reader) (string, error) {
+	doc, err := goquery.NewDocumentFromReader(reader)
+	if err != nil {
+		return "", err
+	}
+
+	limit, exists := doc.Find("input#pwrLimit").Attr("value")
+	if !exists {
+		return "", errors.New("could not find power limit.")
+	}
+	return limit, err
 }
 
 func compareSettings(name string, defaultValue string, newValue string) (string, error) {
