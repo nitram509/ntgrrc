@@ -57,16 +57,41 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 			}
 		}
 
+		portPrio, err := compareSettings("PortPrio", portSetting.PortPrio, poe.PortPrio)
+		if err != nil {
+			return err
+		}
+
+		pwrMode, err := compareSettings("PwrMode", portSetting.PwrMode, poe.PwrMode)
+		if err != nil {
+			return err
+		}
+
+		pwrLimitType, err := compareSettings("LimitType", portSetting.LimitType, poe.LimitType)
+		if err != nil {
+			return err
+		}
+
+		pwrLimit, err := compareSettings("PwrLimit", portSetting.PwrLimit, poe.PwrLimit)
+		if err != nil {
+			return err
+		}
+
+		detecType, err := compareSettings("DetecType", portSetting.DetecType, poe.DetecType)
+		if err != nil {
+			return err
+		}
+
 		poeSettings := url.Values{
 			"hash":         {hash},
 			"ACTION":       {"Apply"},
 			"portID":       {strconv.Itoa(int(switchPort - 1))},
 			"ADMIN_MODE":   {adminMode},
-			"PORT_PRIO":    {compareSettings("PortPrio", portSetting.PortPrio, poe.PortPrio)},
-			"POW_MOD":      {compareSettings("PwrMode", portSetting.PwrMode, poe.PwrMode)},
-			"POW_LIMT_TYP": {compareSettings("LimitType", portSetting.LimitType, poe.LimitType)},
-			"POW_LIMT":     {compareSettings("PwrLimit", portSetting.PwrLimit, poe.PwrLimit)},
-			"DETEC_TYP":    {compareSettings("DetecType", portSetting.DetecType, poe.DetecType)},
+			"PORT_PRIO":    {portPrio},
+			"POW_MOD":      {pwrMode},
+			"POW_LIMT_TYP": {pwrLimitType},
+			"POW_LIMT":     {pwrLimit},
+			"DETEC_TYP":    {detecType},
 		}
 
 		result, err := requestPoeSettingsUpdate(args, poe.Address, poeSettings.Encode())
@@ -137,43 +162,43 @@ func findHashInHtml(reader io.Reader) (string, error) {
 	return hash, err
 }
 
-func compareSettings(name string, defaultValue string, newValue string) string {
-	if len(newValue) < 1 {
-		return defaultValue
+func compareSettings(name string, defaultValue string, newValue string) (string, error) {
+	if len(newValue) == 0 {
+		return defaultValue, nil
 	}
 
 	switch name {
 	case "PortPrio":
 		portPrio := asNumPortPrio(newValue)
 		if portPrio == "unknown" {
-			return defaultValue
+			return portPrio, errors.New("port priority could not be set. Accepted values are: [low | high | critical]")
 		}
-		return portPrio
+		return portPrio, nil
 	case "PwrMode":
 		pwrMode := asNumPwrMode(newValue)
 		if pwrMode == "unknown" {
-			return defaultValue
+			return pwrMode, errors.New("power mode could not be set. Accepted values are: [802.3af | legacy | pre-802.3at | 802.3at]")
 		}
-		return pwrMode
+		return pwrMode, nil
 	case "LimitType":
 		limitType := asNumLimitType(newValue)
 		if limitType == "unknown" {
-			return defaultValue
+			return limitType, errors.New("limit type could not be set. Accepted values are: [none | class | user]")
 		}
-		return limitType
+		return limitType, nil
 	case "PwrLimit":
 		if defaultValue != newValue {
-			return newValue
+			return newValue, nil
 		}
-		return defaultValue
+		return defaultValue, nil
 	case "DetecType":
 		detecType := asNumDetecType(newValue)
 		if detecType == "unknown" {
-			return defaultValue
+			return detecType, errors.New("detection type could not be set. Accepted values are: [IEEE 802 | 4pt 802.3af + Legacy | Legacy]")
 		}
-		return detecType
+		return detecType, nil
 	default:
-		return defaultValue
+		return defaultValue, errors.New("could not find port setting.")
 	}
 
 }
