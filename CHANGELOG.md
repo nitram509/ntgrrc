@@ -1,6 +1,13 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v?.?.?
+
+* add show help when no parameter given
+* change using Go 1.19
+
+----
+
 ## v0.4.0
 
 * add print POW status and settings as Markdown table, looks better and potentially could be rendered to HTML
