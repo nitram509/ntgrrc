@@ -21,6 +21,11 @@ var cli struct {
 }
 
 func main() {
+	// If running without any extra arguments, default to the --help flag
+	if len(os.Args) < 2 {
+		os.Args = append(os.Args, "--help")
+	}
+
 	options := kong.Parse(&cli)
 	err := options.Run(&GlobalOptions{
 		Verbose: cli.Verbose,
