@@ -10,7 +10,7 @@ jobs:
       - name: "setup go"
         uses: actions/setup-go@v3
         with:
-          go-version: 1.18
+          go-version: 1.19
       - name: "go test ntgrrc"
         run: |
           go test ntgrrc
