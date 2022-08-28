@@ -47,11 +47,11 @@ func prettyPrintSettings(settings []PoePortSetting) {
 		var row []string
 		row = append(row, fmt.Sprintf("%d", setting.PortIndex))
 		row = append(row, asTextPortPower(setting.PortPwr))
-		row = append(row, asTextPwrMode(setting.PwrMode))
-		row = append(row, asTextPortPrio(setting.PortPrio))
-		row = append(row, asTextLimitType(setting.LimitType))
+		row = append(row, mapLookup(setting.PwrMode, pwrModeMap))
+		row = append(row, mapLookup(setting.PortPrio, portPrioMap))
+		row = append(row, mapLookup(setting.LimitType, limitTypeMap))
 		row = append(row, setting.PwrLimit)
-		row = append(row, asTextDetecType(setting.DetecType))
+		row = append(row, mapLookup(setting.DetecType, detecTypeMap))
 		content = append(content, row)
 	}
 	printMarkdownTable(header, content)
@@ -62,60 +62,6 @@ func asTextPortPower(portPwr bool) string {
 		return "enabled"
 	}
 	return "disabled"
-}
-
-func asTextPwrMode(pwrMode string) string {
-	switch pwrMode {
-	case "0":
-		return "802.3af"
-	case "1":
-		return "legacy"
-	case "2":
-		return "pre-802.3at"
-	case "3":
-		return "802.3at"
-	default:
-		return "unknown"
-	}
-}
-
-func asTextPortPrio(portPrio string) string {
-	switch portPrio {
-	case "0":
-		return "low"
-	case "2":
-		return "high"
-	case "3":
-		return "critical"
-	default:
-		return "unknown"
-	}
-}
-
-func asTextLimitType(limitType string) string {
-	switch limitType {
-	case "0":
-		return "none"
-	case "1":
-		return "class"
-	case "2":
-		return "user"
-	default:
-		return "unknown"
-	}
-}
-
-func asTextDetecType(detecType string) string {
-	switch detecType {
-	case "2":
-		return "IEEE 802"
-	case "3":
-		return "4pt 802.3af + Legacy"
-	case "1":
-		return "Legacy"
-	default:
-		return "unknown"
-	}
 }
 
 func requestPoePortConfigPage(args *GlobalOptions, host string) (string, error) {
