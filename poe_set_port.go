@@ -187,19 +187,19 @@ func compareSettings(name string, defaultValue string, newValue string, poeExt *
 
 	switch name {
 	case "PortPrio":
-		portPrio := asNumPortPrio(newValue)
+		portPrio := mapLookup(newValue, portPrioMap)
 		if portPrio == "unknown" {
 			return portPrio, errors.New("port priority could not be set. Accepted values are: [low | high | critical]")
 		}
 		return portPrio, nil
 	case "PwrMode":
-		pwrMode := asNumPwrMode(newValue)
+		pwrMode := mapLookup(newValue, pwrModeMap)
 		if pwrMode == "unknown" {
 			return pwrMode, errors.New("power mode could not be set. Accepted values are: [802.3af | legacy | pre-802.3at | 802.3at]")
 		}
 		return pwrMode, nil
 	case "LimitType":
-		limitType := asNumLimitType(newValue)
+		limitType := mapLookup(newValue, limitTypeMap)
 		if limitType == "unknown" {
 			return limitType, errors.New("limit type could not be set. Accepted values are: [none | class | user]")
 		}
@@ -224,7 +224,7 @@ func compareSettings(name string, defaultValue string, newValue string, poeExt *
 		}
 		return defaultValue, nil
 	case "DetecType":
-		detecType := asNumDetecType(newValue)
+		detecType := mapLookup(newValue, detecTypeMap)
 		if detecType == "unknown" {
 			return detecType, errors.New("detection type could not be set. Accepted values are: [IEEE 802 | 4pt 802.3af + Legacy | Legacy]")
 		}
@@ -232,58 +232,5 @@ func compareSettings(name string, defaultValue string, newValue string, poeExt *
 	default:
 		return defaultValue, errors.New("could not find port setting")
 	}
-}
 
-func asNumPwrMode(pwrMode string) string {
-	switch pwrMode {
-	case "802.3af":
-		return "0"
-	case "legacy":
-		return "1"
-	case "pre-802.3at":
-		return "2"
-	case "802.3at":
-		return "3"
-	default:
-		return "unknown"
-	}
-}
-
-func asNumPortPrio(portPrio string) string {
-	switch portPrio {
-	case "low":
-		return "0"
-	case "high":
-		return "2"
-	case "critical":
-		return "3"
-	default:
-		return "unknown"
-	}
-}
-
-func asNumLimitType(limitType string) string {
-	switch limitType {
-	case "none":
-		return "0"
-	case "class":
-		return "1"
-	case "user":
-		return "2"
-	default:
-		return "unknown"
-	}
-}
-
-func asNumDetecType(detecType string) string {
-	switch detecType {
-	case "IEEE 802":
-		return "2"
-	case "4pt 802.3af + Legacy":
-		return "3"
-	case "Legacy":
-		return "1"
-	default:
-		return "unknown"
-	}
 }
