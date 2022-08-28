@@ -29,6 +29,7 @@ type PoeExt struct {
 func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 
 	poeExt := &PoeExt{}
+	var adminMode string
 
 	settings, err := requestPoeConfiguration(args, poe.Address, poeExt)
 	if err != nil {
@@ -42,8 +43,11 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 
 		portSetting := settings[switchPort-1]
 
-		adminMode := asNumPortPower(poe.PortPwr)
-		if adminMode == "unknown" {
+		if poe.PortPwr == "enabled" || poe.PortPwr == "enable" {
+			adminMode = "1"
+		} else if poe.PortPwr == "disabled" || poe.PortPwr == "disable" {
+			adminMode = "0"
+		} else {
 			if portSetting.PortPwr {
 				adminMode = "1"
 			} else {
@@ -226,18 +230,7 @@ func compareSettings(name string, defaultValue string, newValue string, poeExt *
 		}
 		return detecType, nil
 	default:
-		return defaultValue, errors.New("could not find port setting.")
-	}
-
-}
-
-func asNumPortPower(portPwr string) string {
-	if portPwr == "enabled" || portPwr == "enable" {
-		return "1"
-	} else if portPwr == "disabled" || portPwr == "disable" {
-		return "0"
-	} else {
-		return "unknown"
+		return defaultValue, errors.New("could not find port setting")
 	}
 }
 
