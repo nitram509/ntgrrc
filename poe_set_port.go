@@ -216,6 +216,10 @@ func compareSettings(name string, defaultValue string, newValue string, poeExt *
 				return defaultValue, errors.New("unable to check power limit")
 			}
 
+			if value < 100 {
+				value = value * 10
+			}
+
 			if value > limit || value < 30 {
 				return defaultValue, errors.New(fmt.Sprintf("provided power limit (W) is out of range. Minimum: %s <> Maximum: %s", "3.0", poeExt.PortMaxPower))
 			}
