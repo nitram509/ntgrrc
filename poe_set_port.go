@@ -158,7 +158,7 @@ func findHashInHtml(reader io.Reader) (string, error) {
 
 	hash, exists := doc.Find("input#hash").Attr("value")
 	if !exists {
-		return "", errors.New("could not find hash.")
+		return "", errors.New("could not find hash")
 	}
 	return hash, err
 }
@@ -171,7 +171,7 @@ func findMaxPwrLimitInHtml(reader io.Reader) (string, error) {
 
 	limit, exists := doc.Find("input.pwrLimit").Attr("value")
 	if !exists {
-		return "", errors.New("could not find power limit.")
+		return "", errors.New("could not find power limit")
 	}
 	return limit, err
 }
