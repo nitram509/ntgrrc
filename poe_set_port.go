@@ -38,7 +38,7 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 
 	for _, switchPort := range poe.Ports {
 		if switchPort > len(settings) || switchPort < 1 {
-			return errors.New("port out of range.")
+			return errors.New(fmt.Sprintf("given port id %d, doesn't fit in range 1..%d", switchPort, len(settings)))
 		}
 
 		portSetting := settings[switchPort-1]
