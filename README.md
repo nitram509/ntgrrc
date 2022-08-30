@@ -34,7 +34,7 @@ Just download the fitting binary for your operating system und put it somewhere 
 ### help
 
 ```shell
-ntgrrc --help
+ntgrrc --help-all
 ```
 
 <!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./help.txt) -->

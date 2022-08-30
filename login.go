@@ -66,6 +66,10 @@ func doLogin(args *GlobalOptions, host string, encryptedPwd string) error {
 	return nil
 }
 
+func checkIsLoginRequired(httpResponseBody string) bool {
+	return len(httpResponseBody) < 10 || strings.Contains(httpResponseBody, "/login.cgi")
+}
+
 func getSessionToken(resp *http.Response) string {
 	cookie := resp.Header.Get("Set-Cookie")
 	const SessionIdPrefix = "SID="

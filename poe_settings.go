@@ -28,7 +28,7 @@ func (poe *PoeShowSettingsCommand) Run(args *GlobalOptions) error {
 	if err != nil {
 		return err
 	}
-	if len(settingsPage) < 10 || strings.Contains(settingsPage, "/login.cgi") {
+	if checkIsLoginRequired(settingsPage) {
 		return errors.New("no content. please, (re-)login first")
 	}
 	var settings []PoePortSetting

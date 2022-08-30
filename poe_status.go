@@ -35,7 +35,7 @@ func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
 	if err != nil {
 		return err
 	}
-	if len(statusPage) < 10 || strings.Contains(statusPage, "/login.cgi") {
+	if checkIsLoginRequired(statusPage) {
 		return errors.New("no content. please, (re-)login first")
 	}
 	var statuses []PoePortStatus
