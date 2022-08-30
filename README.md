@@ -51,6 +51,8 @@ Commands:
   version
     show version
 
+  poe set --address=STRING --port=PORT,...
+
   poe status --address=STRING
 
   poe settings --address=STRING
