@@ -187,19 +187,19 @@ func compareSettings(name string, defaultValue string, newValue string, poeExt *
 
 	switch name {
 	case "PortPrio":
-		portPrio := mapLookup(newValue, portPrioMap)
+		portPrio := bidiMapLookup(newValue, portPrioMap)
 		if portPrio == "unknown" {
 			return portPrio, errors.New("port priority could not be set. Accepted values are: [low | high | critical]")
 		}
 		return portPrio, nil
 	case "PwrMode":
-		pwrMode := mapLookup(newValue, pwrModeMap)
+		pwrMode := bidiMapLookup(newValue, pwrModeMap)
 		if pwrMode == "unknown" {
 			return pwrMode, errors.New("power mode could not be set. Accepted values are: [802.3af | legacy | pre-802.3at | 802.3at]")
 		}
 		return pwrMode, nil
 	case "LimitType":
-		limitType := mapLookup(newValue, limitTypeMap)
+		limitType := bidiMapLookup(newValue, limitTypeMap)
 		if limitType == "unknown" {
 			return limitType, errors.New("limit type could not be set. Accepted values are: [none | class | user]")
 		}
@@ -228,7 +228,7 @@ func compareSettings(name string, defaultValue string, newValue string, poeExt *
 		}
 		return defaultValue, nil
 	case "DetecType":
-		detecType := mapLookup(newValue, detecTypeMap)
+		detecType := bidiMapLookup(newValue, detecTypeMap)
 		if detecType == "unknown" {
 			return detecType, errors.New("detection type could not be set. Accepted values are: [IEEE 802 | 4pt 802.3af + Legacy | Legacy]")
 		}

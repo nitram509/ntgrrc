@@ -16,7 +16,7 @@ jobs:
       - name: "build binary and print --help"
         run: |
           go build -o ntgrrc .
-          ./ntgrrc --help >help.txt
+          ./ntgrrc --help-all >help.txt
       - name: Markdown autodocs
         uses: dineshsonachalam/markdown-autodocs@v1.0.4
         with:

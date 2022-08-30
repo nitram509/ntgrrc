@@ -47,11 +47,11 @@ func prettyPrintSettings(settings []PoePortSetting) {
 		var row []string
 		row = append(row, fmt.Sprintf("%d", setting.PortIndex))
 		row = append(row, asTextPortPower(setting.PortPwr))
-		row = append(row, mapLookup(setting.PwrMode, pwrModeMap))
-		row = append(row, mapLookup(setting.PortPrio, portPrioMap))
-		row = append(row, mapLookup(setting.LimitType, limitTypeMap))
+		row = append(row, bidiMapLookup(setting.PwrMode, pwrModeMap))
+		row = append(row, bidiMapLookup(setting.PortPrio, portPrioMap))
+		row = append(row, bidiMapLookup(setting.LimitType, limitTypeMap))
 		row = append(row, setting.PwrLimit)
-		row = append(row, mapLookup(setting.DetecType, detecTypeMap))
+		row = append(row, bidiMapLookup(setting.DetecType, detecTypeMap))
 		content = append(content, row)
 	}
 	printMarkdownTable(header, content)

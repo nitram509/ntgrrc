@@ -12,12 +12,13 @@ type GlobalOptions struct {
 }
 
 var cli struct {
-	Verbose bool `help:"verbose log messages" short:"d"`
-	Quiet   bool `help:"no log messages" short:"q"`
+	HelpAll HelpAllFlag `help:"advanced/full help"`
+	Verbose bool        `help:"verbose log messages" short:"d"`
+	Quiet   bool        `help:"no log messages" short:"q"`
 
 	Version VersionCommand `cmd:"" name:"version" help:"show version"`
+	Login   LoginCommand   `cmd:"" name:"login" help:"create a session for further commands (requires admin console password)"`
 	Poe     PoeCommand     `cmd:"" name:"poe" help:"show POE status or change the configuration"`
-	Login   LoginCommand   `cmd:"" name:"login" help:"do create a session for further commands (requires admin console password)"`
 }
 
 func main() {
@@ -26,7 +27,14 @@ func main() {
 		os.Args = append(os.Args, "--help")
 	}
 
-	options := kong.Parse(&cli)
+	options := kong.Parse(&cli,
+		kong.UsageOnError(),
+		kong.ConfigureHelp(kong.HelpOptions{
+			Compact:             true,
+			NoExpandSubcommands: true,
+		}),
+	)
+
 	err := options.Run(&GlobalOptions{
 		Verbose: cli.Verbose,
 		Quiet:   cli.Quiet,

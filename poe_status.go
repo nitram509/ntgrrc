@@ -21,9 +21,9 @@ type PoePortStatus struct {
 }
 
 type PoeCommand struct {
-	PoeSetPowerCommand     PoeSetPowerCommand     `cmd:"" name:"set"`
-	PoeStatusCommand       PoeStatusCommand       `cmd:"" name:"status" default:"1"`
-	PoeShowSettingsCommand PoeShowSettingsCommand `cmd:"" name:"settings"`
+	PoeStatusCommand       PoeStatusCommand       `cmd:"" name:"status" help:"show current PoE status for all ports" default:"1"`
+	PoeShowSettingsCommand PoeShowSettingsCommand `cmd:"" name:"settings" help:"show current PoE settings for all ports"`
+	PoeSetPowerCommand     PoeSetPowerCommand     `cmd:"" name:"set" help:"set new PoE settings per each PORT number"`
 }
 
 type PoeStatusCommand struct {
