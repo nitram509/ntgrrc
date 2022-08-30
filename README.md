@@ -43,10 +43,11 @@ ntgrrc --help-all
 Usage: ntgrrc <command>
 
 Flags:
-  -h, --help        Show context-sensitive help.
-      --help-all    advanced/full help
-  -d, --verbose     verbose log messages
-  -q, --quiet       no log messages
+  -h, --help                  Show context-sensitive help.
+      --help-all              advanced/full help
+  -d, --verbose               verbose log messages
+  -q, --quiet                 no log messages
+  -f, --output-format="md"    what output format to use [md, json]
 
 Commands:
   version
