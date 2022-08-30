@@ -7,16 +7,24 @@ import (
 )
 
 func requestPage(args *GlobalOptions, host string, url string) (string, error) {
+	return doHttpRequestAndReadResponse(args, http.MethodGet, host, url, "")
+}
+
+func postPage(args *GlobalOptions, host string, url string, requestBody string) (string, error) {
+	return doHttpRequestAndReadResponse(args, http.MethodPost, host, url, requestBody)
+}
+
+func doHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, host string, postUrl string, requestBody string) (string, error) {
 	token, err := loadToken(args, host)
 	if err != nil {
 		return "", err
 	}
 
 	if args.Verbose {
-		println("Fetching data from: " + url)
+		println("Fetching data from: " + postUrl)
 	}
 
-	req, err := http.NewRequest(http.MethodGet, url, strings.NewReader(""))
+	req, err := http.NewRequest(httpMethod, postUrl, strings.NewReader(requestBody))
 	if err != nil {
 		return "", err
 	}

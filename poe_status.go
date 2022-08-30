@@ -21,6 +21,7 @@ type PoePortStatus struct {
 }
 
 type PoeCommand struct {
+	PoeSetPowerCommand     PoeSetPowerCommand     `cmd:"" name:"set"`
 	PoeStatusCommand       PoeStatusCommand       `cmd:"" name:"status" default:"1"`
 	PoeShowSettingsCommand PoeShowSettingsCommand `cmd:"" name:"settings"`
 }
