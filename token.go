@@ -1,9 +1,11 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"hash/adler32"
 	"io"
+	"io/fs"
 	"os"
 	"path/filepath"
 )
@@ -30,6 +32,9 @@ func loadToken(args *GlobalOptions, host string) (string, error) {
 		println("reading token from: " + tokenFilename(host))
 	}
 	bytes, err := os.ReadFile(tokenFilename(host))
+	if errors.Is(err, fs.ErrNotExist) {
+		return "", errors.New("no session (token) exists. please login first")
+	}
 	return string(bytes), err
 }
 
