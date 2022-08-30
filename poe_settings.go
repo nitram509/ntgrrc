@@ -36,11 +36,11 @@ func (poe *PoeShowSettingsCommand) Run(args *GlobalOptions) error {
 	if err != nil {
 		return err
 	}
-	prettyPrintSettings(settings)
+	prettyPrintSettings(args.OutputFormat, settings)
 	return nil
 }
 
-func prettyPrintSettings(settings []PoePortSetting) {
+func prettyPrintSettings(format OutputFormat, settings []PoePortSetting) {
 	var header = []string{"Port ID", "Port Power", "Mode", "Priority", "Limit Type", "Limit (W)", "Type"}
 	var content [][]string
 	for _, setting := range settings {
@@ -54,7 +54,14 @@ func prettyPrintSettings(settings []PoePortSetting) {
 		row = append(row, bidiMapLookup(setting.DetecType, detecTypeMap))
 		content = append(content, row)
 	}
-	printMarkdownTable(header, content)
+	switch format {
+	case MarkdownFormat:
+		printMarkdownTable(header, content)
+	case JsonFormat:
+		printJsonDataTable("settings", header, content)
+	default:
+		panic("not implemented format: " + format)
+	}
 }
 
 func asTextPortPower(portPwr bool) string {

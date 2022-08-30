@@ -123,7 +123,7 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 		}
 	}
 
-	prettyPrintSettings(changedPorts)
+	prettyPrintSettings(args.OutputFormat, changedPorts)
 
 	return err
 }

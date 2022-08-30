@@ -43,11 +43,11 @@ func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
 	if err != nil {
 		return err
 	}
-	prettyPrintStatus(statuses)
+	prettyPrintStatus(args.OutputFormat, statuses)
 	return nil
 }
 
-func prettyPrintStatus(statuses []PoePortStatus) {
+func prettyPrintStatus(format OutputFormat, statuses []PoePortStatus) {
 	var header = []string{"Port ID", "Status", "PortPwr class", "Voltage (V)", "Current (mA)", "PortPwr (W)", "Temp. (°C)", "Error status"}
 	var content [][]string
 	for _, status := range statuses {
@@ -62,7 +62,14 @@ func prettyPrintStatus(statuses []PoePortStatus) {
 		row = append(row, status.ErrorStatus)
 		content = append(content, row)
 	}
-	printMarkdownTable(header, content)
+	switch format {
+	case MarkdownFormat:
+		printMarkdownTable(header, content)
+	case JsonFormat:
+		printJsonDataTable("status", header, content)
+	default:
+		panic("not implemented format: " + format)
+	}
 }
 
 func requestPoePortStatusPage(args *GlobalOptions, host string) (string, error) {

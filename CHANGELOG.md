@@ -1,6 +1,12 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.5.1
+
+* add support for JSON response format (alternative to Markdown) (issue #5)
+
+----
+
 ## v0.5.0
 
 * add feature to set/change PoE settings at/to the switch (issue #2) thank you for you contribution @davidk

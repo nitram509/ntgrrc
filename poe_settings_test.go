@@ -34,7 +34,16 @@ func TestPrettyPrintSettings(t *testing.T) {
 	then.AssertThat(t, err, is.Nil())
 	then.AssertThat(t, settings, has.Length(4))
 
-	prettyPrintSettings(settings)
+	prettyPrintSettings(MarkdownFormat, settings)
+}
+
+func TestPrettyPrintJsonSettings(t *testing.T) {
+	settings, err := findPortSettingsInHtml(strings.NewReader(getPoePortConfigCgiHtml))
+
+	then.AssertThat(t, err, is.Nil())
+	then.AssertThat(t, settings, has.Length(4))
+
+	prettyPrintSettings(JsonFormat, settings)
 }
 
 //go:embed test-data/PoEPortConfig.cgi.html

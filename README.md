@@ -91,6 +91,8 @@ Once a session is created, you can fetch POE settings and status.
 The switch's settings are printed in Markdown table format.
 This means, separated by | (pipe) and optional suffixes with blanks.
 
+Use the ```--output-format=json``` flag, to get JSON output instead.
+
 ```ntgrrc poe settings --address gs305ep```
 
 ```markdown
@@ -106,6 +108,8 @@ This means, separated by | (pipe) and optional suffixes with blanks.
 
 The switch's POE status are printed in Markdown table format.
 This means, separated by | (pipe) and optional suffixes with blanks.
+
+Use the ```--output-format=json``` flag, to get JSON output instead.
 
 ```ntgrrc poe status --address gs305ep```
 

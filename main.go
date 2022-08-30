@@ -7,14 +7,16 @@ import (
 )
 
 type GlobalOptions struct {
-	Verbose bool
-	Quiet   bool
+	Verbose      bool
+	Quiet        bool
+	OutputFormat OutputFormat
 }
 
 var cli struct {
-	HelpAll HelpAllFlag `help:"advanced/full help"`
-	Verbose bool        `help:"verbose log messages" short:"d"`
-	Quiet   bool        `help:"no log messages" short:"q"`
+	HelpAll      HelpAllFlag  `help:"advanced/full help"`
+	Verbose      bool         `help:"verbose log messages" short:"d"`
+	Quiet        bool         `help:"no log messages" short:"q"`
+	OutputFormat OutputFormat `help:"what output format to use [md, json]" enum:"md,json" default:"md" short:"f"`
 
 	Version VersionCommand `cmd:"" name:"version" help:"show version"`
 	Login   LoginCommand   `cmd:"" name:"login" help:"create a session for further commands (requires admin console password)"`
@@ -36,8 +38,9 @@ func main() {
 	)
 
 	err := options.Run(&GlobalOptions{
-		Verbose: cli.Verbose,
-		Quiet:   cli.Quiet,
+		Verbose:      cli.Verbose,
+		Quiet:        cli.Quiet,
+		OutputFormat: cli.OutputFormat,
 	})
 	if err != nil {
 		fmt.Printf("Error: %s\n", err.Error())
