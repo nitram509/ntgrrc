@@ -3,7 +3,7 @@
 
 ## v0.5.0
 
-* add feature to set/change PoE settings at/to the switch (issue #2)
+* add feature to set/change PoE settings at/to the switch (issue #2) thank you for you contribution @davidk
 * add show help when no parameter given (issue #6)
 * add more help description and --help-all flag (issue #7)
 * change using Go 1.19
