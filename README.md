@@ -43,22 +43,26 @@ ntgrrc --help
 Usage: ntgrrc <command>
 
 Flags:
-  -h, --help       Show context-sensitive help.
-  -d, --verbose    verbose log messages
-  -q, --quiet      no log messages
+  -h, --help        Show context-sensitive help.
+      --help-all    advanced/full help
+  -d, --verbose     verbose log messages
+  -q, --quiet       no log messages
 
 Commands:
   version
     show version
 
-  poe set --address=STRING --port=PORT,...
+  login --address=STRING --password=STRING
+    create a session for further commands (requires admin console password)
 
   poe status --address=STRING
+    show current PoE status for all ports
 
   poe settings --address=STRING
+    show current PoE settings for all ports
 
-  login --address=STRING --password=STRING
-    do create a session for further commands (requires admin console password)
+  poe set --address=STRING --port=PORT,...
+    set new PoE settings per each PORT number
 
 Run "ntgrrc <command> --help" for more information on a command.
 ```
