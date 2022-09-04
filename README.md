@@ -8,9 +8,12 @@ manage configuration and show status of the switch.
 This tool is still very limited in its features and more testers and **contributors
 are very welcome**.
 
+### Build Status
+
+[![codecov](https://codecov.io/gh/nitram509/ntgrrc/branch/main/graph/badge.svg?token=J5J6SQ0TPJ)](https://codecov.io/gh/nitram509/ntgrrc)
+
+
 ### Supported firmware versions
-
-
 
 | Firmware  | GS305EP | GS305EPP | GS308EPP |
 |-----------|---------|----------|----------|
