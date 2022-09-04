@@ -65,6 +65,9 @@ Commands:
   poe set --address=STRING --port=PORT,...
     set new PoE settings per each PORT number
 
+  poe cycle --address=STRING --port=PORT,...
+    power cycle one or more PoE ports
+
 Run "ntgrrc <command> --help" for more information on a command.
 ```
 <!-- MARKDOWN-AUTO-DOCS:END -->
