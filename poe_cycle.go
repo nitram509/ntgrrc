@@ -28,24 +28,23 @@ func (poe *PoeCyclePowerCommand) Run(args *GlobalOptions) error {
 		if switchPort > len(settings) || switchPort < 1 {
 			return errors.New(fmt.Sprintf("given port id %d, doesn't fit in range 1..%d", switchPort, len(settings)))
 		}
-
 		poeSettings.Add(fmt.Sprintf("port%d", switchPort-1), "checked")
 	}
 
 	result, err := requestPoeSettingsUpdate(args, poe.Address, poeSettings.Encode())
+	if result != "SUCCESS" {
+		return errors.New(result)
+	}
 	if err != nil {
 		return err
 	}
 
-	if result != "SUCCESS" {
-		return errors.New(result)
+	settings, err = requestPoeConfiguration(args, poe.Address, poeExt)
+	if err != nil {
+		return err
 	}
 
-	settings, err = requestPoeConfiguration(args, poe.Address, poeExt)
-
 	changedPorts := collectChangedPortConfiguration(poe.Ports, settings)
-
 	prettyPrintSettings(args.OutputFormat, changedPorts)
-
-	return err
+	return nil
 }
