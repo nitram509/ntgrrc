@@ -41,16 +41,9 @@ func (poe *PoeCyclePowerCommand) Run(args *GlobalOptions) error {
 		return errors.New(result)
 	}
 
-	var changedPorts []PoePortSetting
 	settings, err = requestPoeConfiguration(args, poe.Address, poeExt)
 
-	for _, configuredPort := range poe.Ports {
-		for _, portSetting := range settings {
-			if int(portSetting.PortIndex) == configuredPort {
-				changedPorts = append(changedPorts, portSetting)
-			}
-		}
-	}
+	changedPorts := collectChangedPortConfiguration(poe.Ports, settings)
 
 	prettyPrintSettings(args.OutputFormat, changedPorts)
 

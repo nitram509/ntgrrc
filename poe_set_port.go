@@ -112,10 +112,17 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 		}
 	}
 
-	var changedPorts []PoePortSetting
 	settings, err = requestPoeConfiguration(args, poe.Address, poeExt)
 
-	for _, configuredPort := range poe.Ports {
+	changedPorts := collectChangedPortConfiguration(poe.Ports, settings)
+
+	prettyPrintSettings(args.OutputFormat, changedPorts)
+
+	return err
+}
+
+func collectChangedPortConfiguration(poePorts []int, settings []PoePortSetting) (changedPorts []PoePortSetting) {
+	for _, configuredPort := range poePorts {
 		for _, portSetting := range settings {
 			if int(portSetting.PortIndex) == configuredPort {
 				changedPorts = append(changedPorts, portSetting)
@@ -123,9 +130,7 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 		}
 	}
 
-	prettyPrintSettings(args.OutputFormat, changedPorts)
-
-	return err
+	return changedPorts
 }
 
 func requestPoeConfiguration(args *GlobalOptions, host string, poeExt *PoeExt) ([]PoePortSetting, error) {
