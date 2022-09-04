@@ -10,8 +10,7 @@ are very welcome**.
 
 ### Build Status
 
-[![codecov](https://codecov.io/gh/nitram509/ntgrrc/branch/main/graph/badge.svg?token=J5J6SQ0TPJ)](https://codecov.io/gh/nitram509/ntgrrc)
-
+[![codecov](https://codecov.io/gh/nitram509/ntgrrc/branch/main/graph/badge.svg?token=8LVPP8JVKY)](https://codecov.io/gh/nitram509/ntgrrc)
 
 ### Supported firmware versions
 
