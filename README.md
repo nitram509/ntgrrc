@@ -10,6 +10,7 @@ are very welcome**.
 
 ### Build Status
 
+[![go test](https://github.com/nitram509/ntgrrc/actions/workflows/go-test.yml/badge.svg)](https://github.com/nitram509/ntgrrc/actions/workflows/go-test.yml)
 [![codecov](https://codecov.io/gh/nitram509/ntgrrc/branch/main/graph/badge.svg?token=8LVPP8JVKY)](https://codecov.io/gh/nitram509/ntgrrc)
 
 ### Supported firmware versions
