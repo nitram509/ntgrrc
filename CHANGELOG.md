@@ -1,6 +1,12 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.7.0
+
+* add prompt for password if not specified via command line argument (see #9)
+
+----
+
 ## v0.6.0
 
 * add new command for power cycling ports (see #10) - thank you for your contribution @davidk

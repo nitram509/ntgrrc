@@ -5,20 +5,34 @@ import (
 	"errors"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
+	"golang.org/x/term"
 	"io"
 	"math"
 	"net/http"
 	"strings"
+	"syscall"
 )
 
 const FailedAttempt = "no SID cookie found in response header"
 
 type LoginCommand struct {
 	Address  string `required:"" help:"the Netgear switch's IP address or host name to connect to" short:"a"`
-	Password string `required:"" help:"the admin console's password'" short:"p"`
+	Password string `optional:"" help:"the admin console's password; if omitted, it will be prompted for" short:"p"`
 }
 
 func (login *LoginCommand) Run(args *GlobalOptions) error {
+	if len(login.Password) < 1 {
+		pwd, err := promptForPassword(login.Address)
+		if err != nil {
+			return err
+		}
+		login.Password = pwd
+	}
+
+	if len(login.Password) < 1 {
+		return errors.New("no password given")
+	}
+
 	seedValue, err := getSeedValueFromSwitch(args, login.Address)
 	if err != nil {
 		return err
@@ -32,6 +46,12 @@ func (login *LoginCommand) Run(args *GlobalOptions) error {
 	}
 
 	return nil
+}
+
+func promptForPassword(serverName string) (string, error) {
+	fmt.Printf("Please enter password for '%s' (input hidden) :> ", serverName)
+	password, err := term.ReadPassword(syscall.Stdin)
+	return string(password), err
 }
 
 func doLogin(args *GlobalOptions, host string, encryptedPwd string) error {
