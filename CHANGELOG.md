@@ -1,6 +1,12 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.7.1
+
+* fixes in Github Actions to cover compiler errors earlier 
+
+----
+
 ## v0.7.0
 
 * add prompt for password if not specified via command line argument (see #9)
