@@ -2,8 +2,14 @@ name: go test
 on: [push, pull_request]
 jobs:
   test:
-    runs-on: ubuntu-latest
-    name: "go test with code coverage"
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+        include:
+          - os: ubuntu-latest
+            upload-coverage: true
+    runs-on: ${{ matrix.os }}
+    name: "go test"
     steps:
       - name: "checkout"
         uses: actions/checkout@v3
@@ -11,13 +17,13 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: 1.19
-      - name: "go test ntgrrc (windows amd64)"
-        run: GOOS=windows GOARCH=amd64 go test ntgrrc
-      - name: "go test ntgrrc (linux arm64)"
-        run: GOOS=linux GOARCH=arm64 go test -race -coverprofile=coverage.txt -covermode=atomic ntgrrc
-      - name: verify codecov.yaml
+      - name: "go test ntgrrc"
+        run: go test -race -coverprofile=coverage.txt -covermode=atomic ntgrrc
+      - if: ${{ matrix.upload-coverage }}
+        name: verify codecov.yaml
         run: curl -X POST --data-binary @codecov.yml https://codecov.io/validate
-      - name: upload code coverage
+      - if: ${{ matrix.upload-coverage }}
+        name: upload code coverage
         uses: codecov/codecov-action@v2
         with:
           files: ./coverage.txt
