@@ -56,7 +56,7 @@ Commands:
   version
     show version
 
-  login --address=STRING --password=STRING
+  login --address=STRING
     create a session for further commands (requires admin console password)
 
   poe status --address=STRING
