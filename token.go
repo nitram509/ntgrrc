@@ -45,9 +45,6 @@ func ensureConfigPathExists() error {
 }
 
 func dotConfigDirName() string {
-	homeDir, err := os.UserHomeDir()
-	if err != nil {
-		panic(err)
-	}
-	return filepath.Join(homeDir, ".config", "ntgrrc")
+	tempDir := os.TempDir()
+	return filepath.Join(tempDir, ".config", "ntgrrc")
 }
