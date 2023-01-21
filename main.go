@@ -14,7 +14,7 @@ type GlobalOptions struct {
 
 var cli struct {
 	HelpAll      HelpAllFlag  `help:"advanced/full help"`
-	Verbose      bool         `help:"verbose log messages" short:"d"`
+	Verbose      bool         `help:"verbose log messages" short:"v"`
 	Quiet        bool         `help:"no log messages" short:"q"`
 	OutputFormat OutputFormat `help:"what output format to use [md, json]" enum:"md,json" default:"md" short:"f"`
 

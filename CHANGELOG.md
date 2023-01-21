@@ -1,6 +1,13 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.7.2
+
+* using "-v" over "-d" for verbose output
+* using OS specific tmp directory to store login token (see #17) 
+
+----
+
 ## v0.7.1
 
 * add prompt for a password if not specified via command line argument (see #9)
