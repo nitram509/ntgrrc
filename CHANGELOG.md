@@ -1,6 +1,14 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.8.1
+
+* CHANGE: using "-v" parameter instead of "-d" for verbose output
+* CHANGE: using OS specific temp-directory (typically $TMP or %TEMP%) to store login token (see #17) - thank you for your contribution @Sylensky
+* fix the Windows build
+
+----
+
 ## v0.8.0
 
 * CHANGE: using "-v" parameter instead of "-d" for verbose output

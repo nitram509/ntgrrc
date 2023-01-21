@@ -50,7 +50,8 @@ func (login *LoginCommand) Run(args *GlobalOptions) error {
 
 func promptForPassword(serverName string) (string, error) {
 	fmt.Printf("Please enter password for '%s' (input hidden) :> ", serverName)
-	password, err := term.ReadPassword(syscall.Stdin)
+	// the int conversion is required for the windows build to succeed
+	password, err := term.ReadPassword(int(syscall.Stdin))
 	return string(password), err
 }
 
