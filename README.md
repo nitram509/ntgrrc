@@ -78,7 +78,7 @@ Run "ntgrrc <command> --help" for more information on a command.
 ### login
 
 For better performance, **login first**.
-The login action will store a token to a file called ```~/.config/ntgrrc/token-12345678```
+The login action will store a token to a file called ```$TEMP/.config/ntgrrc/token-12345678```
 and thus subsequent actions will use it and are authenticated.
 
 Note: if you have multiple Netgear switches, ntgrrc **supports multiple parallel tokens**/sessions,
