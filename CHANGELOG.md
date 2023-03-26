@@ -37,7 +37,7 @@
 
 ## v0.?.?
 
-* change using Go 1.20
+* change using Go '1.20'
 
 ----
 
