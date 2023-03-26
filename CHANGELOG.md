@@ -35,6 +35,12 @@
 
 ----
 
+## v0.?.?
+
+* change using Go 1.20
+
+----
+
 ## v0.5.0
 
 * add feature to set/change PoE settings at/to the switch (issue #2) thank you for your contribution @davidk

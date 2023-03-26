@@ -16,7 +16,7 @@ jobs:
       - name: "setup go"
         uses: actions/setup-go@v3
         with:
-          go-version: 1.19
+          go-version: 1.20
       - name: "go test ntgrrc"
         run: "go test -race '-coverprofile=coverage.txt' '-covermode=atomic' ntgrrc"
       - if: ${{ matrix.upload-coverage }}
