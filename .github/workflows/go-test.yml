@@ -17,10 +17,10 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: 1.20
+      - name: "go mod download"
+        run: "go mod download"
       - name: "go test ./..."
-        run: |
-          go mod download
-          go test -race '-coverprofile=coverage.txt' '-covermode=atomic' ./...
+        run: "go test -race '-coverprofile=coverage.txt' '-covermode=atomic' ./..."
       - if: ${{ matrix.upload-coverage }}
         name: verify codecov.yaml
         run: curl -X POST --data-binary @codecov.yml https://codecov.io/validate
