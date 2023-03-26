@@ -17,8 +17,8 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: 1.20
-      - name: "go test ntgrrc"
-        run: "go test -race '-coverprofile=coverage.txt' '-covermode=atomic' ntgrrc"
+      - name: "go test ./..."
+        run: "go test -race '-coverprofile=coverage.txt' '-covermode=atomic' ./..."
       - if: ${{ matrix.upload-coverage }}
         name: verify codecov.yaml
         run: curl -X POST --data-binary @codecov.yml https://codecov.io/validate
