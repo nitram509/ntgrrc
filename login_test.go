@@ -12,7 +12,7 @@ func TestGetSeedValueFromLoginHtml(t *testing.T) {
 	randomVal, err := getSeedValueFromLoginHtml(strings.NewReader(loginCgiHtml))
 
 	then.AssertThat(t, randomVal, is.EqualTo("1761741982"))
-	then.AssertThat(t, err, is.Nil())
+	then.AssertThat(t, err, is.Nil[error]())
 }
 
 func TestEncryptPassword(t *testing.T) {
