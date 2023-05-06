@@ -12,8 +12,8 @@ import (
 func TestFindPortStatusInHtml(t *testing.T) {
 	statuses, err := findPortStatusInHtml(strings.NewReader(getPoePortStatusCgiHtml))
 
-	then.AssertThat(t, err, is.Nil[error]())
-	then.AssertThat(t, statuses, has.Length[PoePortStatus, []PoePortStatus](4))
+	then.AssertThat(t, err, is.Nil())
+	then.AssertThat(t, statuses, has.Length[PoePortStatus](4))
 
 	status := statuses[0]
 	then.AssertThat(t, status.PortIndex, is.EqualTo(int8(1)))
@@ -29,8 +29,8 @@ func TestFindPortStatusInHtml(t *testing.T) {
 func TestPrettyPrintMarkdownStatus(t *testing.T) {
 	statuses, err := findPortStatusInHtml(strings.NewReader(getPoePortStatusCgiHtml))
 
-	then.AssertThat(t, err, is.Nil[error]())
-	then.AssertThat(t, statuses, has.Length[PoePortStatus, []PoePortStatus](4))
+	then.AssertThat(t, err, is.Nil())
+	then.AssertThat(t, statuses, has.Length[PoePortStatus](4))
 
 	prettyPrintStatus(MarkdownFormat, statuses)
 }
@@ -38,8 +38,8 @@ func TestPrettyPrintMarkdownStatus(t *testing.T) {
 func TestPrettyPrintJsonStatus(t *testing.T) {
 	statuses, err := findPortStatusInHtml(strings.NewReader(getPoePortStatusCgiHtml))
 
-	then.AssertThat(t, err, is.Nil[error]())
-	then.AssertThat(t, statuses, has.Length[PoePortStatus, []PoePortStatus](4))
+	then.AssertThat(t, err, is.Nil())
+	then.AssertThat(t, statuses, has.Length[PoePortStatus](4))
 
 	prettyPrintStatus(JsonFormat, statuses)
 }
