@@ -6,8 +6,8 @@ github.com/alecthomas/kong v0.7.1/go.mod h1:n1iCIO2xS46oE8ZfYCNDqdR0b0wZNrXAIAqr
 github.com/alecthomas/repr v0.1.0 h1:ENn2e1+J3k09gyj2shc0dHr/yjaWSHRlrJ4DPMevDqE=
 github.com/andybalholm/cascadia v1.3.1 h1:nhxRkql1kdYCc8Snf7D5/D3spOX+dBgjA6u8x004T2c=
 github.com/andybalholm/cascadia v1.3.1/go.mod h1:R4bJ1UQfqADjvDa4P6HZHLh/3OxWWEqc0Sk8XGwHqvA=
-github.com/corbym/gocrest v1.1.0 h1:ueugUn2RBLlquBa2bzzct2wnO+MShWfXMAUpXGBsEZ0=
-github.com/corbym/gocrest v1.1.0/go.mod h1:vhNebfdBGx5l0Nh0OM/CvIVqGAnR9AAbI5qA9OxRUOU=
+github.com/corbym/gocrest v1.1.1 h1:lry77EvxdkHVL9XaPf0uHTcRPZi9jOXvUbdxhV7djYc=
+github.com/corbym/gocrest v1.1.1/go.mod h1:vhNebfdBGx5l0Nh0OM/CvIVqGAnR9AAbI5qA9OxRUOU=
 github.com/hexops/gotextdiff v1.0.3 h1:gitA9+qJrrTCsiCl7+kh75nPqQt1cx4ZkudSTLoUqJM=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
