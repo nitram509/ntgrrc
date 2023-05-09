@@ -30,7 +30,7 @@ Legend: \
 This tool is build with the Go programming language
 and pre-build binaries for Windows, Linux, and MacOSX are available for [download](https://github.com/nitram509/ntgrrc/releases).
 
-Just download the fitting binary for your operating system und put it somewhere in your PATH.
+Just download the fitting binary for your operating system and put it somewhere in your PATH.
 
 ## usage
 
@@ -220,4 +220,19 @@ Use the ```--output-format=json``` flag, to get JSON output instead.
 |---------|------------|--------|----------|------------|-----------|----------------------|
 | 3       | enabled    | legacy | critical | user       | 30.0      | 4pt 802.3af + Legacy |
 | 5       | disabled   | legacy | critical | user       | 30.0      | 4pt 802.3af + Legacy |
+```
+
+#### cycle Power Over Ethernet (POE)
+
+ntgrrc is able to power cycle one or more PoE ports.
+
+Use the ```--output-format=json``` flag, to get JSON output instead.
+
+```ntgrrc poe cycle -p 3 -p 5 --address gs305ep```
+
+```markdown
+| Port ID | Port Power | Mode    | Priority | Limit Type | Limit (W) | Type     |
+|---------|------------|---------|----------|------------|-----------|----------|
+| 3       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
+| 5       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
 ```
