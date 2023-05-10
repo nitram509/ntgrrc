@@ -10,13 +10,14 @@ import (
 )
 
 type PoePortSetting struct {
-	PortIndex int8
-	PortPwr   bool
-	PwrMode   string
-	PortPrio  string
-	LimitType string
-	PwrLimit  string
-	DetecType string
+	PortIndex    int8
+	PortPwr      bool
+	PwrMode      string
+	PortPrio     string
+	LimitType    string
+	PwrLimit     string
+	DetecType    string
+	LongerDetect string
 }
 
 type PoeShowSettingsCommand struct {
@@ -41,7 +42,7 @@ func (poe *PoeShowSettingsCommand) Run(args *GlobalOptions) error {
 }
 
 func prettyPrintSettings(format OutputFormat, settings []PoePortSetting) {
-	var header = []string{"Port ID", "Port Power", "Mode", "Priority", "Limit Type", "Limit (W)", "Type"}
+	var header = []string{"Port ID", "Port Power", "Mode", "Priority", "Limit Type", "Limit (W)", "Type", "Longer Detection Time"}
 	var content [][]string
 	for _, setting := range settings {
 		var row []string
@@ -52,6 +53,7 @@ func prettyPrintSettings(format OutputFormat, settings []PoePortSetting) {
 		row = append(row, bidiMapLookup(setting.LimitType, limitTypeMap))
 		row = append(row, setting.PwrLimit)
 		row = append(row, bidiMapLookup(setting.DetecType, detecTypeMap))
+		row = append(row, bidiMapLookup(setting.LongerDetect, longerDetectMap))
 		content = append(content, row)
 	}
 	switch format {
@@ -102,6 +104,8 @@ func findPortSettingsInHtml(reader io.Reader) ([]PoePortSetting, error) {
 		config.PwrLimit, _ = s.Find("input.pwrLimit").Attr("value")
 
 		config.DetecType, _ = s.Find("input#hidDetecType").Attr("value")
+
+		config.LongerDetect, _ = s.Find("input.longerDetect").Attr("value")
 
 		configs = append(configs, config)
 	})

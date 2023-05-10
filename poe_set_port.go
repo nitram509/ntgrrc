@@ -13,22 +13,24 @@ import (
 type Setting string
 
 const (
-	PortPrio  Setting = "PortPrio"
-	PwrMode   Setting = "PwrMode"
-	LimitType Setting = "LimitType"
-	PwrLimit  Setting = "PwrLimit"
-	DetecType Setting = "DetecType"
+	PortPrio     Setting = "PortPrio"
+	PwrMode      Setting = "PwrMode"
+	LimitType    Setting = "LimitType"
+	PwrLimit     Setting = "PwrLimit"
+	DetecType    Setting = "DetecType"
+	LongerDetect Setting = "LongerDetect"
 )
 
 type PoeSetPowerCommand struct {
-	Address   string `required:"" help:"the Netgear switch's IP address or host name to connect to" short:"a"`
-	Ports     []int  `required:"" help:"port number (starting with 1), use multiple times for setting multiple ports at once" short:"p" name:"port"`
-	PortPwr   string `optional:"" help:"power state for port [enable, disable]" short:"s" name:"power"`
-	PwrMode   string `optional:"" help:"power mode [802.3af, legacy, pre-802.3at, 802.3at]" short:"m" name:"mode"`
-	PortPrio  string `optional:"" help:"priority [low, high, critical]" short:"r" name:"priority"`
-	LimitType string `optional:"" help:"power limit type [none, class, user]" short:"t" name:"limit-type"`
-	PwrLimit  string `optional:"" help:"power limit (W)" short:"l" name:"pwr-limit"`
-	DetecType string `optional:"" help:"detection type [IEEE 802, legacy, 4pt 802.3af + Legacy]" short:"e" name:"detect-type"`
+	Address      string `required:"" help:"the Netgear switch's IP address or host name to connect to" short:"a"`
+	Ports        []int  `required:"" help:"port number (starting with 1), use multiple times for setting multiple ports at once" short:"p" name:"port"`
+	PortPwr      string `optional:"" help:"power state for port [enable, disable]" short:"s" name:"power"`
+	PwrMode      string `optional:"" help:"power mode [802.3af, legacy, pre-802.3at, 802.3at]" short:"m" name:"mode"`
+	PortPrio     string `optional:"" help:"priority [low, high, critical]" short:"r" name:"priority"`
+	LimitType    string `optional:"" help:"power limit type [none, class, user]" short:"t" name:"limit-type"`
+	PwrLimit     string `optional:"" help:"power limit (W)" short:"l" name:"pwr-limit"`
+	DetecType    string `optional:"" help:"detection type [IEEE 802, legacy, 4pt 802.3af + Legacy]" short:"e" name:"detect-type"`
+	LongerDetect string `optional:"" help:"longer detection time [enable, disable]" name:"longer-detection-time"`
 }
 
 type PoeExt struct {
@@ -90,16 +92,19 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 			return err
 		}
 
+		longerDetect, err := compareSettings(LongerDetect, portSetting.LongerDetect, poe.LongerDetect, poeExt)
+
 		poeSettings := url.Values{
-			"hash":         {poeExt.Hash},
-			"ACTION":       {"Apply"},
-			"portID":       {strconv.Itoa(int(switchPort - 1))},
-			"ADMIN_MODE":   {adminMode},
-			"PORT_PRIO":    {portPrio},
-			"POW_MOD":      {pwrMode},
-			"POW_LIMT_TYP": {pwrLimitType},
-			"POW_LIMT":     {pwrLimit},
-			"DETEC_TYP":    {detecType},
+			"hash":           {poeExt.Hash},
+			"ACTION":         {"Apply"},
+			"portID":         {strconv.Itoa(int(switchPort - 1))},
+			"ADMIN_MODE":     {adminMode},
+			"PORT_PRIO":      {portPrio},
+			"POW_MOD":        {pwrMode},
+			"POW_LIMT_TYP":   {pwrLimitType},
+			"POW_LIMT":       {pwrLimit},
+			"DETEC_TYP":      {detecType},
+			"DISCONNECT_TYP": {longerDetect},
 		}
 
 		result, err := requestPoeSettingsUpdate(args, poe.Address, poeSettings.Encode())
@@ -248,6 +253,12 @@ func compareSettings(name Setting, defaultValue string, newValue string, poeExt 
 			return detecType, errors.New("detection type could not be set. Accepted values are: " + valuesAsString(detecTypeMap))
 		}
 		return detecType, nil
+	case LongerDetect:
+		longerDetect := bidiMapLookup(newValue, longerDetectMap)
+		if longerDetect == "unknown" {
+			return longerDetect, errors.New("longer detection type value could not be set. Accepted values are: " + valuesAsString(longerDetectMap))
+		}
+		return longerDetect, nil
 	default:
 		return defaultValue, errors.New("could not find port setting")
 	}

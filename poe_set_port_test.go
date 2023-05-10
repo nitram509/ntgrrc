@@ -29,7 +29,7 @@ func TestFindMaxPowerLimit(t *testing.T) {
 
 func TestCompareSettingsUnknown(t *testing.T) {
 
-	for _, setting := range []Setting{PortPrio, PwrMode, LimitType, DetecType} {
+	for _, setting := range []Setting{PortPrio, PwrMode, LimitType, DetecType, LongerDetect} {
 		setting, _ := compareSettings(setting, "defaultValue", "newValue", poeExt)
 		then.AssertThat(t, setting, is.EqualTo("unknown").Reason("when providing a value that does not exist, return unknown to the caller"))
 	}
@@ -139,6 +139,33 @@ func TestCompareDetecType(t *testing.T) {
 	setting, err = compareSettings(DetecType, "1", "", poeExt)
 	then.AssertThat(t, err, is.Nil())
 	then.AssertThat(t, setting, is.EqualTo("1").Reason("maintain the prior value when nothing new is specified"))
+}
+
+func TestCompareLongerDetect(t *testing.T) {
+
+	setting, err := compareSettings(LongerDetect, "Get Value Fault", "disable", poeExt)
+	then.AssertThat(t, err, is.Nil())
+	then.AssertThat(t, setting, is.EqualTo("2").Reason("allow user to change the longer detection time to Disable from Get Value Fault"))
+
+	setting, err = compareSettings(LongerDetect, "Get Value Fault", "enable", poeExt)
+	then.AssertThat(t, err, is.Nil())
+	then.AssertThat(t, setting, is.EqualTo("3").Reason("allow user to change the longer detection time to Enable from Get Value Fault"))
+
+	setting, err = compareSettings(LongerDetect, "enable", "disable", poeExt)
+	then.AssertThat(t, err, is.Nil())
+	then.AssertThat(t, setting, is.EqualTo("2").Reason("allow user to change the longer detection time to Disable"))
+
+	setting, err = compareSettings(LongerDetect, "disable", "enable", poeExt)
+	then.AssertThat(t, err, is.Nil())
+	then.AssertThat(t, setting, is.EqualTo("3").Reason("allow user to change the longer detection time to Enable"))
+
+	setting, err = compareSettings(LongerDetect, "enable", "", poeExt)
+	then.AssertThat(t, err, is.Nil())
+	then.AssertThat(t, setting, is.EqualTo("enable").Reason("maintain the same longer detect type when nothing new is specified"))
+
+	setting, err = compareSettings(LongerDetect, "2", "", poeExt)
+	then.AssertThat(t, err, is.Nil())
+	then.AssertThat(t, setting, is.EqualTo("2").Reason("maintain the same longer detect type when nothing new is specified"))
 }
 
 //go:embed test-data/PoEPortConfig.cgi.html
