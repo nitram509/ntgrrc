@@ -54,3 +54,9 @@ var detecTypeMap = map[string]string{
 	"2": "IEEE 802",
 	"3": "4pt 802.3af + Legacy",
 }
+
+var longerDetectMap = map[string]string{
+	"0": "Get Value Fault",
+	"2": "disable",
+	"3": "enable",
+}
