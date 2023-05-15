@@ -1,6 +1,12 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.8.2
+
+* ...
+
+----
+
 ## v0.8.1
 
 * CHANGE: using "-v" parameter instead of "-d" for verbose output
