@@ -11,40 +11,42 @@ import (
 )
 
 func storeToken(args *GlobalOptions, host string, token string) error {
-	err := ensureConfigPathExists()
+	err := ensureConfigPathExists(args.TokenDir)
 	if err != nil {
 		return err
 	}
 	if args.Verbose {
-		println("Storing login token " + tokenFilename(host))
+		println("Storing login token " + tokenFilename(args.TokenDir, host))
 	}
-	return os.WriteFile(tokenFilename(host), []byte(token), 0644)
+	return os.WriteFile(tokenFilename(args.TokenDir, host), []byte(token), 0644)
 }
 
-func tokenFilename(host string) string {
+func tokenFilename(configDir string, host string) string {
 	hash32 := adler32.New()
 	io.WriteString(hash32, host)
-	return filepath.Join(dotConfigDirName(), "token-"+fmt.Sprintf("%x", hash32.Sum(nil)))
+	return filepath.Join(dotConfigDirName(configDir), "token-"+fmt.Sprintf("%x", hash32.Sum(nil)))
 }
 
 func loadToken(args *GlobalOptions, host string) (string, error) {
 	if args.Verbose {
-		println("reading token from: " + tokenFilename(host))
+		println("reading token from: " + tokenFilename(args.TokenDir, host))
 	}
-	bytes, err := os.ReadFile(tokenFilename(host))
+	bytes, err := os.ReadFile(tokenFilename(args.TokenDir, host))
 	if errors.Is(err, fs.ErrNotExist) {
 		return "", errors.New("no session (token) exists. please login first")
 	}
 	return string(bytes), err
 }
 
-func ensureConfigPathExists() error {
-	dotConfigNtgrrc := dotConfigDirName()
+func ensureConfigPathExists(configDir string) error {
+	dotConfigNtgrrc := dotConfigDirName(configDir)
 	err := os.MkdirAll(dotConfigNtgrrc, os.ModeDir)
 	return err
 }
 
-func dotConfigDirName() string {
-	tempDir := os.TempDir()
-	return filepath.Join(tempDir, ".config", "ntgrrc")
+func dotConfigDirName(configDir string) string {
+	if configDir == "" {
+		configDir = os.TempDir()
+	}
+	return filepath.Join(configDir, ".config", "ntgrrc")
 }

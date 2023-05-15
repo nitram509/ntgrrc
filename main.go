@@ -10,6 +10,7 @@ type GlobalOptions struct {
 	Verbose      bool
 	Quiet        bool
 	OutputFormat OutputFormat
+	TokenDir     string
 }
 
 var cli struct {
@@ -17,6 +18,7 @@ var cli struct {
 	Verbose      bool         `help:"verbose log messages" short:"v"`
 	Quiet        bool         `help:"no log messages" short:"q"`
 	OutputFormat OutputFormat `help:"what output format to use [md, json]" enum:"md,json" default:"md" short:"f"`
+	TokenDir     string       `help:"directory to store login tokens" default:"" short:"d"`
 
 	Version VersionCommand `cmd:"" name:"version" help:"show version"`
 	Login   LoginCommand   `cmd:"" name:"login" help:"create a session for further commands (requires admin console password)"`
@@ -41,6 +43,7 @@ func main() {
 		Verbose:      cli.Verbose,
 		Quiet:        cli.Quiet,
 		OutputFormat: cli.OutputFormat,
+		TokenDir:     cli.TokenDir,
 	})
 	if err != nil {
 		fmt.Printf("Error: %s\n", err.Error())

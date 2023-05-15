@@ -48,6 +48,7 @@ Usage: ntgrrc <command>
 Flags:
   -h, --help                  Show context-sensitive help.
       --help-all              advanced/full help
+  -d, --token-dir             directory for login token storage
   -v, --verbose               verbose log messages
   -q, --quiet                 no log messages
   -f, --output-format="md"    what output format to use [md, json]
