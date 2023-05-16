@@ -3,7 +3,8 @@
 
 ## v0.8.2
 
-* ...
+* Use "-d" to specify a directory to store the login token (#29)
+* Add a flag to set the PoE Longer Detection Time flag (#28)
 
 ----
 
