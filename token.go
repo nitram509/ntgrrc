@@ -40,7 +40,7 @@ func loadToken(args *GlobalOptions, host string) (string, error) {
 
 func ensureConfigPathExists(configDir string) error {
 	dotConfigNtgrrc := dotConfigDirName(configDir)
-	err := os.MkdirAll(dotConfigNtgrrc, os.ModeDir)
+	err := os.MkdirAll(dotConfigNtgrrc, os.ModeDir|0700)
 	return err
 }
 
