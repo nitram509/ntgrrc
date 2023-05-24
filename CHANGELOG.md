@@ -1,6 +1,12 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.8.3
+
+* update permissions for creation of token directory (#30)
+
+----
+
 ## v0.8.2
 
 * Use "-d" to specify a directory to store the login token (#29)
