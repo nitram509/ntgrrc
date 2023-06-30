@@ -11,6 +11,7 @@ import (
 
 type PoePortSetting struct {
 	PortIndex    int8
+	PortName     string
 	PortPwr      bool
 	PwrMode      string
 	PortPrio     string
@@ -42,11 +43,12 @@ func (poe *PoeShowSettingsCommand) Run(args *GlobalOptions) error {
 }
 
 func prettyPrintSettings(format OutputFormat, settings []PoePortSetting) {
-	var header = []string{"Port ID", "Port Power", "Mode", "Priority", "Limit Type", "Limit (W)", "Type", "Longer Detection Time"}
+	var header = []string{"Port ID", "Port Name", "Port Power", "Mode", "Priority", "Limit Type", "Limit (W)", "Type", "Longer Detection Time"}
 	var content [][]string
 	for _, setting := range settings {
 		var row []string
 		row = append(row, fmt.Sprintf("%d", setting.PortIndex))
+		row = append(row, setting.PortName)
 		row = append(row, asTextPortPower(setting.PortPwr))
 		row = append(row, bidiMapLookup(setting.PwrMode, pwrModeMap))
 		row = append(row, bidiMapLookup(setting.PortPrio, portPrioMap))
@@ -91,6 +93,8 @@ func findPortSettingsInHtml(reader io.Reader) ([]PoePortSetting, error) {
 		id, _ := s.Find("input[type=hidden].port").Attr("value")
 		var id64, _ = strconv.ParseInt(id, 10, 8)
 		config.PortIndex = int8(id64)
+
+		config.PortName, _ = s.Find("input[type=hidden].portName").Attr("value")
 
 		portWr, exists := s.Find("input#hidPortPwr").Attr("value")
 		config.PortPwr = exists && portWr == "1"
