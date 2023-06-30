@@ -11,6 +11,7 @@ import (
 
 type PoePortStatus struct {
 	PortIndex            int8
+	PortName             string
 	PoePowerClass        string
 	PoePortStatus        string
 	ErrorStatus          string
@@ -49,11 +50,12 @@ func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
 }
 
 func prettyPrintStatus(format OutputFormat, statuses []PoePortStatus) {
-	var header = []string{"Port ID", "Status", "PortPwr class", "Voltage (V)", "Current (mA)", "PortPwr (W)", "Temp. (°C)", "Error status"}
+	var header = []string{"Port ID", "Port Name", "Status", "PortPwr class", "Voltage (V)", "Current (mA)", "PortPwr (W)", "Temp. (°C)", "Error status"}
 	var content [][]string
 	for _, status := range statuses {
 		var row []string
 		row = append(row, fmt.Sprintf("%d", status.PortIndex))
+		row = append(row, status.PortName)
 		row = append(row, status.PoePortStatus)
 		row = append(row, status.PoePowerClass)
 		row = append(row, fmt.Sprintf("%d", status.VoltageInVolt))
@@ -92,6 +94,9 @@ func findPortStatusInHtml(reader io.Reader) ([]PoePortStatus, error) {
 		var id64, _ = strconv.ParseInt(id, 10, 8)
 		stat.PortIndex = int8(id64)
 
+		portData := s.Find("span.poe-port-index span").Text()
+		_, stat.PortName = getPortWithName(portData)
+
 		stat.PoePortStatus = s.Find("span.poe-power-mode span").Text()
 		powerClassText := s.Find("span.poe-portPwr-width span").Text()
 		stat.PoePowerClass = getPowerClassFromI18nString(powerClassText)
@@ -123,4 +128,16 @@ func getPowerClassFromI18nString(class string) string {
 		return split[1]
 	}
 	return ""
+}
+
+// getPortWithName parses the port number and port name on the status page
+func getPortWithName(str string) (int8, string) {
+	index := strings.Index(str, " - ")
+	if index >= 0 {
+		portId, _ := strconv.ParseInt(str[:index], 10, 8)
+		return int8(portId), str[index+3:]
+	}
+
+	portId, _ := strconv.ParseInt(str, 10, 8)
+	return int8(portId), ""
 }
