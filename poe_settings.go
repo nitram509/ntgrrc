@@ -88,7 +88,7 @@ func findPortSettingsInHtml(reader io.Reader) ([]PoePortSetting, error) {
 	doc.Find("li.poePortSettingListItem").Each(func(i int, s *goquery.Selection) {
 		config := PoePortSetting{}
 
-		id := s.Find("span.poe-port-index span").Text()
+		id, _ := s.Find("input[type=hidden].port").Attr("value")
 		var id64, _ = strconv.ParseInt(id, 10, 8)
 		config.PortIndex = int8(id64)
 
