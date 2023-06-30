@@ -88,7 +88,7 @@ func findPortStatusInHtml(reader io.Reader) ([]PoePortStatus, error) {
 	doc.Find("li.poePortStatusListItem").Each(func(i int, s *goquery.Selection) {
 		stat := PoePortStatus{}
 
-		id := s.Find("span.poe-port-index span").Text()
+		id, _ := s.Find("input[type=hidden].port").Attr("value")
 		var id64, _ = strconv.ParseInt(id, 10, 8)
 		stat.PortIndex = int8(id64)
 
