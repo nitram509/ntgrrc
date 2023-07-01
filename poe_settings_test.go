@@ -2,11 +2,12 @@ package main
 
 import (
 	_ "embed"
+	"strings"
+	"testing"
+
 	"github.com/corbym/gocrest/has"
 	"github.com/corbym/gocrest/is"
 	"github.com/corbym/gocrest/then"
-	"strings"
-	"testing"
 )
 
 func TestFindPortConfigInHtml(t *testing.T) {
@@ -27,6 +28,9 @@ func TestFindPortConfigInHtml(t *testing.T) {
 
 	setting = settings[1]
 	then.AssertThat(t, setting.PortPwr, is.EqualTo(true))
+
+	// Tests that the space is not removed if the user has deliberately added it
+	then.AssertThat(t, setting.PortName, is.EqualTo("link to - sw128 "))
 }
 
 func TestPrettyPrintSettings(t *testing.T) {
