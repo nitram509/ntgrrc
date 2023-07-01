@@ -3,10 +3,11 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/PuerkitoBio/goquery"
 	"io"
 	"strconv"
 	"strings"
+
+	"github.com/PuerkitoBio/goquery"
 )
 
 type PoePortStatus struct {
@@ -135,7 +136,7 @@ func getPortWithName(str string) (int8, string) {
 	index := strings.Index(str, " - ")
 	if index >= 0 {
 		portId, _ := strconv.ParseInt(str[:index], 10, 8)
-		return int8(portId), str[index+3:]
+		return int8(portId), strings.TrimSuffix(str[index+3:], " ")
 	}
 
 	portId, _ := strconv.ParseInt(str, 10, 8)
