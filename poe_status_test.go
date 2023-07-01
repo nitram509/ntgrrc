@@ -2,11 +2,12 @@ package main
 
 import (
 	_ "embed"
+	"strings"
+	"testing"
+
 	"github.com/corbym/gocrest/has"
 	"github.com/corbym/gocrest/is"
 	"github.com/corbym/gocrest/then"
-	"strings"
-	"testing"
 )
 
 func TestFindPortStatusInHtml(t *testing.T) {
@@ -24,6 +25,11 @@ func TestFindPortStatusInHtml(t *testing.T) {
 	then.AssertThat(t, status.PowerInWatt, is.EqualTo(float32(4.4)))
 	then.AssertThat(t, status.TemperatureInCelsius, is.EqualTo(int32(30)))
 	then.AssertThat(t, status.ErrorStatus, is.EqualTo("No Error"))
+
+	// Test port name parsing and ensure it matches expected display name
+	status = statuses[1]
+	then.AssertThat(t, status.PortName, is.EqualTo("link to - sw128 "))
+
 }
 
 func TestPrettyPrintMarkdownStatus(t *testing.T) {
