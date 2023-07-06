@@ -1,6 +1,13 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.8.4
+
+* Add port name field to output (#35)
+* Fix port indexing when a port name was also defined (#34)
+
+----
+
 ## v0.8.3
 
 * update permissions for creation of token directory (#30)
