@@ -35,7 +35,7 @@ func (poe *PoeShowSettingsCommand) Run(args *GlobalOptions) error {
 		return errors.New("no content. please, (re-)login first")
 	}
 	var settings []PoePortSetting
-	settings, err = findPortSettingsInHtml(strings.NewReader(settingsPage))
+	settings, err = findPoeSettingsInHtml(strings.NewReader(settingsPage))
 	if err != nil {
 		return err
 	}
@@ -81,7 +81,7 @@ func requestPoePortConfigPage(args *GlobalOptions, host string) (string, error) 
 	return requestPage(args, host, url)
 }
 
-func findPortSettingsInHtml(reader io.Reader) ([]PoePortSetting, error) {
+func findPoeSettingsInHtml(reader io.Reader) ([]PoePortSetting, error) {
 	doc, err := goquery.NewDocumentFromReader(reader)
 	if err != nil {
 		return nil, err

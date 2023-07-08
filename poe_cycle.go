@@ -44,7 +44,7 @@ func (poe *PoeCyclePowerCommand) Run(args *GlobalOptions) error {
 		return err
 	}
 
-	changedPorts := collectChangedPortConfiguration(poe.Ports, settings)
+	changedPorts := collectChangedPoePortConfiguration(poe.Ports, settings)
 	prettyPrintSettings(args.OutputFormat, changedPorts)
 	return nil
 }

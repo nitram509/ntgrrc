@@ -23,6 +23,7 @@ var cli struct {
 	Version VersionCommand `cmd:"" name:"version" help:"show version"`
 	Login   LoginCommand   `cmd:"" name:"login" help:"create a session for further commands (requires admin console password)"`
 	Poe     PoeCommand     `cmd:"" name:"poe" help:"show POE status or change the configuration"`
+	Port    PortCommand    `cmd:"" name:"port" help:"show port status or change the configuration for a port"`
 }
 
 func main() {
