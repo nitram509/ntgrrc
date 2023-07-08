@@ -67,32 +67,32 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 			}
 		}
 
-		portPrio, err := compareSettings(PortPrio, portSetting.PortPrio, poe.PortPrio, poeExt)
+		portPrio, err := comparePoeSettings(PortPrio, portSetting.PortPrio, poe.PortPrio, poeExt)
 		if err != nil {
 			return err
 		}
 
-		pwrMode, err := compareSettings(PwrMode, portSetting.PwrMode, poe.PwrMode, poeExt)
+		pwrMode, err := comparePoeSettings(PwrMode, portSetting.PwrMode, poe.PwrMode, poeExt)
 		if err != nil {
 			return err
 		}
 
-		pwrLimitType, err := compareSettings(LimitType, portSetting.LimitType, poe.LimitType, poeExt)
+		pwrLimitType, err := comparePoeSettings(LimitType, portSetting.LimitType, poe.LimitType, poeExt)
 		if err != nil {
 			return err
 		}
 
-		pwrLimit, err := compareSettings(PwrLimit, portSetting.PwrLimit, poe.PwrLimit, poeExt)
+		pwrLimit, err := comparePoeSettings(PwrLimit, portSetting.PwrLimit, poe.PwrLimit, poeExt)
 		if err != nil {
 			return err
 		}
 
-		detecType, err := compareSettings(DetecType, portSetting.DetecType, poe.DetecType, poeExt)
+		detecType, err := comparePoeSettings(DetecType, portSetting.DetecType, poe.DetecType, poeExt)
 		if err != nil {
 			return err
 		}
 
-		longerDetect, err := compareSettings(LongerDetect, portSetting.LongerDetect, poe.LongerDetect, poeExt)
+		longerDetect, err := comparePoeSettings(LongerDetect, portSetting.LongerDetect, poe.LongerDetect, poeExt)
 
 		poeSettings := url.Values{
 			"hash":           {poeExt.Hash},
@@ -119,14 +119,14 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 
 	settings, err = requestPoeConfiguration(args, poe.Address, poeExt)
 
-	changedPorts := collectChangedPortConfiguration(poe.Ports, settings)
+	changedPorts := collectChangedPoePortConfiguration(poe.Ports, settings)
 
 	prettyPrintSettings(args.OutputFormat, changedPorts)
 
 	return err
 }
 
-func collectChangedPortConfiguration(poePorts []int, settings []PoePortSetting) (changedPorts []PoePortSetting) {
+func collectChangedPoePortConfiguration(poePorts []int, settings []PoePortSetting) (changedPorts []PoePortSetting) {
 	for _, configuredPort := range poePorts {
 		for _, portSetting := range settings {
 			if int(portSetting.PortIndex) == configuredPort {
@@ -151,7 +151,7 @@ func requestPoeConfiguration(args *GlobalOptions, host string, poeExt *PoeExt) (
 		return settings, errors.New("no content. please, (re-)login first")
 	}
 
-	settings, err = findPortSettingsInHtml(strings.NewReader(settingsPage))
+	settings, err = findPoeSettingsInHtml(strings.NewReader(settingsPage))
 	if err != nil {
 		return settings, err
 	}
@@ -200,7 +200,7 @@ func findMaxPwrLimitInHtml(reader io.Reader) (string, error) {
 	return limit, err
 }
 
-func compareSettings(name Setting, defaultValue string, newValue string, poeExt *PoeExt) (string, error) {
+func comparePoeSettings(name Setting, defaultValue string, newValue string, poeExt *PoeExt) (string, error) {
 	if len(newValue) == 0 {
 		return defaultValue, nil
 	}

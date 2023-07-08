@@ -12,7 +12,7 @@ import (
 
 func TestFindPortConfigInHtml(t *testing.T) {
 	// from type inference, settings is of type []PoePortSetting
-	settings, err := findPortSettingsInHtml(strings.NewReader(getPoePortConfigCgiHtml))
+	settings, err := findPoeSettingsInHtml(strings.NewReader(getPoePortConfigCgiHtml))
 
 	then.AssertThat(t, err, is.Nil())
 	then.AssertThat(t, settings, has.Length[PoePortSetting](4))
@@ -34,7 +34,7 @@ func TestFindPortConfigInHtml(t *testing.T) {
 }
 
 func TestPrettyPrintSettings(t *testing.T) {
-	settings, err := findPortSettingsInHtml(strings.NewReader(getPoePortConfigCgiHtml))
+	settings, err := findPoeSettingsInHtml(strings.NewReader(getPoePortConfigCgiHtml))
 
 	then.AssertThat(t, err, is.Nil())
 	then.AssertThat(t, settings, has.Length[PoePortSetting](4))
@@ -43,7 +43,7 @@ func TestPrettyPrintSettings(t *testing.T) {
 }
 
 func TestPrettyPrintJsonSettings(t *testing.T) {
-	settings, err := findPortSettingsInHtml(strings.NewReader(getPoePortConfigCgiHtml))
+	settings, err := findPoeSettingsInHtml(strings.NewReader(getPoePortConfigCgiHtml))
 
 	then.AssertThat(t, err, is.Nil())
 	then.AssertThat(t, settings, has.Length[PoePortSetting](4))
