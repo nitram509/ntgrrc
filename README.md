@@ -72,6 +72,12 @@ Commands:
   poe cycle --address=STRING --port=PORT,...
     power cycle one or more PoE ports
 
+  port status --address=STRING
+    show current port status
+
+  port set --address=STRING --port=PORT,...
+    set properties for a port number
+
 Run "ntgrrc <command> --help" for more information on a command.
 ```
 <!-- MARKDOWN-AUTO-DOCS:END -->
