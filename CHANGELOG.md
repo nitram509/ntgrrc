@@ -1,6 +1,12 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.9.0
+
+* Allow ntgrrc to manipulate port settings (#38)
+
+----
+
 ## v0.8.4
 
 * Add port name field to output (#35)
