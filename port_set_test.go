@@ -2,10 +2,11 @@ package main
 
 import (
 	_ "embed"
-	"github.com/corbym/gocrest/is"
-	"github.com/corbym/gocrest/then"
 	"strings"
 	"testing"
+
+	"github.com/corbym/gocrest/is"
+	"github.com/corbym/gocrest/then"
 )
 
 func TestFindHashInPortHtml(t *testing.T) {
