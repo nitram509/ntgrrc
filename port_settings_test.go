@@ -10,7 +10,7 @@ import (
 )
 
 func TestFindPortSettingsInHtml(t *testing.T) {
-	portSetting, err := findPortSettingsInHtml(strings.NewReader(getPortConfigStatus))
+	portSetting, err := findPortSettingsInHtml(strings.NewReader(getPortConfigSettings))
 
 	then.AssertThat(t, err, is.Nil())
 	then.AssertThat(t, portSetting, has.Length[Port](8))
@@ -26,4 +26,4 @@ func TestFindPortSettingsInHtml(t *testing.T) {
 }
 
 //go:embed test-data/GS308EPP/dashboard.cgi.html
-var getPortConfigStatus string
+var getPortConfigSettings string
