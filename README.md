@@ -95,13 +95,121 @@ because the token file's name is derived from the provided ```--address``` devic
 ntgrrc login --address gs305ep --password secret
 ```
 
+### show port settings
+
+Once a session is created, you can fetch port settings.
+
+#### Settings 
+
+The switch's port settings are printed in Markdown table format.
+This means, separated by | (pipe) and optional suffixes with blanks.
+
+Use the ```--output-format=json``` flag, to get JSON output instead.
+
+```ntgrrc port settings --address gs305ep```
+
+```markdown
+| Port ID | Port Name | Speed | Ingress Limit | Egress Limit | Flow Control |
+|---------|-----------|-------|---------------|--------------|--------------|
+| 1       |           | Auto  | No Limit      | No Limit     | Off          |
+| 2       |           | Auto  | No Limit      | No Limit     | On           |
+| 3       |           | Auto  | No Limit      | No Limit     | On           |
+| 4       |           | Auto  | No Limit      | No Limit     | On           |
+```
+
+### set port settings
+
+ntgrrc is able to set various parameters on switch port(s).
+
+#### Port Name
+
+To change the port name (within the switch's limit of 1-16 characters), pass the name using `-n` and the desired name in quotes. More than one port number can be provided.
+
+Use the ```--output-format=json``` flag, to get JSON output instead.
+
+```ntgrrc port set -p 1 -n 'port #1' --address gs305ep```
+
+```markdown
+| Port ID | Port Name | Speed | Ingress Limit | Egress Limit | Flow Control |
+|---------|-----------|-------|---------------|--------------|--------------|
+| 1       | port #1   | Auto  | No Limit      | No Limit     | Off          |
+
+```
+
+To clear the set name, supply an empty, but quoted string. More than one port number can be provided.
+
+```ntgrrc port set -p 1 -n '' --address gs305ep```
+
+```markdown
+| Port ID | Port Name | Speed | Ingress Limit | Egress Limit | Flow Control |
+|---------|-----------|-------|---------------|--------------|--------------|
+| 1       |           | Auto  | No Limit      | No Limit     | Off          |
+```
+
+#### Speed
+
+To change the port speed, use `-s` and the desired speed ('100M full', '100M half', '10M full', '10M half', 'Auto', 'Disable') in quotes. More than one port number can be provided.
+
+Use the ```--output-format=json``` flag, to get JSON output instead.
+
+```ntgrrc port set -p 1 -s '100M half' --address gs305ep```
+
+```markdown
+| Port ID | Port Name | Speed     | Ingress Limit | Egress Limit | Flow Control |
+|---------|-----------|-----------|---------------|--------------|--------------|
+| 1       |           | 100M half | No Limit      | No Limit     | Off          |
+```
+
+#### In Rate Limit
+
+To change the in rate limit, use `-i` and the desired rate limit ('1 Mbit/s', '128 Mbit/s', '16 Mbit/s', '2 Mbit/s', '256 Mbit/s', '32 Mbit/s', '4 Mbit/s', '512 Kbit/s', '512 Mbit/s', '64 Mbit/s', '8 Mbit/s', 'No Limit') in quotes. More than one port number can be provided.
+
+Use the ```--output-format=json``` flag, to get JSON output instead.
+
+```ntgrrc port set -p 1 -i '16 Mbit/s' --address gs305ep```
+
+```markdown
+| Port ID | Port Name | Speed | Ingress Limit | Egress Limit | Flow Control |
+|---------|-----------|-------|---------------|--------------|--------------|
+| 1       |           | Auto  | 16 Mbit/s     | No Limit     | Off          |
+```
+
+#### Out Rate Limit
+
+To change the out rate limit, use `-o` and the desired rate limit ('1 Mbit/s', '128 Mbit/s', '16 Mbit/s', '2 Mbit/s', '256 Mbit/s', '32 Mbit/s', '4 Mbit/s', '512 Kbit/s', '512 Mbit/s', '64 Mbit/s', '8 Mbit/s', 'No Limit') in quotes. More than one port number can be provided.
+
+Use the ```--output-format=json``` flag, to get JSON output instead.
+
+```ntgrrc port set -p 1 -o '16 Mbit/s' --address gs305ep```
+
+```markdown
+| Port ID | Port Name | Speed | Ingress Limit | Egress Limit | Flow Control |
+|---------|-----------|-------|---------------|--------------|--------------|
+| 1       |           | Auto  | 16 Mbit/s     | 16 Mbit/s    | Off          |
+```
+
+#### Flow Control
+
+To change the flow control setting for a port, use `--flow-control` and the desired setting ('On', 'Off') in quotes. More than one port number can be provided.
+
+Use the ```--output-format=json``` flag, to get JSON output instead.
+
+```ntgrrc port set -p 1 --flow-control 'On' --address gs305epp```
+
+```markdown
+ntgrrc port set -p 1 --flow-control 'On' --address test
+| Port ID | Port Name | Speed | Ingress Limit | Egress Limit | Flow Control |
+|---------|-----------|-------|---------------|--------------|--------------|
+| 1       |           | Auto  | 16 Mbit/s     | 16 Mbit/s    | On           |
+```
+
 ### show Power Over Ethernet (POE)
 
 Once a session is created, you can fetch POE settings and status.
 
-#### Settings 
+#### Settings
 
-The switch's settings are printed in Markdown table format.
+The switch's PoE settings are printed in Markdown table format.
 This means, separated by | (pipe) and optional suffixes with blanks.
 
 Use the ```--output-format=json``` flag, to get JSON output instead.
