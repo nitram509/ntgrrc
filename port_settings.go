@@ -9,43 +9,43 @@ import (
 )
 
 type PortCommand struct {
-	PortStatusCommand  PortStatusCommand  `cmd:"" name:"status" help:"show current port status" default:"1"`
-	PortSettingCommand PortSettingCommand `cmd:"" name:"set" help:"set properties for a port number"`
+	PortSettingsCommand PortSettingsCommand `cmd:"" name:"settings" help:"show switch port settings" default:"1"`
+	PortSetCommand      PortSetCommand      `cmd:"" name:"set" help:"set properties for a port number"`
 }
 
-type PortStatusCommand struct {
+type PortSettingsCommand struct {
 	Address string `required:"" help:"the Netgear switch's IP address or host name to connect to" short:"a"`
 }
 
-func (port *PortStatusCommand) Run(args *GlobalOptions) error {
+func (port *PortSettingsCommand) Run(args *GlobalOptions) error {
 
 	settings, _, err := requestPortSettings(args, port.Address)
 	if err != nil {
 		return err
 	}
 
-	prettyPrintPortStatus(args.OutputFormat, settings)
+	prettyPrintPortSettings(args.OutputFormat, settings)
 
 	return nil
 }
 
-func prettyPrintPortStatus(format OutputFormat, statuses []Port) {
+func prettyPrintPortSettings(format OutputFormat, settings []Port) {
 
 	var header = []string{"Port ID", "Port Name", "Speed", "Ingress Limit", "Egress Limit", "Flow Control"}
 	var content [][]string
 
-	for _, status := range statuses {
+	for _, setting := range settings {
 		var row []string
-		row = append(row, fmt.Sprintf("%d", status.Index))
-		row = append(row, status.Name)
-		status.Speed = bidiMapLookup(status.Speed, portSpeedMap)
-		row = append(row, status.Speed)
-		status.IngressRateLimit = bidiMapLookup(status.IngressRateLimit, portRateLimitMap)
-		row = append(row, status.IngressRateLimit)
-		status.EgressRateLimit = bidiMapLookup(status.EgressRateLimit, portRateLimitMap)
-		row = append(row, status.EgressRateLimit)
-		status.FlowControl = bidiMapLookup(status.FlowControl, portFlowControlMap)
-		row = append(row, status.FlowControl)
+		row = append(row, fmt.Sprintf("%d", setting.Index))
+		row = append(row, setting.Name)
+		setting.Speed = bidiMapLookup(setting.Speed, portSpeedMap)
+		row = append(row, setting.Speed)
+		setting.IngressRateLimit = bidiMapLookup(setting.IngressRateLimit, portRateLimitMap)
+		row = append(row, setting.IngressRateLimit)
+		setting.EgressRateLimit = bidiMapLookup(setting.EgressRateLimit, portRateLimitMap)
+		row = append(row, setting.EgressRateLimit)
+		setting.FlowControl = bidiMapLookup(setting.FlowControl, portFlowControlMap)
+		row = append(row, setting.FlowControl)
 		content = append(content, row)
 	}
 	switch format {
