@@ -20,14 +20,14 @@ func TestFindHashInHtml(t *testing.T) {
 	then.AssertThat(t, hash, is.EqualTo("4f11f5d64ef3fd75a92a9f2ad1de3060"))
 }
 
-func TestFindMaxPowerLimit(t *testing.T) {
+func TestFindMaxPoePowerLimit(t *testing.T) {
 	pwrLimit, err := findMaxPwrLimitInHtml(strings.NewReader(getPoePortConfig))
 
 	then.AssertThat(t, err, is.Nil())
 	then.AssertThat(t, pwrLimit, is.EqualTo("30.0"))
 }
 
-func TestCompareSettingsUnknown(t *testing.T) {
+func TestComparePoeSettingsUnknown(t *testing.T) {
 
 	for _, setting := range []Setting{PortPrio, PwrMode, LimitType, DetecType, LongerDetect} {
 		setting, _ := comparePoeSettings(setting, "defaultValue", "newValue", poeExt)
@@ -35,7 +35,7 @@ func TestCompareSettingsUnknown(t *testing.T) {
 	}
 }
 
-func TestCompareSettingsPwrLimit(t *testing.T) {
+func TestComparePoeSettingsPwrLimit(t *testing.T) {
 
 	pwrLimit, err := comparePoeSettings(PwrLimit, "3.0", "30.0", poeExt)
 	then.AssertThat(t, err, is.Nil())
@@ -50,9 +50,10 @@ func TestCompareSettingsPwrLimit(t *testing.T) {
 
 	pwrLimitMidRange, _ := comparePoeSettings(PwrLimit, "30.0", "15", poeExt)
 	then.AssertThat(t, pwrLimitMidRange, is.EqualTo("15").Reason("integer values should work"))
+
 }
 
-func TestComparePortPrio(t *testing.T) {
+func TestComparePoePortPrio(t *testing.T) {
 
 	setting, err := comparePoeSettings(PortPrio, "critical", "low", poeExt)
 	then.AssertThat(t, err, is.Nil())
@@ -75,7 +76,7 @@ func TestComparePortPrio(t *testing.T) {
 	then.AssertThat(t, setting, is.EqualTo("0").Reason("maintain the prior value when new nothing is specified"))
 }
 
-func TestComparePwrMode(t *testing.T) {
+func TestComparePoePwrMode(t *testing.T) {
 	setting, err := comparePoeSettings(PwrMode, "802.3af", "legacy", poeExt)
 	then.AssertThat(t, err, is.Nil())
 	then.AssertThat(t, setting, is.EqualTo("1").Reason("allow user to change the power mode to legacy"))
@@ -97,7 +98,7 @@ func TestComparePwrMode(t *testing.T) {
 	then.AssertThat(t, setting, is.EqualTo("0").Reason("maintain the prior value when nothing new is specified"))
 }
 
-func TestCompareLimitType(t *testing.T) {
+func TestComparePoeLimitType(t *testing.T) {
 	setting, err := comparePoeSettings(LimitType, "user", "none", poeExt)
 	then.AssertThat(t, err, is.Nil())
 	then.AssertThat(t, setting, is.EqualTo("0").Reason("allow user to change the limit type to none"))
@@ -119,7 +120,7 @@ func TestCompareLimitType(t *testing.T) {
 	then.AssertThat(t, setting, is.EqualTo("2").Reason("maintain the prior value when nothing new is specified"))
 }
 
-func TestCompareDetecType(t *testing.T) {
+func TestComparePoeDetecType(t *testing.T) {
 	setting, err := comparePoeSettings(DetecType, "IEEE 802", "Legacy", poeExt)
 	then.AssertThat(t, err, is.Nil())
 	then.AssertThat(t, setting, is.EqualTo("1").Reason("allow user to change the detect type to Legacy"))
@@ -141,7 +142,7 @@ func TestCompareDetecType(t *testing.T) {
 	then.AssertThat(t, setting, is.EqualTo("1").Reason("maintain the prior value when nothing new is specified"))
 }
 
-func TestCompareLongerDetect(t *testing.T) {
+func TestComparePoeLongerDetect(t *testing.T) {
 
 	setting, err := comparePoeSettings(LongerDetect, "Get Value Fault", "disable", poeExt)
 	then.AssertThat(t, err, is.Nil())
@@ -166,6 +167,24 @@ func TestCompareLongerDetect(t *testing.T) {
 	setting, err = comparePoeSettings(LongerDetect, "2", "", poeExt)
 	then.AssertThat(t, err, is.Nil())
 	then.AssertThat(t, setting, is.EqualTo("2").Reason("maintain the same longer detect type when nothing new is specified"))
+}
+
+func TestCollectChangedPoePortConfiguration(t *testing.T) {
+	var ports = []int{1, 2}
+	var settings = []PoePortSetting{
+		PoePortSetting{
+			PortIndex: 1,
+			PortName:  "port 1",
+		},
+		PoePortSetting{
+			PortIndex: 2,
+			PortName:  "port 2",
+		},
+	}
+	changed := collectChangedPoePortConfiguration(ports, settings)
+	then.AssertThat(t, len(changed), is.EqualTo(2))
+	then.AssertThat(t, int(changed[1].PortIndex), is.EqualTo(2))
+	then.AssertThat(t, changed[0].PortName, is.EqualTo("port 1"))
 }
 
 //go:embed test-data/PoEPortConfig.cgi.html
