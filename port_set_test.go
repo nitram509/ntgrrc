@@ -19,10 +19,25 @@ func TestFindHashInPortHtml(t *testing.T) {
 func TestComparePortSettingsUnknown(t *testing.T) {
 
 	for _, setting := range []Setting{Speed, IngressRateLimit, EgressRateLimit, FlowControl} {
-		setting, _ := comparePortSettings(setting, "defaultValue", "newValue")
-		then.AssertThat(t, setting, is.EqualTo("unknown").Reason("when providing a value that does not exist, return unknown to the caller"))
+		finalSetting, _ := comparePortSettings(setting, "defaultValue", "newValue")
+		then.AssertThat(t, finalSetting, is.EqualTo("unknown").Reason("when providing a value that does not exist, return unknown to the caller"))
+
+		finalSetting, err := comparePortSettings(setting, "defaultValue", "")
+		then.AssertThat(t, err, is.Nil())
+		then.AssertThat(t, finalSetting, is.EqualTo("defaultValue").Reason("return defaultValue to the caller when newValue is not preent"))
 	}
 
+	setting, err := comparePortSettings("None", "defaultValue", "newValue")
+	then.AssertThat(t, err, is.Not(is.Nil()))
+	then.AssertThat(t, setting, is.EqualTo("defaultValue").Reason("return defaultValue to the caller when comparison is unknown"))
+
+}
+
+func TestCompareSettingsSameName(t *testing.T) {
+
+	name, err := comparePortSettings(Name, "Port Name", "Port Name")
+	then.AssertThat(t, err, is.Nil())
+	then.AssertThat(t, name, is.EqualTo("Port Name"))
 }
 
 func TestCompareSettingsNameLengthLimit(t *testing.T) {
@@ -108,6 +123,31 @@ func TestCompareSettingsFlowControl(t *testing.T) {
 	then.AssertThat(t, err, is.Not(is.Nil()))
 	then.AssertThat(t, portFlowControl, is.EqualTo("unknown").Reason("an invalid flow control setting cannot be set"))
 
+}
+
+func TestCollectChangedPortConfiguration(t *testing.T) {
+	var ports = []int{1, 2}
+	var settings = []Port{
+		Port{
+			Index:            1,
+			Name:             "port 1",
+			Speed:            "1",
+			IngressRateLimit: "2",
+			EgressRateLimit:  "2",
+			FlowControl:      "2",
+		},
+		Port{
+			Index:            2,
+			Name:             "port 2",
+			Speed:            "3",
+			IngressRateLimit: "1",
+			EgressRateLimit:  "2",
+			FlowControl:      "1",
+		},
+	}
+	changed := collectChangedPortConfiguration(ports, settings)
+	then.AssertThat(t, len(changed), is.EqualTo(2))
+	then.AssertThat(t, int(changed[1].Index), is.EqualTo(2))
 }
 
 //go:embed test-data/GS308EPP/dashboard.cgi.html
