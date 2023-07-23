@@ -156,7 +156,7 @@ func comparePortSettings(name Setting, defaultValue string, newValue string) (st
 	case EgressRateLimit:
 		outRateLimit := bidiMapLookup(newValue, portRateLimitMap)
 		if outRateLimit == "unknown" {
-			return outRateLimit, errors.New("ingress rate limit could not be set. Accepted values are: " + valuesAsString(portRateLimitMap))
+			return outRateLimit, errors.New("egress rate limit could not be set. Accepted values are: " + valuesAsString(portRateLimitMap))
 		}
 		return outRateLimit, nil
 	case FlowControl:
