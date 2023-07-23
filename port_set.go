@@ -27,7 +27,7 @@ type Port struct {
 	FlowControl      string
 }
 
-type PortSettingCommand struct {
+type PortSetCommand struct {
 	Address          string  `required:"" help:"the Netgear switch's IP address or host name to connect to" short:"a"`
 	Ports            []int   `required:"" help:"port number (starting with 1), use multiple times for setting multiple ports at once" short:"p" name:"port"`
 	Name             *string `optional:"" help:"sets the name of a port, 1-16 character limit" short:"n"`
@@ -37,7 +37,7 @@ type PortSettingCommand struct {
 	FlowControl      string  `optional:"" help:"enable/disable flow control on port ['Off', 'On']"`
 }
 
-func (portSet *PortSettingCommand) Run(args *GlobalOptions) error {
+func (portSet *PortSetCommand) Run(args *GlobalOptions) error {
 	settings, hash, err := requestPortSettings(args, portSet.Address)
 	if err != nil {
 		return err
@@ -109,7 +109,7 @@ func (portSet *PortSettingCommand) Run(args *GlobalOptions) error {
 	}
 
 	changedPorts := collectChangedPortConfiguration(portSet.Ports, settings)
-	prettyPrintPortStatus(args.OutputFormat, changedPorts)
+	prettyPrintPortSettings(args.OutputFormat, changedPorts)
 
 	return err
 }
