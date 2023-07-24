@@ -70,7 +70,7 @@ func prettyPrintStatus(format OutputFormat, statuses []PoePortStatus) {
 	case MarkdownFormat:
 		printMarkdownTable(header, content)
 	case JsonFormat:
-		printJsonDataTable("status", header, content)
+		printJsonDataTable("poe_status", header, content)
 	default:
 		panic("not implemented format: " + format)
 	}
