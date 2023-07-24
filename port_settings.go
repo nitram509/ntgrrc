@@ -52,7 +52,7 @@ func prettyPrintPortSettings(format OutputFormat, settings []Port) {
 	case MarkdownFormat:
 		printMarkdownTable(header, content)
 	case JsonFormat:
-		printJsonDataTable("status", header, content)
+		printJsonDataTable("port_settings", header, content)
 	default:
 		panic("not implemented format: " + format)
 	}
