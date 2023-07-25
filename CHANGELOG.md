@@ -1,6 +1,13 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.9.1
+
+* Change "port status" to "port settings" and change JSON output to better indicate origin (#41)
+* Check if port name parameter is passed before modifying port name (#39)
+
+----
+
 ## v0.9.0
 
 * Allow ntgrrc to manipulate port settings (#38)
