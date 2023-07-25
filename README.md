@@ -72,8 +72,8 @@ Commands:
   poe cycle --address=STRING --port=PORT,...
     power cycle one or more PoE ports
 
-  port status --address=STRING
-    show current port status
+  port settings --address=STRING
+    show switch port settings
 
   port set --address=STRING --port=PORT,...
     set properties for a port number
