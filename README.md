@@ -19,9 +19,9 @@ A green tick means it was successfully tested.
 
 | Firmware  | GS305EP | GS305EPP | GS308EP | GS308EPP |
 |-----------|---------|----------|---------|---------|
-| V1.0.0.8  | ✅       | ✅        | ✅      | (likely) |
-| v1.0.0.10 | ✅       | ✅        | ✅      | (likely) |
-| V1.0.1.1  | (likely) | (likely) | (likely) | ✅    |
+| V1.0.0.8  | ✅       | ✅        | (likely) | ✅ |
+| v1.0.0.10 | ✅       | ✅        | (likely) | ✅ |
+| V1.0.1.1  | (likely) | (likely) | ✅ | (likely)|
 
 Legend: \
 ✅ = successfully tested \
