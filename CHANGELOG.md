@@ -1,6 +1,12 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.9.2
+
+* Fix issue #49 output a newline after successful login, or in promptForPassword
+
+----
+
 ## v0.9.1
 
 * Change "port status" to "port settings" and change JSON output to better indicate origin (#41)
