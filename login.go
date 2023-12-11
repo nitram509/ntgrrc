@@ -52,6 +52,7 @@ func promptForPassword(serverName string) (string, error) {
 	fmt.Printf("Please enter password for '%s' (input hidden) :> ", serverName)
 	// the int conversion is required for the windows build to succeed
 	password, err := term.ReadPassword(int(syscall.Stdin))
+	println()
 	return string(password), err
 }
 
