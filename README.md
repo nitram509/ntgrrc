@@ -46,7 +46,7 @@ ntgrrc --help-all
 <!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./help.txt) -->
 <!-- The below code snippet is automatically added from ./help.txt -->
 ```txt
-Usage: ntgrrc <command>
+Usage: ntgrrc <command> [flags]
 
 Flags:
   -h, --help                  Show context-sensitive help.
@@ -57,10 +57,10 @@ Flags:
   -d, --token-dir=""          directory to store login tokens
 
 Commands:
-  version
+  version [flags]
     show version
 
-  login --address=STRING
+  login --address=STRING [flags]
     create a session for further commands (requires admin console password)
 
   poe status --address=STRING
@@ -69,7 +69,7 @@ Commands:
   poe settings --address=STRING
     show current PoE settings for all ports
 
-  poe set --address=STRING --port=PORT,...
+  poe set --address=STRING --port=PORT,... [flags]
     set new PoE settings per each PORT number
 
   poe cycle --address=STRING --port=PORT,...
@@ -78,7 +78,7 @@ Commands:
   port settings --address=STRING
     show switch port settings
 
-  port set --address=STRING --port=PORT,...
+  port set --address=STRING --port=PORT,... [flags]
     set properties for a port number
 
 Run "ntgrrc <command> --help" for more information on a command.
