@@ -57,7 +57,7 @@ func promptForPassword(serverName string) (string, error) {
 }
 
 func doLogin(args *GlobalOptions, host string, encryptedPwd string) error {
-	url := fmt.Sprintf("http://%s/login.cgi", host)
+	url := fmt.Sprintf("http://%s/redirect.html", host)
 	if args.Verbose {
 		println("login attempt: " + url)
 	}
@@ -104,7 +104,7 @@ func getSessionToken(resp *http.Response) string {
 }
 
 func getSeedValueFromSwitch(args *GlobalOptions, host string) (string, error) {
-	url := fmt.Sprintf("http://%s/login.cgi", host)
+	url := fmt.Sprintf("http://%s/wmi/login", host)
 	if args.Verbose {
 		println("fetch seed value from: " + url)
 	}
