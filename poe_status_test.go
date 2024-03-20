@@ -50,5 +50,5 @@ func TestPrettyPrintJsonStatus(t *testing.T) {
 	prettyPrintStatus(JsonFormat, statuses)
 }
 
-//go:embed test-data/getPoePortStatus.cgi.html
+//go:embed test-data/GS308EP/getPoePortStatus.cgi.html
 var getPoePortStatusCgiHtml string

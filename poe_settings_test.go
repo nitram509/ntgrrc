@@ -51,5 +51,5 @@ func TestPrettyPrintJsonSettings(t *testing.T) {
 	prettyPrintSettings(JsonFormat, settings)
 }
 
-//go:embed test-data/PoEPortConfig.cgi.html
+//go:embed test-data/GS308EP/PoEPortConfig.cgi.html
 var getPoePortConfigCgiHtml string

@@ -187,5 +187,5 @@ func TestCollectChangedPoePortConfiguration(t *testing.T) {
 	then.AssertThat(t, changed[0].PortName, is.EqualTo("port 1"))
 }
 
-//go:embed test-data/PoEPortConfig.cgi.html
+//go:embed test-data/GS308EP/PoEPortConfig.cgi.html
 var getPoePortConfig string
