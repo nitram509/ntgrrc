@@ -14,17 +14,57 @@ var poeExt = &PoeExt{
 }
 
 func TestFindHashInHtml(t *testing.T) {
-	hash, err := findHashInHtml(strings.NewReader(getPoePortConfig))
+	tests := []struct {
+		model       string
+		fileName    string
+		expectedVal string
+	}{
+		{
+			model:       "GS308EP",
+			fileName:    "PoEPortConfig.cgi.html",
+			expectedVal: "4f11f5d64ef3fd75a92a9f2ad1de3060",
+		},
+		{
+			model:       "GS308EPP",
+			fileName:    "PoEPortConfig.cgi.html",
+			expectedVal: "5c183d939eee1c74c1bb9055ec82d2d6",
+		},
+	}
+	for _, test := range tests {
+		t.Run(test.model, func(t *testing.T) {
+			hash, err := findHashInHtml(strings.NewReader(loadTestFile(test.model, test.fileName)))
 
-	then.AssertThat(t, err, is.Nil())
-	then.AssertThat(t, hash, is.EqualTo("4f11f5d64ef3fd75a92a9f2ad1de3060"))
+			then.AssertThat(t, err, is.Nil())
+			then.AssertThat(t, hash, is.EqualTo(test.expectedVal))
+		})
+	}
 }
 
 func TestFindMaxPoePowerLimit(t *testing.T) {
-	pwrLimit, err := findMaxPwrLimitInHtml(strings.NewReader(getPoePortConfig))
+	tests := []struct {
+		model       string
+		fileName    string
+		expectedVal string
+	}{
+		{
+			model:       "GS308EP",
+			fileName:    "PoEPortConfig.cgi.html",
+			expectedVal: "30.0",
+		},
+		{
+			model:       "GS308EPP",
+			fileName:    "PoEPortConfig.cgi.html",
+			expectedVal: "30.0",
+		},
+	}
+	for _, test := range tests {
+		t.Run(test.model, func(t *testing.T) {
+			pwrLimit, err := findMaxPwrLimitInHtml(strings.NewReader(loadTestFile(test.model, test.fileName)))
 
-	then.AssertThat(t, err, is.Nil())
-	then.AssertThat(t, pwrLimit, is.EqualTo("30.0"))
+			then.AssertThat(t, err, is.Nil())
+			then.AssertThat(t, pwrLimit, is.EqualTo(test.expectedVal))
+		})
+	}
 }
 
 func TestComparePoeSettingsUnknown(t *testing.T) {
@@ -186,6 +226,3 @@ func TestCollectChangedPoePortConfiguration(t *testing.T) {
 	then.AssertThat(t, int(changed[1].PortIndex), is.EqualTo(2))
 	then.AssertThat(t, changed[0].PortName, is.EqualTo("port 1"))
 }
-
-//go:embed test-data/GS308EP/PoEPortConfig.cgi.html
-var getPoePortConfig string
