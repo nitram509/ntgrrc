@@ -1,7 +1,6 @@
 package main
 
 import (
-	_ "embed"
 	"github.com/corbym/gocrest/has"
 	"github.com/corbym/gocrest/is"
 	"github.com/corbym/gocrest/then"
@@ -10,7 +9,7 @@ import (
 )
 
 func TestFindPortSettingsInHtml(t *testing.T) {
-	portSetting, err := findPortSettingsInHtml(strings.NewReader(getPortConfigSettings))
+	portSetting, err := findPortSettingsInHtml(strings.NewReader(loadTestFile("GS308EPP", "dashboard.cgi.html")))
 
 	then.AssertThat(t, err, is.Nil())
 	then.AssertThat(t, portSetting, has.Length[Port](8))
@@ -22,8 +21,4 @@ func TestFindPortSettingsInHtml(t *testing.T) {
 	then.AssertThat(t, setting.IngressRateLimit, is.EqualTo("1"))
 	then.AssertThat(t, setting.EgressRateLimit, is.EqualTo("1"))
 	then.AssertThat(t, setting.FlowControl, is.EqualTo("2"))
-
 }
-
-//go:embed test-data/GS308EPP/dashboard.cgi.html
-var getPortConfigSettings string

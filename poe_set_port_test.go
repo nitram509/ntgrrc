@@ -1,7 +1,6 @@
 package main
 
 import (
-	_ "embed"
 	"github.com/corbym/gocrest/is"
 	"github.com/corbym/gocrest/then"
 	"strings"

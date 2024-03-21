@@ -1,7 +1,6 @@
 package main
 
 import (
-	_ "embed"
 	"strings"
 	"testing"
 
@@ -10,7 +9,7 @@ import (
 )
 
 func TestFindHashInPortHtml(t *testing.T) {
-	hash, err := findHashInHtml(strings.NewReader(getPortConfig))
+	hash, err := findHashInHtml(strings.NewReader(loadTestFile("GS308EPP", "dashboard.cgi.html")))
 
 	then.AssertThat(t, err, is.Nil())
 	then.AssertThat(t, hash, is.EqualTo("4f11f5d64ef3fd75a92a9f2ad1de3060"))
@@ -128,27 +127,24 @@ func TestCompareSettingsFlowControl(t *testing.T) {
 func TestCollectChangedPortConfiguration(t *testing.T) {
 	var ports = []int{1, 2}
 	var settings = []Port{
-		Port{
+		{
 			Index:            1,
 			Name:             "port 1",
 			Speed:            "1",
 			IngressRateLimit: "2",
 			EgressRateLimit:  "2",
 			FlowControl:      "2",
-		},
-		Port{
+				},
+		{
 			Index:            2,
 			Name:             "port 2",
 			Speed:            "3",
 			IngressRateLimit: "1",
 			EgressRateLimit:  "2",
 			FlowControl:      "1",
-		},
+				},
 	}
 	changed := collectChangedPortConfiguration(ports, settings)
 	then.AssertThat(t, len(changed), is.EqualTo(2))
 	then.AssertThat(t, int(changed[1].Index), is.EqualTo(2))
 }
-
-//go:embed test-data/GS308EPP/dashboard.cgi.html
-var getPortConfig string
