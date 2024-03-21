@@ -94,11 +94,16 @@ func checkIsLoginRequired(httpResponseBody string) bool {
 
 func getSessionToken(resp *http.Response) string {
 	cookie := resp.Header.Get("Set-Cookie")
-	const SessionIdPrefix = "SID="
-	if strings.HasPrefix(cookie, SessionIdPrefix) {
-		sidVal := cookie[len(SessionIdPrefix):]
-		split := strings.Split(sidVal, ";")
-		return split[0]
+	var sessionIdPrefixes = [...]string{
+		"SID=",          // GS308EP, GS308EPP
+		"gambitCookie=", // GS316EP
+	}
+	for _, sessionIdPrefix := range sessionIdPrefixes {
+		if strings.HasPrefix(cookie, sessionIdPrefix) {
+			sidVal := cookie[len(sessionIdPrefix):]
+			split := strings.Split(sidVal, ";")
+			return split[0]
+		}
 	}
 	return FailedAttempt
 }
