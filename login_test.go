@@ -48,11 +48,11 @@ func TestGetSeedValueFromLogin(t *testing.T) {
 	}
 }
 
-func testGetSeedValueFromLogin(t *testing.T, model string, fileName string, exxpectedSeed string) {
+func testGetSeedValueFromLogin(t *testing.T, model string, fileName string, expectedVal string) {
 	htmlBytes := loadTestFile(model, fileName)
 	randomVal, err := getSeedValueFromLoginHtml(strings.NewReader(string(htmlBytes)))
 
-	then.AssertThat(t, randomVal, is.EqualTo(exxpectedSeed))
+	then.AssertThat(t, randomVal, is.EqualTo(expectedVal))
 	then.AssertThat(t, err, is.Nil())
 }
 
