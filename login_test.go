@@ -16,7 +16,7 @@ func TestGetSeedValueFromLogin(t *testing.T) {
 		expectedSeed string
 	}{
 		{
-			model:        "GS308EP",
+			model:        "GS305EP",
 			fileName:     "login.cgi.html",
 			expectedSeed: "1761741982",
 		},

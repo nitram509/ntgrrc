@@ -24,7 +24,7 @@ func TestFindPortStatusInHtml(t *testing.T) {
 		expectedPortName             string
 	}{
 		{
-			model:                        "GS308EP",
+			model:                        "GS305EP",
 			fileName:                     "getPoePortStatus.cgi.html",
 			expectedNumberOfStatuses:     4,
 			expectedPoePowerClass:        "0",
@@ -81,7 +81,7 @@ func TestPrettyPrintMarkdownStatus(t *testing.T) {
 		expectedVal int
 	}{
 		{
-			model:       "GS308EP",
+			model:       "GS305EP",
 			fileName:    "getPoePortStatus.cgi.html",
 			expectedVal: 4,
 		},
@@ -110,7 +110,7 @@ func TestPrettyPrintJsonStatus(t *testing.T) {
 		expectedVal int
 	}{
 		{
-			model:       "GS308EP",
+			model:       "GS305EP",
 			fileName:    "getPoePortStatus.cgi.html",
 			expectedVal: 4,
 		},

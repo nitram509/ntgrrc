@@ -19,7 +19,7 @@ func TestFindHashInHtml(t *testing.T) {
 		expectedVal string
 	}{
 		{
-			model:       "GS308EP",
+			model:       "GS305EP",
 			fileName:    "PoEPortConfig.cgi.html",
 			expectedVal: "4f11f5d64ef3fd75a92a9f2ad1de3060",
 		},
@@ -46,7 +46,7 @@ func TestFindMaxPoePowerLimit(t *testing.T) {
 		expectedVal string
 	}{
 		{
-			model:       "GS308EP",
+			model:       "GS305EP",
 			fileName:    "PoEPortConfig.cgi.html",
 			expectedVal: "30.0",
 		},

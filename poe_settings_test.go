@@ -25,7 +25,7 @@ func TestFindPortConfigInHtml(t *testing.T) {
 		expectedPortName       string
 	}{
 		{
-			model:                  "GS308EP",
+			model:                  "GS305EP",
 			fileName:               "PoEPortConfig.cgi.html",
 			expectedSettingsLength: 4,
 			expectedPortIndex:      "",
@@ -86,7 +86,7 @@ func TestPrettyPrintSettings(t *testing.T) {
 		expectedVal int
 	}{
 		{
-			model:       "GS308EP",
+			model:       "GS305EP",
 			fileName:    "PoEPortConfig.cgi.html",
 			expectedVal: 4,
 		},
@@ -115,7 +115,7 @@ func TestPrettyPrintJsonSettings(t *testing.T) {
 		expectedVal int
 	}{
 		{
-			model:       "GS308EP",
+			model:       "GS305EP",
 			fileName:    "PoEPortConfig.cgi.html",
 			expectedVal: 4,
 		},

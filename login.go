@@ -33,6 +33,12 @@ func (login *LoginCommand) Run(args *GlobalOptions) error {
 		return errors.New("no password given")
 	}
 
+	model, err := detectNetgearModel(args, login.Address)
+	if err != nil {
+		return err
+	}
+	args.Model = model
+
 	seedValue, err := getSeedValueFromSwitch(args, login.Address)
 	if err != nil {
 		return err

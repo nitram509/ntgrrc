@@ -11,6 +11,7 @@ type GlobalOptions struct {
 	Quiet        bool
 	OutputFormat OutputFormat
 	TokenDir     string
+	Model        NetgearModel
 }
 
 var cli struct {
