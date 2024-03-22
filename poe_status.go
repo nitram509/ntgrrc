@@ -42,7 +42,7 @@ func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
 		return errors.New("no content. please, (re-)login first")
 	}
 	var statuses []PoePortStatus
-	statuses, err = findPortStatusInHtml(strings.NewReader(statusPage))
+	statuses, err = findPortStatusInHtml(GS30xEPx, strings.NewReader(statusPage))
 	if err != nil {
 		return err
 	}
@@ -81,7 +81,17 @@ func requestPoePortStatusPage(args *GlobalOptions, host string) (string, error) 
 	return requestPage(args, host, url)
 }
 
-func findPortStatusInHtml(reader io.Reader) ([]PoePortStatus, error) {
+func findPortStatusInHtml(model NetgearModel, reader io.Reader) ([]PoePortStatus, error) {
+	if isModel30x(model) {
+		return findPortStatusInGs30xEPxHtml(reader)
+	}
+	if isModel316(model) {
+		return findPortStatusInGs316EPxHtml(reader)
+	}
+	panic("invariant failed")
+}
+
+func findPortStatusInGs30xEPxHtml(reader io.Reader) ([]PoePortStatus, error) {
 	doc, err := goquery.NewDocumentFromReader(reader)
 	if err != nil {
 		return nil, err
@@ -116,6 +126,45 @@ func findPortStatusInHtml(reader io.Reader) ([]PoePortStatus, error) {
 				stat.ErrorStatus = strings.TrimSpace(s.Text())
 			}
 		})
+		statuses = append(statuses, stat)
+	})
+
+	return statuses, nil
+}
+
+func findPortStatusInGs316EPxHtml(reader io.Reader) ([]PoePortStatus, error) {
+	doc, err := goquery.NewDocumentFromReader(reader)
+	if err != nil {
+		return nil, err
+	}
+
+	var statuses []PoePortStatus
+	doc.Find("div.port-wrap").Each(func(i int, s *goquery.Selection) {
+		stat := PoePortStatus{}
+
+		id := s.Find("span.port-number").Text()
+		var id64, _ = strconv.ParseInt(id, 10, 8)
+		stat.PortIndex = int8(id64)
+
+		//portData := s.Find("span.poe-port-index span").Text()
+		//_, stat.PortName = getPortWithName(portData)
+		//
+		stat.PoePortStatus = s.Find("span.Status-text").Text()
+		//powerClassText := s.Find("span.poe-portPwr-width span").Text()
+		//stat.PoePowerClass = getPowerClassFromI18nString(powerClassText)
+		//
+		//s.Find("div.poe_port_status div div span").Each(func(i int, s *goquery.Selection) {
+		//	switch i {
+		//	case 1:
+		//		stat.VoltageInVolt = parseInt32(s.Text())
+		//	case 3:
+		//		stat.CurrentInMilliAmps = parseInt32(s.Text())
+		//	case 5:
+		//		stat.PowerInWatt = parseFloat32(s.Text())
+		//	case 7:
+		//		stat.TemperatureInCelsius = parseInt32(s.Text())
+		//})
+		stat.ErrorStatus = s.Find("p.Fault-Status-text").Text()
 		statuses = append(statuses, stat)
 	})
 
