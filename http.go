@@ -15,7 +15,7 @@ func postPage(args *GlobalOptions, host string, url string, requestBody string) 
 }
 
 func doHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, host string, postUrl string, requestBody string) (string, error) {
-	token, err := loadToken(args, host)
+	token, err := loadTokenAndModel(args, host)
 	if err != nil {
 		return "", err
 	}

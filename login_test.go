@@ -34,7 +34,7 @@ func TestGetSeedValueFromLogin(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.model, func(t *testing.T) {
 			html := loadTestFile(test.model, test.fileName)
-			randomVal, err := getSeedValueFromLoginHtml(strings.NewReader(html))
+			randomVal, err := findSeedValueInLoginHtml(strings.NewReader(html))
 
 			then.AssertThat(t, randomVal, is.EqualTo(test.expectedSeed))
 			then.AssertThat(t, err, is.Nil())

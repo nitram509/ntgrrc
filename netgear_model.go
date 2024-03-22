@@ -28,6 +28,10 @@ func isModel316(nm NetgearModel) bool {
 	return nm == GS316EP || nm == GS316EPP
 }
 
+func isSupportedModel(modelName string) bool {
+	return isModel30x(NetgearModel(modelName)) || isModel316(NetgearModel(modelName))
+}
+
 func detectNetgearModel(args *GlobalOptions, host string) (NetgearModel, error) {
 	url := fmt.Sprintf("http://%s/", host)
 	if args.Verbose {
@@ -50,7 +54,7 @@ func detectNetgearModel(args *GlobalOptions, host string) (NetgearModel, error) 
 	}
 	model := detectNetgearModelFromResponse(string(responseBody))
 	if model == "" {
-		return "", errors.New("Can't auto-detect Netgear model from response. You may try using --model parameter")
+		return "", errors.New("Can't auto-detect Netgear model from response. You may try using --model parameter ")
 	}
 	if args.Verbose {
 		println(fmt.Sprintf("Detected model %s", model))

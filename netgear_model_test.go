@@ -35,6 +35,10 @@ func TestDetectNetgearModelFromResponse(t *testing.T) {
 			then.AssertThat(t, model, is.EqualTo(test.expectedVal))
 		})
 	}
+}
 
+func TestIsSupportedModel(t *testing.T) {
+	then.AssertThat(t, isSupportedModel("xxx"), is.False())
 
+	then.AssertThat(t, isSupportedModel("GS305EP"), is.True())
 }
