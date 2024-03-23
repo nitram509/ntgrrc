@@ -96,7 +96,7 @@ func doLogin(args *GlobalOptions, host string, encryptedPwd string) error {
 	}
 	token := getSessionToken(resp)
 	if token == FailedAttempt && resp.StatusCode == http.StatusOK {
-		return errors.New("login request returned 200 OK, but response did not contain a session token (SID cookie value#). " +
+		return errors.New("login request returned 200 OK, but response did not contain a session token ('SID' or 'gambitCookie' cookie). " +
 			"this is known behaviour from the switch. please, wait some minutes and tray again later")
 	}
 
@@ -118,6 +118,12 @@ func getSessionToken(resp *http.Response) string {
 		"SID=",          // GS305EPx, GS308EPx
 		"gambitCookie=", // GS316EPx
 	}
+
+	// FIXME: just for debug purpose
+	for _, header := range resp.Header.Values() {
+		println("[DEBUG] login response header value: " + header)
+	}
+
 	for _, sessionIdPrefix := range sessionIdPrefixes {
 		if strings.HasPrefix(cookie, sessionIdPrefix) {
 			sidVal := cookie[len(sessionIdPrefix):]
