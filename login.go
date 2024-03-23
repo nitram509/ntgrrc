@@ -120,8 +120,10 @@ func getSessionToken(resp *http.Response) string {
 	}
 
 	// FIXME: just for debug purpose
-	for _, header := range resp.Header.Values() {
-		println("[DEBUG] login response header value: " + header)
+	for name, values := range resp.Header {
+		for _, value := range values {
+			print(fmt.Sprintf("[DEBUG] login response header '%s' -- '%s'", name, value))
+		}
 	}
 
 	for _, sessionIdPrefix := range sessionIdPrefixes {
