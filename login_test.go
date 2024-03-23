@@ -48,6 +48,13 @@ func TestEncryptPassword(t *testing.T) {
 	then.AssertThat(t, val, is.EqualTo("d1f4394e3e212ab4f06e08c54477a237"))
 }
 
+func TestFindGambitTokenInResponseHtml(t *testing.T) {
+	html := loadTestFile(string(GS316EP), "redirect.html")
+	gambit := findGambitTokenInResponseHtml(strings.NewReader(html))
+
+	then.AssertThat(t, gambit, is.EqualTo("chpbfghbcadbaamekjof"))
+}
+
 func loadTestFile(model string, fileName string) string {
 	fullFileName := filepath.Join("test-data", model, fileName)
 	bytes, err := os.ReadFile(fullFileName)

@@ -99,31 +99,14 @@ func doLogin(args *GlobalOptions, host string, encryptedPwd string) error {
 	if isModel30x(args.Model) {
 		token = getSessionToken(resp)
 		if token == FailedAttempt && resp.StatusCode == http.StatusOK {
-			return errors.New("login request returned 200 OK, but response did not contain a session token ('SID' or 'gambitCookie' cookie). " +
+			return errors.New("login request returned 200 OK, but response did not contain a session token ('SID' cookie). " +
 				"this is known behaviour from the switch. please, wait some minutes and tray again later")
 		}
 	}
 	if isModel316(args.Model) {
-		println("[DEBUG] Body: " + string(body))
-		if resp.StatusCode == http.StatusOK {
-			// POST Gambit=oicbofjfcbicjaqjmeif   || application/x-www-form-urlencoded
-			url = fmt.Sprintf("http://%s/homepage.html", host)
-			println("login attempt #2 " + url)
-			formData = "Gambit=oicbofjfcbicjaqjmeif"
-			resp, err = http.Post(url, "application/x-www-form-urlencoded", strings.NewReader(formData))
-			defer resp.Body.Close()
-			if err != nil {
-				return err
-			}
-			if args.Verbose {
-				println(resp.Status)
-			}
-			// FIXME: just for debug purpose
-			for name, values := range resp.Header {
-				for _, value := range values {
-					print(fmt.Sprintf("[DEBUG] login response header '%s' -- '%s'", name, value))
-				}
-			}
+		token = findGambitTokenInResponseHtml(strings.NewReader(string(body)))
+		if token == FailedAttempt && resp.StatusCode == http.StatusOK {
+			return errors.New("login request returned 200 OK, but response did not contain a token ('Gambit' value in input field) ")
 		}
 	}
 
@@ -142,17 +125,9 @@ func checkIsLoginRequired(httpResponseBody string) bool {
 func getSessionToken(resp *http.Response) string {
 	cookie := resp.Header.Get("Set-Cookie")
 	var sessionIdPrefixes = [...]string{
-		"SID=",          // GS305EPx, GS308EPx
-		"gambitCookie=", // GS316EPx
+		// can be extended, once GS316 will also use this pattern
+		"SID=", // GS305EPx, GS308EPx
 	}
-
-	// FIXME: just for debug purpose
-	for name, values := range resp.Header {
-		for _, value := range values {
-			print(fmt.Sprintf("[DEBUG] login response header '%s' -- '%s'", name, value))
-		}
-	}
-
 	for _, sessionIdPrefix := range sessionIdPrefixes {
 		if strings.HasPrefix(cookie, sessionIdPrefix) {
 			sidVal := cookie[len(sessionIdPrefix):]
@@ -161,6 +136,21 @@ func getSessionToken(resp *http.Response) string {
 		}
 	}
 	return FailedAttempt
+}
+
+func findGambitTokenInResponseHtml(reader io.Reader) (gambitToken string) {
+	gambitToken = FailedAttempt
+	doc, err := goquery.NewDocumentFromReader(reader)
+	if err == nil {
+		doc.Find("form").Each(func(i int, s *goquery.Selection) {
+			name, okName := s.Find("input[type=hidden]").Attr("name")
+			value, okValue := s.Find("input[type=hidden]").Attr("value")
+			if okName && name == "Gambit" && okValue {
+				gambitToken = value
+			}
+		})
+	}
+	return gambitToken
 }
 
 func getSeedValueFromSwitch(args *GlobalOptions, host string) (string, error) {
