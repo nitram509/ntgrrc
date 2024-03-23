@@ -14,22 +14,28 @@ func postPage(args *GlobalOptions, host string, url string, requestBody string) 
 	return doHttpRequestAndReadResponse(args, http.MethodPost, host, url, requestBody)
 }
 
-func doHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, host string, postUrl string, requestBody string) (string, error) {
+func doHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, host string, requestUrl string, requestBody string) (string, error) {
 	token, err := loadTokenAndModel(args, host)
 	if err != nil {
 		return "", err
 	}
 
 	if args.Verbose {
-		println("Fetching data from: " + postUrl)
+		println("Fetching data from: " + requestUrl)
 	}
 
-	req, err := http.NewRequest(httpMethod, postUrl, strings.NewReader(requestBody))
+	if isModel316(args.Model) {
+		requestUrl = requestUrl + "?Gambit=" + token
+	}
+
+	req, err := http.NewRequest(httpMethod, requestUrl, strings.NewReader(requestBody))
 	if err != nil {
 		return "", err
 	}
 
-	req.Header.Set("Cookie", "SID="+token)
+	if isModel30x(args.Model) {
+		req.Header.Set("Cookie", "SID="+token)
+	}
 
 	client := &http.Client{}
 	resp, err := client.Do(req)

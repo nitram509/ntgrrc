@@ -3,11 +3,10 @@ package main
 import (
 	"errors"
 	"fmt"
+	"github.com/PuerkitoBio/goquery"
 	"io"
 	"strconv"
 	"strings"
-
-	"github.com/PuerkitoBio/goquery"
 )
 
 type PoePortStatus struct {
@@ -77,8 +76,15 @@ func prettyPrintStatus(format OutputFormat, statuses []PoePortStatus) {
 }
 
 func requestPoePortStatusPage(args *GlobalOptions, host string) (string, error) {
-	url := fmt.Sprintf("http://%s/getPoePortStatus.cgi", host)
-	return requestPage(args, host, url)
+	if isModel30x(args.Model) {
+		url := fmt.Sprintf("http://%s/getPoePortStatus.cgi", host)
+		return requestPage(args, host, url)
+	}
+	if isModel316(args.Model) {
+		url := fmt.Sprintf("http://%s/iss/specific/poe.html", host)
+		return requestPage(args, host, url)
+	}
+	panic("model not supported")
 }
 
 func findPortStatusInHtml(model NetgearModel, reader io.Reader) ([]PoePortStatus, error) {
@@ -88,7 +94,7 @@ func findPortStatusInHtml(model NetgearModel, reader io.Reader) ([]PoePortStatus
 	if isModel316(model) {
 		return findPortStatusInGs316EPxHtml(reader)
 	}
-	panic("invariant failed")
+	panic("model not supported")
 }
 
 func findPortStatusInGs30xEPxHtml(reader io.Reader) ([]PoePortStatus, error) {
@@ -106,7 +112,7 @@ func findPortStatusInGs30xEPxHtml(reader io.Reader) ([]PoePortStatus, error) {
 		stat.PortIndex = int8(id64)
 
 		portData := s.Find("span.poe-port-index span").Text()
-		_, stat.PortName = getPortWithName(portData)
+		_, stat.PortName = parsePortIdAndName(portData)
 
 		stat.PoePortStatus = s.Find("span.poe-power-mode span").Text()
 		powerClassText := s.Find("span.poe-portPwr-width span").Text()
@@ -142,28 +148,13 @@ func findPortStatusInGs316EPxHtml(reader io.Reader) ([]PoePortStatus, error) {
 	doc.Find("div.port-wrap").Each(func(i int, s *goquery.Selection) {
 		stat := PoePortStatus{}
 
-		id := s.Find("span.port-number").Text()
-		var id64, _ = strconv.ParseInt(id, 10, 8)
-		stat.PortIndex = int8(id64)
-
-		//portData := s.Find("span.poe-port-index span").Text()
-		//_, stat.PortName = getPortWithName(portData)
-		//
+		stat.PortIndex, stat.PortName = parsePortIdAndName(s.Find("span.port-number").Text())
 		stat.PoePortStatus = s.Find("span.Status-text").Text()
-		//powerClassText := s.Find("span.poe-portPwr-width span").Text()
-		//stat.PoePowerClass = getPowerClassFromI18nString(powerClassText)
-		//
-		//s.Find("div.poe_port_status div div span").Each(func(i int, s *goquery.Selection) {
-		//	switch i {
-		//	case 1:
-		//		stat.VoltageInVolt = parseInt32(s.Text())
-		//	case 3:
-		//		stat.CurrentInMilliAmps = parseInt32(s.Text())
-		//	case 5:
-		//		stat.PowerInWatt = parseFloat32(s.Text())
-		//	case 7:
-		//		stat.TemperatureInCelsius = parseInt32(s.Text())
-		//})
+		stat.PoePowerClass = getPowerClassFromI18nString(s.Find("span.Class-text").Text())
+		stat.VoltageInVolt = parseInt32(s.Find("p.OutputVoltage-text").Text())
+		stat.CurrentInMilliAmps = parseInt32(s.Find("p.OutputCurrent-text").Text())
+		stat.PowerInWatt = parseFloat32(s.Find("p.OutputPower-text").Text())
+		stat.TemperatureInCelsius = parseInt32(s.Find("p.Temperature-text").Text())
 		stat.ErrorStatus = s.Find("p.Fault-Status-text").Text()
 		statuses = append(statuses, stat)
 	})
@@ -180,12 +171,13 @@ func getPowerClassFromI18nString(class string) string {
 	return ""
 }
 
-// getPortWithName parses the port number and port name on the status page
-func getPortWithName(str string) (int8, string) {
+// parsePortIdAndName parses the port number and port name on the status page
+func parsePortIdAndName(str string) (int8, string) {
+	str = strings.ReplaceAll(str, "\u00a0", " ")
 	index := strings.Index(str, " - ")
 	if index >= 0 {
 		portId, _ := strconv.ParseInt(str[:index], 10, 8)
-		return int8(portId), strings.TrimSuffix(str[index+3:], " ")
+		return int8(portId), strings.TrimSpace(str[index+3:])
 	}
 
 	portId, _ := strconv.ParseInt(str, 10, 8)
