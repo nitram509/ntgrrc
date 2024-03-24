@@ -1,0 +1,4347 @@
+<div id="container" class="container fadeInUp animated cmn-animation">
+<div class="netgear-template dashboard">
+<div class="dashboard-left">
+<div id="networkStatusContainer" class="card">
+  <div class="db-left">
+    <div class="db-left-inner">
+      <div class="db-logo-wrap">
+        <div class="switch-logo switch"><img src="/switch_logo.svg" alt="switch_logo"></div>
+      </div>
+      <div class="db-name-info">
+        <p class="bold-title sw-name" style="font-size:14px;" untrans></p><p class="light-title">SWITCH</p>
+      </div>
+      <div class="db-info-line"></div>
+      <div class="db-logo-wrap">
+        <div class="switch-logo port"><p>14</p></div>
+      </div>
+      <div class="db-name-info">
+        <p class="bold-title">PORTS</p><p class="bold-title">Connected</p>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+<div class="db-middle">
+<div class="db-middle-inner collapsed-wrap">
+<div class="db-row-wrap">
+<div class="db-row slide-up-down db-active">
+  <div class="db-header">
+    <span class="icon icon-I-info" style="margin:2px 0 0 -3px;"></span>
+    <span class="title">SYSTEM INFO</span>
+    <span class="icon-I-arrow-up"></span>
+  </div>
+</div>
+<div class="db-content data-cover sys-content extend">
+<div class="info-row">
+  <div class="info-col">
+    <p class="light-title">Firmware Version</p><p class="bold-title">1.0.2.6</p>
+  </div>
+  <div class="info-col">
+    <p class="light-title">Check for firmware on</p>
+    <p class="bold-title ntgr-link" id="das_trans"><a id="web_check" href="" target="_blank">NETGEAR.COM</a></p>
+  </div>
+</div>
+<div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1 light-title" style="margin-bottom: 0;">Switch Name</label>
+    <input type="text" name="switchName" class="input-1 bold-title" value="GS316EP" size="25" maxlength="20" data-save data-on="input" style="max-width: 220px; height:21px; line-height:21px; font-size:14px;">
+  </div>
+  <div class="info-col">
+    <p class="light-title">MAC Address</p><p class="bold-title">34:98:B5:A7:6A:A4</p>
+  </div>
+</div>
+<div class="info-row">
+  <div class="info-col">
+    <p class="light-title">Serial Number</p><p class="bold-title">6SS4245600CD5</p>
+  </div>
+  <div class="info-col">
+    <p class="light-title">Model Number</p><p class="bold-title" id="model_name">GS316EP</p>
+  </div>
+</div>
+<div class="info-row"><div class="info-col">
+<label class="label-1 light-title" style="margin-bottom: 0;">Language</label>
+<div class="custom-dropdown" style="max-width:220px;">
+<div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-lang">Auto</span><span class="caret"></span></button>
+<ul class="dropdown-menu language-dropdown">
+<li data-on="click"><a href="javascript:void(0);">Auto</a></li>
+<li data-on="click"><a href="javascript:void(0);">English</a></li>
+<li data-on="click" style='display:none;'><a href="javascript:void(0);">简体中文</a></li>
+<li data-on="click" style='display:none;'><a href="javascript:void(0);">Français</a></li>
+<li data-on="click"><a href="javascript:void(0);">Deutsch</a></li>
+<li data-on="click"><a href="javascript:void(0);">日本語</a></li>
+<li data-on="click" style='display:none;'><a href="javascript:void(0);">Español</a></li>
+</ul></div></div></div></div>
+
+<div class="control-buttons-1">
+  <a class="anchor-1 disable-btn" href="javascript:void(0)">CANCEL</a>
+  <a class="anchor-2 disable-btn" href="javascript:void(0)" submitType="swInfo">APPLY</a>
+</div>
+</div>
+</div>
+
+<div class="db-row-wrap">
+  <div class="db-row slide-up-down db-close">
+    <div class="db-header">
+      <span class="icon icon-I-led" style="margin-top:2px;"></span>
+      <span class="title">Port LEDs</span>
+      <span class="icon-I-arrow-down"></span>
+      <span class="led-status bold-title"></span>
+    </div>
+  </div>
+  <div class="db-content data-cover led-content extend" style="display:none;">
+    <div class="custom-switch-1" style="margin-left:72px;">
+      <div class="body-text switch-container">
+        <label class="switch-control" onclick="toggleSwitch(this);">
+          <input id="ledStatus" name="ledStatus" class="ios-switch bigswitch" type="checkbox" data-save data-on="change" >
+          <div class="switchWrapper"><div></div></div>
+        </label>
+      </div>
+    </div>
+    <div style="height:3rem">
+	  <div class="stealth_mode">
+	    <span>OFF</span>
+		<span>(Stealth Mode)</span>
+	  </div>
+	  <div class="stealth_mode"  style="color:#00d76f;margin-left:1rem">
+	    <span>ON</span>
+		<span>(LEDs Active)</span>
+	  </div>
+	</div>
+    <div class="control-buttons-1">
+      <a class="anchor-1 disable-btn" href="javascript:void(0)">CANCEL</a>
+      <a class="anchor-2 disable-btn" href="javascript:void(0)" submitType="ledStatus">APPLY</a>
+    </div>
+  </div>
+</div>
+
+<div class="db-row-wrap">
+<div class="db-row slide-up-down db-close">
+  <div class="db-header">
+    <span class="title" style="margin-left: 0;">IP Address</span>
+    <span class="ip-mode" style="line-height: 26px; margin-left: 1rem;"></span>
+    <span class="icon-I-arrow-down"></span>
+    <span class="ip-address bold-title"></span>
+  </div>
+</div>
+
+<div class="db-content  data-cover extend" style="display:none;">
+  <div class="text-wrap">
+    <p class="normal-title">DHCP</p><p class="light-title dhcp-description">Assign the IP address automatically.</p>
+  </div>
+  <div class="custom-switch-1">
+    <div id="switchToggleDiv" class="body-text switch-container">
+        <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="dhcpMode" class="ios-switch bigswitch" type="checkbox" data-on="change" checked>
+        <div class="switchWrapper"><div></div></div>
+      </label>
+    </div>
+  </div>
+
+<div class=" text-area ipsec">
+    <label class="label-1">IP Address</label>
+    <input data-save type="text" name="ip" class="input-1 bold-title hideWhenDhcp" value="192.168.0.69" size="15" maxlength="15" data-on="input" >
+    <input type="text" class="input-1 ip-description" value="To be established after changes applied." disabled="disabled" trans="trans" style="display:none;">
+</div>
+<div class=" text-area ipsec hideWhenDhcp">
+    <label class="label-1">Subnet Mask</label>
+    <input data-save type="text" name="subnetMask" class="input-1 bold-title" value="255.255.255.0" size="15" maxlength="15" data-on="input" >
+</div>
+<div class=" text-area ipsec hideWhenDhcp">
+    <label class="label-1">Gateway Address</label>
+    <input data-save type="text" name="gatewayAddress" class="input-1 bold-title" value="192.168.0.1" size="15" maxlength="15" data-on="input" >
+</div>
+<div class="control-buttons-1">
+  <a class="anchor-1 disable-btn" href="javascript:void(0)">CANCEL</a>
+  <a class="anchor-2 disable-btn" href="javascript:void(0)" submitType="ipInfo">APPLY</a>
+</div>
+</div>
+</div>
+
+<div class="db-row-wrap" >
+<div class="db-row" id="redirectToLag" data-redirect="lag">
+  <div class="db-header" style="overflow:hidden;">
+<span class="icon icon-I-lag-wrap">
+  <span class="icon-I-lag">
+    <div class="lag-icon top-left"></div><div class="lag-icon top-right"></div><div class="lag-icon bottom-left"></div><div class="lag-icon bottom-right"></div>
+  </span>
+</span>
+<span class="title">LAG</span><span class="lag-info-wrap">
+
+<span class="lag-info bold-title"><span>LAG 1:</span> <span>Link Down</span> <span>(<span>Ports</span>: <span>None</span>)</span></span><br>
+
+<span class="lag-info bold-title"><span>LAG 2:</span> <span>Link Down</span> <span>(<span>Ports</span>: <span>None</span>)</span></span><br>
+
+<span class="lag-info bold-title"><span>LAG 3:</span> <span>Link Down</span> <span>(<span>Ports</span>: <span>None</span>)</span></span><br>
+
+<span class="lag-info bold-title"><span>LAG 4:</span> <span>Link Down</span> <span>(<span>Ports</span>: <span>None</span>)</span></span><br>
+
+<span class="lag-info bold-title"><span>LAG 5:</span> <span>Link Down</span> <span>(<span>Ports</span>: <span>None</span>)</span></span><br>
+
+<span class="lag-info bold-title"><span>LAG 6:</span> <span>Link Down</span> <span>(<span>Ports</span>: <span>None</span>)</span></span><br>
+
+<span class="lag-info bold-title"><span>LAG 7:</span> <span>Link Down</span> <span>(<span>Ports</span>: <span>None</span>)</span></span><br>
+
+<span class="lag-info bold-title"><span>LAG 8:</span> <span>Link Down</span> <span>(<span>Ports</span>: <span>None</span>)</span></span><br>
+
+</span>
+  </div>
+</div>
+</div>
+
+<div class="db-row-wrap go-to-preset" style="display:none;">
+<div class="db-row">
+<div class="db-header" style="overflow:hidden;">
+<span class="icon icon-I-preset-setting" style="top:12px;font-size:19px;"></span>
+<span class="preset-title title">PRESET MODES<br><p class="preset-title-info">Optimize performance with preset configurations.</p></span>
+</div>
+</div>
+</div>
+
+<div class="db-row-wrap">
+  <div class="db-row slide-up-down db-close">
+    <div class="db-header">
+      <span class="icon icon-I-info" style="margin:2px 0 0 -3px;"></span>
+      <span class="title">SYSTEM TIME<br>
+        <p class="preset-title-info" style="margin: 0;font-size: 14px;line-height: 20px;color: #8d979c;">Local/SNTP</p>
+      </span>
+      <span class="icon-I-arrow-down"></span>
+      <span id="sysTime" class="bold-title" style="float: right;margin-right: 10px;line-height: 26px;"></span>
+    </div>
+  </div>
+  <div class="db-content data-cover extend" style="display:none;">
+    <div class="custom-switch-1">
+      <div class="body-text switch-container" style="margin-left:46px;">
+        <label class="switch-control off" onclick="toggleSwitch(this);">
+          <input data-save id="timeMode" name="timeMode" class="ios-switch bigswitch" type="checkbox" data-on="change" >
+          <div class="switchWrapper">
+            <div></div>
+          </div>
+        </label>
+      </div>
+      <span class="disable-span">Local</span>
+      <span class="enable-span" style="margin-left:60px;color:#00d76f;">SNTP</span>
+    </div>
+    <div class="text-area timesec">
+      <label class="label-1">Date</label>
+      <input data-save type="text" name="date" class="input-1 bold-title" value="" size="15" data-on="change" withborder readonly required>
+    </div>
+    <div class="text-area timesec">
+      <label class="label-1">Time</label>
+      <input data-save type="text" name="time" class="input-1 bold-title" value="" size="15" data-on="change" withborder readonly required>
+    </div>
+    <div id="timezone-area" class="text-area timesec hide" style="display:inline-block;">
+      <label class="label-1">Time Zone</label>
+      <div class="custom-dropdown">
+        <div class="dropdown">
+          <input data-save id="timezone" type="hidden" name="timezone" value="GMT0" required>
+          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+            <span data-save class="selectItem edit-timezone bold-title"></span>
+            <span class="caret"></span>
+          </button>
+          <ul id="timezone-dropdown" class="dropdown-menu">
+            <div class="scroll-content" style="max-height: 450px;"></div>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="control-buttons-1">
+        <a class="anchor-1 disable-btn" href="javascript:void(0)">CANCEL</a>
+        <a class="anchor-2 disable-btn" href="javascript:void(0)" submitType="timeInfo">APPLY</a>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="dashboard-right">
+<div class="dashboard-port-status">
+  <div class="inner-padding-2">
+    <span class="heading-1">PORT STATUS</span>
+  </div>
+  <div id='accordion' class='panel-group collapsed-wrap'>
+<!--port-status-wrap-->
+
+<div class="port-wrap port-led-wrap">
+<div class="panel panel-default slide-up-down db-close">
+  <div id="headingOne" class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a class="collapsed accordion-icon">
+        <span class="port-number">1</span>
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
+        
+        <span class='status-on-port port-connected slow-color'>CONNECTED</span>
+        
+        <span class="accordion-arrow arrow-down">
+          <span class="icon-I-arrow-down"></span>
+        </span>
+      </a>
+    </h4>
+  </div>
+</div>
+<div class="db-content extend data-cover" style="display:none;">
+<div class="port-status">
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Speed</p>
+  <p class="bold-title speed-text">Auto</p>
+  
+</div>
+<div class="info-col">
+  <p class="light-title">Linked Speed</p>
+  <p class="bold-title link-speed-text">100M Full</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
+  <p class="bold-title ingress-text">No Limit</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
+  <p class="bold-title egress-text">No Limit</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Flow Control</p>
+  <p class="bold-title flow-text">OFF</p>
+  
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Activity LED</p>
+  <p class="bold-title port-led-text">PORT_LED_STATUS_KEY</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title">Frequency</p>
+  <p class="bold-title frequency-text">FREQUENCY_KEY</p>
+  <! PARAM STOP>
+</div>
+</div>
+<div class="info-row">
+  <p class="light-title">LED Color</p>
+  COLOR_LIST_KEY
+</div>
+<div class="info-row">
+  <div class="info-col">
+      <p class="light-title">Brightness</p><p class="bold-title brightness-text"></p>
+  </div>
+</div>
+-->
+
+  <div class="info-row">
+    <a class="port-edit-btn" href="javascript:void(0)">EDIT</a>
+  </div>
+</div>
+
+<div class="edit-port-status" style="display:none;">
+  <div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1"><span>Port Name</span> <span class="help-text-2">(1-16 Characters)</span></label>
+    <input data-save type="text" name="portName" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+  </div>
+
+  <div class="info-col">
+    <label class="label-1">Speed</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-speed"></span>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu speed-dropdown">
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Auto</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Disable</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Half">10M Half</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Full">10M Full</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="100M Half">100M Half</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);" title="100M Full">100M Full</a></li>
+</ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="info-row">
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Ingress Port Limit">Ingress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-ingress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Egress Port Limit">Egress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-egress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-wrap">
+<p class="normal-title">Flow Control</p>
+<p class="light-title">Turn on to regulate and prevent traffic on this port from affecting performance of other ports.</p>
+</div>
+<div class="custom-switch-1">
+<div id="switchToggleDiv" class="body-text switch-container">
+    <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="flowControlMode" class="ios-switch bigswitch" type="checkbox">
+    <div class="switchWrapper"><div></div></div>
+  </label>
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+    <p class="label-1">Activity LED</p>
+    <div class="custom-switch-1">
+        <div id="switchToggleDiv" class="body-text switch-container">
+            <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="portLed" class="ios-switch bigswitch" type="checkbox" data-on="change">
+            <div class="switchWrapper"><div></div></div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="info-col">
+<label class="label-1" style="margin-bottom:3px;">Frequency</label>
+<div class="custom-dropdown">
+    <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+    <span data-save class="selectItem edit-frequency"></span><span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li class="active"><a href="javascript:void(0);">Highest</a></li>
+<li class="active"><a href="javascript:void(0);">High</a></li>
+<li class="active"><a href="javascript:void(0);">Medium</a></li>
+<li class="active"><a href="javascript:void(0);">Low</a></li>
+<li class="active"><a href="javascript:void(0);">Lowest</a></li>
+</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="info-row">
+<p class="light-title mt-10">LED Color</p>
+<div class="port-color-wrap">
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type1" data-color data-save></span>
+        <span class="normal-title">10G</span>
+    </div>
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type2" data-color data-save></span>
+        <span class="normal-title">5G</span>
+    </div>
+</div>
+</div>
+
+<div class="info-row">
+    <div class="port-color-wrap">
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type3" data-color data-save></span>
+            <span class="normal-title">2.5G</span>
+        </div>
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type4" data-color data-save></span>
+            <span class="normal-title">1G / 100M</span>
+        </div>
+    </div>
+</div>
+
+<div class="info-row">
+<div class="drag-container">
+    <div class="drag-bar">
+        <span class="drag-label">Brightness</span>
+        <input data-save class="slide" data-slider-min="0" data-slider-max="100" data-slider-step="1" style="display: none;" data-slider-value="BRIGHTNESS_KEY" type="text">
+        <! PARAM STOP>
+    </div>
+</div>
+</div>
+-->
+
+      <div class="control-buttons-1">
+          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+          <a class="anchor-2 not-disable" href="javascript:void(0)" submitType="portInfo">APPLY</a>
+        </div>
+    </div>
+</div>
+</div>
+<! PARAM STOP>
+
+<div class="port-wrap port-led-wrap">
+<div class="panel panel-default slide-up-down db-close">
+  <div id="headingOne" class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a class="collapsed accordion-icon">
+        <span class="port-number">2</span>
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>AGER 31 SUR Tech</span></span>
+        
+        <span class='status-on-port port-connected slow-color'>CONNECTED</span>
+        
+        <span class="accordion-arrow arrow-down">
+          <span class="icon-I-arrow-down"></span>
+        </span>
+      </a>
+    </h4>
+  </div>
+</div>
+<div class="db-content extend data-cover" style="display:none;">
+<div class="port-status">
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Speed</p>
+  <p class="bold-title speed-text">Auto</p>
+  
+</div>
+<div class="info-col">
+  <p class="light-title">Linked Speed</p>
+  <p class="bold-title link-speed-text">100M Full</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
+  <p class="bold-title ingress-text">No Limit</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
+  <p class="bold-title egress-text">No Limit</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Flow Control</p>
+  <p class="bold-title flow-text">OFF</p>
+  
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Activity LED</p>
+  <p class="bold-title port-led-text">PORT_LED_STATUS_KEY</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title">Frequency</p>
+  <p class="bold-title frequency-text">FREQUENCY_KEY</p>
+  <! PARAM STOP>
+</div>
+</div>
+<div class="info-row">
+  <p class="light-title">LED Color</p>
+  COLOR_LIST_KEY
+</div>
+<div class="info-row">
+  <div class="info-col">
+      <p class="light-title">Brightness</p><p class="bold-title brightness-text"></p>
+  </div>
+</div>
+-->
+
+  <div class="info-row">
+    <a class="port-edit-btn" href="javascript:void(0)">EDIT</a>
+  </div>
+</div>
+
+<div class="edit-port-status" style="display:none;">
+  <div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1"><span>Port Name</span> <span class="help-text-2">(1-16 Characters)</span></label>
+    <input data-save type="text" name="portName" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+  </div>
+
+  <div class="info-col">
+    <label class="label-1">Speed</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-speed"></span>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu speed-dropdown">
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Auto</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Disable</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Half">10M Half</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Full">10M Full</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="100M Half">100M Half</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);" title="100M Full">100M Full</a></li>
+</ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="info-row">
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Ingress Port Limit">Ingress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-ingress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Egress Port Limit">Egress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-egress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-wrap">
+<p class="normal-title">Flow Control</p>
+<p class="light-title">Turn on to regulate and prevent traffic on this port from affecting performance of other ports.</p>
+</div>
+<div class="custom-switch-1">
+<div id="switchToggleDiv" class="body-text switch-container">
+    <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="flowControlMode" class="ios-switch bigswitch" type="checkbox">
+    <div class="switchWrapper"><div></div></div>
+  </label>
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+    <p class="label-1">Activity LED</p>
+    <div class="custom-switch-1">
+        <div id="switchToggleDiv" class="body-text switch-container">
+            <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="portLed" class="ios-switch bigswitch" type="checkbox" data-on="change">
+            <div class="switchWrapper"><div></div></div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="info-col">
+<label class="label-1" style="margin-bottom:3px;">Frequency</label>
+<div class="custom-dropdown">
+    <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+    <span data-save class="selectItem edit-frequency"></span><span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li class="active"><a href="javascript:void(0);">Highest</a></li>
+<li class="active"><a href="javascript:void(0);">High</a></li>
+<li class="active"><a href="javascript:void(0);">Medium</a></li>
+<li class="active"><a href="javascript:void(0);">Low</a></li>
+<li class="active"><a href="javascript:void(0);">Lowest</a></li>
+</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="info-row">
+<p class="light-title mt-10">LED Color</p>
+<div class="port-color-wrap">
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type1" data-color data-save></span>
+        <span class="normal-title">10G</span>
+    </div>
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type2" data-color data-save></span>
+        <span class="normal-title">5G</span>
+    </div>
+</div>
+</div>
+
+<div class="info-row">
+    <div class="port-color-wrap">
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type3" data-color data-save></span>
+            <span class="normal-title">2.5G</span>
+        </div>
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type4" data-color data-save></span>
+            <span class="normal-title">1G / 100M</span>
+        </div>
+    </div>
+</div>
+
+<div class="info-row">
+<div class="drag-container">
+    <div class="drag-bar">
+        <span class="drag-label">Brightness</span>
+        <input data-save class="slide" data-slider-min="0" data-slider-max="100" data-slider-step="1" style="display: none;" data-slider-value="BRIGHTNESS_KEY" type="text">
+        <! PARAM STOP>
+    </div>
+</div>
+</div>
+-->
+
+      <div class="control-buttons-1">
+          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+          <a class="anchor-2 not-disable" href="javascript:void(0)" submitType="portInfo">APPLY</a>
+        </div>
+    </div>
+</div>
+</div>
+<! PARAM STOP>
+
+<div class="port-wrap port-led-wrap">
+<div class="panel panel-default slide-up-down db-close">
+  <div id="headingOne" class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a class="collapsed accordion-icon">
+        <span class="port-number">3</span>
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>AGER 31 IN</span></span>
+        
+        <span class='status-on-port port-connected slow-color'>CONNECTED</span>
+        
+        <span class="accordion-arrow arrow-down">
+          <span class="icon-I-arrow-down"></span>
+        </span>
+      </a>
+    </h4>
+  </div>
+</div>
+<div class="db-content extend data-cover" style="display:none;">
+<div class="port-status">
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Speed</p>
+  <p class="bold-title speed-text">Auto</p>
+  
+</div>
+<div class="info-col">
+  <p class="light-title">Linked Speed</p>
+  <p class="bold-title link-speed-text">100M Full</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
+  <p class="bold-title ingress-text">No Limit</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
+  <p class="bold-title egress-text">No Limit</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Flow Control</p>
+  <p class="bold-title flow-text">OFF</p>
+  
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Activity LED</p>
+  <p class="bold-title port-led-text">PORT_LED_STATUS_KEY</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title">Frequency</p>
+  <p class="bold-title frequency-text">FREQUENCY_KEY</p>
+  <! PARAM STOP>
+</div>
+</div>
+<div class="info-row">
+  <p class="light-title">LED Color</p>
+  COLOR_LIST_KEY
+</div>
+<div class="info-row">
+  <div class="info-col">
+      <p class="light-title">Brightness</p><p class="bold-title brightness-text"></p>
+  </div>
+</div>
+-->
+
+  <div class="info-row">
+    <a class="port-edit-btn" href="javascript:void(0)">EDIT</a>
+  </div>
+</div>
+
+<div class="edit-port-status" style="display:none;">
+  <div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1"><span>Port Name</span> <span class="help-text-2">(1-16 Characters)</span></label>
+    <input data-save type="text" name="portName" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+  </div>
+
+  <div class="info-col">
+    <label class="label-1">Speed</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-speed"></span>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu speed-dropdown">
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Auto</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Disable</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Half">10M Half</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Full">10M Full</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="100M Half">100M Half</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);" title="100M Full">100M Full</a></li>
+</ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="info-row">
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Ingress Port Limit">Ingress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-ingress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Egress Port Limit">Egress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-egress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-wrap">
+<p class="normal-title">Flow Control</p>
+<p class="light-title">Turn on to regulate and prevent traffic on this port from affecting performance of other ports.</p>
+</div>
+<div class="custom-switch-1">
+<div id="switchToggleDiv" class="body-text switch-container">
+    <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="flowControlMode" class="ios-switch bigswitch" type="checkbox">
+    <div class="switchWrapper"><div></div></div>
+  </label>
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+    <p class="label-1">Activity LED</p>
+    <div class="custom-switch-1">
+        <div id="switchToggleDiv" class="body-text switch-container">
+            <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="portLed" class="ios-switch bigswitch" type="checkbox" data-on="change">
+            <div class="switchWrapper"><div></div></div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="info-col">
+<label class="label-1" style="margin-bottom:3px;">Frequency</label>
+<div class="custom-dropdown">
+    <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+    <span data-save class="selectItem edit-frequency"></span><span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li class="active"><a href="javascript:void(0);">Highest</a></li>
+<li class="active"><a href="javascript:void(0);">High</a></li>
+<li class="active"><a href="javascript:void(0);">Medium</a></li>
+<li class="active"><a href="javascript:void(0);">Low</a></li>
+<li class="active"><a href="javascript:void(0);">Lowest</a></li>
+</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="info-row">
+<p class="light-title mt-10">LED Color</p>
+<div class="port-color-wrap">
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type1" data-color data-save></span>
+        <span class="normal-title">10G</span>
+    </div>
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type2" data-color data-save></span>
+        <span class="normal-title">5G</span>
+    </div>
+</div>
+</div>
+
+<div class="info-row">
+    <div class="port-color-wrap">
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type3" data-color data-save></span>
+            <span class="normal-title">2.5G</span>
+        </div>
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type4" data-color data-save></span>
+            <span class="normal-title">1G / 100M</span>
+        </div>
+    </div>
+</div>
+
+<div class="info-row">
+<div class="drag-container">
+    <div class="drag-bar">
+        <span class="drag-label">Brightness</span>
+        <input data-save class="slide" data-slider-min="0" data-slider-max="100" data-slider-step="1" style="display: none;" data-slider-value="BRIGHTNESS_KEY" type="text">
+        <! PARAM STOP>
+    </div>
+</div>
+</div>
+-->
+
+      <div class="control-buttons-1">
+          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+          <a class="anchor-2 not-disable" href="javascript:void(0)" submitType="portInfo">APPLY</a>
+        </div>
+    </div>
+</div>
+</div>
+<! PARAM STOP>
+
+<div class="port-wrap port-led-wrap">
+<div class="panel panel-default slide-up-down db-close">
+  <div id="headingOne" class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a class="collapsed accordion-icon">
+        <span class="port-number">4</span>
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>AGER 31 PARK</span></span>
+        
+        <span class='status-on-port port-connected slow-color'>CONNECTED</span>
+        
+        <span class="accordion-arrow arrow-down">
+          <span class="icon-I-arrow-down"></span>
+        </span>
+      </a>
+    </h4>
+  </div>
+</div>
+<div class="db-content extend data-cover" style="display:none;">
+<div class="port-status">
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Speed</p>
+  <p class="bold-title speed-text">Auto</p>
+  
+</div>
+<div class="info-col">
+  <p class="light-title">Linked Speed</p>
+  <p class="bold-title link-speed-text">100M Full</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
+  <p class="bold-title ingress-text">No Limit</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
+  <p class="bold-title egress-text">No Limit</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Flow Control</p>
+  <p class="bold-title flow-text">OFF</p>
+  
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Activity LED</p>
+  <p class="bold-title port-led-text">PORT_LED_STATUS_KEY</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title">Frequency</p>
+  <p class="bold-title frequency-text">FREQUENCY_KEY</p>
+  <! PARAM STOP>
+</div>
+</div>
+<div class="info-row">
+  <p class="light-title">LED Color</p>
+  COLOR_LIST_KEY
+</div>
+<div class="info-row">
+  <div class="info-col">
+      <p class="light-title">Brightness</p><p class="bold-title brightness-text"></p>
+  </div>
+</div>
+-->
+
+  <div class="info-row">
+    <a class="port-edit-btn" href="javascript:void(0)">EDIT</a>
+  </div>
+</div>
+
+<div class="edit-port-status" style="display:none;">
+  <div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1"><span>Port Name</span> <span class="help-text-2">(1-16 Characters)</span></label>
+    <input data-save type="text" name="portName" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+  </div>
+
+  <div class="info-col">
+    <label class="label-1">Speed</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-speed"></span>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu speed-dropdown">
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Auto</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Disable</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Half">10M Half</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Full">10M Full</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="100M Half">100M Half</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);" title="100M Full">100M Full</a></li>
+</ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="info-row">
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Ingress Port Limit">Ingress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-ingress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Egress Port Limit">Egress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-egress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-wrap">
+<p class="normal-title">Flow Control</p>
+<p class="light-title">Turn on to regulate and prevent traffic on this port from affecting performance of other ports.</p>
+</div>
+<div class="custom-switch-1">
+<div id="switchToggleDiv" class="body-text switch-container">
+    <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="flowControlMode" class="ios-switch bigswitch" type="checkbox">
+    <div class="switchWrapper"><div></div></div>
+  </label>
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+    <p class="label-1">Activity LED</p>
+    <div class="custom-switch-1">
+        <div id="switchToggleDiv" class="body-text switch-container">
+            <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="portLed" class="ios-switch bigswitch" type="checkbox" data-on="change">
+            <div class="switchWrapper"><div></div></div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="info-col">
+<label class="label-1" style="margin-bottom:3px;">Frequency</label>
+<div class="custom-dropdown">
+    <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+    <span data-save class="selectItem edit-frequency"></span><span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li class="active"><a href="javascript:void(0);">Highest</a></li>
+<li class="active"><a href="javascript:void(0);">High</a></li>
+<li class="active"><a href="javascript:void(0);">Medium</a></li>
+<li class="active"><a href="javascript:void(0);">Low</a></li>
+<li class="active"><a href="javascript:void(0);">Lowest</a></li>
+</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="info-row">
+<p class="light-title mt-10">LED Color</p>
+<div class="port-color-wrap">
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type1" data-color data-save></span>
+        <span class="normal-title">10G</span>
+    </div>
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type2" data-color data-save></span>
+        <span class="normal-title">5G</span>
+    </div>
+</div>
+</div>
+
+<div class="info-row">
+    <div class="port-color-wrap">
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type3" data-color data-save></span>
+            <span class="normal-title">2.5G</span>
+        </div>
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type4" data-color data-save></span>
+            <span class="normal-title">1G / 100M</span>
+        </div>
+    </div>
+</div>
+
+<div class="info-row">
+<div class="drag-container">
+    <div class="drag-bar">
+        <span class="drag-label">Brightness</span>
+        <input data-save class="slide" data-slider-min="0" data-slider-max="100" data-slider-step="1" style="display: none;" data-slider-value="BRIGHTNESS_KEY" type="text">
+        <! PARAM STOP>
+    </div>
+</div>
+</div>
+-->
+
+      <div class="control-buttons-1">
+          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+          <a class="anchor-2 not-disable" href="javascript:void(0)" submitType="portInfo">APPLY</a>
+        </div>
+    </div>
+</div>
+</div>
+<! PARAM STOP>
+
+<div class="port-wrap port-led-wrap">
+<div class="panel panel-default slide-up-down db-close">
+  <div id="headingOne" class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a class="collapsed accordion-icon">
+        <span class="port-number">5</span>
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
+        
+        <span class='status-on-port port-connected slow-color'>CONNECTED</span>
+        
+        <span class="accordion-arrow arrow-down">
+          <span class="icon-I-arrow-down"></span>
+        </span>
+      </a>
+    </h4>
+  </div>
+</div>
+<div class="db-content extend data-cover" style="display:none;">
+<div class="port-status">
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Speed</p>
+  <p class="bold-title speed-text">Auto</p>
+  
+</div>
+<div class="info-col">
+  <p class="light-title">Linked Speed</p>
+  <p class="bold-title link-speed-text">100M Full</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
+  <p class="bold-title ingress-text">No Limit</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
+  <p class="bold-title egress-text">No Limit</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Flow Control</p>
+  <p class="bold-title flow-text">OFF</p>
+  
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Activity LED</p>
+  <p class="bold-title port-led-text">PORT_LED_STATUS_KEY</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title">Frequency</p>
+  <p class="bold-title frequency-text">FREQUENCY_KEY</p>
+  <! PARAM STOP>
+</div>
+</div>
+<div class="info-row">
+  <p class="light-title">LED Color</p>
+  COLOR_LIST_KEY
+</div>
+<div class="info-row">
+  <div class="info-col">
+      <p class="light-title">Brightness</p><p class="bold-title brightness-text"></p>
+  </div>
+</div>
+-->
+
+  <div class="info-row">
+    <a class="port-edit-btn" href="javascript:void(0)">EDIT</a>
+  </div>
+</div>
+
+<div class="edit-port-status" style="display:none;">
+  <div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1"><span>Port Name</span> <span class="help-text-2">(1-16 Characters)</span></label>
+    <input data-save type="text" name="portName" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+  </div>
+
+  <div class="info-col">
+    <label class="label-1">Speed</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-speed"></span>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu speed-dropdown">
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Auto</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Disable</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Half">10M Half</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Full">10M Full</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="100M Half">100M Half</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);" title="100M Full">100M Full</a></li>
+</ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="info-row">
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Ingress Port Limit">Ingress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-ingress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Egress Port Limit">Egress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-egress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-wrap">
+<p class="normal-title">Flow Control</p>
+<p class="light-title">Turn on to regulate and prevent traffic on this port from affecting performance of other ports.</p>
+</div>
+<div class="custom-switch-1">
+<div id="switchToggleDiv" class="body-text switch-container">
+    <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="flowControlMode" class="ios-switch bigswitch" type="checkbox">
+    <div class="switchWrapper"><div></div></div>
+  </label>
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+    <p class="label-1">Activity LED</p>
+    <div class="custom-switch-1">
+        <div id="switchToggleDiv" class="body-text switch-container">
+            <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="portLed" class="ios-switch bigswitch" type="checkbox" data-on="change">
+            <div class="switchWrapper"><div></div></div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="info-col">
+<label class="label-1" style="margin-bottom:3px;">Frequency</label>
+<div class="custom-dropdown">
+    <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+    <span data-save class="selectItem edit-frequency"></span><span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li class="active"><a href="javascript:void(0);">Highest</a></li>
+<li class="active"><a href="javascript:void(0);">High</a></li>
+<li class="active"><a href="javascript:void(0);">Medium</a></li>
+<li class="active"><a href="javascript:void(0);">Low</a></li>
+<li class="active"><a href="javascript:void(0);">Lowest</a></li>
+</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="info-row">
+<p class="light-title mt-10">LED Color</p>
+<div class="port-color-wrap">
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type1" data-color data-save></span>
+        <span class="normal-title">10G</span>
+    </div>
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type2" data-color data-save></span>
+        <span class="normal-title">5G</span>
+    </div>
+</div>
+</div>
+
+<div class="info-row">
+    <div class="port-color-wrap">
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type3" data-color data-save></span>
+            <span class="normal-title">2.5G</span>
+        </div>
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type4" data-color data-save></span>
+            <span class="normal-title">1G / 100M</span>
+        </div>
+    </div>
+</div>
+
+<div class="info-row">
+<div class="drag-container">
+    <div class="drag-bar">
+        <span class="drag-label">Brightness</span>
+        <input data-save class="slide" data-slider-min="0" data-slider-max="100" data-slider-step="1" style="display: none;" data-slider-value="BRIGHTNESS_KEY" type="text">
+        <! PARAM STOP>
+    </div>
+</div>
+</div>
+-->
+
+      <div class="control-buttons-1">
+          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+          <a class="anchor-2 not-disable" href="javascript:void(0)" submitType="portInfo">APPLY</a>
+        </div>
+    </div>
+</div>
+</div>
+<! PARAM STOP>
+
+<div class="port-wrap port-led-wrap">
+<div class="panel panel-default slide-up-down db-close">
+  <div id="headingOne" class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a class="collapsed accordion-icon">
+        <span class="port-number">6</span>
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
+        
+        <span class='status-on-port port-connected'>CONNECTED</span>
+        
+        <span class="accordion-arrow arrow-down">
+          <span class="icon-I-arrow-down"></span>
+        </span>
+      </a>
+    </h4>
+  </div>
+</div>
+<div class="db-content extend data-cover" style="display:none;">
+<div class="port-status">
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Speed</p>
+  <p class="bold-title speed-text">Auto</p>
+  
+</div>
+<div class="info-col">
+  <p class="light-title">Linked Speed</p>
+  <p class="bold-title link-speed-text">1000M Full</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
+  <p class="bold-title ingress-text">No Limit</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
+  <p class="bold-title egress-text">No Limit</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Flow Control</p>
+  <p class="bold-title flow-text">OFF</p>
+  
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Activity LED</p>
+  <p class="bold-title port-led-text">PORT_LED_STATUS_KEY</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title">Frequency</p>
+  <p class="bold-title frequency-text">FREQUENCY_KEY</p>
+  <! PARAM STOP>
+</div>
+</div>
+<div class="info-row">
+  <p class="light-title">LED Color</p>
+  COLOR_LIST_KEY
+</div>
+<div class="info-row">
+  <div class="info-col">
+      <p class="light-title">Brightness</p><p class="bold-title brightness-text"></p>
+  </div>
+</div>
+-->
+
+  <div class="info-row">
+    <a class="port-edit-btn" href="javascript:void(0)">EDIT</a>
+  </div>
+</div>
+
+<div class="edit-port-status" style="display:none;">
+  <div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1"><span>Port Name</span> <span class="help-text-2">(1-16 Characters)</span></label>
+    <input data-save type="text" name="portName" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+  </div>
+
+  <div class="info-col">
+    <label class="label-1">Speed</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-speed"></span>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu speed-dropdown">
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Auto</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Disable</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Half">10M Half</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Full">10M Full</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="100M Half">100M Half</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);" title="100M Full">100M Full</a></li>
+</ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="info-row">
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Ingress Port Limit">Ingress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-ingress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Egress Port Limit">Egress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-egress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-wrap">
+<p class="normal-title">Flow Control</p>
+<p class="light-title">Turn on to regulate and prevent traffic on this port from affecting performance of other ports.</p>
+</div>
+<div class="custom-switch-1">
+<div id="switchToggleDiv" class="body-text switch-container">
+    <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="flowControlMode" class="ios-switch bigswitch" type="checkbox">
+    <div class="switchWrapper"><div></div></div>
+  </label>
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+    <p class="label-1">Activity LED</p>
+    <div class="custom-switch-1">
+        <div id="switchToggleDiv" class="body-text switch-container">
+            <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="portLed" class="ios-switch bigswitch" type="checkbox" data-on="change">
+            <div class="switchWrapper"><div></div></div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="info-col">
+<label class="label-1" style="margin-bottom:3px;">Frequency</label>
+<div class="custom-dropdown">
+    <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+    <span data-save class="selectItem edit-frequency"></span><span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li class="active"><a href="javascript:void(0);">Highest</a></li>
+<li class="active"><a href="javascript:void(0);">High</a></li>
+<li class="active"><a href="javascript:void(0);">Medium</a></li>
+<li class="active"><a href="javascript:void(0);">Low</a></li>
+<li class="active"><a href="javascript:void(0);">Lowest</a></li>
+</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="info-row">
+<p class="light-title mt-10">LED Color</p>
+<div class="port-color-wrap">
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type1" data-color data-save></span>
+        <span class="normal-title">10G</span>
+    </div>
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type2" data-color data-save></span>
+        <span class="normal-title">5G</span>
+    </div>
+</div>
+</div>
+
+<div class="info-row">
+    <div class="port-color-wrap">
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type3" data-color data-save></span>
+            <span class="normal-title">2.5G</span>
+        </div>
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type4" data-color data-save></span>
+            <span class="normal-title">1G / 100M</span>
+        </div>
+    </div>
+</div>
+
+<div class="info-row">
+<div class="drag-container">
+    <div class="drag-bar">
+        <span class="drag-label">Brightness</span>
+        <input data-save class="slide" data-slider-min="0" data-slider-max="100" data-slider-step="1" style="display: none;" data-slider-value="BRIGHTNESS_KEY" type="text">
+        <! PARAM STOP>
+    </div>
+</div>
+</div>
+-->
+
+      <div class="control-buttons-1">
+          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+          <a class="anchor-2 not-disable" href="javascript:void(0)" submitType="portInfo">APPLY</a>
+        </div>
+    </div>
+</div>
+</div>
+<! PARAM STOP>
+
+<div class="port-wrap port-led-wrap">
+<div class="panel panel-default slide-up-down db-close">
+  <div id="headingOne" class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a class="collapsed accordion-icon">
+        <span class="port-number">7</span>
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>AGER 31 NORTE</span></span>
+        
+        <span class='status-on-port port-connected slow-color'>CONNECTED</span>
+        
+        <span class="accordion-arrow arrow-down">
+          <span class="icon-I-arrow-down"></span>
+        </span>
+      </a>
+    </h4>
+  </div>
+</div>
+<div class="db-content extend data-cover" style="display:none;">
+<div class="port-status">
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Speed</p>
+  <p class="bold-title speed-text">Auto</p>
+  
+</div>
+<div class="info-col">
+  <p class="light-title">Linked Speed</p>
+  <p class="bold-title link-speed-text">100M Full</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
+  <p class="bold-title ingress-text">No Limit</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
+  <p class="bold-title egress-text">No Limit</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Flow Control</p>
+  <p class="bold-title flow-text">OFF</p>
+  
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Activity LED</p>
+  <p class="bold-title port-led-text">PORT_LED_STATUS_KEY</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title">Frequency</p>
+  <p class="bold-title frequency-text">FREQUENCY_KEY</p>
+  <! PARAM STOP>
+</div>
+</div>
+<div class="info-row">
+  <p class="light-title">LED Color</p>
+  COLOR_LIST_KEY
+</div>
+<div class="info-row">
+  <div class="info-col">
+      <p class="light-title">Brightness</p><p class="bold-title brightness-text"></p>
+  </div>
+</div>
+-->
+
+  <div class="info-row">
+    <a class="port-edit-btn" href="javascript:void(0)">EDIT</a>
+  </div>
+</div>
+
+<div class="edit-port-status" style="display:none;">
+  <div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1"><span>Port Name</span> <span class="help-text-2">(1-16 Characters)</span></label>
+    <input data-save type="text" name="portName" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+  </div>
+
+  <div class="info-col">
+    <label class="label-1">Speed</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-speed"></span>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu speed-dropdown">
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Auto</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Disable</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Half">10M Half</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Full">10M Full</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="100M Half">100M Half</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);" title="100M Full">100M Full</a></li>
+</ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="info-row">
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Ingress Port Limit">Ingress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-ingress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Egress Port Limit">Egress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-egress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-wrap">
+<p class="normal-title">Flow Control</p>
+<p class="light-title">Turn on to regulate and prevent traffic on this port from affecting performance of other ports.</p>
+</div>
+<div class="custom-switch-1">
+<div id="switchToggleDiv" class="body-text switch-container">
+    <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="flowControlMode" class="ios-switch bigswitch" type="checkbox">
+    <div class="switchWrapper"><div></div></div>
+  </label>
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+    <p class="label-1">Activity LED</p>
+    <div class="custom-switch-1">
+        <div id="switchToggleDiv" class="body-text switch-container">
+            <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="portLed" class="ios-switch bigswitch" type="checkbox" data-on="change">
+            <div class="switchWrapper"><div></div></div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="info-col">
+<label class="label-1" style="margin-bottom:3px;">Frequency</label>
+<div class="custom-dropdown">
+    <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+    <span data-save class="selectItem edit-frequency"></span><span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li class="active"><a href="javascript:void(0);">Highest</a></li>
+<li class="active"><a href="javascript:void(0);">High</a></li>
+<li class="active"><a href="javascript:void(0);">Medium</a></li>
+<li class="active"><a href="javascript:void(0);">Low</a></li>
+<li class="active"><a href="javascript:void(0);">Lowest</a></li>
+</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="info-row">
+<p class="light-title mt-10">LED Color</p>
+<div class="port-color-wrap">
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type1" data-color data-save></span>
+        <span class="normal-title">10G</span>
+    </div>
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type2" data-color data-save></span>
+        <span class="normal-title">5G</span>
+    </div>
+</div>
+</div>
+
+<div class="info-row">
+    <div class="port-color-wrap">
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type3" data-color data-save></span>
+            <span class="normal-title">2.5G</span>
+        </div>
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type4" data-color data-save></span>
+            <span class="normal-title">1G / 100M</span>
+        </div>
+    </div>
+</div>
+
+<div class="info-row">
+<div class="drag-container">
+    <div class="drag-bar">
+        <span class="drag-label">Brightness</span>
+        <input data-save class="slide" data-slider-min="0" data-slider-max="100" data-slider-step="1" style="display: none;" data-slider-value="BRIGHTNESS_KEY" type="text">
+        <! PARAM STOP>
+    </div>
+</div>
+</div>
+-->
+
+      <div class="control-buttons-1">
+          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+          <a class="anchor-2 not-disable" href="javascript:void(0)" submitType="portInfo">APPLY</a>
+        </div>
+    </div>
+</div>
+</div>
+<! PARAM STOP>
+
+<div class="port-wrap port-led-wrap">
+<div class="panel panel-default slide-up-down db-close">
+  <div id="headingOne" class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a class="collapsed accordion-icon">
+        <span class="port-number">8</span>
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>AGER 31 GABINETE</span></span>
+        
+        <span class='status-on-port port-connected slow-color'>CONNECTED</span>
+        
+        <span class="accordion-arrow arrow-down">
+          <span class="icon-I-arrow-down"></span>
+        </span>
+      </a>
+    </h4>
+  </div>
+</div>
+<div class="db-content extend data-cover" style="display:none;">
+<div class="port-status">
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Speed</p>
+  <p class="bold-title speed-text">Auto</p>
+  
+</div>
+<div class="info-col">
+  <p class="light-title">Linked Speed</p>
+  <p class="bold-title link-speed-text">100M Full</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
+  <p class="bold-title ingress-text">No Limit</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
+  <p class="bold-title egress-text">No Limit</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Flow Control</p>
+  <p class="bold-title flow-text">OFF</p>
+  
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Activity LED</p>
+  <p class="bold-title port-led-text">PORT_LED_STATUS_KEY</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title">Frequency</p>
+  <p class="bold-title frequency-text">FREQUENCY_KEY</p>
+  <! PARAM STOP>
+</div>
+</div>
+<div class="info-row">
+  <p class="light-title">LED Color</p>
+  COLOR_LIST_KEY
+</div>
+<div class="info-row">
+  <div class="info-col">
+      <p class="light-title">Brightness</p><p class="bold-title brightness-text"></p>
+  </div>
+</div>
+-->
+
+  <div class="info-row">
+    <a class="port-edit-btn" href="javascript:void(0)">EDIT</a>
+  </div>
+</div>
+
+<div class="edit-port-status" style="display:none;">
+  <div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1"><span>Port Name</span> <span class="help-text-2">(1-16 Characters)</span></label>
+    <input data-save type="text" name="portName" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+  </div>
+
+  <div class="info-col">
+    <label class="label-1">Speed</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-speed"></span>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu speed-dropdown">
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Auto</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Disable</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Half">10M Half</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Full">10M Full</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="100M Half">100M Half</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);" title="100M Full">100M Full</a></li>
+</ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="info-row">
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Ingress Port Limit">Ingress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-ingress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Egress Port Limit">Egress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-egress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-wrap">
+<p class="normal-title">Flow Control</p>
+<p class="light-title">Turn on to regulate and prevent traffic on this port from affecting performance of other ports.</p>
+</div>
+<div class="custom-switch-1">
+<div id="switchToggleDiv" class="body-text switch-container">
+    <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="flowControlMode" class="ios-switch bigswitch" type="checkbox">
+    <div class="switchWrapper"><div></div></div>
+  </label>
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+    <p class="label-1">Activity LED</p>
+    <div class="custom-switch-1">
+        <div id="switchToggleDiv" class="body-text switch-container">
+            <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="portLed" class="ios-switch bigswitch" type="checkbox" data-on="change">
+            <div class="switchWrapper"><div></div></div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="info-col">
+<label class="label-1" style="margin-bottom:3px;">Frequency</label>
+<div class="custom-dropdown">
+    <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+    <span data-save class="selectItem edit-frequency"></span><span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li class="active"><a href="javascript:void(0);">Highest</a></li>
+<li class="active"><a href="javascript:void(0);">High</a></li>
+<li class="active"><a href="javascript:void(0);">Medium</a></li>
+<li class="active"><a href="javascript:void(0);">Low</a></li>
+<li class="active"><a href="javascript:void(0);">Lowest</a></li>
+</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="info-row">
+<p class="light-title mt-10">LED Color</p>
+<div class="port-color-wrap">
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type1" data-color data-save></span>
+        <span class="normal-title">10G</span>
+    </div>
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type2" data-color data-save></span>
+        <span class="normal-title">5G</span>
+    </div>
+</div>
+</div>
+
+<div class="info-row">
+    <div class="port-color-wrap">
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type3" data-color data-save></span>
+            <span class="normal-title">2.5G</span>
+        </div>
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type4" data-color data-save></span>
+            <span class="normal-title">1G / 100M</span>
+        </div>
+    </div>
+</div>
+
+<div class="info-row">
+<div class="drag-container">
+    <div class="drag-bar">
+        <span class="drag-label">Brightness</span>
+        <input data-save class="slide" data-slider-min="0" data-slider-max="100" data-slider-step="1" style="display: none;" data-slider-value="BRIGHTNESS_KEY" type="text">
+        <! PARAM STOP>
+    </div>
+</div>
+</div>
+-->
+
+      <div class="control-buttons-1">
+          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+          <a class="anchor-2 not-disable" href="javascript:void(0)" submitType="portInfo">APPLY</a>
+        </div>
+    </div>
+</div>
+</div>
+<! PARAM STOP>
+
+<div class="port-wrap port-led-wrap">
+<div class="panel panel-default slide-up-down db-close">
+  <div id="headingOne" class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a class="collapsed accordion-icon">
+        <span class="port-number">9</span>
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>AGER 31 PUERTA</span></span>
+        
+        <span class='status-on-port port-connected slow-color'>CONNECTED</span>
+        
+        <span class="accordion-arrow arrow-down">
+          <span class="icon-I-arrow-down"></span>
+        </span>
+      </a>
+    </h4>
+  </div>
+</div>
+<div class="db-content extend data-cover" style="display:none;">
+<div class="port-status">
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Speed</p>
+  <p class="bold-title speed-text">Auto</p>
+  
+</div>
+<div class="info-col">
+  <p class="light-title">Linked Speed</p>
+  <p class="bold-title link-speed-text">100M Full</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
+  <p class="bold-title ingress-text">No Limit</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
+  <p class="bold-title egress-text">No Limit</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Flow Control</p>
+  <p class="bold-title flow-text">OFF</p>
+  
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Activity LED</p>
+  <p class="bold-title port-led-text">PORT_LED_STATUS_KEY</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title">Frequency</p>
+  <p class="bold-title frequency-text">FREQUENCY_KEY</p>
+  <! PARAM STOP>
+</div>
+</div>
+<div class="info-row">
+  <p class="light-title">LED Color</p>
+  COLOR_LIST_KEY
+</div>
+<div class="info-row">
+  <div class="info-col">
+      <p class="light-title">Brightness</p><p class="bold-title brightness-text"></p>
+  </div>
+</div>
+-->
+
+  <div class="info-row">
+    <a class="port-edit-btn" href="javascript:void(0)">EDIT</a>
+  </div>
+</div>
+
+<div class="edit-port-status" style="display:none;">
+  <div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1"><span>Port Name</span> <span class="help-text-2">(1-16 Characters)</span></label>
+    <input data-save type="text" name="portName" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+  </div>
+
+  <div class="info-col">
+    <label class="label-1">Speed</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-speed"></span>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu speed-dropdown">
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Auto</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Disable</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Half">10M Half</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Full">10M Full</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="100M Half">100M Half</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);" title="100M Full">100M Full</a></li>
+</ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="info-row">
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Ingress Port Limit">Ingress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-ingress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Egress Port Limit">Egress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-egress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-wrap">
+<p class="normal-title">Flow Control</p>
+<p class="light-title">Turn on to regulate and prevent traffic on this port from affecting performance of other ports.</p>
+</div>
+<div class="custom-switch-1">
+<div id="switchToggleDiv" class="body-text switch-container">
+    <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="flowControlMode" class="ios-switch bigswitch" type="checkbox">
+    <div class="switchWrapper"><div></div></div>
+  </label>
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+    <p class="label-1">Activity LED</p>
+    <div class="custom-switch-1">
+        <div id="switchToggleDiv" class="body-text switch-container">
+            <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="portLed" class="ios-switch bigswitch" type="checkbox" data-on="change">
+            <div class="switchWrapper"><div></div></div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="info-col">
+<label class="label-1" style="margin-bottom:3px;">Frequency</label>
+<div class="custom-dropdown">
+    <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+    <span data-save class="selectItem edit-frequency"></span><span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li class="active"><a href="javascript:void(0);">Highest</a></li>
+<li class="active"><a href="javascript:void(0);">High</a></li>
+<li class="active"><a href="javascript:void(0);">Medium</a></li>
+<li class="active"><a href="javascript:void(0);">Low</a></li>
+<li class="active"><a href="javascript:void(0);">Lowest</a></li>
+</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="info-row">
+<p class="light-title mt-10">LED Color</p>
+<div class="port-color-wrap">
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type1" data-color data-save></span>
+        <span class="normal-title">10G</span>
+    </div>
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type2" data-color data-save></span>
+        <span class="normal-title">5G</span>
+    </div>
+</div>
+</div>
+
+<div class="info-row">
+    <div class="port-color-wrap">
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type3" data-color data-save></span>
+            <span class="normal-title">2.5G</span>
+        </div>
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type4" data-color data-save></span>
+            <span class="normal-title">1G / 100M</span>
+        </div>
+    </div>
+</div>
+
+<div class="info-row">
+<div class="drag-container">
+    <div class="drag-bar">
+        <span class="drag-label">Brightness</span>
+        <input data-save class="slide" data-slider-min="0" data-slider-max="100" data-slider-step="1" style="display: none;" data-slider-value="BRIGHTNESS_KEY" type="text">
+        <! PARAM STOP>
+    </div>
+</div>
+</div>
+-->
+
+      <div class="control-buttons-1">
+          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+          <a class="anchor-2 not-disable" href="javascript:void(0)" submitType="portInfo">APPLY</a>
+        </div>
+    </div>
+</div>
+</div>
+<! PARAM STOP>
+
+<div class="port-wrap port-led-wrap">
+<div class="panel panel-default slide-up-down db-close">
+  <div id="headingOne" class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a class="collapsed accordion-icon">
+        <span class="port-number">10</span>
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>Raspi Poller</span></span>
+        
+        <span class='status-on-port port-connected'>CONNECTED</span>
+        
+        <span class="accordion-arrow arrow-down">
+          <span class="icon-I-arrow-down"></span>
+        </span>
+      </a>
+    </h4>
+  </div>
+</div>
+<div class="db-content extend data-cover" style="display:none;">
+<div class="port-status">
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Speed</p>
+  <p class="bold-title speed-text">Auto</p>
+  
+</div>
+<div class="info-col">
+  <p class="light-title">Linked Speed</p>
+  <p class="bold-title link-speed-text">1000M Full</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
+  <p class="bold-title ingress-text">No Limit</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
+  <p class="bold-title egress-text">No Limit</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Flow Control</p>
+  <p class="bold-title flow-text">OFF</p>
+  
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Activity LED</p>
+  <p class="bold-title port-led-text">PORT_LED_STATUS_KEY</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title">Frequency</p>
+  <p class="bold-title frequency-text">FREQUENCY_KEY</p>
+  <! PARAM STOP>
+</div>
+</div>
+<div class="info-row">
+  <p class="light-title">LED Color</p>
+  COLOR_LIST_KEY
+</div>
+<div class="info-row">
+  <div class="info-col">
+      <p class="light-title">Brightness</p><p class="bold-title brightness-text"></p>
+  </div>
+</div>
+-->
+
+  <div class="info-row">
+    <a class="port-edit-btn" href="javascript:void(0)">EDIT</a>
+  </div>
+</div>
+
+<div class="edit-port-status" style="display:none;">
+  <div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1"><span>Port Name</span> <span class="help-text-2">(1-16 Characters)</span></label>
+    <input data-save type="text" name="portName" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+  </div>
+
+  <div class="info-col">
+    <label class="label-1">Speed</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-speed"></span>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu speed-dropdown">
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Auto</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Disable</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Half">10M Half</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Full">10M Full</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="100M Half">100M Half</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);" title="100M Full">100M Full</a></li>
+</ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="info-row">
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Ingress Port Limit">Ingress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-ingress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Egress Port Limit">Egress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-egress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-wrap">
+<p class="normal-title">Flow Control</p>
+<p class="light-title">Turn on to regulate and prevent traffic on this port from affecting performance of other ports.</p>
+</div>
+<div class="custom-switch-1">
+<div id="switchToggleDiv" class="body-text switch-container">
+    <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="flowControlMode" class="ios-switch bigswitch" type="checkbox">
+    <div class="switchWrapper"><div></div></div>
+  </label>
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+    <p class="label-1">Activity LED</p>
+    <div class="custom-switch-1">
+        <div id="switchToggleDiv" class="body-text switch-container">
+            <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="portLed" class="ios-switch bigswitch" type="checkbox" data-on="change">
+            <div class="switchWrapper"><div></div></div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="info-col">
+<label class="label-1" style="margin-bottom:3px;">Frequency</label>
+<div class="custom-dropdown">
+    <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+    <span data-save class="selectItem edit-frequency"></span><span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li class="active"><a href="javascript:void(0);">Highest</a></li>
+<li class="active"><a href="javascript:void(0);">High</a></li>
+<li class="active"><a href="javascript:void(0);">Medium</a></li>
+<li class="active"><a href="javascript:void(0);">Low</a></li>
+<li class="active"><a href="javascript:void(0);">Lowest</a></li>
+</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="info-row">
+<p class="light-title mt-10">LED Color</p>
+<div class="port-color-wrap">
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type1" data-color data-save></span>
+        <span class="normal-title">10G</span>
+    </div>
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type2" data-color data-save></span>
+        <span class="normal-title">5G</span>
+    </div>
+</div>
+</div>
+
+<div class="info-row">
+    <div class="port-color-wrap">
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type3" data-color data-save></span>
+            <span class="normal-title">2.5G</span>
+        </div>
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type4" data-color data-save></span>
+            <span class="normal-title">1G / 100M</span>
+        </div>
+    </div>
+</div>
+
+<div class="info-row">
+<div class="drag-container">
+    <div class="drag-bar">
+        <span class="drag-label">Brightness</span>
+        <input data-save class="slide" data-slider-min="0" data-slider-max="100" data-slider-step="1" style="display: none;" data-slider-value="BRIGHTNESS_KEY" type="text">
+        <! PARAM STOP>
+    </div>
+</div>
+</div>
+-->
+
+      <div class="control-buttons-1">
+          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+          <a class="anchor-2 not-disable" href="javascript:void(0)" submitType="portInfo">APPLY</a>
+        </div>
+    </div>
+</div>
+</div>
+<! PARAM STOP>
+
+<div class="port-wrap port-led-wrap">
+<div class="panel panel-default slide-up-down db-close">
+  <div id="headingOne" class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a class="collapsed accordion-icon">
+        <span class="port-number">11</span>
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>DAP-3711</span></span>
+        
+        <span class='status-on-port port-connected'>CONNECTED</span>
+        
+        <span class="accordion-arrow arrow-down">
+          <span class="icon-I-arrow-down"></span>
+        </span>
+      </a>
+    </h4>
+  </div>
+</div>
+<div class="db-content extend data-cover" style="display:none;">
+<div class="port-status">
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Speed</p>
+  <p class="bold-title speed-text">Auto</p>
+  
+</div>
+<div class="info-col">
+  <p class="light-title">Linked Speed</p>
+  <p class="bold-title link-speed-text">1000M Full</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
+  <p class="bold-title ingress-text">No Limit</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
+  <p class="bold-title egress-text">No Limit</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Flow Control</p>
+  <p class="bold-title flow-text">OFF</p>
+  
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Activity LED</p>
+  <p class="bold-title port-led-text">PORT_LED_STATUS_KEY</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title">Frequency</p>
+  <p class="bold-title frequency-text">FREQUENCY_KEY</p>
+  <! PARAM STOP>
+</div>
+</div>
+<div class="info-row">
+  <p class="light-title">LED Color</p>
+  COLOR_LIST_KEY
+</div>
+<div class="info-row">
+  <div class="info-col">
+      <p class="light-title">Brightness</p><p class="bold-title brightness-text"></p>
+  </div>
+</div>
+-->
+
+  <div class="info-row">
+    <a class="port-edit-btn" href="javascript:void(0)">EDIT</a>
+  </div>
+</div>
+
+<div class="edit-port-status" style="display:none;">
+  <div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1"><span>Port Name</span> <span class="help-text-2">(1-16 Characters)</span></label>
+    <input data-save type="text" name="portName" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+  </div>
+
+  <div class="info-col">
+    <label class="label-1">Speed</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-speed"></span>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu speed-dropdown">
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Auto</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Disable</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Half">10M Half</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Full">10M Full</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="100M Half">100M Half</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);" title="100M Full">100M Full</a></li>
+</ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="info-row">
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Ingress Port Limit">Ingress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-ingress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Egress Port Limit">Egress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-egress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-wrap">
+<p class="normal-title">Flow Control</p>
+<p class="light-title">Turn on to regulate and prevent traffic on this port from affecting performance of other ports.</p>
+</div>
+<div class="custom-switch-1">
+<div id="switchToggleDiv" class="body-text switch-container">
+    <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="flowControlMode" class="ios-switch bigswitch" type="checkbox">
+    <div class="switchWrapper"><div></div></div>
+  </label>
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+    <p class="label-1">Activity LED</p>
+    <div class="custom-switch-1">
+        <div id="switchToggleDiv" class="body-text switch-container">
+            <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="portLed" class="ios-switch bigswitch" type="checkbox" data-on="change">
+            <div class="switchWrapper"><div></div></div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="info-col">
+<label class="label-1" style="margin-bottom:3px;">Frequency</label>
+<div class="custom-dropdown">
+    <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+    <span data-save class="selectItem edit-frequency"></span><span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li class="active"><a href="javascript:void(0);">Highest</a></li>
+<li class="active"><a href="javascript:void(0);">High</a></li>
+<li class="active"><a href="javascript:void(0);">Medium</a></li>
+<li class="active"><a href="javascript:void(0);">Low</a></li>
+<li class="active"><a href="javascript:void(0);">Lowest</a></li>
+</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="info-row">
+<p class="light-title mt-10">LED Color</p>
+<div class="port-color-wrap">
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type1" data-color data-save></span>
+        <span class="normal-title">10G</span>
+    </div>
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type2" data-color data-save></span>
+        <span class="normal-title">5G</span>
+    </div>
+</div>
+</div>
+
+<div class="info-row">
+    <div class="port-color-wrap">
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type3" data-color data-save></span>
+            <span class="normal-title">2.5G</span>
+        </div>
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type4" data-color data-save></span>
+            <span class="normal-title">1G / 100M</span>
+        </div>
+    </div>
+</div>
+
+<div class="info-row">
+<div class="drag-container">
+    <div class="drag-bar">
+        <span class="drag-label">Brightness</span>
+        <input data-save class="slide" data-slider-min="0" data-slider-max="100" data-slider-step="1" style="display: none;" data-slider-value="BRIGHTNESS_KEY" type="text">
+        <! PARAM STOP>
+    </div>
+</div>
+</div>
+-->
+
+      <div class="control-buttons-1">
+          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+          <a class="anchor-2 not-disable" href="javascript:void(0)" submitType="portInfo">APPLY</a>
+        </div>
+    </div>
+</div>
+</div>
+<! PARAM STOP>
+
+<div class="port-wrap port-led-wrap">
+<div class="panel panel-default slide-up-down db-close">
+  <div id="headingOne" class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a class="collapsed accordion-icon">
+        <span class="port-number">12</span>
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>Stratum 1 Server</span></span>
+        
+        <span class='status-on-port port-connected'>CONNECTED</span>
+        
+        <span class="accordion-arrow arrow-down">
+          <span class="icon-I-arrow-down"></span>
+        </span>
+      </a>
+    </h4>
+  </div>
+</div>
+<div class="db-content extend data-cover" style="display:none;">
+<div class="port-status">
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Speed</p>
+  <p class="bold-title speed-text">Auto</p>
+  
+</div>
+<div class="info-col">
+  <p class="light-title">Linked Speed</p>
+  <p class="bold-title link-speed-text">1000M Full</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
+  <p class="bold-title ingress-text">No Limit</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
+  <p class="bold-title egress-text">No Limit</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Flow Control</p>
+  <p class="bold-title flow-text">OFF</p>
+  
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Activity LED</p>
+  <p class="bold-title port-led-text">PORT_LED_STATUS_KEY</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title">Frequency</p>
+  <p class="bold-title frequency-text">FREQUENCY_KEY</p>
+  <! PARAM STOP>
+</div>
+</div>
+<div class="info-row">
+  <p class="light-title">LED Color</p>
+  COLOR_LIST_KEY
+</div>
+<div class="info-row">
+  <div class="info-col">
+      <p class="light-title">Brightness</p><p class="bold-title brightness-text"></p>
+  </div>
+</div>
+-->
+
+  <div class="info-row">
+    <a class="port-edit-btn" href="javascript:void(0)">EDIT</a>
+  </div>
+</div>
+
+<div class="edit-port-status" style="display:none;">
+  <div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1"><span>Port Name</span> <span class="help-text-2">(1-16 Characters)</span></label>
+    <input data-save type="text" name="portName" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+  </div>
+
+  <div class="info-col">
+    <label class="label-1">Speed</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-speed"></span>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu speed-dropdown">
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Auto</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Disable</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Half">10M Half</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Full">10M Full</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="100M Half">100M Half</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);" title="100M Full">100M Full</a></li>
+</ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="info-row">
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Ingress Port Limit">Ingress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-ingress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Egress Port Limit">Egress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-egress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-wrap">
+<p class="normal-title">Flow Control</p>
+<p class="light-title">Turn on to regulate and prevent traffic on this port from affecting performance of other ports.</p>
+</div>
+<div class="custom-switch-1">
+<div id="switchToggleDiv" class="body-text switch-container">
+    <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="flowControlMode" class="ios-switch bigswitch" type="checkbox">
+    <div class="switchWrapper"><div></div></div>
+  </label>
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+    <p class="label-1">Activity LED</p>
+    <div class="custom-switch-1">
+        <div id="switchToggleDiv" class="body-text switch-container">
+            <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="portLed" class="ios-switch bigswitch" type="checkbox" data-on="change">
+            <div class="switchWrapper"><div></div></div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="info-col">
+<label class="label-1" style="margin-bottom:3px;">Frequency</label>
+<div class="custom-dropdown">
+    <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+    <span data-save class="selectItem edit-frequency"></span><span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li class="active"><a href="javascript:void(0);">Highest</a></li>
+<li class="active"><a href="javascript:void(0);">High</a></li>
+<li class="active"><a href="javascript:void(0);">Medium</a></li>
+<li class="active"><a href="javascript:void(0);">Low</a></li>
+<li class="active"><a href="javascript:void(0);">Lowest</a></li>
+</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="info-row">
+<p class="light-title mt-10">LED Color</p>
+<div class="port-color-wrap">
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type1" data-color data-save></span>
+        <span class="normal-title">10G</span>
+    </div>
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type2" data-color data-save></span>
+        <span class="normal-title">5G</span>
+    </div>
+</div>
+</div>
+
+<div class="info-row">
+    <div class="port-color-wrap">
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type3" data-color data-save></span>
+            <span class="normal-title">2.5G</span>
+        </div>
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type4" data-color data-save></span>
+            <span class="normal-title">1G / 100M</span>
+        </div>
+    </div>
+</div>
+
+<div class="info-row">
+<div class="drag-container">
+    <div class="drag-bar">
+        <span class="drag-label">Brightness</span>
+        <input data-save class="slide" data-slider-min="0" data-slider-max="100" data-slider-step="1" style="display: none;" data-slider-value="BRIGHTNESS_KEY" type="text">
+        <! PARAM STOP>
+    </div>
+</div>
+</div>
+-->
+
+      <div class="control-buttons-1">
+          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+          <a class="anchor-2 not-disable" href="javascript:void(0)" submitType="portInfo">APPLY</a>
+        </div>
+    </div>
+</div>
+</div>
+<! PARAM STOP>
+
+<div class="port-wrap port-led-wrap">
+<div class="panel panel-default slide-up-down db-close">
+  <div id="headingOne" class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a class="collapsed accordion-icon">
+        <span class="port-number">13</span>
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
+        
+        <span class='status-on-port'>AVAILABLE</span>
+        
+        <span class="accordion-arrow arrow-down">
+          <span class="icon-I-arrow-down"></span>
+        </span>
+      </a>
+    </h4>
+  </div>
+</div>
+<div class="db-content extend data-cover" style="display:none;">
+<div class="port-status">
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Speed</p>
+  <p class="bold-title speed-text">Auto</p>
+  
+</div>
+<div class="info-col">
+  <p class="light-title">Linked Speed</p>
+  <p class="bold-title link-speed-text">No Speed</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
+  <p class="bold-title ingress-text">No Limit</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
+  <p class="bold-title egress-text">No Limit</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Flow Control</p>
+  <p class="bold-title flow-text">OFF</p>
+  
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Activity LED</p>
+  <p class="bold-title port-led-text">PORT_LED_STATUS_KEY</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title">Frequency</p>
+  <p class="bold-title frequency-text">FREQUENCY_KEY</p>
+  <! PARAM STOP>
+</div>
+</div>
+<div class="info-row">
+  <p class="light-title">LED Color</p>
+  COLOR_LIST_KEY
+</div>
+<div class="info-row">
+  <div class="info-col">
+      <p class="light-title">Brightness</p><p class="bold-title brightness-text"></p>
+  </div>
+</div>
+-->
+
+  <div class="info-row">
+    <a class="port-edit-btn" href="javascript:void(0)">EDIT</a>
+  </div>
+</div>
+
+<div class="edit-port-status" style="display:none;">
+  <div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1"><span>Port Name</span> <span class="help-text-2">(1-16 Characters)</span></label>
+    <input data-save type="text" name="portName" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+  </div>
+
+  <div class="info-col">
+    <label class="label-1">Speed</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-speed"></span>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu speed-dropdown">
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Auto</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Disable</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Half">10M Half</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Full">10M Full</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="100M Half">100M Half</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);" title="100M Full">100M Full</a></li>
+</ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="info-row">
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Ingress Port Limit">Ingress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-ingress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Egress Port Limit">Egress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-egress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-wrap">
+<p class="normal-title">Flow Control</p>
+<p class="light-title">Turn on to regulate and prevent traffic on this port from affecting performance of other ports.</p>
+</div>
+<div class="custom-switch-1">
+<div id="switchToggleDiv" class="body-text switch-container">
+    <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="flowControlMode" class="ios-switch bigswitch" type="checkbox">
+    <div class="switchWrapper"><div></div></div>
+  </label>
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+    <p class="label-1">Activity LED</p>
+    <div class="custom-switch-1">
+        <div id="switchToggleDiv" class="body-text switch-container">
+            <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="portLed" class="ios-switch bigswitch" type="checkbox" data-on="change">
+            <div class="switchWrapper"><div></div></div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="info-col">
+<label class="label-1" style="margin-bottom:3px;">Frequency</label>
+<div class="custom-dropdown">
+    <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+    <span data-save class="selectItem edit-frequency"></span><span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li class="active"><a href="javascript:void(0);">Highest</a></li>
+<li class="active"><a href="javascript:void(0);">High</a></li>
+<li class="active"><a href="javascript:void(0);">Medium</a></li>
+<li class="active"><a href="javascript:void(0);">Low</a></li>
+<li class="active"><a href="javascript:void(0);">Lowest</a></li>
+</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="info-row">
+<p class="light-title mt-10">LED Color</p>
+<div class="port-color-wrap">
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type1" data-color data-save></span>
+        <span class="normal-title">10G</span>
+    </div>
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type2" data-color data-save></span>
+        <span class="normal-title">5G</span>
+    </div>
+</div>
+</div>
+
+<div class="info-row">
+    <div class="port-color-wrap">
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type3" data-color data-save></span>
+            <span class="normal-title">2.5G</span>
+        </div>
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type4" data-color data-save></span>
+            <span class="normal-title">1G / 100M</span>
+        </div>
+    </div>
+</div>
+
+<div class="info-row">
+<div class="drag-container">
+    <div class="drag-bar">
+        <span class="drag-label">Brightness</span>
+        <input data-save class="slide" data-slider-min="0" data-slider-max="100" data-slider-step="1" style="display: none;" data-slider-value="BRIGHTNESS_KEY" type="text">
+        <! PARAM STOP>
+    </div>
+</div>
+</div>
+-->
+
+      <div class="control-buttons-1">
+          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+          <a class="anchor-2 not-disable" href="javascript:void(0)" submitType="portInfo">APPLY</a>
+        </div>
+    </div>
+</div>
+</div>
+<! PARAM STOP>
+
+<div class="port-wrap port-led-wrap">
+<div class="panel panel-default slide-up-down db-close">
+  <div id="headingOne" class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a class="collapsed accordion-icon">
+        <span class="port-number">14</span>
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>AGER 31 IN GIRA</span></span>
+        
+        <span class='status-on-port port-connected slow-color'>CONNECTED</span>
+        
+        <span class="accordion-arrow arrow-down">
+          <span class="icon-I-arrow-down"></span>
+        </span>
+      </a>
+    </h4>
+  </div>
+</div>
+<div class="db-content extend data-cover" style="display:none;">
+<div class="port-status">
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Speed</p>
+  <p class="bold-title speed-text">Auto</p>
+  
+</div>
+<div class="info-col">
+  <p class="light-title">Linked Speed</p>
+  <p class="bold-title link-speed-text">100M Full</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
+  <p class="bold-title ingress-text">No Limit</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
+  <p class="bold-title egress-text">No Limit</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Flow Control</p>
+  <p class="bold-title flow-text">OFF</p>
+  
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Activity LED</p>
+  <p class="bold-title port-led-text">PORT_LED_STATUS_KEY</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title">Frequency</p>
+  <p class="bold-title frequency-text">FREQUENCY_KEY</p>
+  <! PARAM STOP>
+</div>
+</div>
+<div class="info-row">
+  <p class="light-title">LED Color</p>
+  COLOR_LIST_KEY
+</div>
+<div class="info-row">
+  <div class="info-col">
+      <p class="light-title">Brightness</p><p class="bold-title brightness-text"></p>
+  </div>
+</div>
+-->
+
+  <div class="info-row">
+    <a class="port-edit-btn" href="javascript:void(0)">EDIT</a>
+  </div>
+</div>
+
+<div class="edit-port-status" style="display:none;">
+  <div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1"><span>Port Name</span> <span class="help-text-2">(1-16 Characters)</span></label>
+    <input data-save type="text" name="portName" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+  </div>
+
+  <div class="info-col">
+    <label class="label-1">Speed</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-speed"></span>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu speed-dropdown">
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Auto</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Disable</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Half">10M Half</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Full">10M Full</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="100M Half">100M Half</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);" title="100M Full">100M Full</a></li>
+</ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="info-row">
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Ingress Port Limit">Ingress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-ingress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Egress Port Limit">Egress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-egress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-wrap">
+<p class="normal-title">Flow Control</p>
+<p class="light-title">Turn on to regulate and prevent traffic on this port from affecting performance of other ports.</p>
+</div>
+<div class="custom-switch-1">
+<div id="switchToggleDiv" class="body-text switch-container">
+    <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="flowControlMode" class="ios-switch bigswitch" type="checkbox">
+    <div class="switchWrapper"><div></div></div>
+  </label>
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+    <p class="label-1">Activity LED</p>
+    <div class="custom-switch-1">
+        <div id="switchToggleDiv" class="body-text switch-container">
+            <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="portLed" class="ios-switch bigswitch" type="checkbox" data-on="change">
+            <div class="switchWrapper"><div></div></div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="info-col">
+<label class="label-1" style="margin-bottom:3px;">Frequency</label>
+<div class="custom-dropdown">
+    <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+    <span data-save class="selectItem edit-frequency"></span><span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li class="active"><a href="javascript:void(0);">Highest</a></li>
+<li class="active"><a href="javascript:void(0);">High</a></li>
+<li class="active"><a href="javascript:void(0);">Medium</a></li>
+<li class="active"><a href="javascript:void(0);">Low</a></li>
+<li class="active"><a href="javascript:void(0);">Lowest</a></li>
+</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="info-row">
+<p class="light-title mt-10">LED Color</p>
+<div class="port-color-wrap">
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type1" data-color data-save></span>
+        <span class="normal-title">10G</span>
+    </div>
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type2" data-color data-save></span>
+        <span class="normal-title">5G</span>
+    </div>
+</div>
+</div>
+
+<div class="info-row">
+    <div class="port-color-wrap">
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type3" data-color data-save></span>
+            <span class="normal-title">2.5G</span>
+        </div>
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type4" data-color data-save></span>
+            <span class="normal-title">1G / 100M</span>
+        </div>
+    </div>
+</div>
+
+<div class="info-row">
+<div class="drag-container">
+    <div class="drag-bar">
+        <span class="drag-label">Brightness</span>
+        <input data-save class="slide" data-slider-min="0" data-slider-max="100" data-slider-step="1" style="display: none;" data-slider-value="BRIGHTNESS_KEY" type="text">
+        <! PARAM STOP>
+    </div>
+</div>
+</div>
+-->
+
+      <div class="control-buttons-1">
+          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+          <a class="anchor-2 not-disable" href="javascript:void(0)" submitType="portInfo">APPLY</a>
+        </div>
+    </div>
+</div>
+</div>
+<! PARAM STOP>
+
+<div class="port-wrap port-led-wrap">
+<div class="panel panel-default slide-up-down db-close">
+  <div id="headingOne" class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a class="collapsed accordion-icon">
+        <span class="port-number">15</span>
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>Mesu 200</span></span>
+        
+        <span class='status-on-port port-connected'>CONNECTED</span>
+        
+        <span class="accordion-arrow arrow-down">
+          <span class="icon-I-arrow-down"></span>
+        </span>
+      </a>
+    </h4>
+  </div>
+</div>
+<div class="db-content extend data-cover" style="display:none;">
+<div class="port-status">
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Speed</p>
+  <p class="bold-title speed-text">Auto</p>
+  
+</div>
+<div class="info-col">
+  <p class="light-title">Linked Speed</p>
+  <p class="bold-title link-speed-text">1000M Full</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
+  <p class="bold-title ingress-text">No Limit</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
+  <p class="bold-title egress-text">No Limit</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Flow Control</p>
+  <p class="bold-title flow-text">OFF</p>
+  
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Activity LED</p>
+  <p class="bold-title port-led-text">PORT_LED_STATUS_KEY</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title">Frequency</p>
+  <p class="bold-title frequency-text">FREQUENCY_KEY</p>
+  <! PARAM STOP>
+</div>
+</div>
+<div class="info-row">
+  <p class="light-title">LED Color</p>
+  COLOR_LIST_KEY
+</div>
+<div class="info-row">
+  <div class="info-col">
+      <p class="light-title">Brightness</p><p class="bold-title brightness-text"></p>
+  </div>
+</div>
+-->
+
+  <div class="info-row">
+    <a class="port-edit-btn" href="javascript:void(0)">EDIT</a>
+  </div>
+</div>
+
+<div class="edit-port-status" style="display:none;">
+  <div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1"><span>Port Name</span> <span class="help-text-2">(1-16 Characters)</span></label>
+    <input data-save type="text" name="portName" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+  </div>
+
+  <div class="info-col">
+    <label class="label-1">Speed</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-speed"></span>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu speed-dropdown">
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Auto</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Disable</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Half">10M Half</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="10M Full">10M Full</a></li>
+<li class="active" data-nonsup><a class="hid-txt" href="javascript:void(0);" title="100M Half">100M Half</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);" title="100M Full">100M Full</a></li>
+</ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="info-row">
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Ingress Port Limit">Ingress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-ingress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Egress Port Limit">Egress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-egress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-wrap">
+<p class="normal-title">Flow Control</p>
+<p class="light-title">Turn on to regulate and prevent traffic on this port from affecting performance of other ports.</p>
+</div>
+<div class="custom-switch-1">
+<div id="switchToggleDiv" class="body-text switch-container">
+    <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="flowControlMode" class="ios-switch bigswitch" type="checkbox">
+    <div class="switchWrapper"><div></div></div>
+  </label>
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+    <p class="label-1">Activity LED</p>
+    <div class="custom-switch-1">
+        <div id="switchToggleDiv" class="body-text switch-container">
+            <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="portLed" class="ios-switch bigswitch" type="checkbox" data-on="change">
+            <div class="switchWrapper"><div></div></div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="info-col">
+<label class="label-1" style="margin-bottom:3px;">Frequency</label>
+<div class="custom-dropdown">
+    <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+    <span data-save class="selectItem edit-frequency"></span><span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li class="active"><a href="javascript:void(0);">Highest</a></li>
+<li class="active"><a href="javascript:void(0);">High</a></li>
+<li class="active"><a href="javascript:void(0);">Medium</a></li>
+<li class="active"><a href="javascript:void(0);">Low</a></li>
+<li class="active"><a href="javascript:void(0);">Lowest</a></li>
+</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="info-row">
+<p class="light-title mt-10">LED Color</p>
+<div class="port-color-wrap">
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type1" data-color data-save></span>
+        <span class="normal-title">10G</span>
+    </div>
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type2" data-color data-save></span>
+        <span class="normal-title">5G</span>
+    </div>
+</div>
+</div>
+
+<div class="info-row">
+    <div class="port-color-wrap">
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type3" data-color data-save></span>
+            <span class="normal-title">2.5G</span>
+        </div>
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type4" data-color data-save></span>
+            <span class="normal-title">1G / 100M</span>
+        </div>
+    </div>
+</div>
+
+<div class="info-row">
+<div class="drag-container">
+    <div class="drag-bar">
+        <span class="drag-label">Brightness</span>
+        <input data-save class="slide" data-slider-min="0" data-slider-max="100" data-slider-step="1" style="display: none;" data-slider-value="BRIGHTNESS_KEY" type="text">
+        <! PARAM STOP>
+    </div>
+</div>
+</div>
+-->
+
+      <div class="control-buttons-1">
+          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+          <a class="anchor-2 not-disable" href="javascript:void(0)" submitType="portInfo">APPLY</a>
+        </div>
+    </div>
+</div>
+</div>
+<! PARAM STOP>
+
+<div class="port-wrap port-led-wrap">
+<div class="panel panel-default slide-up-down db-close">
+  <div id="headingOne" class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a class="collapsed accordion-icon">
+        <span class="port-number">16</span>
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
+        
+        <span class='status-on-port'>AVAILABLE</span>
+        
+        <span class="accordion-arrow arrow-down">
+          <span class="icon-I-arrow-down"></span>
+        </span>
+      </a>
+    </h4>
+  </div>
+</div>
+<div class="db-content extend data-cover" style="display:none;">
+<div class="port-status">
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Speed</p>
+  <p class="bold-title speed-text">Auto</p>
+  
+</div>
+<div class="info-col">
+  <p class="light-title">Linked Speed</p>
+  <p class="bold-title link-speed-text">No Speed</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
+  <p class="bold-title ingress-text">No Limit</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
+  <p class="bold-title egress-text">No Limit</p>
+  
+</div>
+</div>
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Flow Control</p>
+  <p class="bold-title flow-text">OFF</p>
+  
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+  <p class="light-title">Activity LED</p>
+  <p class="bold-title port-led-text">PORT_LED_STATUS_KEY</p>
+  <! PARAM STOP>
+</div>
+<div class="info-col">
+  <p class="light-title">Frequency</p>
+  <p class="bold-title frequency-text">FREQUENCY_KEY</p>
+  <! PARAM STOP>
+</div>
+</div>
+<div class="info-row">
+  <p class="light-title">LED Color</p>
+  COLOR_LIST_KEY
+</div>
+<div class="info-row">
+  <div class="info-col">
+      <p class="light-title">Brightness</p><p class="bold-title brightness-text"></p>
+  </div>
+</div>
+-->
+
+  <div class="info-row">
+    <a class="port-edit-btn" href="javascript:void(0)">EDIT</a>
+  </div>
+</div>
+
+<div class="edit-port-status" style="display:none;">
+  <div class="info-row">
+  <div class="info-col text-area">
+    <label class="label-1"><span>Port Name</span> <span class="help-text-2">(1-16 Characters)</span></label>
+    <input data-save type="text" name="portName" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+  </div>
+
+  <div class="info-col">
+    <label class="label-1">Speed</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+<span data-save class="selectItem edit-speed"></span>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu speed-dropdown">
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Auto</a></li>
+<li class="active"><a class="hid-txt" href="javascript:void(0);">Disable</a></li>
+</ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="info-row">
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Ingress Port Limit">Ingress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-ingress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-col">
+    <label class="label-1 hid-txt" title="Egress Port Limit">Egress Port Limit</label>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+  <span data-save class="selectItem edit-egress"></span>
+  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+  <li class="active"><a href="javascript:void(0);">No Limit</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Kbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">1 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">2 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">4 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">8 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">16 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">32 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">64 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">128 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">256 Mbit/s</a></li>
+  <li class="active"><a href="javascript:void(0);">512 Mbit/s</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-wrap">
+<p class="normal-title">Flow Control</p>
+<p class="light-title">Turn on to regulate and prevent traffic on this port from affecting performance of other ports.</p>
+</div>
+<div class="custom-switch-1">
+<div id="switchToggleDiv" class="body-text switch-container">
+    <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="flowControlMode" class="ios-switch bigswitch" type="checkbox">
+    <div class="switchWrapper"><div></div></div>
+  </label>
+</div>
+</div>
+
+<!--
+<div class="info-row">
+<div class="info-col">
+    <p class="label-1">Activity LED</p>
+    <div class="custom-switch-1">
+        <div id="switchToggleDiv" class="body-text switch-container">
+            <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="portLed" class="ios-switch bigswitch" type="checkbox" data-on="change">
+            <div class="switchWrapper"><div></div></div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="info-col">
+<label class="label-1" style="margin-bottom:3px;">Frequency</label>
+<div class="custom-dropdown">
+    <div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+    <span data-save class="selectItem edit-frequency"></span><span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li class="active"><a href="javascript:void(0);">Highest</a></li>
+<li class="active"><a href="javascript:void(0);">High</a></li>
+<li class="active"><a href="javascript:void(0);">Medium</a></li>
+<li class="active"><a href="javascript:void(0);">Low</a></li>
+<li class="active"><a href="javascript:void(0);">Lowest</a></li>
+</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="info-row">
+<p class="light-title mt-10">LED Color</p>
+<div class="port-color-wrap">
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type1" data-color data-save></span>
+        <span class="normal-title">10G</span>
+    </div>
+    <div class="info-col">
+        <span class="color-icon init-color choose-color" trigger="type2" data-color data-save></span>
+        <span class="normal-title">5G</span>
+    </div>
+</div>
+</div>
+
+<div class="info-row">
+    <div class="port-color-wrap">
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type3" data-color data-save></span>
+            <span class="normal-title">2.5G</span>
+        </div>
+        <div class="info-col">
+            <span class="color-icon init-color choose-color" trigger="type4" data-color data-save></span>
+            <span class="normal-title">1G / 100M</span>
+        </div>
+    </div>
+</div>
+
+<div class="info-row">
+<div class="drag-container">
+    <div class="drag-bar">
+        <span class="drag-label">Brightness</span>
+        <input data-save class="slide" data-slider-min="0" data-slider-max="100" data-slider-step="1" style="display: none;" data-slider-value="BRIGHTNESS_KEY" type="text">
+        <! PARAM STOP>
+    </div>
+</div>
+</div>
+-->
+
+      <div class="control-buttons-1">
+          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+          <a class="anchor-2 not-disable" href="javascript:void(0)" submitType="portInfo">APPLY</a>
+        </div>
+    </div>
+</div>
+</div>
+<! PARAM STOP>
+
+      <!--end-port-status-wrap-->
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript" language="JavaScript">
+$(document).ready(function(){initDashboardPage()});
+window.model = $("#model_name").text();
+$('#web_check').attr('href','http://www.netgear.com/support/product/@'+window.model+"@");
+$('#das_trans').html(MultLang.transParmLang($('#das_trans').html()));
+
+var $accordion = $("#accordion");
+var scrollBarEnabled = false;   //Is mCustomScrollbar for PORT STATUS area enabled currently
+var scrollBarInitiated = false; //Has mCustomScrollbar for PORT STATUS area been initiated
+var portStatusHeight = 71 * 10; //height of each port * visible ports when mCustomScrollbar enabled
+/* Media max-width in css, when window.innerWidth is smaller than this, the PORT STATUS area will be at the bottom,
+   then there's no need to enable mCustomScrollbar */
+var mediaMaxWidth = 1024;
+function toggleScrollbar() {
+  if (window.innerWidth <= mediaMaxWidth) {
+    if (scrollBarEnabled == true) {
+      $accordion.mCustomScrollbar('disable', true).css('height', '');
+      scrollBarEnabled = false;
+    }
+  }
+  else if (window.innerWidth > mediaMaxWidth) {
+    if (scrollBarInitiated == false) {
+      $accordion.mCustomScrollbar({
+        setHeight: portStatusHeight,
+        scrollInertia: 500,
+        mouseWheel: true,
+        mouseWheelPixels: 200,
+        scrollbarPosition: 'inside'
+      });
+      scrollBarInitiated = true;
+      scrollBarEnabled = true;
+    }
+    else if (scrollBarEnabled == false) {
+      $accordion.css('height', portStatusHeight).mCustomScrollbar('update');
+      scrollBarEnabled = true;
+    }
+  }
+}
+
+if (window.totalPorts > 10) {
+  toggleScrollbar();
+  $(window).resize(function(){
+    toggleScrollbar();
+  });
+}
+</script>

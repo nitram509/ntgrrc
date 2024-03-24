@@ -1,0 +1,2713 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<div class="panel-right-2 fadeInUp animated cmn-animation">
+  <div>
+    <div class="inner-padding">
+      <div>
+        <div class="box-1">
+          <span class="heading-1">Power over Ethernet (PoE)</span>
+          <p class="description-1 para-after-1">Configure PoE setting and display PoE Status.</p>
+          <div class="clearfix"></div>
+          <div class="clearfix"></div>
+          <label class="label-3 mt-25">Uninterrupted PoE</label>
+          <p class="description-1 para-after-1">Keeps PoE devices powered on even when soft rebooting the switch.</p>
+          <div class="clearfix"></div>
+          <div class="custom-switch-1">
+            <div id="switchToggleDiv" class="body-text switch-container">
+              <label id="switchToggleLabel" class="switch-control" onclick="toggleSwitch(this);">
+                <input data-save id="uninterruptedPoeStatus" onclick="submitUninterruptedPoE();" class="ios-switch bigswitch" type="checkbox" >
+                <div class="switchWrapper"><div></div></div>
+              </label>
+            </div>
+          </div>
+          <label class="label-3 mt-25">Power Cycle Ports</label>
+          <p class="description-1">Forcibly resets the PSE ports.</p>
+          <div class="clearfix"></div>
+          <div>
+            <div class="text-center port-wrap">
+              <div class="port-view-center">
+                <div class="ports-oval">
+                  <div class="poe-port-list-wrap">
+                  <span class='poe-nm-port-icon-wrapper port-icon-style-2'><input type='checkbox' data-save><span class='icon-I-port-empty port-light-gray port-icon'></span><span class='port-count-2'>1</span></span>
+<span class='poe-nm-port-icon-wrapper port-icon-style-2'><input type='checkbox' data-save><span class='icon-I-port-empty port-light-gray port-icon'></span><span class='port-count-2'>2</span></span>
+<span class='poe-nm-port-icon-wrapper port-icon-style-2'><input type='checkbox' data-save><span class='icon-I-port-empty port-light-gray port-icon'></span><span class='port-count-2'>3</span></span>
+<span class='poe-nm-port-icon-wrapper port-icon-style-2'><input type='checkbox' data-save><span class='icon-I-port-empty port-light-gray port-icon'></span><span class='port-count-2'>4</span></span>
+<span class='poe-nm-port-icon-wrapper port-icon-style-2'><input type='checkbox' data-save><span class='icon-I-port-empty port-light-gray port-icon'></span><span class='port-count-2'>5</span></span>
+</div><div class='poe-port-list-wrap'><span class='poe-nm-port-icon-wrapper port-icon-style-2'><input type='checkbox' data-save><span class='icon-I-port-empty port-light-gray port-icon'></span><span class='port-count-2'>6</span></span>
+<span class='poe-nm-port-icon-wrapper port-icon-style-2'><input type='checkbox' data-save><span class='icon-I-port-empty port-light-gray port-icon'></span><span class='port-count-2'>7</span></span>
+<span class='poe-nm-port-icon-wrapper port-icon-style-2'><input type='checkbox' data-save><span class='icon-I-port-empty port-light-gray port-icon'></span><span class='port-count-2'>8</span></span>
+<span class='poe-nm-port-icon-wrapper port-icon-style-2'><input type='checkbox' data-save><span class='icon-I-port-empty port-light-gray port-icon'></span><span class='port-count-2'>9</span></span>
+<span class='poe-nm-port-icon-wrapper port-icon-style-2'><input type='checkbox' data-save><span class='icon-I-port-empty port-light-gray port-icon'></span><span class='port-count-2'>10</span></span>
+</div><div class='poe-port-list-wrap'><span class='poe-nm-port-icon-wrapper port-icon-style-2'><input type='checkbox' data-save><span class='icon-I-port-empty port-light-gray port-icon'></span><span class='port-count-2'>11</span></span>
+<span class='poe-nm-port-icon-wrapper port-icon-style-2'><input type='checkbox' data-save><span class='icon-I-port-empty port-light-gray port-icon'></span><span class='port-count-2'>12</span></span>
+<span class='poe-nm-port-icon-wrapper port-icon-style-2'><input type='checkbox' data-save><span class='icon-I-port-empty port-light-gray port-icon'></span><span class='port-count-2'>13</span></span>
+<span class='poe-nm-port-icon-wrapper port-icon-style-2'><input type='checkbox' data-save><span class='icon-I-port-empty port-light-gray port-icon'></span><span class='port-count-2'>14</span></span>
+<span class='poe-nm-port-icon-wrapper port-icon-style-2'><input type='checkbox' data-save><span class='icon-I-port-empty port-light-gray port-icon'></span><span class='port-count-2'>15</span></span>
+</div><div class='poe-port-list-wrap'>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <div class="custom-switch-1">
+            <div class="control-buttons-1">
+              <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+              <a class="anchor-2 disable-btn" href="javascript:void(0)">APPLY</a>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+    <div class="clearfix"></div>
+    <div id="devicesContainer" class="tabsWrapper tabs-custom">
+      <div class="tabs">
+        <ul id="devicesHeader" class="tabIndex row" style="width: 100%;">
+          <li id="tab_0" class="col-xs-4 tab waves-effect waves-gray active">
+            <a class="active">
+              <div class="tabWrapper">SETTING</div>
+            </a>
+          </li>
+          <li id="tab_1" class="col-xs-4 tab waves-effect waves-gray">
+            <a class="">
+              <div class="tabWrapper"><p>STATUS</p></div>
+            </a>
+          </li>
+          <div class="indicator"></div>
+        </ul>
+        <div>
+          <div class="panel_a tabPanel active">
+            <div id="POE_SETTING" class="poe-text">
+              <div class="poe-port-status collapsed-wrap">
+                <div class="table-0">
+                  <table>
+                      <tr class="thead-1 collapsed">
+                        <td width="30%">
+                          <span class="first-column">Port</span>
+                        </td>
+                        <td width="30%">
+                          Port Power
+                        </td>
+                        <td width="40%">
+                          Power Mode
+                        </td>
+                      </tr>
+                    </table>
+                </div>
+                <!--port-status-wrap-->
+                
+                <div class="port-wrap port-led-wrap">
+                  <div class="panel panel-default slide-up-down db-close ">
+                    <div id="headingOne" class="panel-heading" role="tab">
+                      <h4 class="panel-title">
+                        <div class="collapsed accordion-icon">
+                          <table class="table-line table-poe">
+                            <tr class="thead-1 collapsed">
+                              <td width="30%">
+                                <span class="bold-title port-number">1</span>
+                                
+                              </td>
+                              <td width="30%">
+                                <span  width="30%" class="bold-title admin-state">Enable</span>
+                                
+                              </td>
+                              <td width="40%">
+                                <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
+                                
+                                <div class="poe-arrow">
+                                  <span class="icon-I-arrow-down arrow-right"></span>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="db-content extend data-cover" style="display:none;">
+                    <div class="port-poe-status">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Port Priority</p>
+                          <p class="bold-title port-priority">Low</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Power Limit Type</p>
+                          <p class="bold-title Power-Limit-Type-text">User</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Power Limit (W)</p>
+                          <p class="bold-title Power-Limit-text">30.0</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Detection Type</p>
+                          <p class="bold-title Detection-Type-text">IEEE802</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <a class="poe-edit-btn" href="javascript:void(0)">EDIT</a>
+                      </div>
+                    </div>
+
+                    <div class="edit-port-status" style="display:none;">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Port Power</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="adminState" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="info-col">
+                          <label class="label-1">Port Priority</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                              <span data-save class="selectItem edit-priority"></span>
+                              <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);">Low</a></li>
+                                <li class="active"><a href="javascript:void(0);">High</a></li>
+                                <li class="active"><a href="javascript:void(0);">Critical</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Mode</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-powerMode"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3af</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Pre-802.3at</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3at</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Limit Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save id="powerLimitType" class="selectItem edit-powerLimitType"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitType">None</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">Class</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">User</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col text-area">
+                          <label class="label-1"><span>Power Limit (W)</span></label>
+                          <p class="powerLimitDesc" style="font-size: 14px; color: white;margin: 0;">(The range is from 3.0 watts to 30.0 watts with step increments of 0.2 watts)</p>
+                          <input data-save type="text" name="powerLimitValue" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Detection Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-detection"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                              	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
+                                <li class="active"><a href="javascript:void(0);">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
+                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="control-buttons-1">
+                          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+                          <a class="anchor-2 not-disable" href="javascript:void(0)">APPLY</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <! PARAM STOP>
+                
+                <div class="port-wrap port-led-wrap">
+                  <div class="panel panel-default slide-up-down db-close ">
+                    <div id="headingOne" class="panel-heading" role="tab">
+                      <h4 class="panel-title">
+                        <div class="collapsed accordion-icon">
+                          <table class="table-line table-poe">
+                            <tr class="thead-1 collapsed">
+                              <td width="30%">
+                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>2&nbsp;-&nbsp;AGER 31 SUR Tech<span></span>
+                                
+                              </td>
+                              <td width="30%">
+                                <span  width="30%" class="bold-title admin-state">Enable</span>
+                                
+                              </td>
+                              <td width="40%">
+                                <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
+                                
+                                <div class="poe-arrow">
+                                  <span class="icon-I-arrow-down arrow-right"></span>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="db-content extend data-cover" style="display:none;">
+                    <div class="port-poe-status">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Port Priority</p>
+                          <p class="bold-title port-priority">Low</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Power Limit Type</p>
+                          <p class="bold-title Power-Limit-Type-text">User</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Power Limit (W)</p>
+                          <p class="bold-title Power-Limit-text">30.0</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Detection Type</p>
+                          <p class="bold-title Detection-Type-text">IEEE802</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <a class="poe-edit-btn" href="javascript:void(0)">EDIT</a>
+                      </div>
+                    </div>
+
+                    <div class="edit-port-status" style="display:none;">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Port Power</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="adminState" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="info-col">
+                          <label class="label-1">Port Priority</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                              <span data-save class="selectItem edit-priority"></span>
+                              <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);">Low</a></li>
+                                <li class="active"><a href="javascript:void(0);">High</a></li>
+                                <li class="active"><a href="javascript:void(0);">Critical</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Mode</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-powerMode"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3af</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Pre-802.3at</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3at</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Limit Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save id="powerLimitType" class="selectItem edit-powerLimitType"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitType">None</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">Class</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">User</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col text-area">
+                          <label class="label-1"><span>Power Limit (W)</span></label>
+                          <p class="powerLimitDesc" style="font-size: 14px; color: white;margin: 0;">(The range is from 3.0 watts to 30.0 watts with step increments of 0.2 watts)</p>
+                          <input data-save type="text" name="powerLimitValue" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Detection Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-detection"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                              	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
+                                <li class="active"><a href="javascript:void(0);">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
+                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="control-buttons-1">
+                          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+                          <a class="anchor-2 not-disable" href="javascript:void(0)">APPLY</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <! PARAM STOP>
+                
+                <div class="port-wrap port-led-wrap">
+                  <div class="panel panel-default slide-up-down db-close ">
+                    <div id="headingOne" class="panel-heading" role="tab">
+                      <h4 class="panel-title">
+                        <div class="collapsed accordion-icon">
+                          <table class="table-line table-poe">
+                            <tr class="thead-1 collapsed">
+                              <td width="30%">
+                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>3&nbsp;-&nbsp;AGER 31 IN<span></span>
+                                
+                              </td>
+                              <td width="30%">
+                                <span  width="30%" class="bold-title admin-state">Enable</span>
+                                
+                              </td>
+                              <td width="40%">
+                                <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
+                                
+                                <div class="poe-arrow">
+                                  <span class="icon-I-arrow-down arrow-right"></span>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="db-content extend data-cover" style="display:none;">
+                    <div class="port-poe-status">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Port Priority</p>
+                          <p class="bold-title port-priority">Low</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Power Limit Type</p>
+                          <p class="bold-title Power-Limit-Type-text">User</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Power Limit (W)</p>
+                          <p class="bold-title Power-Limit-text">30.0</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Detection Type</p>
+                          <p class="bold-title Detection-Type-text">IEEE802</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <a class="poe-edit-btn" href="javascript:void(0)">EDIT</a>
+                      </div>
+                    </div>
+
+                    <div class="edit-port-status" style="display:none;">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Port Power</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="adminState" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="info-col">
+                          <label class="label-1">Port Priority</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                              <span data-save class="selectItem edit-priority"></span>
+                              <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);">Low</a></li>
+                                <li class="active"><a href="javascript:void(0);">High</a></li>
+                                <li class="active"><a href="javascript:void(0);">Critical</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Mode</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-powerMode"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3af</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Pre-802.3at</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3at</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Limit Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save id="powerLimitType" class="selectItem edit-powerLimitType"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitType">None</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">Class</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">User</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col text-area">
+                          <label class="label-1"><span>Power Limit (W)</span></label>
+                          <p class="powerLimitDesc" style="font-size: 14px; color: white;margin: 0;">(The range is from 3.0 watts to 30.0 watts with step increments of 0.2 watts)</p>
+                          <input data-save type="text" name="powerLimitValue" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Detection Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-detection"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                              	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
+                                <li class="active"><a href="javascript:void(0);">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
+                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="control-buttons-1">
+                          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+                          <a class="anchor-2 not-disable" href="javascript:void(0)">APPLY</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <! PARAM STOP>
+                
+                <div class="port-wrap port-led-wrap">
+                  <div class="panel panel-default slide-up-down db-close ">
+                    <div id="headingOne" class="panel-heading" role="tab">
+                      <h4 class="panel-title">
+                        <div class="collapsed accordion-icon">
+                          <table class="table-line table-poe">
+                            <tr class="thead-1 collapsed">
+                              <td width="30%">
+                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>4&nbsp;-&nbsp;AGER 31 PARK<span></span>
+                                
+                              </td>
+                              <td width="30%">
+                                <span  width="30%" class="bold-title admin-state">Enable</span>
+                                
+                              </td>
+                              <td width="40%">
+                                <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
+                                
+                                <div class="poe-arrow">
+                                  <span class="icon-I-arrow-down arrow-right"></span>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="db-content extend data-cover" style="display:none;">
+                    <div class="port-poe-status">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Port Priority</p>
+                          <p class="bold-title port-priority">Low</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Power Limit Type</p>
+                          <p class="bold-title Power-Limit-Type-text">User</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Power Limit (W)</p>
+                          <p class="bold-title Power-Limit-text">30.0</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Detection Type</p>
+                          <p class="bold-title Detection-Type-text">IEEE802</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <a class="poe-edit-btn" href="javascript:void(0)">EDIT</a>
+                      </div>
+                    </div>
+
+                    <div class="edit-port-status" style="display:none;">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Port Power</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="adminState" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="info-col">
+                          <label class="label-1">Port Priority</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                              <span data-save class="selectItem edit-priority"></span>
+                              <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);">Low</a></li>
+                                <li class="active"><a href="javascript:void(0);">High</a></li>
+                                <li class="active"><a href="javascript:void(0);">Critical</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Mode</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-powerMode"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3af</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Pre-802.3at</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3at</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Limit Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save id="powerLimitType" class="selectItem edit-powerLimitType"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitType">None</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">Class</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">User</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col text-area">
+                          <label class="label-1"><span>Power Limit (W)</span></label>
+                          <p class="powerLimitDesc" style="font-size: 14px; color: white;margin: 0;">(The range is from 3.0 watts to 30.0 watts with step increments of 0.2 watts)</p>
+                          <input data-save type="text" name="powerLimitValue" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Detection Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-detection"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                              	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
+                                <li class="active"><a href="javascript:void(0);">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
+                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="control-buttons-1">
+                          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+                          <a class="anchor-2 not-disable" href="javascript:void(0)">APPLY</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <! PARAM STOP>
+                
+                <div class="port-wrap port-led-wrap">
+                  <div class="panel panel-default slide-up-down db-close ">
+                    <div id="headingOne" class="panel-heading" role="tab">
+                      <h4 class="panel-title">
+                        <div class="collapsed accordion-icon">
+                          <table class="table-line table-poe">
+                            <tr class="thead-1 collapsed">
+                              <td width="30%">
+                                <span class="bold-title port-number">5</span>
+                                
+                              </td>
+                              <td width="30%">
+                                <span  width="30%" class="bold-title admin-state">Enable</span>
+                                
+                              </td>
+                              <td width="40%">
+                                <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
+                                
+                                <div class="poe-arrow">
+                                  <span class="icon-I-arrow-down arrow-right"></span>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="db-content extend data-cover" style="display:none;">
+                    <div class="port-poe-status">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Port Priority</p>
+                          <p class="bold-title port-priority">Low</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Power Limit Type</p>
+                          <p class="bold-title Power-Limit-Type-text">User</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Power Limit (W)</p>
+                          <p class="bold-title Power-Limit-text">30.0</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Detection Type</p>
+                          <p class="bold-title Detection-Type-text">IEEE802</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <a class="poe-edit-btn" href="javascript:void(0)">EDIT</a>
+                      </div>
+                    </div>
+
+                    <div class="edit-port-status" style="display:none;">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Port Power</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="adminState" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="info-col">
+                          <label class="label-1">Port Priority</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                              <span data-save class="selectItem edit-priority"></span>
+                              <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);">Low</a></li>
+                                <li class="active"><a href="javascript:void(0);">High</a></li>
+                                <li class="active"><a href="javascript:void(0);">Critical</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Mode</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-powerMode"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3af</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Pre-802.3at</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3at</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Limit Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save id="powerLimitType" class="selectItem edit-powerLimitType"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitType">None</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">Class</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">User</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col text-area">
+                          <label class="label-1"><span>Power Limit (W)</span></label>
+                          <p class="powerLimitDesc" style="font-size: 14px; color: white;margin: 0;">(The range is from 3.0 watts to 30.0 watts with step increments of 0.2 watts)</p>
+                          <input data-save type="text" name="powerLimitValue" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Detection Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-detection"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                              	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
+                                <li class="active"><a href="javascript:void(0);">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
+                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="control-buttons-1">
+                          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+                          <a class="anchor-2 not-disable" href="javascript:void(0)">APPLY</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <! PARAM STOP>
+                
+                <div class="port-wrap port-led-wrap">
+                  <div class="panel panel-default slide-up-down db-close ">
+                    <div id="headingOne" class="panel-heading" role="tab">
+                      <h4 class="panel-title">
+                        <div class="collapsed accordion-icon">
+                          <table class="table-line table-poe">
+                            <tr class="thead-1 collapsed">
+                              <td width="30%">
+                                <span class="bold-title port-number">6</span>
+                                
+                              </td>
+                              <td width="30%">
+                                <span  width="30%" class="bold-title admin-state">Enable</span>
+                                
+                              </td>
+                              <td width="40%">
+                                <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
+                                
+                                <div class="poe-arrow">
+                                  <span class="icon-I-arrow-down arrow-right"></span>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="db-content extend data-cover" style="display:none;">
+                    <div class="port-poe-status">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Port Priority</p>
+                          <p class="bold-title port-priority">Low</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Power Limit Type</p>
+                          <p class="bold-title Power-Limit-Type-text">User</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Power Limit (W)</p>
+                          <p class="bold-title Power-Limit-text">30.0</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Detection Type</p>
+                          <p class="bold-title Detection-Type-text">IEEE802</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <a class="poe-edit-btn" href="javascript:void(0)">EDIT</a>
+                      </div>
+                    </div>
+
+                    <div class="edit-port-status" style="display:none;">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Port Power</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="adminState" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="info-col">
+                          <label class="label-1">Port Priority</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                              <span data-save class="selectItem edit-priority"></span>
+                              <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);">Low</a></li>
+                                <li class="active"><a href="javascript:void(0);">High</a></li>
+                                <li class="active"><a href="javascript:void(0);">Critical</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Mode</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-powerMode"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3af</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Pre-802.3at</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3at</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Limit Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save id="powerLimitType" class="selectItem edit-powerLimitType"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitType">None</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">Class</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">User</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col text-area">
+                          <label class="label-1"><span>Power Limit (W)</span></label>
+                          <p class="powerLimitDesc" style="font-size: 14px; color: white;margin: 0;">(The range is from 3.0 watts to 30.0 watts with step increments of 0.2 watts)</p>
+                          <input data-save type="text" name="powerLimitValue" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Detection Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-detection"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                              	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
+                                <li class="active"><a href="javascript:void(0);">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
+                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="control-buttons-1">
+                          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+                          <a class="anchor-2 not-disable" href="javascript:void(0)">APPLY</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <! PARAM STOP>
+                
+                <div class="port-wrap port-led-wrap">
+                  <div class="panel panel-default slide-up-down db-close ">
+                    <div id="headingOne" class="panel-heading" role="tab">
+                      <h4 class="panel-title">
+                        <div class="collapsed accordion-icon">
+                          <table class="table-line table-poe">
+                            <tr class="thead-1 collapsed">
+                              <td width="30%">
+                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>7&nbsp;-&nbsp;AGER 31 NORTE<span></span>
+                                
+                              </td>
+                              <td width="30%">
+                                <span  width="30%" class="bold-title admin-state">Enable</span>
+                                
+                              </td>
+                              <td width="40%">
+                                <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
+                                
+                                <div class="poe-arrow">
+                                  <span class="icon-I-arrow-down arrow-right"></span>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="db-content extend data-cover" style="display:none;">
+                    <div class="port-poe-status">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Port Priority</p>
+                          <p class="bold-title port-priority">Low</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Power Limit Type</p>
+                          <p class="bold-title Power-Limit-Type-text">User</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Power Limit (W)</p>
+                          <p class="bold-title Power-Limit-text">30.0</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Detection Type</p>
+                          <p class="bold-title Detection-Type-text">IEEE802</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <a class="poe-edit-btn" href="javascript:void(0)">EDIT</a>
+                      </div>
+                    </div>
+
+                    <div class="edit-port-status" style="display:none;">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Port Power</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="adminState" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="info-col">
+                          <label class="label-1">Port Priority</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                              <span data-save class="selectItem edit-priority"></span>
+                              <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);">Low</a></li>
+                                <li class="active"><a href="javascript:void(0);">High</a></li>
+                                <li class="active"><a href="javascript:void(0);">Critical</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Mode</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-powerMode"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3af</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Pre-802.3at</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3at</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Limit Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save id="powerLimitType" class="selectItem edit-powerLimitType"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitType">None</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">Class</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">User</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col text-area">
+                          <label class="label-1"><span>Power Limit (W)</span></label>
+                          <p class="powerLimitDesc" style="font-size: 14px; color: white;margin: 0;">(The range is from 3.0 watts to 30.0 watts with step increments of 0.2 watts)</p>
+                          <input data-save type="text" name="powerLimitValue" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Detection Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-detection"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                              	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
+                                <li class="active"><a href="javascript:void(0);">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
+                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="control-buttons-1">
+                          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+                          <a class="anchor-2 not-disable" href="javascript:void(0)">APPLY</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <! PARAM STOP>
+                
+                <div class="port-wrap port-led-wrap">
+                  <div class="panel panel-default slide-up-down db-close ">
+                    <div id="headingOne" class="panel-heading" role="tab">
+                      <h4 class="panel-title">
+                        <div class="collapsed accordion-icon">
+                          <table class="table-line table-poe">
+                            <tr class="thead-1 collapsed">
+                              <td width="30%">
+                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>8&nbsp;-&nbsp;AGER 31 GABINETE<span></span>
+                                
+                              </td>
+                              <td width="30%">
+                                <span  width="30%" class="bold-title admin-state">Enable</span>
+                                
+                              </td>
+                              <td width="40%">
+                                <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
+                                
+                                <div class="poe-arrow">
+                                  <span class="icon-I-arrow-down arrow-right"></span>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="db-content extend data-cover" style="display:none;">
+                    <div class="port-poe-status">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Port Priority</p>
+                          <p class="bold-title port-priority">Low</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Power Limit Type</p>
+                          <p class="bold-title Power-Limit-Type-text">User</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Power Limit (W)</p>
+                          <p class="bold-title Power-Limit-text">30.0</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Detection Type</p>
+                          <p class="bold-title Detection-Type-text">IEEE802</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <a class="poe-edit-btn" href="javascript:void(0)">EDIT</a>
+                      </div>
+                    </div>
+
+                    <div class="edit-port-status" style="display:none;">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Port Power</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="adminState" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="info-col">
+                          <label class="label-1">Port Priority</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                              <span data-save class="selectItem edit-priority"></span>
+                              <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);">Low</a></li>
+                                <li class="active"><a href="javascript:void(0);">High</a></li>
+                                <li class="active"><a href="javascript:void(0);">Critical</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Mode</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-powerMode"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3af</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Pre-802.3at</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3at</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Limit Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save id="powerLimitType" class="selectItem edit-powerLimitType"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitType">None</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">Class</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">User</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col text-area">
+                          <label class="label-1"><span>Power Limit (W)</span></label>
+                          <p class="powerLimitDesc" style="font-size: 14px; color: white;margin: 0;">(The range is from 3.0 watts to 30.0 watts with step increments of 0.2 watts)</p>
+                          <input data-save type="text" name="powerLimitValue" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Detection Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-detection"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                              	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
+                                <li class="active"><a href="javascript:void(0);">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
+                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="control-buttons-1">
+                          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+                          <a class="anchor-2 not-disable" href="javascript:void(0)">APPLY</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <! PARAM STOP>
+                
+                <div class="port-wrap port-led-wrap">
+                  <div class="panel panel-default slide-up-down db-close ">
+                    <div id="headingOne" class="panel-heading" role="tab">
+                      <h4 class="panel-title">
+                        <div class="collapsed accordion-icon">
+                          <table class="table-line table-poe">
+                            <tr class="thead-1 collapsed">
+                              <td width="30%">
+                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>9&nbsp;-&nbsp;AGER 31 PUERTA<span></span>
+                                
+                              </td>
+                              <td width="30%">
+                                <span  width="30%" class="bold-title admin-state">Enable</span>
+                                
+                              </td>
+                              <td width="40%">
+                                <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
+                                
+                                <div class="poe-arrow">
+                                  <span class="icon-I-arrow-down arrow-right"></span>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="db-content extend data-cover" style="display:none;">
+                    <div class="port-poe-status">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Port Priority</p>
+                          <p class="bold-title port-priority">Low</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Power Limit Type</p>
+                          <p class="bold-title Power-Limit-Type-text">User</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Power Limit (W)</p>
+                          <p class="bold-title Power-Limit-text">30.0</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Detection Type</p>
+                          <p class="bold-title Detection-Type-text">IEEE802</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <a class="poe-edit-btn" href="javascript:void(0)">EDIT</a>
+                      </div>
+                    </div>
+
+                    <div class="edit-port-status" style="display:none;">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Port Power</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="adminState" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="info-col">
+                          <label class="label-1">Port Priority</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                              <span data-save class="selectItem edit-priority"></span>
+                              <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);">Low</a></li>
+                                <li class="active"><a href="javascript:void(0);">High</a></li>
+                                <li class="active"><a href="javascript:void(0);">Critical</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Mode</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-powerMode"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3af</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Pre-802.3at</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3at</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Limit Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save id="powerLimitType" class="selectItem edit-powerLimitType"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitType">None</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">Class</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">User</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col text-area">
+                          <label class="label-1"><span>Power Limit (W)</span></label>
+                          <p class="powerLimitDesc" style="font-size: 14px; color: white;margin: 0;">(The range is from 3.0 watts to 30.0 watts with step increments of 0.2 watts)</p>
+                          <input data-save type="text" name="powerLimitValue" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Detection Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-detection"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                              	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
+                                <li class="active"><a href="javascript:void(0);">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
+                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="control-buttons-1">
+                          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+                          <a class="anchor-2 not-disable" href="javascript:void(0)">APPLY</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <! PARAM STOP>
+                
+                <div class="port-wrap port-led-wrap">
+                  <div class="panel panel-default slide-up-down db-close ">
+                    <div id="headingOne" class="panel-heading" role="tab">
+                      <h4 class="panel-title">
+                        <div class="collapsed accordion-icon">
+                          <table class="table-line table-poe">
+                            <tr class="thead-1 collapsed">
+                              <td width="30%">
+                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>10&nbsp;-&nbsp;Raspi Poller<span></span>
+                                
+                              </td>
+                              <td width="30%">
+                                <span  width="30%" class="bold-title admin-state">Enable</span>
+                                
+                              </td>
+                              <td width="40%">
+                                <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
+                                
+                                <div class="poe-arrow">
+                                  <span class="icon-I-arrow-down arrow-right"></span>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="db-content extend data-cover" style="display:none;">
+                    <div class="port-poe-status">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Port Priority</p>
+                          <p class="bold-title port-priority">Low</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Power Limit Type</p>
+                          <p class="bold-title Power-Limit-Type-text">User</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Power Limit (W)</p>
+                          <p class="bold-title Power-Limit-text">30.0</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Detection Type</p>
+                          <p class="bold-title Detection-Type-text">IEEE802</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <a class="poe-edit-btn" href="javascript:void(0)">EDIT</a>
+                      </div>
+                    </div>
+
+                    <div class="edit-port-status" style="display:none;">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Port Power</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="adminState" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="info-col">
+                          <label class="label-1">Port Priority</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                              <span data-save class="selectItem edit-priority"></span>
+                              <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);">Low</a></li>
+                                <li class="active"><a href="javascript:void(0);">High</a></li>
+                                <li class="active"><a href="javascript:void(0);">Critical</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Mode</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-powerMode"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3af</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Pre-802.3at</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3at</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Limit Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save id="powerLimitType" class="selectItem edit-powerLimitType"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitType">None</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">Class</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">User</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col text-area">
+                          <label class="label-1"><span>Power Limit (W)</span></label>
+                          <p class="powerLimitDesc" style="font-size: 14px; color: white;margin: 0;">(The range is from 3.0 watts to 30.0 watts with step increments of 0.2 watts)</p>
+                          <input data-save type="text" name="powerLimitValue" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Detection Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-detection"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                              	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
+                                <li class="active"><a href="javascript:void(0);">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
+                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="control-buttons-1">
+                          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+                          <a class="anchor-2 not-disable" href="javascript:void(0)">APPLY</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <! PARAM STOP>
+                
+                <div class="port-wrap port-led-wrap">
+                  <div class="panel panel-default slide-up-down db-close ">
+                    <div id="headingOne" class="panel-heading" role="tab">
+                      <h4 class="panel-title">
+                        <div class="collapsed accordion-icon">
+                          <table class="table-line table-poe">
+                            <tr class="thead-1 collapsed">
+                              <td width="30%">
+                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>11&nbsp;-&nbsp;DAP-3711<span></span>
+                                
+                              </td>
+                              <td width="30%">
+                                <span  width="30%" class="bold-title admin-state">Enable</span>
+                                
+                              </td>
+                              <td width="40%">
+                                <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
+                                
+                                <div class="poe-arrow">
+                                  <span class="icon-I-arrow-down arrow-right"></span>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="db-content extend data-cover" style="display:none;">
+                    <div class="port-poe-status">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Port Priority</p>
+                          <p class="bold-title port-priority">Low</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Power Limit Type</p>
+                          <p class="bold-title Power-Limit-Type-text">User</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Power Limit (W)</p>
+                          <p class="bold-title Power-Limit-text">30.0</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Detection Type</p>
+                          <p class="bold-title Detection-Type-text">IEEE802</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <a class="poe-edit-btn" href="javascript:void(0)">EDIT</a>
+                      </div>
+                    </div>
+
+                    <div class="edit-port-status" style="display:none;">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Port Power</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="adminState" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="info-col">
+                          <label class="label-1">Port Priority</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                              <span data-save class="selectItem edit-priority"></span>
+                              <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);">Low</a></li>
+                                <li class="active"><a href="javascript:void(0);">High</a></li>
+                                <li class="active"><a href="javascript:void(0);">Critical</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Mode</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-powerMode"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3af</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Pre-802.3at</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3at</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Limit Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save id="powerLimitType" class="selectItem edit-powerLimitType"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitType">None</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">Class</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">User</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col text-area">
+                          <label class="label-1"><span>Power Limit (W)</span></label>
+                          <p class="powerLimitDesc" style="font-size: 14px; color: white;margin: 0;">(The range is from 3.0 watts to 30.0 watts with step increments of 0.2 watts)</p>
+                          <input data-save type="text" name="powerLimitValue" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Detection Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-detection"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                              	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
+                                <li class="active"><a href="javascript:void(0);">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
+                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="control-buttons-1">
+                          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+                          <a class="anchor-2 not-disable" href="javascript:void(0)">APPLY</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <! PARAM STOP>
+                
+                <div class="port-wrap port-led-wrap">
+                  <div class="panel panel-default slide-up-down db-close ">
+                    <div id="headingOne" class="panel-heading" role="tab">
+                      <h4 class="panel-title">
+                        <div class="collapsed accordion-icon">
+                          <table class="table-line table-poe">
+                            <tr class="thead-1 collapsed">
+                              <td width="30%">
+                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>12&nbsp;-&nbsp;Stratum 1 Server<span></span>
+                                
+                              </td>
+                              <td width="30%">
+                                <span  width="30%" class="bold-title admin-state">Enable</span>
+                                
+                              </td>
+                              <td width="40%">
+                                <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
+                                
+                                <div class="poe-arrow">
+                                  <span class="icon-I-arrow-down arrow-right"></span>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="db-content extend data-cover" style="display:none;">
+                    <div class="port-poe-status">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Port Priority</p>
+                          <p class="bold-title port-priority">Low</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Power Limit Type</p>
+                          <p class="bold-title Power-Limit-Type-text">User</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Power Limit (W)</p>
+                          <p class="bold-title Power-Limit-text">30.0</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Detection Type</p>
+                          <p class="bold-title Detection-Type-text">IEEE802</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <a class="poe-edit-btn" href="javascript:void(0)">EDIT</a>
+                      </div>
+                    </div>
+
+                    <div class="edit-port-status" style="display:none;">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Port Power</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="adminState" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="info-col">
+                          <label class="label-1">Port Priority</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                              <span data-save class="selectItem edit-priority"></span>
+                              <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);">Low</a></li>
+                                <li class="active"><a href="javascript:void(0);">High</a></li>
+                                <li class="active"><a href="javascript:void(0);">Critical</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Mode</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-powerMode"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3af</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Pre-802.3at</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3at</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Limit Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save id="powerLimitType" class="selectItem edit-powerLimitType"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitType">None</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">Class</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">User</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col text-area">
+                          <label class="label-1"><span>Power Limit (W)</span></label>
+                          <p class="powerLimitDesc" style="font-size: 14px; color: white;margin: 0;">(The range is from 3.0 watts to 30.0 watts with step increments of 0.2 watts)</p>
+                          <input data-save type="text" name="powerLimitValue" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Detection Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-detection"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                              	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
+                                <li class="active"><a href="javascript:void(0);">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
+                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="control-buttons-1">
+                          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+                          <a class="anchor-2 not-disable" href="javascript:void(0)">APPLY</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <! PARAM STOP>
+                
+                <div class="port-wrap port-led-wrap">
+                  <div class="panel panel-default slide-up-down db-close ">
+                    <div id="headingOne" class="panel-heading" role="tab">
+                      <h4 class="panel-title">
+                        <div class="collapsed accordion-icon">
+                          <table class="table-line table-poe">
+                            <tr class="thead-1 collapsed">
+                              <td width="30%">
+                                <span class="bold-title port-number">13</span>
+                                
+                              </td>
+                              <td width="30%">
+                                <span  width="30%" class="bold-title admin-state">Enable</span>
+                                
+                              </td>
+                              <td width="40%">
+                                <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
+                                
+                                <div class="poe-arrow">
+                                  <span class="icon-I-arrow-down arrow-right"></span>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="db-content extend data-cover" style="display:none;">
+                    <div class="port-poe-status">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Port Priority</p>
+                          <p class="bold-title port-priority">Low</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Power Limit Type</p>
+                          <p class="bold-title Power-Limit-Type-text">User</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Power Limit (W)</p>
+                          <p class="bold-title Power-Limit-text">30.0</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Detection Type</p>
+                          <p class="bold-title Detection-Type-text">IEEE802</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <a class="poe-edit-btn" href="javascript:void(0)">EDIT</a>
+                      </div>
+                    </div>
+
+                    <div class="edit-port-status" style="display:none;">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Port Power</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="adminState" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="info-col">
+                          <label class="label-1">Port Priority</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                              <span data-save class="selectItem edit-priority"></span>
+                              <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);">Low</a></li>
+                                <li class="active"><a href="javascript:void(0);">High</a></li>
+                                <li class="active"><a href="javascript:void(0);">Critical</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Mode</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-powerMode"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3af</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Pre-802.3at</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3at</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Limit Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save id="powerLimitType" class="selectItem edit-powerLimitType"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitType">None</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">Class</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">User</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col text-area">
+                          <label class="label-1"><span>Power Limit (W)</span></label>
+                          <p class="powerLimitDesc" style="font-size: 14px; color: white;margin: 0;">(The range is from 3.0 watts to 30.0 watts with step increments of 0.2 watts)</p>
+                          <input data-save type="text" name="powerLimitValue" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Detection Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-detection"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                              	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
+                                <li class="active"><a href="javascript:void(0);">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
+                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="control-buttons-1">
+                          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+                          <a class="anchor-2 not-disable" href="javascript:void(0)">APPLY</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <! PARAM STOP>
+                
+                <div class="port-wrap port-led-wrap">
+                  <div class="panel panel-default slide-up-down db-close ">
+                    <div id="headingOne" class="panel-heading" role="tab">
+                      <h4 class="panel-title">
+                        <div class="collapsed accordion-icon">
+                          <table class="table-line table-poe">
+                            <tr class="thead-1 collapsed">
+                              <td width="30%">
+                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>14&nbsp;-&nbsp;AGER 31 IN GIRA<span></span>
+                                
+                              </td>
+                              <td width="30%">
+                                <span  width="30%" class="bold-title admin-state">Enable</span>
+                                
+                              </td>
+                              <td width="40%">
+                                <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
+                                
+                                <div class="poe-arrow">
+                                  <span class="icon-I-arrow-down arrow-right"></span>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="db-content extend data-cover" style="display:none;">
+                    <div class="port-poe-status">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Port Priority</p>
+                          <p class="bold-title port-priority">Low</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Power Limit Type</p>
+                          <p class="bold-title Power-Limit-Type-text">User</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Power Limit (W)</p>
+                          <p class="bold-title Power-Limit-text">30.0</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Detection Type</p>
+                          <p class="bold-title Detection-Type-text">IEEE802</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <a class="poe-edit-btn" href="javascript:void(0)">EDIT</a>
+                      </div>
+                    </div>
+
+                    <div class="edit-port-status" style="display:none;">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Port Power</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="adminState" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="info-col">
+                          <label class="label-1">Port Priority</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                              <span data-save class="selectItem edit-priority"></span>
+                              <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);">Low</a></li>
+                                <li class="active"><a href="javascript:void(0);">High</a></li>
+                                <li class="active"><a href="javascript:void(0);">Critical</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Mode</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-powerMode"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3af</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Pre-802.3at</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3at</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Limit Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save id="powerLimitType" class="selectItem edit-powerLimitType"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitType">None</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">Class</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">User</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col text-area">
+                          <label class="label-1"><span>Power Limit (W)</span></label>
+                          <p class="powerLimitDesc" style="font-size: 14px; color: white;margin: 0;">(The range is from 3.0 watts to 30.0 watts with step increments of 0.2 watts)</p>
+                          <input data-save type="text" name="powerLimitValue" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Detection Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-detection"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                              	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
+                                <li class="active"><a href="javascript:void(0);">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
+                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="control-buttons-1">
+                          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+                          <a class="anchor-2 not-disable" href="javascript:void(0)">APPLY</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <! PARAM STOP>
+                
+                <div class="port-wrap port-led-wrap">
+                  <div class="panel panel-default slide-up-down db-close ">
+                    <div id="headingOne" class="panel-heading" role="tab">
+                      <h4 class="panel-title">
+                        <div class="collapsed accordion-icon">
+                          <table class="table-line table-poe">
+                            <tr class="thead-1 collapsed">
+                              <td width="30%">
+                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>15&nbsp;-&nbsp;Mesu 200<span></span>
+                                
+                              </td>
+                              <td width="30%">
+                                <span  width="30%" class="bold-title admin-state">Enable</span>
+                                
+                              </td>
+                              <td width="40%">
+                                <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
+                                
+                                <div class="poe-arrow">
+                                  <span class="icon-I-arrow-down arrow-right"></span>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="db-content extend data-cover" style="display:none;">
+                    <div class="port-poe-status">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Port Priority</p>
+                          <p class="bold-title port-priority">Low</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Power Limit Type</p>
+                          <p class="bold-title Power-Limit-Type-text">User</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Power Limit (W)</p>
+                          <p class="bold-title Power-Limit-text">30.0</p>
+                          
+                        </div>
+                        <div class="info-col">
+                          <p class="light-title">Detection Type</p>
+                          <p class="bold-title Detection-Type-text">IEEE802</p>
+                          
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <a class="poe-edit-btn" href="javascript:void(0)">EDIT</a>
+                      </div>
+                    </div>
+
+                    <div class="edit-port-status" style="display:none;">
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Port Power</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="adminState" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="info-col">
+                          <label class="label-1">Port Priority</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                              <span data-save class="selectItem edit-priority"></span>
+                              <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);">Low</a></li>
+                                <li class="active"><a href="javascript:void(0);">High</a></li>
+                                <li class="active"><a href="javascript:void(0);">Critical</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Mode</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-powerMode"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3af</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">Pre-802.3at</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitMode">802.3at</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Power Limit Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save id="powerLimitType" class="selectItem edit-powerLimitType"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="javascript:void(0);" class="limitType">None</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">Class</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="limitType">User</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col text-area">
+                          <label class="label-1"><span>Power Limit (W)</span></label>
+                          <p class="powerLimitDesc" style="font-size: 14px; color: white;margin: 0;">(The range is from 3.0 watts to 30.0 watts with step increments of 0.2 watts)</p>
+                          <input data-save type="text" name="powerLimitValue" class="input-1 bold-title" value="" size="16" maxlength="16" style="height:33px;">
+                        </div>
+                        <div class="info-col">
+                          <label class="label-1 hid-txt">Detection Type</label>
+                          <div class="custom-dropdown">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="dropDownMenu(this);">
+                                <span data-save class="selectItem edit-detection"></span>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                              	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
+                                <li class="active"><a href="javascript:void(0);">Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
+                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="control-buttons-1">
+                          <a class="anchor-1 not-disable" href="javascript:void(0)">CANCEL</a>
+                          <a class="anchor-2 not-disable" href="javascript:void(0)">APPLY</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <! PARAM STOP>
+                
+                <!--end-port-status-wrap-->
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="panel_b tabPanel">
+              <div id="POE_STATUS" class="poe-text">
+                <div class="poe-port-status collapsed-wrap">
+                  <div class="table-0">
+                    <table>
+                      <tr class="thead-1 collapsed">
+                        <td width="30%">
+                          <span class="first-column">Port</span>
+                        </td>
+                        <td width="30%">
+                          Class
+                        </td>
+                        <td width="40%">
+                          Status
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <div id="STATUS"></div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" language="JavaScript">
+    function endisableText() {
+      var e = $(this);
+      var powerLimitType =  e.text();
+      var powerLimitDesc = e.parents('.db-content').find('.powerLimitDesc');
+      var powerLimitValueInput = e.parents('.db-content').find("input[name='powerLimitValue']");
+      var defaultPowerLimitValue = e.parents('.db-content').find('.Power-Limit-text').text();
+      var maxLimitValue = "30.0";
+      var powerLimitMode;
+      powerLimitMode = e.parents('.db-content').find('.edit-powerMode').text();
+      if (powerLimitMode == MultLang.transLang("802.3af")) {
+          maxLimitValue = "15.4";
+      }
+      if (powerLimitType == MultLang.transLang("EDIT")) {
+          powerLimitType = e.parents('.db-content').find('.edit-powerLimitType').text();
+          if (powerLimitType == MultLang.transLang("User")) {
+              powerLimitDesc.text(MultLang.transParmLang('(The range is from 3.0 watts to @' + maxLimitValue + '@ watts with step increments of 0.2 watts)'));
+              powerLimitValueInput.attr("disabled",false);
+          } else {
+              powerLimitDesc.text('');
+              powerLimitValueInput.val(maxLimitValue);
+              powerLimitValueInput.attr("disabled",true);
+          }
+      } else if (powerLimitType == MultLang.transLang("User")) {
+          if (defaultPowerLimitValue.trim() !== '') {
+              if (maxLimitValue == "15.4" && parseFloat(defaultPowerLimitValue) > parseFloat(maxLimitValue)) {
+                  powerLimitValueInput.val(maxLimitValue);
+              } else {
+                  powerLimitValueInput.val(defaultPowerLimitValue);
+              }
+          } else {
+              powerLimitValueInput.val(maxLimitValue);
+          }
+          powerLimitDesc.text(MultLang.transParmLang('(The range is from 3.0 watts to @' + maxLimitValue + '@ watts with step increments of 0.2 watts)'));
+          powerLimitValueInput.attr("disabled",false);
+      } else {
+          powerLimitDesc.text('');
+          powerLimitValueInput.val(maxLimitValue);
+          powerLimitValueInput.attr("disabled",true);
+      }
+    }
+    function changeMaxPowerLimitValue() {
+        var e = $(this);
+        var powerLimitMode =  e.text();
+        var powerLimitDesc = e.parents('.db-content').find('.powerLimitDesc');
+        var powerLimitValueInput = e.parents('.db-content').find("input[name='powerLimitValue']");
+        var powerLimitType = e.parents('.db-content').find('.edit-powerLimitType').text();
+        var defaultPowerLimitValue = e.parents('.db-content').find('.Power-Limit-text').text();
+        var maxLimitValue = "30.0";
+        if (powerLimitMode == MultLang.transLang("802.3af")) {
+            maxLimitValue = "15.4";
+        }
+        if (powerLimitType == MultLang.transLang("User")) {
+            if (defaultPowerLimitValue.trim() !== '') {
+                if (maxLimitValue == "15.4" && parseFloat(defaultPowerLimitValue) > parseFloat(maxLimitValue)) {
+                    powerLimitValueInput.val(maxLimitValue);
+                } else {
+                    powerLimitValueInput.val(defaultPowerLimitValue);
+                }
+            } else {
+                powerLimitValueInput.val(maxLimitValue);
+            }
+            powerLimitDesc.text(MultLang.transParmLang('(The range is from 3.0 watts to @' + maxLimitValue + '@ watts with step increments of 0.2 watts)'));
+        }
+        else if (powerLimitType == MultLang.transLang("None") || powerLimitType == MultLang.transLang("Class")) {
+            powerLimitValueInput.val(maxLimitValue);
+        }
+    }
+
+    $("#POE_SETTING, #POE_STATUS").on("click", ".slide-up-down", function() {
+        var e = $(this);
+        var parent = e.parents(".collapsed-wrap");
+        if ( e.hasClass("db-close") ) {
+            closeDbList(parent.find(".db-active").eq(0));
+            openDbList(e);
+        } else if (e.hasClass("db-active")) {
+            closeDbList(e);
+        }
+    });
+
+    $("#POE_SETTING").on("click", ".poe-edit-btn", function() {
+        var e = $(this);
+        var parent = e.parents(".db-content");
+        replacePoeInfo(parent.parents(".port-wrap"));
+        backupData(parent.parents(".port-wrap"));
+        parent.find(".port-poe-status").hide().next().show();
+    });
+
+    $("#POE_SETTING").on("click", ".anchor-1", function() {
+        var e = $(this);
+        e.parents(".extend").find(".edit-port-status").hide().prev().show();
+    });
+
+    selectOptions();
+
+    $("#POE_SETTING").on("click", ".anchor-2", submitPoEports);
+    $("#POE_SETTING").on("click", ".limitType, .poe-edit-btn", endisableText);
+    $("#POE_SETTING").on("click", ".limitMode", changeMaxPowerLimitValue);
+    $("#tab_1").click(function() {
+        $(".panel_a").removeClass("active");
+        $(".panel_b").addClass("active");
+        $("#tab_0").removeClass("active");
+        $(this).addClass("active");
+        $("#tab_0").find("a").removeClass("active");
+        $(this).find("a").addClass("active");
+    });
+
+    $("#tab_0").click(function() {
+        $(".panel_a").addClass("active");
+        $(".panel_b").removeClass("active");
+        $("#tab_1").removeClass("active");
+        $(this).addClass("active");
+        $("#tab_1").find("a").removeClass("active");
+        $(this).find("a").addClass("active");
+    });
+
+    var poePort = $(".poe-port-list-wrap input[type='checkbox']");
+    poePort.click(function() {
+      $('.custom-switch-1 .control-buttons-1 .anchor-2').addClass("disable-btn");
+      poePort.not(function(portn){
+        if(poePort.eq(portn).prop("checked")) {
+          $('.custom-switch-1 .control-buttons-1 .anchor-2').removeClass("disable-btn");
+        }
+      })
+    });
+
+    $(".custom-switch-1 .control-buttons-1 .anchor-1").click(function() {
+      poePort.not(function(portn){
+        poePort.eq(portn).prop("checked", false);
+        $('.custom-switch-1 .control-buttons-1 .anchor-2').addClass("disable-btn");
+      })
+    });
+
+    $(".custom-switch-1 .control-buttons-1 .anchor-2").click(submitResetPoePage);
+    var suburl = "/iss/specific/poePortStatus.html?Gambit=oidblfnbkfnclffflfja&GetData=TRUE";
+    $.ajax({
+        url: suburl,
+        type: "GET",
+        dataType: "text",
+        success:function(data){
+            loadData($('#STATUS'),data);
+        }
+    });
+</script>
+
+</body>
+</html>
