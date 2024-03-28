@@ -15,7 +15,7 @@ func postPage(args *GlobalOptions, host string, url string, requestBody string) 
 }
 
 func doHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, host string, requestUrl string, requestBody string) (string, error) {
-	token, err := loadTokenAndModel(args, host)
+	model, token, err := readTokenAndModel2GlobalOptions(args, host)
 	if err != nil {
 		return "", err
 	}
@@ -24,7 +24,7 @@ func doHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, host s
 		println("Fetching data from: " + requestUrl)
 	}
 
-	if isModel316(args.Model) {
+	if isModel316(model) {
 		requestUrl = requestUrl + "?Gambit=" + token
 	}
 
@@ -33,7 +33,7 @@ func doHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, host s
 		return "", err
 	}
 
-	if isModel30x(args.Model) {
+	if isModel30x(model) {
 		req.Header.Set("Cookie", "SID="+token)
 	}
 

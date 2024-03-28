@@ -41,7 +41,7 @@ func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
 		return errors.New("no content. please, (re-)login first")
 	}
 	var statuses []PoePortStatus
-	statuses, err = findPortStatusInHtml(args.Model, strings.NewReader(statusPage))
+	statuses, err = findPortStatusInHtml(args.model, strings.NewReader(statusPage))
 	if err != nil {
 		return err
 	}
@@ -76,11 +76,15 @@ func prettyPrintStatus(format OutputFormat, statuses []PoePortStatus) {
 }
 
 func requestPoePortStatusPage(args *GlobalOptions, host string) (string, error) {
-	if isModel30x(args.Model) {
+	model, _, err := readTokenAndModel2GlobalOptions(args, host)
+	if err != nil {
+		return "", err
+	}
+	if isModel30x(model) {
 		url := fmt.Sprintf("http://%s/getPoePortStatus.cgi", host)
 		return requestPage(args, host, url)
 	}
-	if isModel316(args.Model) {
+	if isModel316(model) {
 		url := fmt.Sprintf("http://%s/iss/specific/poe.html", host)
 		return requestPage(args, host, url)
 	}

@@ -21,7 +21,7 @@ func storeToken(args *GlobalOptions, host string, token string) error {
 	if args.Verbose {
 		println("Storing login token " + tokenFilename(args.TokenDir, host))
 	}
-	data := fmt.Sprintf("%s%s%s", args.Model, separator, token)
+	data := fmt.Sprintf("%s%s%s", args.model, separator, token)
 	return os.WriteFile(tokenFilename(args.TokenDir, host), []byte(data), 0644)
 }
 
@@ -31,23 +31,27 @@ func tokenFilename(configDir string, host string) string {
 	return filepath.Join(dotConfigDirName(configDir), "token-"+fmt.Sprintf("%x", hash32.Sum(nil)))
 }
 
-func loadTokenAndModel(args *GlobalOptions, host string) (string, error) {
+func readTokenAndModel2GlobalOptions(args *GlobalOptions, host string) (NetgearModel, string, error) {
+	if len(args.model) > 0 {
+		return args.model, args.token, nil
+	}
 	if args.Verbose {
 		println("reading token from: " + tokenFilename(args.TokenDir, host))
 	}
 	bytes, err := os.ReadFile(tokenFilename(args.TokenDir, host))
 	if errors.Is(err, fs.ErrNotExist) {
-		return "", errors.New("no session (token) exists. please login first")
+		return "", "", errors.New("no session (token) exists. please login first")
 	}
 	data := strings.SplitN(string(bytes), separator, 2)
 	if len(data) != 2 {
-		return "", errors.New("you did an upgrade from a former ntgrcc version. please login again")
+		return "", "", errors.New("you did an upgrade from a former ntgrcc version. please login again")
 	}
 	if !isSupportedModel(data[0]) {
-		return "", errors.New("unknown model stored in token. please login again")
+		return "", "", errors.New("unknown model stored in token. please login again")
 	}
-	args.Model = NetgearModel(data[0])
-	return data[1], err
+	args.model = NetgearModel(data[0])
+	args.token = data[1]
+	return args.model, args.token, err
 }
 
 func ensureConfigPathExists(configDir string) error {

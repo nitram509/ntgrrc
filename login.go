@@ -37,7 +37,7 @@ func (login *LoginCommand) Run(args *GlobalOptions) error {
 	if err != nil {
 		return err
 	}
-	args.Model = model
+	args.model = model
 
 	seedValue, err := getSeedValueFromSwitch(args, login.Address)
 	if err != nil {
@@ -64,9 +64,9 @@ func promptForPassword(serverName string) (string, error) {
 
 func doLogin(args *GlobalOptions, host string, encryptedPwd string) error {
 	var url string
-	if isModel30x(args.Model) {
+	if isModel30x(args.model) {
 		url = fmt.Sprintf("http://%s/login.cgi", host)
-	} else if isModel316(args.Model) {
+	} else if isModel316(args.model) {
 		url = fmt.Sprintf("http://%s/redirect.html", host)
 	} else {
 		return errors.New("Unknown model not supported, please contact the developers ")
@@ -76,9 +76,9 @@ func doLogin(args *GlobalOptions, host string, encryptedPwd string) error {
 	}
 
 	var formData string
-	if isModel30x(args.Model) {
+	if isModel30x(args.model) {
 		formData = "password=" + encryptedPwd
-	} else if isModel316(args.Model) {
+	} else if isModel316(args.model) {
 		formData = "LoginPassword=" + encryptedPwd
 	}
 
@@ -96,14 +96,14 @@ func doLogin(args *GlobalOptions, host string, encryptedPwd string) error {
 	}
 
 	var token string
-	if isModel30x(args.Model) {
+	if isModel30x(args.model) {
 		token = getSessionToken(resp)
 		if token == FailedAttempt && resp.StatusCode == http.StatusOK {
 			return errors.New("login request returned 200 OK, but response did not contain a session token ('SID' cookie). " +
 				"this is known behaviour from the switch. please, wait some minutes and tray again later")
 		}
 	}
-	if isModel316(args.Model) {
+	if isModel316(args.model) {
 		token = findGambitTokenInResponseHtml(strings.NewReader(string(body)))
 		if token == FailedAttempt && resp.StatusCode == http.StatusOK {
 			return errors.New("login request returned 200 OK, but response did not contain a token ('Gambit' value in input field) ")
@@ -155,9 +155,9 @@ func findGambitTokenInResponseHtml(reader io.Reader) (gambitToken string) {
 
 func getSeedValueFromSwitch(args *GlobalOptions, host string) (string, error) {
 	var url string
-	if isModel30x(args.Model) {
+	if isModel30x(args.model) {
 		url = fmt.Sprintf("http://%s/login.cgi", host)
-	} else if isModel316(args.Model) {
+	} else if isModel316(args.model) {
 		url = fmt.Sprintf("http://%s/wmi/login", host)
 	} else {
 		return "", errors.New("Unknown model not supported, please contact the developers ")
