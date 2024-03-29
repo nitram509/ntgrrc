@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<div class="container fadeInUp animated cmn-animation">
+    <div class="panel-left-dark ">
+        <div class="view-small">
+            <div class="menu-header" onclick="toggle1('dd_top','menu-dropdown-3');"> <a href="javascript:void(0);">POE <span class="caret">&nbsp;</span></a> </div>
+            <div class="menu-dropdown" id="menu-dropdown-3" style="display:block;">
+                <div class="clearfix"></div>
+                <div class="dropdown-divider">&nbsp;</div>
+                <ul class="list-2">
+                    <li class="active" id="sub_poePortConf" onclick="toggle1('dd_top','menu-dropdown-3');clickSubContentBlockNav(this);"><a href="javascript:void(0);">POE</a></li>
+                    <li id="sub_poePortTime" onclick="toggle1('dd_top','menu-dropdown-3');clickSubContentBlockNav(this);"><a href="javascript:void(0);">POE SCHEDULE</a></li>
+                    <li id="sub_poePdHealth" onclick="toggle1('dd_top','menu-dropdown-3');clickSubContentBlockNav(this);"><a href="javascript:void(0);">PD HEALTH MONITORING</a></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="view-large">
+            <ul class="list-1">
+                <li class="active" id="poePortConf" onclick="clickContentBlockNav(this);"><a href="javascript:void(0);">POE</a></li>
+                <li id="poePortTime" onclick="clickContentBlockNav(this);"><a href="javascript:void(0);">POE SCHEDULE</a></li>
+                <li id="poePdHealth" onclick="clickContentBlockNav(this);"><a href="javascript:void(0);">PD HEALTH MONITORING</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="contentBlock">
+        <script language="JavaScript">
+            var suburl = "/iss/specific/poePortConf.html?Gambit=chebtkiahfigifjfkenb";
+            $.ajax({
+                url: suburl,
+                type: "GET",
+                dataType: "text",
+                success:function(data){
+                    loadData($('#contentBlock'),data);
+                }
+            });
+        </script>
+    </div>
+</div>
+</body>
+</html>
