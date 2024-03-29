@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"net/http"
 	"strings"
@@ -45,6 +46,34 @@ func doHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, host s
 	defer resp.Body.Close()
 	if args.Verbose {
 		println(resp.Status)
+	}
+	bytes, err := io.ReadAll(resp.Body)
+	return string(bytes), err
+}
+
+func doUnauthenticatedHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, requestUrl string, requestBody string) (string, error) {
+	if args.Verbose {
+		println("Fetching data from: " + requestUrl)
+	}
+
+	req, err := http.NewRequest(httpMethod, requestUrl, strings.NewReader(requestBody))
+	if err != nil {
+		return "", err
+	}
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+	if args.Verbose {
+		println(resp.Status)
+		for name, values := range resp.Header {
+			for _, value := range values {
+				println(fmt.Sprintf("Response header: '%s' -- '%s'", name, value))
+			}
+		}
 	}
 	bytes, err := io.ReadAll(resp.Body)
 	return string(bytes), err

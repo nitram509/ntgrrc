@@ -12,7 +12,7 @@ func Test_storing_and_loading_a_token_also_preserves_the_model(t *testing.T) {
 		Verbose: false,
 		model:   GS30xEPx,
 	}
-	const host = "ntgrrc-test-case"
+	const host = "ntgrrc-test-case-host"
 	// given
 	err := storeToken(&args, host, "1234567890")
 	then.AssertThat(t, err, is.Nil())

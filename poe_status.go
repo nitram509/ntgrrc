@@ -41,9 +41,6 @@ func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
 		return errors.New("no content. please, (re-)login first")
 	}
 	var statuses []PoePortStatus
-	println("---[DEBUG]---")
-	println(statusPage)
-	println("---[DEBUG]---")
 	statuses, err = findPortStatusInHtml(args.model, strings.NewReader(statusPage))
 	if err != nil {
 		return err

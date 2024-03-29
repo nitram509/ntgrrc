@@ -22,10 +22,11 @@ var cli struct {
 	OutputFormat OutputFormat `help:"what output format to use [md, json]" enum:"md,json" default:"md" short:"f"`
 	TokenDir     string       `help:"directory to store login tokens" default:"" short:"d"`
 
-	Version VersionCommand `cmd:"" name:"version" help:"show version"`
-	Login   LoginCommand   `cmd:"" name:"login" help:"create a session for further commands (requires admin console password)"`
-	Poe     PoeCommand     `cmd:"" name:"poe" help:"show POE status or change the configuration"`
-	Port    PortCommand    `cmd:"" name:"port" help:"show port status or change the configuration for a port"`
+	Version   VersionCommand     `cmd:"" name:"version" help:"show version"`
+	Login     LoginCommand       `cmd:"" name:"login" help:"create a session for further commands (requires admin console password)"`
+	Poe       PoeCommand         `cmd:"" name:"poe" help:"show POE status or change the configuration"`
+	Port      PortCommand        `cmd:"" name:"port" help:"show port status or change the configuration for a port"`
+	ShowDebug DebugReportCommand `cmd:"" name:"debug-report" help:"show information from the switch communication, useful for supporting development and bug fixes"`
 }
 
 func main() {
