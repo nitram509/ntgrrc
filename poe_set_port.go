@@ -156,7 +156,7 @@ func requestPoeConfiguration(args *GlobalOptions, host string, poeExt *PoeExt) (
 		return settings, err
 	}
 
-	poeExt.Hash, err = findHashInHtml(strings.NewReader(settingsPage))
+	poeExt.Hash, err = findHashInHtml("", strings.NewReader(settingsPage))
 	if err != nil {
 		return settings, err
 	}
@@ -174,7 +174,11 @@ func requestPoeSettingsUpdate(args *GlobalOptions, host string, data string) (st
 	return postPage(args, host, url, data)
 }
 
-func findHashInHtml(reader io.Reader) (string, error) {
+func findHashInHtml(model NetgearModel, reader io.Reader) (string, error) {
+	if isModel316(model) {
+		// no hash present
+		return "", nil
+	}
 	doc, err := goquery.NewDocumentFromReader(reader)
 	if err != nil {
 		return "", err

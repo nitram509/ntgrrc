@@ -9,7 +9,7 @@ import (
 )
 
 func TestFindHashInPortHtml(t *testing.T) {
-	hash, err := findHashInHtml(strings.NewReader(loadTestFile("GS308EPP", "dashboard.cgi.html")))
+	hash, err := findHashInHtml("", strings.NewReader(loadTestFile("GS308EPP", "dashboard.cgi.html")))
 
 	then.AssertThat(t, err, is.Nil())
 	then.AssertThat(t, hash, is.EqualTo("4f11f5d64ef3fd75a92a9f2ad1de3060"))
@@ -134,7 +134,7 @@ func TestCollectChangedPortConfiguration(t *testing.T) {
 			IngressRateLimit: "2",
 			EgressRateLimit:  "2",
 			FlowControl:      "2",
-				},
+		},
 		{
 			Index:            2,
 			Name:             "port 2",
@@ -142,7 +142,7 @@ func TestCollectChangedPortConfiguration(t *testing.T) {
 			IngressRateLimit: "1",
 			EgressRateLimit:  "2",
 			FlowControl:      "1",
-				},
+		},
 	}
 	changed := collectChangedPortConfiguration(ports, settings)
 	then.AssertThat(t, len(changed), is.EqualTo(2))

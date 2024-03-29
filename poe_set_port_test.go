@@ -31,7 +31,7 @@ func TestFindHashInHtml(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.model, func(t *testing.T) {
-			hash, err := findHashInHtml(strings.NewReader(loadTestFile(test.model, test.fileName)))
+			hash, err := findHashInHtml("", strings.NewReader(loadTestFile(test.model, test.fileName)))
 
 			then.AssertThat(t, err, is.Nil())
 			then.AssertThat(t, hash, is.EqualTo(test.expectedVal))

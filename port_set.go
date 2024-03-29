@@ -172,24 +172,36 @@ func comparePortSettings(name Setting, defaultValue string, newValue string) (st
 }
 
 func requestPortSettings(args *GlobalOptions, host string) (portSettings []Port, hash string, err error) {
-
-	url := fmt.Sprintf("http://%s/dashboard.cgi", host)
-
-	portData, err := requestPage(args, host, url)
+	model, _, err := readTokenAndModel2GlobalOptions(args, host)
 	if err != nil {
 		return portSettings, hash, err
 	}
 
-	if checkIsLoginRequired(portData) {
+	var requestUrl string
+	if isModel30x(model) {
+		requestUrl = fmt.Sprintf("http://%s/dashboard.cgi", host)
+	} else if isModel316(model) {
+		requestUrl = fmt.Sprintf("http://%s/iss/specific/dashboard.html", host)
+	} else {
+		panic("model not supported")
+	}
+
+	dashboardData, err := requestPage(args, host, requestUrl)
+	if err != nil {
+		return portSettings, hash, err
+	}
+
+	if checkIsLoginRequired(dashboardData) {
 		return portSettings, hash, errors.New("no content. please, (re-)login first")
 	}
 
-	hash, err = findHashInHtml(strings.NewReader(portData))
+	hash, err = findHashInHtml(model, strings.NewReader(dashboardData))
 	if err != nil {
 		return portSettings, hash, err
 	}
 
-	portSettings, err = findPortSettingsInHtml(strings.NewReader(portData))
+	portSettings, err = findPortSettingsInHtml(model, strings.NewReader(dashboardData))
+
 	if err != nil {
 		return portSettings, hash, err
 	}
@@ -199,6 +211,6 @@ func requestPortSettings(args *GlobalOptions, host string) (portSettings []Port,
 }
 
 func requestPortSettingsUpdate(args *GlobalOptions, host string, data string) (string, error) {
-	url := fmt.Sprintf("http://%s/port_status.cgi", host)
-	return postPage(args, host, url, data)
+	requestUrl := fmt.Sprintf("http://%s/port_status.cgi", host)
+	return postPage(args, host, requestUrl, data)
 }
