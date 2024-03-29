@@ -37,9 +37,9 @@ func TestFindPortSettingsInHtml(t *testing.T) {
 			expectedSettingsLength:   16,
 			expectedIndex:            1,
 			expectedName:             "port name 1",
-			expectedSpeed:            "Auto",
-			expectedIngressRateLimit: "No Limit",
-			expectedEgressRateLimit:  "No Limit",
+			expectedSpeed:            "1",
+			expectedIngressRateLimit: "1",
+			expectedEgressRateLimit:  "1",
 			expectedFlowControl:      "OFF",
 		},
 	}
