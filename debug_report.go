@@ -12,9 +12,8 @@ func (drc *DebugReportCommand) Run(args *GlobalOptions) error {
 	args.Verbose = true
 	model, _, err := readTokenAndModel2GlobalOptions(args, drc.Address)
 	if err != nil {
+		println("Warning, prior error: " + err.Error())
 		printDebugNotLoggedIn(args, drc.Address, err)
-	} else {
-		println("Error: " + err.Error())
 	}
 	printDebugLoggedIn(args, model, drc.Address)
 	return nil
