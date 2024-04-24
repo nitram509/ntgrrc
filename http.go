@@ -26,7 +26,12 @@ func doHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, host s
 	}
 
 	if isModel316(model) {
-		requestUrl = requestUrl + "?Gambit=" + token
+		if strings.Contains(requestUrl, "?") {
+			splits := strings.Split(requestUrl, "?")
+			requestUrl = splits[0] + "?Gambit=" + token + "&" + splits[1]
+		} else {
+			requestUrl = requestUrl + "?Gambit=" + token
+		}
 	}
 
 	req, err := http.NewRequest(httpMethod, requestUrl, strings.NewReader(requestBody))

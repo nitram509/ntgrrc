@@ -85,7 +85,7 @@ func requestPoePortStatusPage(args *GlobalOptions, host string) (string, error) 
 		return requestPage(args, host, url)
 	}
 	if isModel316(model) {
-		url := fmt.Sprintf("http://%s/iss/specific/poe.html", host)
+		url := fmt.Sprintf("http://%s/iss/specific/poePortStatus.html?GetData=TRUE", host)
 		return requestPage(args, host, url)
 	}
 	panic("model not supported")

@@ -15,12 +15,18 @@
           <label class="label-3 mt-25">Uninterrupted PoE</label>
           <p class="description-1 para-after-1">Keeps PoE devices powered on even when soft rebooting the switch.</p>
           <div class="clearfix"></div>
-          <div class="custom-switch-1">
-            <div id="switchToggleDiv" class="body-text switch-container">
-              <label id="switchToggleLabel" class="switch-control" onclick="toggleSwitch(this);">
-                <input data-save id="uninterruptedPoeStatus" onclick="submitUninterruptedPoE();" class="ios-switch bigswitch" type="checkbox" >
-                <div class="switchWrapper"><div></div></div>
-              </label>
+          <div class="data-cover">
+            <div class="custom-switch-1 uninterrupted-poe-switch">
+              <div id="switchToggleDiv" class="body-text switch-container">
+                <label id="switchToggleLabel" class="switch-control" onclick="toggleSwitch(this);">
+                  <input data-save id="uninterruptedPoeStatus" name="uninterruptedPoeStatus" class="ios-switch bigswitch" type="checkbox" checked>
+                  <div class="switchWrapper"><div></div></div>
+                </label>
+              </div>
+            </div>
+            <div class="control-buttons-1 uninterrupted-PoE-buttons">
+              <a class="anchor-1 disable-btn" href="javascript:void(0)">CANCEL</a>
+              <a class="anchor-2 disable-btn" href="javascript:void(0)">APPLY</a>
             </div>
           </div>
           <label class="label-3 mt-25">Power Cycle Ports</label>
@@ -99,7 +105,7 @@
                     </table>
                 </div>
                 <!--port-status-wrap-->
-                
+
                 <div class="port-wrap port-led-wrap">
                   <div class="panel panel-default slide-up-down db-close ">
                     <div id="headingOne" class="panel-heading" role="tab">
@@ -108,16 +114,16 @@
                           <table class="table-line table-poe">
                             <tr class="thead-1 collapsed">
                               <td width="30%">
-                                <span class="bold-title port-number">1</span>
-                                
+                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>1&nbsp;-&nbsp;uplink<span></span>
+
                               </td>
                               <td width="30%">
                                 <span  width="30%" class="bold-title admin-state">Enable</span>
-                                
+
                               </td>
                               <td width="40%">
                                 <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
-                                
+
                                 <div class="poe-arrow">
                                   <span class="icon-I-arrow-down arrow-right"></span>
                                 </div>
@@ -134,24 +140,31 @@
                         <div class="info-col">
                           <p class="light-title">Port Priority</p>
                           <p class="bold-title port-priority">Low</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Power Limit Type</p>
                           <p class="bold-title Power-Limit-Type-text">User</p>
-                          
+
                         </div>
                       </div>
                       <div class="info-row">
                         <div class="info-col">
                           <p class="light-title">Power Limit (W)</p>
                           <p class="bold-title Power-Limit-text">30.0</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Detection Type</p>
                           <p class="bold-title Detection-Type-text">IEEE802</p>
-                          
+
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Longer Detection Time</p>
+                          <p class="bold-title Longer-Detection-text">Disable</p>
+
                         </div>
                       </div>
                       <div class="info-row">
@@ -246,8 +259,23 @@
                               	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
                                 <li class="active"><a href="javascript:void(0);">Legacy</a></li>
                                 <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
-                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="hid-txt">4pt 802.3af + Legacy</a></li>
                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Longer Detection Time</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="longerDetection" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -261,7 +289,7 @@
                   </div>
                 </div>
                 <! PARAM STOP>
-                
+
                 <div class="port-wrap port-led-wrap">
                   <div class="panel panel-default slide-up-down db-close ">
                     <div id="headingOne" class="panel-heading" role="tab">
@@ -270,16 +298,16 @@
                           <table class="table-line table-poe">
                             <tr class="thead-1 collapsed">
                               <td width="30%">
-                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>2&nbsp;-&nbsp;AGER 31 SUR Tech<span></span>
-                                
+                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>2&nbsp;-&nbsp;nas<span></span>
+
                               </td>
                               <td width="30%">
                                 <span  width="30%" class="bold-title admin-state">Enable</span>
-                                
+
                               </td>
                               <td width="40%">
                                 <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
-                                
+
                                 <div class="poe-arrow">
                                   <span class="icon-I-arrow-down arrow-right"></span>
                                 </div>
@@ -296,24 +324,31 @@
                         <div class="info-col">
                           <p class="light-title">Port Priority</p>
                           <p class="bold-title port-priority">Low</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Power Limit Type</p>
                           <p class="bold-title Power-Limit-Type-text">User</p>
-                          
+
                         </div>
                       </div>
                       <div class="info-row">
                         <div class="info-col">
                           <p class="light-title">Power Limit (W)</p>
                           <p class="bold-title Power-Limit-text">30.0</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Detection Type</p>
                           <p class="bold-title Detection-Type-text">IEEE802</p>
-                          
+
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Longer Detection Time</p>
+                          <p class="bold-title Longer-Detection-text">Disable</p>
+
                         </div>
                       </div>
                       <div class="info-row">
@@ -408,8 +443,23 @@
                               	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
                                 <li class="active"><a href="javascript:void(0);">Legacy</a></li>
                                 <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
-                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="hid-txt">4pt 802.3af + Legacy</a></li>
                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Longer Detection Time</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="longerDetection" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -423,7 +473,7 @@
                   </div>
                 </div>
                 <! PARAM STOP>
-                
+
                 <div class="port-wrap port-led-wrap">
                   <div class="panel panel-default slide-up-down db-close ">
                     <div id="headingOne" class="panel-heading" role="tab">
@@ -432,16 +482,16 @@
                           <table class="table-line table-poe">
                             <tr class="thead-1 collapsed">
                               <td width="30%">
-                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>3&nbsp;-&nbsp;AGER 31 IN<span></span>
-                                
+                                <span class="bold-title port-number">3</span>
+
                               </td>
                               <td width="30%">
                                 <span  width="30%" class="bold-title admin-state">Enable</span>
-                                
+
                               </td>
                               <td width="40%">
                                 <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
-                                
+
                                 <div class="poe-arrow">
                                   <span class="icon-I-arrow-down arrow-right"></span>
                                 </div>
@@ -458,24 +508,31 @@
                         <div class="info-col">
                           <p class="light-title">Port Priority</p>
                           <p class="bold-title port-priority">Low</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Power Limit Type</p>
                           <p class="bold-title Power-Limit-Type-text">User</p>
-                          
+
                         </div>
                       </div>
                       <div class="info-row">
                         <div class="info-col">
                           <p class="light-title">Power Limit (W)</p>
                           <p class="bold-title Power-Limit-text">30.0</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Detection Type</p>
                           <p class="bold-title Detection-Type-text">IEEE802</p>
-                          
+
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Longer Detection Time</p>
+                          <p class="bold-title Longer-Detection-text">Disable</p>
+
                         </div>
                       </div>
                       <div class="info-row">
@@ -570,8 +627,23 @@
                               	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
                                 <li class="active"><a href="javascript:void(0);">Legacy</a></li>
                                 <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
-                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="hid-txt">4pt 802.3af + Legacy</a></li>
                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Longer Detection Time</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="longerDetection" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -585,7 +657,7 @@
                   </div>
                 </div>
                 <! PARAM STOP>
-                
+
                 <div class="port-wrap port-led-wrap">
                   <div class="panel panel-default slide-up-down db-close ">
                     <div id="headingOne" class="panel-heading" role="tab">
@@ -594,16 +666,16 @@
                           <table class="table-line table-poe">
                             <tr class="thead-1 collapsed">
                               <td width="30%">
-                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>4&nbsp;-&nbsp;AGER 31 PARK<span></span>
-                                
+                                <span class="bold-title port-number">4</span>
+
                               </td>
                               <td width="30%">
                                 <span  width="30%" class="bold-title admin-state">Enable</span>
-                                
+
                               </td>
                               <td width="40%">
                                 <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
-                                
+
                                 <div class="poe-arrow">
                                   <span class="icon-I-arrow-down arrow-right"></span>
                                 </div>
@@ -620,24 +692,31 @@
                         <div class="info-col">
                           <p class="light-title">Port Priority</p>
                           <p class="bold-title port-priority">Low</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Power Limit Type</p>
                           <p class="bold-title Power-Limit-Type-text">User</p>
-                          
+
                         </div>
                       </div>
                       <div class="info-row">
                         <div class="info-col">
                           <p class="light-title">Power Limit (W)</p>
                           <p class="bold-title Power-Limit-text">30.0</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Detection Type</p>
                           <p class="bold-title Detection-Type-text">IEEE802</p>
-                          
+
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Longer Detection Time</p>
+                          <p class="bold-title Longer-Detection-text">Disable</p>
+
                         </div>
                       </div>
                       <div class="info-row">
@@ -732,8 +811,23 @@
                               	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
                                 <li class="active"><a href="javascript:void(0);">Legacy</a></li>
                                 <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
-                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="hid-txt">4pt 802.3af + Legacy</a></li>
                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Longer Detection Time</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="longerDetection" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -747,7 +841,7 @@
                   </div>
                 </div>
                 <! PARAM STOP>
-                
+
                 <div class="port-wrap port-led-wrap">
                   <div class="panel panel-default slide-up-down db-close ">
                     <div id="headingOne" class="panel-heading" role="tab">
@@ -757,15 +851,15 @@
                             <tr class="thead-1 collapsed">
                               <td width="30%">
                                 <span class="bold-title port-number">5</span>
-                                
+
                               </td>
                               <td width="30%">
                                 <span  width="30%" class="bold-title admin-state">Enable</span>
-                                
+
                               </td>
                               <td width="40%">
                                 <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
-                                
+
                                 <div class="poe-arrow">
                                   <span class="icon-I-arrow-down arrow-right"></span>
                                 </div>
@@ -782,24 +876,31 @@
                         <div class="info-col">
                           <p class="light-title">Port Priority</p>
                           <p class="bold-title port-priority">Low</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Power Limit Type</p>
                           <p class="bold-title Power-Limit-Type-text">User</p>
-                          
+
                         </div>
                       </div>
                       <div class="info-row">
                         <div class="info-col">
                           <p class="light-title">Power Limit (W)</p>
                           <p class="bold-title Power-Limit-text">30.0</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Detection Type</p>
                           <p class="bold-title Detection-Type-text">IEEE802</p>
-                          
+
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Longer Detection Time</p>
+                          <p class="bold-title Longer-Detection-text">Disable</p>
+
                         </div>
                       </div>
                       <div class="info-row">
@@ -894,8 +995,23 @@
                               	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
                                 <li class="active"><a href="javascript:void(0);">Legacy</a></li>
                                 <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
-                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="hid-txt">4pt 802.3af + Legacy</a></li>
                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Longer Detection Time</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="longerDetection" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -909,7 +1025,7 @@
                   </div>
                 </div>
                 <! PARAM STOP>
-                
+
                 <div class="port-wrap port-led-wrap">
                   <div class="panel panel-default slide-up-down db-close ">
                     <div id="headingOne" class="panel-heading" role="tab">
@@ -919,15 +1035,15 @@
                             <tr class="thead-1 collapsed">
                               <td width="30%">
                                 <span class="bold-title port-number">6</span>
-                                
+
                               </td>
                               <td width="30%">
                                 <span  width="30%" class="bold-title admin-state">Enable</span>
-                                
+
                               </td>
                               <td width="40%">
                                 <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
-                                
+
                                 <div class="poe-arrow">
                                   <span class="icon-I-arrow-down arrow-right"></span>
                                 </div>
@@ -944,24 +1060,31 @@
                         <div class="info-col">
                           <p class="light-title">Port Priority</p>
                           <p class="bold-title port-priority">Low</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Power Limit Type</p>
                           <p class="bold-title Power-Limit-Type-text">User</p>
-                          
+
                         </div>
                       </div>
                       <div class="info-row">
                         <div class="info-col">
                           <p class="light-title">Power Limit (W)</p>
                           <p class="bold-title Power-Limit-text">30.0</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Detection Type</p>
                           <p class="bold-title Detection-Type-text">IEEE802</p>
-                          
+
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Longer Detection Time</p>
+                          <p class="bold-title Longer-Detection-text">Disable</p>
+
                         </div>
                       </div>
                       <div class="info-row">
@@ -1056,8 +1179,23 @@
                               	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
                                 <li class="active"><a href="javascript:void(0);">Legacy</a></li>
                                 <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
-                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="hid-txt">4pt 802.3af + Legacy</a></li>
                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Longer Detection Time</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="longerDetection" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -1071,7 +1209,7 @@
                   </div>
                 </div>
                 <! PARAM STOP>
-                
+
                 <div class="port-wrap port-led-wrap">
                   <div class="panel panel-default slide-up-down db-close ">
                     <div id="headingOne" class="panel-heading" role="tab">
@@ -1080,16 +1218,16 @@
                           <table class="table-line table-poe">
                             <tr class="thead-1 collapsed">
                               <td width="30%">
-                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>7&nbsp;-&nbsp;AGER 31 NORTE<span></span>
-                                
+                                <span class="bold-title port-number">7</span>
+
                               </td>
                               <td width="30%">
                                 <span  width="30%" class="bold-title admin-state">Enable</span>
-                                
+
                               </td>
                               <td width="40%">
                                 <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
-                                
+
                                 <div class="poe-arrow">
                                   <span class="icon-I-arrow-down arrow-right"></span>
                                 </div>
@@ -1106,24 +1244,31 @@
                         <div class="info-col">
                           <p class="light-title">Port Priority</p>
                           <p class="bold-title port-priority">Low</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Power Limit Type</p>
                           <p class="bold-title Power-Limit-Type-text">User</p>
-                          
+
                         </div>
                       </div>
                       <div class="info-row">
                         <div class="info-col">
                           <p class="light-title">Power Limit (W)</p>
                           <p class="bold-title Power-Limit-text">30.0</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Detection Type</p>
                           <p class="bold-title Detection-Type-text">IEEE802</p>
-                          
+
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Longer Detection Time</p>
+                          <p class="bold-title Longer-Detection-text">Disable</p>
+
                         </div>
                       </div>
                       <div class="info-row">
@@ -1218,8 +1363,23 @@
                               	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
                                 <li class="active"><a href="javascript:void(0);">Legacy</a></li>
                                 <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
-                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="hid-txt">4pt 802.3af + Legacy</a></li>
                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Longer Detection Time</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="longerDetection" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -1233,7 +1393,7 @@
                   </div>
                 </div>
                 <! PARAM STOP>
-                
+
                 <div class="port-wrap port-led-wrap">
                   <div class="panel panel-default slide-up-down db-close ">
                     <div id="headingOne" class="panel-heading" role="tab">
@@ -1242,16 +1402,16 @@
                           <table class="table-line table-poe">
                             <tr class="thead-1 collapsed">
                               <td width="30%">
-                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>8&nbsp;-&nbsp;AGER 31 GABINETE<span></span>
-                                
+                                <span class="bold-title port-number">8</span>
+
                               </td>
                               <td width="30%">
                                 <span  width="30%" class="bold-title admin-state">Enable</span>
-                                
+
                               </td>
                               <td width="40%">
                                 <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
-                                
+
                                 <div class="poe-arrow">
                                   <span class="icon-I-arrow-down arrow-right"></span>
                                 </div>
@@ -1268,24 +1428,31 @@
                         <div class="info-col">
                           <p class="light-title">Port Priority</p>
                           <p class="bold-title port-priority">Low</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Power Limit Type</p>
                           <p class="bold-title Power-Limit-Type-text">User</p>
-                          
+
                         </div>
                       </div>
                       <div class="info-row">
                         <div class="info-col">
                           <p class="light-title">Power Limit (W)</p>
                           <p class="bold-title Power-Limit-text">30.0</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Detection Type</p>
                           <p class="bold-title Detection-Type-text">IEEE802</p>
-                          
+
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Longer Detection Time</p>
+                          <p class="bold-title Longer-Detection-text">Disable</p>
+
                         </div>
                       </div>
                       <div class="info-row">
@@ -1380,8 +1547,23 @@
                               	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
                                 <li class="active"><a href="javascript:void(0);">Legacy</a></li>
                                 <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
-                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="hid-txt">4pt 802.3af + Legacy</a></li>
                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Longer Detection Time</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="longerDetection" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -1395,7 +1577,7 @@
                   </div>
                 </div>
                 <! PARAM STOP>
-                
+
                 <div class="port-wrap port-led-wrap">
                   <div class="panel panel-default slide-up-down db-close ">
                     <div id="headingOne" class="panel-heading" role="tab">
@@ -1404,16 +1586,16 @@
                           <table class="table-line table-poe">
                             <tr class="thead-1 collapsed">
                               <td width="30%">
-                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>9&nbsp;-&nbsp;AGER 31 PUERTA<span></span>
-                                
+                                <span class="bold-title port-number">9</span>
+
                               </td>
                               <td width="30%">
                                 <span  width="30%" class="bold-title admin-state">Enable</span>
-                                
+
                               </td>
                               <td width="40%">
                                 <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
-                                
+
                                 <div class="poe-arrow">
                                   <span class="icon-I-arrow-down arrow-right"></span>
                                 </div>
@@ -1430,24 +1612,31 @@
                         <div class="info-col">
                           <p class="light-title">Port Priority</p>
                           <p class="bold-title port-priority">Low</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Power Limit Type</p>
                           <p class="bold-title Power-Limit-Type-text">User</p>
-                          
+
                         </div>
                       </div>
                       <div class="info-row">
                         <div class="info-col">
                           <p class="light-title">Power Limit (W)</p>
                           <p class="bold-title Power-Limit-text">30.0</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Detection Type</p>
                           <p class="bold-title Detection-Type-text">IEEE802</p>
-                          
+
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Longer Detection Time</p>
+                          <p class="bold-title Longer-Detection-text">Disable</p>
+
                         </div>
                       </div>
                       <div class="info-row">
@@ -1542,8 +1731,23 @@
                               	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
                                 <li class="active"><a href="javascript:void(0);">Legacy</a></li>
                                 <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
-                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="hid-txt">4pt 802.3af + Legacy</a></li>
                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Longer Detection Time</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="longerDetection" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -1557,7 +1761,7 @@
                   </div>
                 </div>
                 <! PARAM STOP>
-                
+
                 <div class="port-wrap port-led-wrap">
                   <div class="panel panel-default slide-up-down db-close ">
                     <div id="headingOne" class="panel-heading" role="tab">
@@ -1566,16 +1770,16 @@
                           <table class="table-line table-poe">
                             <tr class="thead-1 collapsed">
                               <td width="30%">
-                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>10&nbsp;-&nbsp;Raspi Poller<span></span>
-                                
+                                <span class="bold-title port-number">10</span>
+
                               </td>
                               <td width="30%">
                                 <span  width="30%" class="bold-title admin-state">Enable</span>
-                                
+
                               </td>
                               <td width="40%">
                                 <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
-                                
+
                                 <div class="poe-arrow">
                                   <span class="icon-I-arrow-down arrow-right"></span>
                                 </div>
@@ -1592,24 +1796,31 @@
                         <div class="info-col">
                           <p class="light-title">Port Priority</p>
                           <p class="bold-title port-priority">Low</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Power Limit Type</p>
                           <p class="bold-title Power-Limit-Type-text">User</p>
-                          
+
                         </div>
                       </div>
                       <div class="info-row">
                         <div class="info-col">
                           <p class="light-title">Power Limit (W)</p>
                           <p class="bold-title Power-Limit-text">30.0</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Detection Type</p>
                           <p class="bold-title Detection-Type-text">IEEE802</p>
-                          
+
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Longer Detection Time</p>
+                          <p class="bold-title Longer-Detection-text">Disable</p>
+
                         </div>
                       </div>
                       <div class="info-row">
@@ -1704,8 +1915,23 @@
                               	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
                                 <li class="active"><a href="javascript:void(0);">Legacy</a></li>
                                 <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
-                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="hid-txt">4pt 802.3af + Legacy</a></li>
                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Longer Detection Time</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="longerDetection" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -1719,7 +1945,7 @@
                   </div>
                 </div>
                 <! PARAM STOP>
-                
+
                 <div class="port-wrap port-led-wrap">
                   <div class="panel panel-default slide-up-down db-close ">
                     <div id="headingOne" class="panel-heading" role="tab">
@@ -1728,16 +1954,16 @@
                           <table class="table-line table-poe">
                             <tr class="thead-1 collapsed">
                               <td width="30%">
-                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>11&nbsp;-&nbsp;DAP-3711<span></span>
-                                
+                                <span class="bold-title port-number">11</span>
+
                               </td>
                               <td width="30%">
                                 <span  width="30%" class="bold-title admin-state">Enable</span>
-                                
+
                               </td>
                               <td width="40%">
                                 <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
-                                
+
                                 <div class="poe-arrow">
                                   <span class="icon-I-arrow-down arrow-right"></span>
                                 </div>
@@ -1754,24 +1980,31 @@
                         <div class="info-col">
                           <p class="light-title">Port Priority</p>
                           <p class="bold-title port-priority">Low</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Power Limit Type</p>
                           <p class="bold-title Power-Limit-Type-text">User</p>
-                          
+
                         </div>
                       </div>
                       <div class="info-row">
                         <div class="info-col">
                           <p class="light-title">Power Limit (W)</p>
                           <p class="bold-title Power-Limit-text">30.0</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Detection Type</p>
                           <p class="bold-title Detection-Type-text">IEEE802</p>
-                          
+
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Longer Detection Time</p>
+                          <p class="bold-title Longer-Detection-text">Disable</p>
+
                         </div>
                       </div>
                       <div class="info-row">
@@ -1866,8 +2099,23 @@
                               	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
                                 <li class="active"><a href="javascript:void(0);">Legacy</a></li>
                                 <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
-                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="hid-txt">4pt 802.3af + Legacy</a></li>
                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Longer Detection Time</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="longerDetection" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -1881,7 +2129,7 @@
                   </div>
                 </div>
                 <! PARAM STOP>
-                
+
                 <div class="port-wrap port-led-wrap">
                   <div class="panel panel-default slide-up-down db-close ">
                     <div id="headingOne" class="panel-heading" role="tab">
@@ -1890,16 +2138,16 @@
                           <table class="table-line table-poe">
                             <tr class="thead-1 collapsed">
                               <td width="30%">
-                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>12&nbsp;-&nbsp;Stratum 1 Server<span></span>
-                                
+                                <span class="bold-title port-number">12</span>
+
                               </td>
                               <td width="30%">
                                 <span  width="30%" class="bold-title admin-state">Enable</span>
-                                
+
                               </td>
                               <td width="40%">
                                 <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
-                                
+
                                 <div class="poe-arrow">
                                   <span class="icon-I-arrow-down arrow-right"></span>
                                 </div>
@@ -1916,24 +2164,31 @@
                         <div class="info-col">
                           <p class="light-title">Port Priority</p>
                           <p class="bold-title port-priority">Low</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Power Limit Type</p>
                           <p class="bold-title Power-Limit-Type-text">User</p>
-                          
+
                         </div>
                       </div>
                       <div class="info-row">
                         <div class="info-col">
                           <p class="light-title">Power Limit (W)</p>
                           <p class="bold-title Power-Limit-text">30.0</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Detection Type</p>
                           <p class="bold-title Detection-Type-text">IEEE802</p>
-                          
+
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Longer Detection Time</p>
+                          <p class="bold-title Longer-Detection-text">Disable</p>
+
                         </div>
                       </div>
                       <div class="info-row">
@@ -2028,8 +2283,23 @@
                               	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
                                 <li class="active"><a href="javascript:void(0);">Legacy</a></li>
                                 <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
-                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="hid-txt">4pt 802.3af + Legacy</a></li>
                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Longer Detection Time</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="longerDetection" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -2043,7 +2313,7 @@
                   </div>
                 </div>
                 <! PARAM STOP>
-                
+
                 <div class="port-wrap port-led-wrap">
                   <div class="panel panel-default slide-up-down db-close ">
                     <div id="headingOne" class="panel-heading" role="tab">
@@ -2053,15 +2323,15 @@
                             <tr class="thead-1 collapsed">
                               <td width="30%">
                                 <span class="bold-title port-number">13</span>
-                                
+
                               </td>
                               <td width="30%">
                                 <span  width="30%" class="bold-title admin-state">Enable</span>
-                                
+
                               </td>
                               <td width="40%">
                                 <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
-                                
+
                                 <div class="poe-arrow">
                                   <span class="icon-I-arrow-down arrow-right"></span>
                                 </div>
@@ -2078,24 +2348,31 @@
                         <div class="info-col">
                           <p class="light-title">Port Priority</p>
                           <p class="bold-title port-priority">Low</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Power Limit Type</p>
                           <p class="bold-title Power-Limit-Type-text">User</p>
-                          
+
                         </div>
                       </div>
                       <div class="info-row">
                         <div class="info-col">
                           <p class="light-title">Power Limit (W)</p>
                           <p class="bold-title Power-Limit-text">30.0</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Detection Type</p>
                           <p class="bold-title Detection-Type-text">IEEE802</p>
-                          
+
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Longer Detection Time</p>
+                          <p class="bold-title Longer-Detection-text">Disable</p>
+
                         </div>
                       </div>
                       <div class="info-row">
@@ -2190,8 +2467,23 @@
                               	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
                                 <li class="active"><a href="javascript:void(0);">Legacy</a></li>
                                 <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
-                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="hid-txt">4pt 802.3af + Legacy</a></li>
                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Longer Detection Time</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="longerDetection" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -2205,7 +2497,7 @@
                   </div>
                 </div>
                 <! PARAM STOP>
-                
+
                 <div class="port-wrap port-led-wrap">
                   <div class="panel panel-default slide-up-down db-close ">
                     <div id="headingOne" class="panel-heading" role="tab">
@@ -2214,16 +2506,16 @@
                           <table class="table-line table-poe">
                             <tr class="thead-1 collapsed">
                               <td width="30%">
-                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>14&nbsp;-&nbsp;AGER 31 IN GIRA<span></span>
-                                
+                                <span class="bold-title port-number">14</span>
+
                               </td>
                               <td width="30%">
                                 <span  width="30%" class="bold-title admin-state">Enable</span>
-                                
+
                               </td>
                               <td width="40%">
                                 <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
-                                
+
                                 <div class="poe-arrow">
                                   <span class="icon-I-arrow-down arrow-right"></span>
                                 </div>
@@ -2240,24 +2532,31 @@
                         <div class="info-col">
                           <p class="light-title">Port Priority</p>
                           <p class="bold-title port-priority">Low</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Power Limit Type</p>
                           <p class="bold-title Power-Limit-Type-text">User</p>
-                          
+
                         </div>
                       </div>
                       <div class="info-row">
                         <div class="info-col">
                           <p class="light-title">Power Limit (W)</p>
                           <p class="bold-title Power-Limit-text">30.0</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Detection Type</p>
                           <p class="bold-title Detection-Type-text">IEEE802</p>
-                          
+
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Longer Detection Time</p>
+                          <p class="bold-title Longer-Detection-text">Disable</p>
+
                         </div>
                       </div>
                       <div class="info-row">
@@ -2352,8 +2651,23 @@
                               	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
                                 <li class="active"><a href="javascript:void(0);">Legacy</a></li>
                                 <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
-                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="hid-txt">4pt 802.3af + Legacy</a></li>
                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Longer Detection Time</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="longerDetection" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -2367,7 +2681,7 @@
                   </div>
                 </div>
                 <! PARAM STOP>
-                
+
                 <div class="port-wrap port-led-wrap">
                   <div class="panel panel-default slide-up-down db-close ">
                     <div id="headingOne" class="panel-heading" role="tab">
@@ -2376,16 +2690,16 @@
                           <table class="table-line table-poe">
                             <tr class="thead-1 collapsed">
                               <td width="30%">
-                                <span class="bold-title port-number"><span class='edit-rate-limit-port-item'>15&nbsp;-&nbsp;Mesu 200<span></span>
-                                
+                                <span class="bold-title port-number">15</span>
+
                               </td>
                               <td width="30%">
                                 <span  width="30%" class="bold-title admin-state">Enable</span>
-                                
+
                               </td>
                               <td width="40%">
                                 <span  width="40%" class="bold-title Power-Mode-text">802.3at</span>
-                                
+
                                 <div class="poe-arrow">
                                   <span class="icon-I-arrow-down arrow-right"></span>
                                 </div>
@@ -2402,24 +2716,31 @@
                         <div class="info-col">
                           <p class="light-title">Port Priority</p>
                           <p class="bold-title port-priority">Low</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Power Limit Type</p>
                           <p class="bold-title Power-Limit-Type-text">User</p>
-                          
+
                         </div>
                       </div>
                       <div class="info-row">
                         <div class="info-col">
                           <p class="light-title">Power Limit (W)</p>
                           <p class="bold-title Power-Limit-text">30.0</p>
-                          
+
                         </div>
                         <div class="info-col">
                           <p class="light-title">Detection Type</p>
                           <p class="bold-title Detection-Type-text">IEEE802</p>
-                          
+
+                        </div>
+                      </div>
+                      <div class="info-row">
+                        <div class="info-col">
+                          <p class="light-title">Longer Detection Time</p>
+                          <p class="bold-title Longer-Detection-text">Disable</p>
+
                         </div>
                       </div>
                       <div class="info-row">
@@ -2514,8 +2835,23 @@
                               	<li class="active"><a href="javascript:void(0);" style="display:none">No detection</a></li>
                                 <li class="active"><a href="javascript:void(0);">Legacy</a></li>
                                 <li class="active"><a href="javascript:void(0);">IEEE802</a></li>
-                                <li class="active"><a href="javascript:void(0);">4pt 802.3af + Legacy</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="hid-txt">4pt 802.3af + Legacy</a></li>
                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="info-row">
+                        <div class="info-col">
+                          <div class="text-wrap">
+                            <p class="normal-title">Longer Detection Time</p>
+                          </div>
+                          <div class="custom-switch-1">
+                            <div id="switchToggleDiv" class="body-text switch-container">
+                              <label id="switchToggleLabel" class="switch-control off" onclick="toggleSwitch(this);"><input data-save name="longerDetection" class="ios-switch bigswitch" type="checkbox">
+                                <div class="switchWrapper"><div></div></div>
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -2529,7 +2865,7 @@
                   </div>
                 </div>
                 <! PARAM STOP>
-                
+
                 <!--end-port-status-wrap-->
               </div>
               <div class="clearfix"></div>
@@ -2633,6 +2969,12 @@
         }
     }
 
+    function initUninterruptedPoeBtns() {
+        $(".switch-control [name='uninterruptedPoeStatus']").on("change", function(){
+            $(".uninterrupted-PoE-buttons .anchor-1, .uninterrupted-PoE-buttons .anchor-2").removeClass("disable-btn");
+        });
+    }
+
     $("#POE_SETTING, #POE_STATUS").on("click", ".slide-up-down", function() {
         var e = $(this);
         var parent = e.parents(".collapsed-wrap");
@@ -2680,6 +3022,11 @@
         $(this).find("a").addClass("active");
     });
 
+    initUninterruptedPoeBtns();
+    backupData($(".uninterrupted-poe-switch"));
+    $(".uninterrupted-PoE-buttons .anchor-1").click(recoverData);
+    $(".uninterrupted-PoE-buttons .anchor-2").click(submitUninterruptedPoE);
+
     var poePort = $(".poe-port-list-wrap input[type='checkbox']");
     poePort.click(function() {
       $('.custom-switch-1 .control-buttons-1 .anchor-2').addClass("disable-btn");
@@ -2698,7 +3045,7 @@
     });
 
     $(".custom-switch-1 .control-buttons-1 .anchor-2").click(submitResetPoePage);
-    var suburl = "/iss/specific/poePortStatus.html?Gambit=oidblfnbkfnclffflfja&GetData=TRUE";
+    var suburl = "/iss/specific/poePortStatus.html?Gambit=mlnjulsknljglgcbphohegffnjpgskigifkfhgsksljl&GetData=TRUE";
     $.ajax({
         url: suburl,
         type: "GET",

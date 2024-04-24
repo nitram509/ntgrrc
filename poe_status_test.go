@@ -51,7 +51,7 @@ func TestFindPortStatusInHtml(t *testing.T) {
 		},
 		{
 			model:                        "GS316EP",
-			fileName:                     "poePortStatus.html",
+			fileName:                     "poePortStatus_GetData_true.html",
 			expectedNumberOfStatuses:     15,
 			expectedPoePowerClass:        "3",
 			expectedPoePortStatus:        "Delivering Power",

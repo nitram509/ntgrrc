@@ -50,6 +50,8 @@ func printDebugLoggedIn(args *GlobalOptions, model NetgearModel, host string) {
 			fmt.Sprintf("http://%s/iss/specific/poe.html", host),
 			fmt.Sprintf("http://%s/iss/specific/poePortConf.html", host),
 			fmt.Sprintf("http://%s/iss/specific/poePortStatus.html", host),
+			fmt.Sprintf("http://%s/iss/specific/poePortStatus.html?GetData=TRUE", host),
+			fmt.Sprintf("http://%s/iss/specific/getPortRate.html", host),
 			fmt.Sprintf("http://%s/iss/specific/dashboard.html", host),
 			fmt.Sprintf("http://%s/iss/specific/homepage.html", host),
 		)
