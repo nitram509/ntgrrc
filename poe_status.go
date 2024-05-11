@@ -42,6 +42,16 @@ func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
 	}
 	var statuses []PoePortStatus
 	statuses, err = findPortStatusInHtml(args.model, strings.NewReader(statusPage))
+
+	// FIXME: remove
+	if len(statuses) == 0 {
+		println("DEBUG: status are zero")
+		println("--------")
+		println(string(statusPage))
+		println("--------")
+
+	}
+
 	if err != nil {
 		return err
 	}

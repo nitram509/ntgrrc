@@ -28,8 +28,7 @@ A green tick means it was successfully tested.
 Legend: \
 ✅ = successfully tested \
 ?  = unknown \
-experimental = partially tested, and could lack some features 
-
+experimental = partially tested, and could lack some features
 
 ## download & installation
 
