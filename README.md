@@ -83,6 +83,10 @@ Commands:
   port set --address=STRING --port=PORT,... [flags]
     set properties for a port number
 
+  debug-report --address=STRING [flags]
+    show information from the switch communication, useful for supporting
+    development and bug fixes
+
 Run "ntgrrc <command> --help" for more information on a command.
 ```
 <!-- MARKDOWN-AUTO-DOCS:END -->
