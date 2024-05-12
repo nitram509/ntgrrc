@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"strconv"
 	"strings"
 )
@@ -28,4 +29,16 @@ func parseFloat32(text string) float32 {
 func parseInt32(text string) int32 {
 	i64, _ := strconv.ParseInt(text, 10, 32)
 	return int32(i64)
+}
+
+func ensureModelIs30x(args *GlobalOptions, host string) error {
+	model, _, err := readTokenAndModel2GlobalOptions(args, host)
+	if err != nil {
+		return err
+	}
+	if !isModel30x(model) {
+		return errors.New("This command is not yet supported for your Netgear model. " +
+			"You might want to support the project by creating an issue on Github")
+	}
+	return nil
 }

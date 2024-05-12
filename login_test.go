@@ -1,18 +1,45 @@
 package main
 
 import (
-	_ "embed"
 	"github.com/corbym/gocrest/is"
 	"github.com/corbym/gocrest/then"
+	"os"
+	"path/filepath"
 	"strings"
 	"testing"
 )
 
-func TestGetSeedValueFromLoginHtml(t *testing.T) {
-	randomVal, err := getSeedValueFromLoginHtml(strings.NewReader(loginCgiHtml))
+func TestGetSeedValueFromLogin(t *testing.T) {
+	tests := []struct {
+		model        string
+		fileName     string
+		expectedSeed string
+	}{
+		{
+			model:        "GS305EP",
+			fileName:     "login.cgi.html",
+			expectedSeed: "1761741982",
+		},
+		{
+			model:        "GS308EPP",
+			fileName:     "login.cgi.html",
+			expectedSeed: "1387882569",
+		},
+		{
+			model:        "GS316EP",
+			fileName:     "login.html",
+			expectedSeed: "885340480",
+		},
+	}
+	for _, test := range tests {
+		t.Run(test.model, func(t *testing.T) {
+			html := loadTestFile(test.model, test.fileName)
+			randomVal, err := findSeedValueInLoginHtml(strings.NewReader(html))
 
-	then.AssertThat(t, randomVal, is.EqualTo("1761741982"))
-	then.AssertThat(t, err, is.Nil())
+			then.AssertThat(t, randomVal, is.EqualTo(test.expectedSeed))
+			then.AssertThat(t, err, is.Nil())
+		})
+	}
 }
 
 func TestEncryptPassword(t *testing.T) {
@@ -21,5 +48,18 @@ func TestEncryptPassword(t *testing.T) {
 	then.AssertThat(t, val, is.EqualTo("d1f4394e3e212ab4f06e08c54477a237"))
 }
 
-//go:embed test-data/login.cgi.html
-var loginCgiHtml string
+func TestFindGambitTokenInResponseHtml(t *testing.T) {
+	html := loadTestFile(string(GS316EP), "redirect.html")
+	gambit := findGambitTokenInResponseHtml(strings.NewReader(html))
+
+	then.AssertThat(t, gambit, is.EqualTo("chpbfghbcadbaamekjof"))
+}
+
+func loadTestFile(model string, fileName string) string {
+	fullFileName := filepath.Join("test-data", model, fileName)
+	bytes, err := os.ReadFile(fullFileName)
+	if err != nil {
+		panic(err)
+	}
+	return string(bytes)
+}

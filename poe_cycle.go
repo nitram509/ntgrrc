@@ -12,6 +12,11 @@ type PoeCyclePowerCommand struct {
 }
 
 func (poe *PoeCyclePowerCommand) Run(args *GlobalOptions) error {
+	err := ensureModelIs30x(args, poe.Address)
+	if err != nil {
+		return err
+	}
+
 	poeExt := &PoeExt{}
 
 	settings, err := requestPoeConfiguration(args, poe.Address, poeExt)

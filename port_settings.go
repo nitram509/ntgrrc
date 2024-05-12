@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/PuerkitoBio/goquery"
 	"io"
 	"strconv"
-
-	"github.com/PuerkitoBio/goquery"
+	"strings"
 )
 
 type PortCommand struct {
@@ -59,7 +59,17 @@ func prettyPrintPortSettings(format OutputFormat, settings []Port) {
 
 }
 
-func findPortSettingsInHtml(reader io.Reader) (ports []Port, err error) {
+func findPortSettingsInHtml(model NetgearModel, reader io.Reader) ([]Port, error) {
+	if isModel30x(model) {
+		return findPortSettingsInGs30xEPxHtml(reader)
+	}
+	if isModel316(model) {
+		return findPortSettingsInGs316EPxHtml(reader)
+	}
+	panic("model not supported")
+}
+
+func findPortSettingsInGs30xEPxHtml(reader io.Reader) (ports []Port, err error) {
 
 	doc, err := goquery.NewDocumentFromReader(reader)
 	if err != nil {
@@ -82,5 +92,40 @@ func findPortSettingsInHtml(reader io.Reader) (ports []Port, err error) {
 	})
 
 	return ports, nil
+}
 
+func findPortSettingsInGs316EPxHtml(reader io.Reader) (ports []Port, err error) {
+
+	doc, err := goquery.NewDocumentFromReader(reader)
+	if err != nil {
+		return ports, err
+	}
+
+	doc.Find("div.dashboard-port-status").Each(func(i int, s *goquery.Selection) {
+		s.Find("span.port-number").Each(func(i int, selection *goquery.Selection) {
+			ports = append(ports, Port{})
+		})
+
+		s.Find("span.port-number").Each(func(i int, selection *goquery.Selection) {
+			var id64, _ = strconv.ParseInt(strings.TrimSpace(selection.Text()), 10, 8)
+			ports[i].Index = int8(id64)
+		})
+		s.Find("span.port-name span.name").Each(func(i int, selection *goquery.Selection) {
+			ports[i].Name = strings.TrimSpace(selection.Text())
+		})
+		s.Find("p.speed-text").Each(func(i int, selection *goquery.Selection) {
+			ports[i].Speed = strings.TrimSpace(selection.Text())
+		})
+		s.Find("p.ingress-text").Each(func(i int, selection *goquery.Selection) {
+			ports[i].IngressRateLimit = strings.TrimSpace(selection.Text())
+		})
+		s.Find("p.egress-text").Each(func(i int, selection *goquery.Selection) {
+			ports[i].EgressRateLimit = strings.TrimSpace(selection.Text())
+		})
+		s.Find("p.flow-text").Each(func(i int, selection *goquery.Selection) {
+			ports[i].FlowControl = strings.TrimSpace(selection.Text())
+		})
+	})
+
+	return ports, nil
 }

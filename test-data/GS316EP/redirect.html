@@ -1,0 +1,16 @@
+<html>
+<head>
+    <script>
+        function loadHomePage()
+        {
+            sessionStorage.setItem("regFlag", "1");
+            document.forms[0].submit();
+        }
+    </script>
+</head>
+<body onload="loadHomePage()">
+<form method="post" action="/homepage.html">
+    <input type="hidden" name="Gambit" value="chpbfghbcadbaamekjof">
+</form>
+</body>
+</html>

@@ -33,6 +33,12 @@ func (login *LoginCommand) Run(args *GlobalOptions) error {
 		return errors.New("no password given")
 	}
 
+	model, err := detectNetgearModel(args, login.Address)
+	if err != nil {
+		return err
+	}
+	args.model = model
+
 	seedValue, err := getSeedValueFromSwitch(args, login.Address)
 	if err != nil {
 		return err
@@ -57,11 +63,25 @@ func promptForPassword(serverName string) (string, error) {
 }
 
 func doLogin(args *GlobalOptions, host string, encryptedPwd string) error {
-	url := fmt.Sprintf("http://%s/login.cgi", host)
+	var url string
+	if isModel30x(args.model) {
+		url = fmt.Sprintf("http://%s/login.cgi", host)
+	} else if isModel316(args.model) {
+		url = fmt.Sprintf("http://%s/redirect.html", host)
+	} else {
+		return errors.New("Unknown model not supported, please contact the developers ")
+	}
 	if args.Verbose {
 		println("login attempt: " + url)
 	}
-	formData := "password=" + encryptedPwd
+
+	var formData string
+	if isModel30x(args.model) {
+		formData = "password=" + encryptedPwd
+	} else if isModel316(args.model) {
+		formData = "LoginPassword=" + encryptedPwd
+	}
+
 	resp, err := http.Post(url, "application/x-www-form-urlencoded", strings.NewReader(formData))
 	if err != nil {
 		return err
@@ -70,14 +90,24 @@ func doLogin(args *GlobalOptions, host string, encryptedPwd string) error {
 	if args.Verbose {
 		println(resp.Status)
 	}
-	_, err = io.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return err
 	}
-	token := getSessionToken(resp)
-	if token == FailedAttempt && resp.StatusCode == http.StatusOK {
-		return errors.New("login request returned 200 OK, but response did not contain a session token (SID cookie value#). " +
-			"this is known behaviour from the switch. please, wait some minutes and tray again later")
+
+	var token string
+	if isModel30x(args.model) {
+		token = getSessionToken(resp)
+		if token == FailedAttempt && resp.StatusCode == http.StatusOK {
+			return errors.New("login request returned 200 OK, but response did not contain a session token ('SID' cookie). " +
+				"this is known behaviour from the switch. please, wait some minutes and tray again later")
+		}
+	}
+	if isModel316(args.model) {
+		token = findGambitTokenInResponseHtml(strings.NewReader(string(body)))
+		if token == FailedAttempt && resp.StatusCode == http.StatusOK {
+			return errors.New("login request returned 200 OK, but response did not contain a token ('Gambit' value in input field) ")
+		}
 	}
 
 	err = storeToken(args, host, token)
@@ -89,22 +119,52 @@ func doLogin(args *GlobalOptions, host string, encryptedPwd string) error {
 }
 
 func checkIsLoginRequired(httpResponseBody string) bool {
-	return len(httpResponseBody) < 10 || strings.Contains(httpResponseBody, "/login.cgi")
+	return len(httpResponseBody) < 10 ||
+		strings.Contains(httpResponseBody, "/login.cgi") ||
+		strings.Contains(httpResponseBody, "/wmi/login") ||
+		strings.Contains(httpResponseBody, "/redirect.html")
 }
 
 func getSessionToken(resp *http.Response) string {
 	cookie := resp.Header.Get("Set-Cookie")
-	const SessionIdPrefix = "SID="
-	if strings.HasPrefix(cookie, SessionIdPrefix) {
-		sidVal := cookie[len(SessionIdPrefix):]
-		split := strings.Split(sidVal, ";")
-		return split[0]
+	var sessionIdPrefixes = [...]string{
+		// can be extended, once GS316 will also use this pattern
+		"SID=", // GS305EPx, GS308EPx
+	}
+	for _, sessionIdPrefix := range sessionIdPrefixes {
+		if strings.HasPrefix(cookie, sessionIdPrefix) {
+			sidVal := cookie[len(sessionIdPrefix):]
+			split := strings.Split(sidVal, ";")
+			return split[0]
+		}
 	}
 	return FailedAttempt
 }
 
+func findGambitTokenInResponseHtml(reader io.Reader) (gambitToken string) {
+	gambitToken = FailedAttempt
+	doc, err := goquery.NewDocumentFromReader(reader)
+	if err == nil {
+		doc.Find("form").Each(func(i int, s *goquery.Selection) {
+			name, okName := s.Find("input[type=hidden]").Attr("name")
+			value, okValue := s.Find("input[type=hidden]").Attr("value")
+			if okName && name == "Gambit" && okValue {
+				gambitToken = value
+			}
+		})
+	}
+	return gambitToken
+}
+
 func getSeedValueFromSwitch(args *GlobalOptions, host string) (string, error) {
-	url := fmt.Sprintf("http://%s/login.cgi", host)
+	var url string
+	if isModel30x(args.model) {
+		url = fmt.Sprintf("http://%s/login.cgi", host)
+	} else if isModel316(args.model) {
+		url = fmt.Sprintf("http://%s/wmi/login", host)
+	} else {
+		return "", errors.New("Unknown model not supported, please contact the developers ")
+	}
 	if args.Verbose {
 		println("fetch seed value from: " + url)
 	}
@@ -117,14 +177,14 @@ func getSeedValueFromSwitch(args *GlobalOptions, host string) (string, error) {
 	}
 	defer resp.Body.Close()
 
-	seedValue, err := getSeedValueFromLoginHtml(resp.Body)
+	seedValue, err := findSeedValueInLoginHtml(resp.Body)
 	if err != nil {
 		return "", err
 	}
 	return seedValue, nil
 }
 
-func getSeedValueFromLoginHtml(reader io.Reader) (string, error) {
+func findSeedValueInLoginHtml(reader io.Reader) (string, error) {
 	doc, err := goquery.NewDocumentFromReader(reader)
 	if err != nil {
 		return "", err
@@ -142,7 +202,7 @@ func getSeedValueFromLoginHtml(reader io.Reader) (string, error) {
 func encryptPassword(password string, seedValue string) string {
 	mergedStr := specialMerge(password, seedValue)
 	hash := md5.New()
-	io.WriteString(hash, mergedStr)
+	_, _ = io.WriteString(hash, mergedStr)
 	return fmt.Sprintf("%x", hash.Sum(nil))
 }
 

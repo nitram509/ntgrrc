@@ -27,6 +27,11 @@ type PoeShowSettingsCommand struct {
 }
 
 func (poe *PoeShowSettingsCommand) Run(args *GlobalOptions) error {
+	err := ensureModelIs30x(args, poe.Address)
+	if err != nil {
+		return err
+	}
+
 	settingsPage, err := requestPoePortConfigPage(args, poe.Address)
 	if err != nil {
 		return err

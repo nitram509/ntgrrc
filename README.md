@@ -17,16 +17,18 @@ are very welcome**.
 
 A green tick means it was successfully tested. 
 
-| Firmware  | GS305EP | GS305EPP | GS308EP | GS308EPP |
-|-----------|---------|----------|---------|---------|
-| V1.0.0.8  | ✅       | ✅        | (likely) | ✅ |
-| v1.0.0.10 | ✅       | ✅        | (likely) | ✅ |
-| V1.0.1.1  | (likely) | (likely) | ✅ | (likely)|
+| Firmware  | GS305EP(P) | GS308EP  | GS308EPP | GS316EP(P)   |
+|-----------|------------|----------|----------|--------------|
+| V1.0.0.8  | ✅          | (likely) | ✅        | -            |
+| v1.0.0.10 | ✅          | (likely) | ✅        | -            |
+| V1.0.1.1  | (likely)   | ✅        | (likely) | -            |
+| V1.0.3.4  | -          | -        | -        | experimental |
+| V1.0.3.7  | -          | -        | -        | experimental |
 
 Legend: \
 ✅ = successfully tested \
-?  = unknown
-
+?  = unknown \
+experimental = The support for GS316xxx models is limited to showing the port status.
 
 ## download & installation
 
