@@ -39,6 +39,10 @@ type PoeExt struct {
 }
 
 func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
+	err := ensureModelIs30x(args, poe.Address)
+	if err != nil {
+		return err
+	}
 
 	poeExt := &PoeExt{}
 	var adminMode string

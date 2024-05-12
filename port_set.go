@@ -43,6 +43,11 @@ func (portSet *PortSetCommand) Run(args *GlobalOptions) error {
 		return err
 	}
 
+	err = ensureModelIs30x(args, portSet.Address)
+	if err != nil {
+		return err
+	}
+
 	for _, switchPort := range portSet.Ports {
 
 		if switchPort > len(settings) || switchPort < 1 {
