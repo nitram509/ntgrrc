@@ -1,6 +1,13 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.10.0
+
+* Add support for GS316EP(P) models - this is still experimental, as only showing the settings and status works; many thanks to @jsanchez73 and @crypto-smoke for testing and supporting this feature
+* Add new command `debug-report` to support contributing new models (and/or bug reports) from the users/community to the developers
+
+----
+
 ## v0.9.2
 
 * Fix issue #49 output a newline after successful login, or in promptForPassword
