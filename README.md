@@ -28,7 +28,7 @@ A green tick means it was successfully tested.
 Legend: \
 ✅ = successfully tested \
 ?  = unknown \
-experimental = partially tested, and could lack some features
+experimental = The support for GS316xxx models is limited to showing the port status.
 
 ## download & installation
 
