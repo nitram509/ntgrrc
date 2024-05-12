@@ -119,7 +119,10 @@ func doLogin(args *GlobalOptions, host string, encryptedPwd string) error {
 }
 
 func checkIsLoginRequired(httpResponseBody string) bool {
-	return len(httpResponseBody) < 10 || strings.Contains(httpResponseBody, "/login.cgi") || strings.Contains(httpResponseBody, "/redirect.html")
+	return len(httpResponseBody) < 10 ||
+		strings.Contains(httpResponseBody, "/login.cgi") ||
+		strings.Contains(httpResponseBody, "/wmi/login") ||
+		strings.Contains(httpResponseBody, "/redirect.html")
 }
 
 func getSessionToken(resp *http.Response) string {
