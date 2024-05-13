@@ -1,4 +1,4 @@
-module ntgrrc
+module github.com/nitram509/ntgrrc
 
 go 1.22
 
