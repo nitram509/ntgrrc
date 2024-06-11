@@ -2,6 +2,7 @@ package main
 
 import (
 	"strings"
+	"fmt"
 )
 
 func printMarkdownTable(header []string, content [][]string) {
@@ -24,7 +25,7 @@ func printMarkdownTable(header []string, content [][]string) {
 		line.WriteString(suffixToLength(h, lengths[i]))
 		line.WriteString(" |")
 	}
-	println(line.String())
+	fmt.Println(line.String())
 	line.Reset()
 
 	line.WriteString("|")
@@ -41,7 +42,7 @@ func printMarkdownTable(header []string, content [][]string) {
 			line.WriteString(suffixToLength(value, lengths[i]+1))
 		}
 		line.WriteString("|")
-		println(line.String())
+		fmt.Println(line.String())
 		line.Reset()
 	}
 
