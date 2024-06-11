@@ -12,7 +12,8 @@ const (
 	JsonFormat     PrintFormat = "json"
 )
 
-func PrettyPrintStatus(format PrintFormat, statuses []PoePortStatus) {
+// PrettyPrintPoePortStatus prints Markdown or JSON information of the PoePortStatus list items
+func PrettyPrintPoePortStatus(format PrintFormat, statuses []PoePortStatus) {
 	var header = []string{"Port ID", "Port Name", "Status", "PortPwr class", "Voltage (V)", "Current (mA)", "PortPwr (W)", "Temp. (°C)", "Error status"}
 	var content [][]string
 	for _, status := range statuses {

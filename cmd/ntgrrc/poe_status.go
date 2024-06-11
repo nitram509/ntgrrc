@@ -15,6 +15,6 @@ func (poe *PoeStatusCommand) Run(args *CliOptions) error {
 	}
 
 	status, err := session.GetPoePortStatus()
-	ntgrrc.PrettyPrintStatus(args.OutputFormat, status)
+	ntgrrc.PrettyPrintPoePortStatus(args.OutputFormat, status)
 	return err
 }

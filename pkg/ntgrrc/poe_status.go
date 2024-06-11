@@ -38,18 +38,18 @@ func (session *NtgrrcSession) GetPoePortStatus() ([]PoePortStatus, error) {
 	return statuses, nil
 }
 
-func requestPoePortStatusPage(args *NtgrrcSession, host string) (string, error) {
-	model, _, err := readTokenAndModel2GlobalOptions(args, host)
+func requestPoePortStatusPage(session *NtgrrcSession, host string) (string, error) {
+	model, _, err := readTokenAndModel2GlobalOptions(session, host)
 	if err != nil {
 		return "", err
 	}
 	if isModel30x(model) {
 		url := fmt.Sprintf("http://%s/getPoePortStatus.cgi", host)
-		return requestPage(args, host, url)
+		return requestPage(session, host, url)
 	}
 	if isModel316(model) {
 		url := fmt.Sprintf("http://%s/iss/specific/poePortStatus.html?GetData=TRUE", host)
-		return requestPage(args, host, url)
+		return requestPage(session, host, url)
 	}
 	panic("model not supported")
 }

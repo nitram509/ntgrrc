@@ -20,6 +20,7 @@ const (
 	GS316EPP NetgearModel = "GS316EPP"
 )
 
+// DetectNetgearModel connects to given IP or host name and tries to identify the Netgear switch model
 func (session *NtgrrcSession) DetectNetgearModel(host string) (NetgearModel, error) {
 	url := fmt.Sprintf("http://%s/", host)
 	if session.PrintVerbose {

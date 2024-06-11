@@ -25,3 +25,19 @@ func ExampleNtgrrcSession_DetectNetgearModel() {
 
 	// Output: GS316EP
 }
+
+func ExampleNtgrrcSession_GetPoePortStatus() {
+	host := "127.0.0.1"                              // the IP address or host name
+	host = host + fmt.Sprintf(":%d", mockServerPort) // only required in unit test context
+	passw := "secret"
+	session := NewSession()
+	err := session.DoLogin(host, passw)
+	if err != nil {
+		println(err)
+	}
+	status, err := session.GetPoePortStatus()
+	if err != nil {
+		println(err)
+	}
+	PrettyPrintPoePortStatus(MarkdownFormat, status) // print all status items
+}
