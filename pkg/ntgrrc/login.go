@@ -28,7 +28,7 @@ func (session *NtgrrcSession) DoLogin(address string, password string) error {
 
 	encryptedPwd := encryptPassword(password, seedValue)
 
-	err = doLoginRequest(session, password, encryptedPwd)
+	err = doLoginRequest(session, address, encryptedPwd)
 	if err != nil {
 		return err
 	}
@@ -37,23 +37,23 @@ func (session *NtgrrcSession) DoLogin(address string, password string) error {
 	return nil
 }
 
-func doLoginRequest(args *NtgrrcSession, host string, encryptedPwd string) error {
+func doLoginRequest(session *NtgrrcSession, host string, encryptedPwd string) error {
 	var url string
-	if isModel30x(args.model) {
+	if isModel30x(session.model) {
 		url = fmt.Sprintf("http://%s/login.cgi", host)
-	} else if isModel316(args.model) {
+	} else if isModel316(session.model) {
 		url = fmt.Sprintf("http://%s/redirect.html", host)
 	} else {
 		return errors.New("Unknown model not supported, please contact the developers ")
 	}
-	if args.PrintVerbose {
+	if session.PrintVerbose {
 		println("login attempt: " + url)
 	}
 
 	var formData string
-	if isModel30x(args.model) {
+	if isModel30x(session.model) {
 		formData = "password=" + encryptedPwd
-	} else if isModel316(args.model) {
+	} else if isModel316(session.model) {
 		formData = "LoginPassword=" + encryptedPwd
 	}
 
@@ -62,7 +62,7 @@ func doLoginRequest(args *NtgrrcSession, host string, encryptedPwd string) error
 		return err
 	}
 	defer resp.Body.Close()
-	if args.PrintVerbose {
+	if session.PrintVerbose {
 		println(resp.Status)
 	}
 	body, err := io.ReadAll(resp.Body)
@@ -71,21 +71,21 @@ func doLoginRequest(args *NtgrrcSession, host string, encryptedPwd string) error
 	}
 
 	var token string
-	if isModel30x(args.model) {
+	if isModel30x(session.model) {
 		token = getSessionToken(resp)
 		if token == FailedAttempt && resp.StatusCode == http.StatusOK {
 			return errors.New("login request returned 200 OK, but response did not contain a session token ('SID' cookie). " +
 				"this is known behaviour from the switch. please, wait some minutes and tray again later")
 		}
 	}
-	if isModel316(args.model) {
+	if isModel316(session.model) {
 		token = findGambitTokenInResponseHtml(strings.NewReader(string(body)))
 		if token == FailedAttempt && resp.StatusCode == http.StatusOK {
 			return errors.New("login request returned 200 OK, but response did not contain a token ('Gambit' value in input field) ")
 		}
 	}
 
-	err = storeToken(args, host, token)
+	err = storeToken(session, host, token)
 	if err != nil {
 		return err
 	}
