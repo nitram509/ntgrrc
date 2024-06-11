@@ -1,6 +1,13 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.10.1
+
+* change using Go '1.22'
+* added outputs to standard output by @oalfreda in #64
+
+----
+
 ## v0.10.0
 
 * Add support for GS316EP(P) models - this is still experimental, as only showing the settings and status works; many thanks to @jsanchez73 and @crypto-smoke for testing and supporting this feature
