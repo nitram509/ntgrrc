@@ -3,7 +3,6 @@
 
 ## v0.10.1
 
-* change using Go '1.22'
 * added outputs to standard output by @oalfreda in #64
 
 ----
