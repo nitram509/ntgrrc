@@ -22,5 +22,5 @@ func printJsonDataTable(item string, header []string, content [][]string) {
 		json.WriteString("}")
 	}
 	json.WriteString("]}")
-	println(json.String())
+	fmt.Println(json.String())
 }
