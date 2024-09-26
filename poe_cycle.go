@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"net/url"
+	"strings"
 )
 
 type PoeCyclePowerCommand struct {
@@ -12,11 +13,17 @@ type PoeCyclePowerCommand struct {
 }
 
 func (poe *PoeCyclePowerCommand) Run(args *GlobalOptions) error {
-	err := ensureModelIs30x(args, poe.Address)
-	if err != nil {
-		return err
+	model := args.model
+	if isModel30x(model) {
+		return poe.cyclePowerGs30xEPx(args)
 	}
+	if isModel316(model) {
+		return poe.cyclePowerGs316EPx(args)
+	}
+	panic("model not supported")
+}
 
+func (poe *PoeCyclePowerCommand) cyclePowerGs30xEPx(args *GlobalOptions) error {
 	poeExt := &PoeExt{}
 
 	settings, err := requestPoeConfiguration(args, poe.Address, poeExt)
@@ -52,4 +59,31 @@ func (poe *PoeCyclePowerCommand) Run(args *GlobalOptions) error {
 	changedPorts := collectChangedPoePortConfiguration(poe.Ports, settings)
 	prettyPrintSettings(args.OutputFormat, changedPorts)
 	return nil
+}
+
+func (poe *PoeCyclePowerCommand) cyclePowerGs316EPx(args *GlobalOptions) error {
+	createPortResetPayloadGs316EPx(poe.Ports)
+
+	url := fmt.Sprintf("http://%s/iss/specific/poePortConf.html", poe.Address)
+	err := postPage(args, poe.Address, url, data)
+	return err
+}
+
+func createPortResetPayloadGs316EPx(poePorts []int) string {
+	result := strings.Builder{}
+	const maxPorts = 16
+	for i := 0; i < maxPorts; i++ {
+		written := false
+		for _, p := range poePorts {
+			if p-1 == i {
+				result.WriteString("1")
+				written = true
+				break
+			}
+		}
+		if !written {
+			result.WriteString("0")
+		}
+	}
+	return result.String()
 }

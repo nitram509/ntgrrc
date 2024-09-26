@@ -1,6 +1,12 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.11.0 (WiP)
+
+* switch to Go v1.23
+
+----
+
 ## v0.10.1
 
 * added outputs to standard output by @oalfreda in #64
