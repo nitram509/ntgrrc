@@ -3,7 +3,8 @@
 
 ## v0.11.0 (WiP)
 
-* switch to Go v1.23
+* Add support poe reset (cycle power) for gs316xx (#70)
+* Switch to Go v1.23
 
 ----
 
