@@ -37,18 +37,18 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs30xEPx(args *GlobalOptions) error {
 	}
 
 	for _, switchPort := range poe.Ports {
-		if switchPort > len(settings) || switchPort < 1 {
+		if switchPort < 1 || switchPort > len(settings) {
 			return errors.New(fmt.Sprintf("given port id %d, doesn't fit in range 1..%d", switchPort, len(settings)))
 		}
 		poeSettings.Add(fmt.Sprintf("port%d", switchPort-1), "checked")
 	}
 
 	result, err := requestPoeSettingsUpdate(args, poe.Address, poeSettings.Encode())
-	if result != "SUCCESS" {
-		return errors.New(result)
-	}
 	if err != nil {
 		return err
+	}
+	if result != "SUCCESS" {
+		return errors.New(result)
 	}
 
 	settings, err = requestPoeConfiguration(args, poe.Address, poeExt)
@@ -62,11 +62,37 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs30xEPx(args *GlobalOptions) error {
 }
 
 func (poe *PoeCyclePowerCommand) cyclePowerGs316EPx(args *GlobalOptions) error {
-	createPortResetPayloadGs316EPx(poe.Ports)
+	for _, switchPort := range poe.Ports {
+		if switchPort < 1 || switchPort > 16 {
+			return errors.New(fmt.Sprintf("given port id %d, doesn't fit in range 1..16", switchPort))
+		}
+	}
 
-	url := fmt.Sprintf("http://%s/iss/specific/poePortConf.html", poe.Address)
-	err := postPage(args, poe.Address, url, data)
-	return err
+	_, token, err := readTokenAndModel2GlobalOptions(args, poe.Address)
+	if err != nil {
+		return err
+	}
+	urlStr := fmt.Sprintf("http://%s/iss/specific/poePortConf.html", poe.Address)
+	reqForm := url.Values{}
+	reqForm.Add("type", "resetPoe")
+	reqForm.Add("PoePort", createPortResetPayloadGs316EPx(poe.Ports))
+	reqForm.Add("Gambit", token)
+	result, err := postPage(args, poe.Address, urlStr, reqForm.Encode())
+	if err != nil {
+		return err
+	}
+	if result != "SUCCESS" {
+		return errors.New(result)
+	}
+	print("OK")
+	// TODO print POE configuration
+	//settings, err := requestPoeConfiguration(args, poe.Address, poeExt)
+	//if err != nil {
+	//	return err
+	//}
+	//changedPorts := collectChangedPoePortConfiguration(poe.Ports, settings)
+	//prettyPrintSettings(args.OutputFormat, changedPorts)
+	return nil
 }
 
 func createPortResetPayloadGs316EPx(poePorts []int) string {
