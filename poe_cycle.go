@@ -14,6 +14,13 @@ type PoeCyclePowerCommand struct {
 
 func (poe *PoeCyclePowerCommand) Run(args *GlobalOptions) error {
 	model := args.model
+	if len(model) == 0 {
+		var err error
+		model, err = detectNetgearModel(args, poe.Address)
+		if err != nil {
+			return err
+		}
+	}
 	if isModel30x(model) {
 		return poe.cyclePowerGs30xEPx(args)
 	}

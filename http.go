@@ -22,7 +22,7 @@ func doHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, host s
 	}
 
 	if args.Verbose {
-		println("Fetching data from: " + requestUrl)
+		println(fmt.Sprintf("send HTTP %s request to: %s", httpMethod, requestUrl))
 	}
 
 	if isModel316(model) {
