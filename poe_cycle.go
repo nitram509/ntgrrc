@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"net/url"
+	"strings"
 )
 
 type PoeCyclePowerCommand struct {
@@ -12,11 +13,24 @@ type PoeCyclePowerCommand struct {
 }
 
 func (poe *PoeCyclePowerCommand) Run(args *GlobalOptions) error {
-	err := ensureModelIs30x(args, poe.Address)
-	if err != nil {
-		return err
+	model := args.model
+	if len(model) == 0 {
+		var err error
+		model, err = detectNetgearModel(args, poe.Address)
+		if err != nil {
+			return err
+		}
 	}
+	if isModel30x(model) {
+		return poe.cyclePowerGs30xEPx(args)
+	}
+	if isModel316(model) {
+		return poe.cyclePowerGs316EPx(args)
+	}
+	panic("model not supported")
+}
 
+func (poe *PoeCyclePowerCommand) cyclePowerGs30xEPx(args *GlobalOptions) error {
 	poeExt := &PoeExt{}
 
 	settings, err := requestPoeConfiguration(args, poe.Address, poeExt)
@@ -30,18 +44,18 @@ func (poe *PoeCyclePowerCommand) Run(args *GlobalOptions) error {
 	}
 
 	for _, switchPort := range poe.Ports {
-		if switchPort > len(settings) || switchPort < 1 {
+		if switchPort < 1 || switchPort > len(settings) {
 			return errors.New(fmt.Sprintf("given port id %d, doesn't fit in range 1..%d", switchPort, len(settings)))
 		}
 		poeSettings.Add(fmt.Sprintf("port%d", switchPort-1), "checked")
 	}
 
 	result, err := requestPoeSettingsUpdate(args, poe.Address, poeSettings.Encode())
-	if result != "SUCCESS" {
-		return errors.New(result)
-	}
 	if err != nil {
 		return err
+	}
+	if result != "SUCCESS" {
+		return errors.New(result)
 	}
 
 	settings, err = requestPoeConfiguration(args, poe.Address, poeExt)
@@ -52,4 +66,57 @@ func (poe *PoeCyclePowerCommand) Run(args *GlobalOptions) error {
 	changedPorts := collectChangedPoePortConfiguration(poe.Ports, settings)
 	prettyPrintSettings(args.OutputFormat, changedPorts)
 	return nil
+}
+
+func (poe *PoeCyclePowerCommand) cyclePowerGs316EPx(args *GlobalOptions) error {
+	for _, switchPort := range poe.Ports {
+		if switchPort < 1 || switchPort > 16 {
+			return errors.New(fmt.Sprintf("given port id %d, doesn't fit in range 1..16", switchPort))
+		}
+	}
+
+	_, token, err := readTokenAndModel2GlobalOptions(args, poe.Address)
+	if err != nil {
+		return err
+	}
+	urlStr := fmt.Sprintf("http://%s/iss/specific/poePortConf.html", poe.Address)
+	reqForm := url.Values{}
+	reqForm.Add("TYPE", "resetPoe")
+	reqForm.Add("PoePort", createPortResetPayloadGs316EPx(poe.Ports))
+	reqForm.Add("Gambit", token)
+	result, err := postPage(args, poe.Address, urlStr, reqForm.Encode())
+	if err != nil {
+		return err
+	}
+	if result != "SUCCESS" {
+		return errors.New(result)
+	}
+	print("OK")
+	// TODO print POE configuration
+	//settings, err := requestPoeConfiguration(args, poe.Address, poeExt)
+	//if err != nil {
+	//	return err
+	//}
+	//changedPorts := collectChangedPoePortConfiguration(poe.Ports, settings)
+	//prettyPrintSettings(args.OutputFormat, changedPorts)
+	return nil
+}
+
+func createPortResetPayloadGs316EPx(poePorts []int) string {
+	result := strings.Builder{}
+	const maxPorts = 16
+	for i := 0; i < maxPorts; i++ {
+		written := false
+		for _, p := range poePorts {
+			if p-1 == i {
+				result.WriteString("1")
+				written = true
+				break
+			}
+		}
+		if !written {
+			result.WriteString("0")
+		}
+	}
+	return result.String()
 }
