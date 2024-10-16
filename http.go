@@ -41,6 +41,10 @@ func doHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, host s
 
 	if isModel30x(model) {
 		req.Header.Set("Cookie", "SID="+token)
+	} else if isModel316(model) {
+		req.Header.Set("Cookie", "gambitCookie="+token)
+	} else {
+		panic("model not supported")
 	}
 
 	client := &http.Client{}

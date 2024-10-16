@@ -82,8 +82,8 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs316EPx(args *GlobalOptions) error {
 	urlStr := fmt.Sprintf("http://%s/iss/specific/poePortConf.html", poe.Address)
 	reqForm := url.Values{}
 	reqForm.Add("TYPE", "resetPoe")
-	reqForm.Add("PoePort", createPortResetPayloadGs316EPx(poe.Ports))
 	reqForm.Add("Gambit", token)
+	reqForm.Add("PoePort", createPortResetPayloadGs316EPx(poe.Ports))
 	result, err := postPage(args, poe.Address, urlStr, reqForm.Encode())
 	if err != nil {
 		return err
