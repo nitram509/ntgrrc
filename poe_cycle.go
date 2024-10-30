@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"net/http"
 	"net/url"
 	"strings"
 )
@@ -80,11 +81,13 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs316EPx(args *GlobalOptions) error {
 		return err
 	}
 	urlStr := fmt.Sprintf("http://%s/iss/specific/poePortConf.html", poe.Address)
-	reqForm := url.Values{}
-	reqForm.Add("TYPE", "resetPoe")
-	reqForm.Add("Gambit", token)
-	reqForm.Add("PoePort", createPortResetPayloadGs316EPx(poe.Ports))
-	result, err := postPage(args, poe.Address, urlStr, reqForm.Encode())
+	//reqForm := url.Values{}
+	//reqForm.Add("TYPE", "resetPoe")
+	//reqForm.Add("Gambit", token)
+	//reqForm.Add("PoePort", createPortResetPayloadGs316EPx(poe.Ports))
+	payload := fmt.Sprintf("Gambit=%s&TYPE=resetPoe&PoePort=%s", token, createPortResetPayloadGs316EPx(poe.Ports))
+	result, err := doHttpRequestAndReadResponse_justCookie_FormData(args, http.MethodPost, poe.Address, urlStr, payload)
+	//print(reqForm.Encode() + "\n")
 	if err != nil {
 		return err
 	}
