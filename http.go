@@ -42,7 +42,7 @@ func doHttpRequestAndReadResponse_justCookie_FormData(args *GlobalOptions, httpM
 	if isModel30x(model) {
 		req.Header.Set("Cookie", "SID="+token)
 	} else if isModel316(model) {
-		req.Header.Set("Cookie", "gambitCookie="+token)
+		req.Header.Set("Cookie", "gambitcookie="+token)
 	} else {
 		panic("model not supported")
 	}
