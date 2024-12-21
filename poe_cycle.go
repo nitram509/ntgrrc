@@ -92,7 +92,7 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs316EPx(args *GlobalOptions) error {
 	if result != "SUCCESS" {
 		return errors.New(result)
 	}
-	print(fmt.Sprintf("result = '%v'", result))
+
 	// TODO print POE configuration
 	//settings, err := requestPoeConfiguration(args, poe.Address, poeExt)
 	//if err != nil {

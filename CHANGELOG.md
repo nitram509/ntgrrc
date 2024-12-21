@@ -3,7 +3,7 @@
 
 ## v0.11.0 (WiP)
 
-* Add support poe reset (cycle power) for gs316xx (#70)
+* Add support poe reset (cycle power) for gs316xx (#70); many thanks to @electron1963 for testing and supporting this feature 
 * Switch to Go v1.23
 
 ----
