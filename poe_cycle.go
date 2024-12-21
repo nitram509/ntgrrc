@@ -89,6 +89,9 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs316EPx(args *GlobalOptions) error {
 	if err != nil {
 		return err
 	}
+	if args.Verbose {
+		println(result)
+	}
 	if result != "SUCCESS" {
 		return errors.New(result)
 	}
