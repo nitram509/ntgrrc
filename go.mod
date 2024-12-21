@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/PuerkitoBio/goquery v1.9.2
-	github.com/alecthomas/kong v1.2.1
+	github.com/alecthomas/kong v1.6.0
 	github.com/corbym/gocrest v1.1.2
 	golang.org/x/term v0.27.0
 )
