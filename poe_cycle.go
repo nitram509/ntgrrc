@@ -71,8 +71,8 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs30xEPx(args *GlobalOptions) error {
 
 func (poe *PoeCyclePowerCommand) cyclePowerGs316EPx(args *GlobalOptions) error {
 	for _, switchPort := range poe.Ports {
-		if switchPort < 1 || switchPort > 16 {
-			return errors.New(fmt.Sprintf("given port id %d, doesn't fit in range 1..16", switchPort))
+		if switchPort < 1 || switchPort > 15 {
+			return errors.New(fmt.Sprintf("given port id %d, doesn't fit in range 1..15", switchPort))
 		}
 	}
 
@@ -81,13 +81,11 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs316EPx(args *GlobalOptions) error {
 		return err
 	}
 	urlStr := fmt.Sprintf("http://%s/iss/specific/poePortConf.html", poe.Address)
-	//reqForm := url.Values{}
-	//reqForm.Add("TYPE", "resetPoe")
-	//reqForm.Add("Gambit", token)
-	//reqForm.Add("PoePort", createPortResetPayloadGs316EPx(poe.Ports))
-	payload := fmt.Sprintf("Gambit=%s&TYPE=resetPoe&PoePort=%s", token, createPortResetPayloadGs316EPx(poe.Ports))
-	result, err := doHttpRequestAndReadResponse_justCookie_FormData(args, http.MethodPost, poe.Address, urlStr, payload)
-	//print(reqForm.Encode() + "\n")
+	reqForm := url.Values{}
+	reqForm.Add("Gambit", token)
+	reqForm.Add("TYPE", "resetPoe")
+	reqForm.Add("PoePort", createPortResetPayloadGs316EPx(poe.Ports))
+	result, err := doHttpRequestAndReadResponse(args, http.MethodPost, poe.Address, urlStr, reqForm.Encode())
 	if err != nil {
 		return err
 	}
@@ -107,7 +105,7 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs316EPx(args *GlobalOptions) error {
 
 func createPortResetPayloadGs316EPx(poePorts []int) string {
 	result := strings.Builder{}
-	const maxPorts = 16
+	const maxPorts = 15 // the port 16 can't be reset
 	for i := 0; i < maxPorts; i++ {
 		written := false
 		for _, p := range poePorts {
