@@ -33,20 +33,29 @@ type PoeStatusCommand struct {
 }
 
 func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
-	statusPage, err := requestPoePortStatusPage(args, poe.Address)
-	if err != nil {
-		return err
-	}
-	if checkIsLoginRequired(statusPage) {
-		return errors.New("no content. please, (re-)login first")
-	}
-	var statuses []PoePortStatus
-	statuses, err = findPortStatusInHtml(args.model, strings.NewReader(statusPage))
+	statuses, err := getPoeStatus(args, poe.Address)
 	if err != nil {
 		return err
 	}
 	prettyPrintStatus(args.OutputFormat, statuses)
 	return nil
+
+}
+
+func getPoeStatus(args *GlobalOptions, address string) ([]PoePortStatus, error) {
+	var result []PoePortStatus
+	statusPage, err := requestPoePortStatusPage(args, address)
+	if err != nil {
+		return result, err
+	}
+	if checkIsLoginRequired(statusPage) {
+		return result, errors.New("no content. please, (re-)login first")
+	}
+	result, err = findPortStatusInHtml(args.model, strings.NewReader(statusPage))
+	if err != nil {
+		return result, err
+	}
+	return result, nil
 }
 
 func prettyPrintStatus(format OutputFormat, statuses []PoePortStatus) {

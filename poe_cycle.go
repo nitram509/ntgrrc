@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"strings"
 )
 
@@ -96,13 +97,15 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs316EPx(args *GlobalOptions) error {
 		return errors.New(result)
 	}
 
-	// TODO print POE configuration
-	//settings, err := requestPoeConfiguration(args, poe.Address, poeExt)
-	//if err != nil {
-	//	return err
-	//}
-	//changedPorts := collectChangedPoePortConfiguration(poe.Ports, settings)
-	//prettyPrintSettings(args.OutputFormat, changedPorts)
+	// hint in contrast to GS30x, we print PO status here, as this seems more useful
+	statuses, err := getPoeStatus(args, poe.Address)
+	if err != nil {
+		return err
+	}
+	statuses = filter(statuses, func(status PoePortStatus) bool {
+		return slices.Contains(poe.Ports, int(status.PortIndex))
+	})
+	prettyPrintStatus(args.OutputFormat, statuses)
 	return nil
 }
 
