@@ -24,11 +24,12 @@ A green tick means it was successfully tested.
 | V1.0.1.1  | (likely)   | ✅        | (likely) | -            |
 | V1.0.3.4  | -          | -        | -        | experimental |
 | V1.0.3.7  | -          | -        | -        | experimental |
+| V1.0.4.4  | -          | -        | -        | experimental |
 
 Legend: \
 ✅ = successfully tested \
 ?  = unknown \
-experimental = The support for GS316xxx models is limited to showing the port status.
+experimental = The support for GS316xxx models is limited to: show port status, power cycle a port, show port settings
 
 ## download & installation
 
@@ -353,6 +354,8 @@ ntgrrc is able to power cycle one or more PoE ports.
 Use the ```--output-format=json``` flag, to get JSON output instead.
 
 ```ntgrrc poe cycle -p 3 -p 5 --address gs305ep```
+Alternativly, you can achieve the same request with this
+```ntgrrc poe cycle --address gs305ep --port=3,5```
 
 ```markdown
 | Port ID | Port Power | Mode    | Priority | Limit Type | Limit (W) | Type     |

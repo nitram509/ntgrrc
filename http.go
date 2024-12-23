@@ -22,7 +22,7 @@ func doHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, host s
 	}
 
 	if args.Verbose {
-		println("Fetching data from: " + requestUrl)
+		println(fmt.Sprintf("send HTTP %s request to: %s", httpMethod, requestUrl))
 	}
 
 	if isModel316(model) {
@@ -41,6 +41,10 @@ func doHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, host s
 
 	if isModel30x(model) {
 		req.Header.Set("Cookie", "SID="+token)
+	} else if isModel316(model) {
+		req.Header.Set("Cookie", "gambitCookie="+token)
+	} else {
+		panic("model not supported")
 	}
 
 	client := &http.Client{}
