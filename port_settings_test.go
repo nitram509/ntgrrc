@@ -19,6 +19,8 @@ func TestFindPortSettingsInHtml(t *testing.T) {
 		expectedIngressRateLimit string
 		expectedEgressRateLimit  string
 		expectedFlowControl      string
+		expectedLinkSpeed        string
+		expectedPortStatus       string
 	}{
 		{
 			model:                    "GS308EPP",
@@ -30,6 +32,8 @@ func TestFindPortSettingsInHtml(t *testing.T) {
 			expectedIngressRateLimit: "1",
 			expectedEgressRateLimit:  "1",
 			expectedFlowControl:      "2",
+			expectedLinkSpeed:        "1000M full",
+			expectedPortStatus:       "UP",
 		},
 		{
 			model:                    "GS316EP",
@@ -41,6 +45,8 @@ func TestFindPortSettingsInHtml(t *testing.T) {
 			expectedIngressRateLimit: "No Limit",
 			expectedEgressRateLimit:  "No Limit",
 			expectedFlowControl:      "OFF",
+			expectedLinkSpeed:        "No Speed",
+			expectedPortStatus:       "AVAILABLE",
 		},
 	}
 	for _, test := range tests {
@@ -56,6 +62,8 @@ func TestFindPortSettingsInHtml(t *testing.T) {
 			then.AssertThat(t, setting.IngressRateLimit, is.EqualTo(test.expectedIngressRateLimit))
 			then.AssertThat(t, setting.EgressRateLimit, is.EqualTo(test.expectedEgressRateLimit))
 			then.AssertThat(t, setting.FlowControl, is.EqualTo(test.expectedFlowControl))
+			then.AssertThat(t, setting.LinkSpeed, is.EqualTo(test.expectedLinkSpeed))
+			then.AssertThat(t, setting.PortStatus, is.EqualTo(test.expectedPortStatus))
 		})
 	}
 

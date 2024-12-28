@@ -103,7 +103,7 @@ func TestPrettyPrintSettings(t *testing.T) {
 			then.AssertThat(t, err, is.Nil())
 			then.AssertThat(t, settings, has.Length[PoePortSetting](test.expectedVal))
 
-			prettyPrintSettings(MarkdownFormat, settings)
+			prettyPrintPoePortSettings(MarkdownFormat, settings)
 		})
 	}
 }
@@ -132,7 +132,7 @@ func TestPrettyPrintJsonSettings(t *testing.T) {
 			then.AssertThat(t, err, is.Nil())
 			then.AssertThat(t, settings, has.Length[PoePortSetting](test.expectedVal))
 
-			prettyPrintSettings(JsonFormat, settings)
+			prettyPrintPoePortSettings(JsonFormat, settings)
 		})
 	}
 }

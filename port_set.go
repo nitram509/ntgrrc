@@ -27,6 +27,9 @@ type PortSetting struct {
 	IngressRateLimit string
 	EgressRateLimit  string
 	FlowControl      string
+	// read only values (can't be set)
+	LinkSpeed  string
+	PortStatus string
 }
 
 type PortSetCommand struct {

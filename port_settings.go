@@ -67,7 +67,7 @@ func requestPortSettings(args *GlobalOptions, host string) (portSettings []PortS
 
 func prettyPrintPortSettings(model NetgearModel, format OutputFormat, settings []PortSetting) {
 
-	var header = []string{"Port ID", "Port Name", "Speed", "Ingress Limit", "Egress Limit", "Flow Control"}
+	var header = []string{"Port ID", "Port Name", "Speed", "Ingress Limit", "Egress Limit", "Flow Control", "Port Status", "Link Speed"}
 	var content [][]string
 
 	for _, setting := range settings {
@@ -90,6 +90,8 @@ func prettyPrintPortSettings(model NetgearModel, format OutputFormat, settings [
 			setting.FlowControl = bidiMapLookup(setting.FlowControl, portFlowControlMap)
 		}
 		row = append(row, setting.FlowControl)
+		row = append(row, setting.PortStatus)
+		row = append(row, setting.LinkSpeed)
 		content = append(content, row)
 	}
 	switch format {
@@ -131,7 +133,8 @@ func findPortSettingsInGs30xEPxHtml(reader io.Reader) (ports []PortSetting, err 
 		portCfg.IngressRateLimit, _ = s.Find("input[type=hidden].ingressRate").Attr("value")
 		portCfg.EgressRateLimit, _ = s.Find("input[type=hidden].egressRate").Attr("value")
 		portCfg.FlowControl, _ = s.Find("input[type=hidden].flowCtr").Attr("value")
-
+		portCfg.LinkSpeed, _ = s.Find("input[type=hidden].LinkedSpeed").Attr("value")
+		portCfg.PortStatus = strings.TrimSpace(s.Find("span.pull-right").Text())
 		ports = append(ports, portCfg)
 	})
 
@@ -168,6 +171,12 @@ func findPortSettingsInGs316EPxHtml(reader io.Reader) (ports []PortSetting, err 
 		})
 		s.Find("p.flow-text").Each(func(i int, selection *goquery.Selection) {
 			ports[i].FlowControl = strings.TrimSpace(selection.Text())
+		})
+		s.Find("span.status-on-port").Each(func(i int, selection *goquery.Selection) {
+			ports[i].PortStatus = strings.TrimSpace(selection.Text())
+		})
+		s.Find("p.link-speed-text").Each(func(i int, selection *goquery.Selection) {
+			ports[i].LinkSpeed = strings.TrimSpace(selection.Text())
 		})
 	})
 

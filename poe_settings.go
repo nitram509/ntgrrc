@@ -44,11 +44,11 @@ func (poe *PoeShowSettingsCommand) Run(args *GlobalOptions) error {
 	if err != nil {
 		return err
 	}
-	prettyPrintSettings(args.OutputFormat, settings)
+	prettyPrintPoePortSettings(args.OutputFormat, settings)
 	return nil
 }
 
-func prettyPrintSettings(format OutputFormat, settings []PoePortSetting) {
+func prettyPrintPoePortSettings(format OutputFormat, settings []PoePortSetting) {
 	var header = []string{"Port ID", "Port Name", "Port Power", "Mode", "Priority", "Limit Type", "Limit (W)", "Type", "Longer Detection Time"}
 	var content [][]string
 	for _, setting := range settings {

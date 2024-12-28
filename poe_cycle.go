@@ -66,7 +66,7 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs30xEPx(args *GlobalOptions) error {
 	}
 
 	changedPorts := collectChangedPoePortConfiguration(poe.Ports, settings)
-	prettyPrintSettings(args.OutputFormat, changedPorts)
+	prettyPrintPoePortSettings(args.OutputFormat, changedPorts)
 	return nil
 }
 
@@ -105,7 +105,7 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs316EPx(args *GlobalOptions) error {
 	statuses = filter(statuses, func(status PoePortStatus) bool {
 		return slices.Contains(poe.Ports, int(status.PortIndex))
 	})
-	prettyPrintStatus(args.OutputFormat, statuses)
+	prettyPrintPoePortStatus(args.OutputFormat, statuses)
 	return nil
 }
 

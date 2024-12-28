@@ -125,7 +125,7 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 
 	changedPorts := collectChangedPoePortConfiguration(poe.Ports, settings)
 
-	prettyPrintSettings(args.OutputFormat, changedPorts)
+	prettyPrintPoePortSettings(args.OutputFormat, changedPorts)
 
 	return err
 }
