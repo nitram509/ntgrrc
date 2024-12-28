@@ -125,7 +125,7 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 
 	changedPorts := collectChangedPoePortConfiguration(poe.Ports, settings)
 
-	prettyPrintPoePortSettings(args.OutputFormat, changedPorts)
+	prettyPrintPoePortSettings(args.model, args.OutputFormat, changedPorts)
 
 	return err
 }
@@ -155,7 +155,7 @@ func requestPoeConfiguration(args *GlobalOptions, host string, poeExt *PoeExt) (
 		return settings, errors.New("no content. please, (re-)login first")
 	}
 
-	settings, err = findPoeSettingsInHtml(strings.NewReader(settingsPage))
+	settings, err = findPoePortConfInHtml(args.model, strings.NewReader(settingsPage))
 	if err != nil {
 		return settings, err
 	}
