@@ -7,7 +7,8 @@ import (
 
 const unknown = "unknown"
 
-// bidiMapLookup bidirectional map lookup, will return either key or value depending on the input
+// bidiMapLookup bidirectional map lookup, will return either key or value depending on the input.
+// In case of value not found, 'unknown' is returned
 func bidiMapLookup(value string, mapName map[string]string) string {
 	if val, ok := mapName[value]; ok {
 		return val

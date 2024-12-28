@@ -130,7 +130,7 @@ func (portSet *PortSetCommand) runPortSetGs30xEPx(args *GlobalOptions) error {
 	}
 
 	changedPorts := collectChangedPortConfiguration(portSet.Ports, settings)
-	prettyPrintPortSettings(args.OutputFormat, changedPorts)
+	prettyPrintPortSettings(args.model, args.OutputFormat, changedPorts)
 
 	return err
 }
@@ -178,7 +178,7 @@ func (portSet *PortSetCommand) runPortSetGs316EPx(args *GlobalOptions) (err erro
 	updatedSettings = filter(updatedSettings, func(status PortSetting) bool {
 		return slices.Contains(portSet.Ports, int(status.Index))
 	})
-	prettyPrintPortSettings(args.OutputFormat, updatedSettings)
+	prettyPrintPortSettings(args.model, args.OutputFormat, updatedSettings)
 
 	return err
 }

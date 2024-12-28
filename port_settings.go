@@ -23,7 +23,7 @@ func (port *PortSettingsCommand) Run(args *GlobalOptions) error {
 	if err != nil {
 		return err
 	}
-	prettyPrintPortSettings(args.OutputFormat, settings)
+	prettyPrintPortSettings(args.model, args.OutputFormat, settings)
 	return nil
 }
 
@@ -65,7 +65,7 @@ func requestPortSettings(args *GlobalOptions, host string) (portSettings []PortS
 	return portSettings, hash, err
 }
 
-func prettyPrintPortSettings(format OutputFormat, settings []PortSetting) {
+func prettyPrintPortSettings(model NetgearModel, format OutputFormat, settings []PortSetting) {
 
 	var header = []string{"Port ID", "Port Name", "Speed", "Ingress Limit", "Egress Limit", "Flow Control"}
 	var content [][]string
@@ -74,13 +74,21 @@ func prettyPrintPortSettings(format OutputFormat, settings []PortSetting) {
 		var row []string
 		row = append(row, fmt.Sprintf("%d", setting.Index))
 		row = append(row, setting.Name)
-		setting.Speed = bidiMapLookup(setting.Speed, portSpeedMap)
+		if isModel30x(model) {
+			setting.Speed = bidiMapLookup(setting.Speed, portSpeedMap)
+		}
 		row = append(row, setting.Speed)
-		setting.IngressRateLimit = bidiMapLookup(setting.IngressRateLimit, portRateLimitMap)
+		if isModel30x(model) {
+			setting.IngressRateLimit = bidiMapLookup(setting.IngressRateLimit, portRateLimitMap)
+		}
 		row = append(row, setting.IngressRateLimit)
-		setting.EgressRateLimit = bidiMapLookup(setting.EgressRateLimit, portRateLimitMap)
+		if isModel30x(model) {
+			setting.EgressRateLimit = bidiMapLookup(setting.EgressRateLimit, portRateLimitMap)
+		}
 		row = append(row, setting.EgressRateLimit)
-		setting.FlowControl = bidiMapLookup(setting.FlowControl, portFlowControlMap)
+		if isModel30x(model) {
+			setting.FlowControl = bidiMapLookup(setting.FlowControl, portFlowControlMap)
+		}
 		row = append(row, setting.FlowControl)
 		content = append(content, row)
 	}
