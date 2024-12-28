@@ -36,7 +36,7 @@ func TestFindPortSettingsInHtml(t *testing.T) {
 			fileName:                 "dashboard.html",
 			expectedSettingsLength:   16,
 			expectedIndex:            1,
-			expectedName:             "port name 1",
+			expectedName:             "AGER 31 SUR Tech",
 			expectedSpeed:            "Auto",
 			expectedIngressRateLimit: "No Limit",
 			expectedEgressRateLimit:  "No Limit",
@@ -48,7 +48,7 @@ func TestFindPortSettingsInHtml(t *testing.T) {
 			portSetting, err := findPortSettingsInHtml(NetgearModel(test.model), strings.NewReader(loadTestFile(test.model, test.fileName)))
 
 			then.AssertThat(t, err, is.Nil())
-			then.AssertThat(t, portSetting, has.Length[Port](test.expectedSettingsLength))
+			then.AssertThat(t, portSetting, has.Length[PortSetting](test.expectedSettingsLength))
 			setting := portSetting[0]
 			then.AssertThat(t, setting.Index, is.EqualTo(test.expectedIndex))
 			then.AssertThat(t, setting.Name, is.EqualTo(test.expectedName))

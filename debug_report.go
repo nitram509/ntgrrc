@@ -12,7 +12,7 @@ func (drc *DebugReportCommand) Run(args *GlobalOptions) error {
 	args.Verbose = true
 	model, _, err := readTokenAndModel2GlobalOptions(args, drc.Address)
 	if err != nil {
-		println("Warning, prior error: " + err.Error())
+		fmt.Println("Warning, prior error: " + err.Error())
 		printDebugNotLoggedIn(args, drc.Address, err)
 	}
 	printDebugLoggedIn(args, model, drc.Address)
@@ -20,9 +20,9 @@ func (drc *DebugReportCommand) Run(args *GlobalOptions) error {
 }
 
 func printDebugNotLoggedIn(args *GlobalOptions, host string, err error) {
-	println("---[DEBUG: not logged in]---")
-	println(fmt.Sprintf("Not logged in error: %s", err))
-	println("Please try to login and run `debug-report` command again, in order to detect the model and get even more debug information")
+	fmt.Println("---[DEBUG: not logged in]---")
+	fmt.Println(fmt.Sprintf("Not logged in error: %s", err))
+	fmt.Println("Please try to login and run `debug-report` command again, in order to detect the model and get even more debug information")
 	reqUrls := []string{
 		fmt.Sprintf("http://%s/", host),
 		fmt.Sprintf("http://%s/login.cgi", host),
@@ -31,15 +31,15 @@ func printDebugNotLoggedIn(args *GlobalOptions, host string, err error) {
 	}
 	for _, reqUrl := range reqUrls {
 		body, err := doUnauthenticatedHttpRequestAndReadResponse(args, "GET", reqUrl, "")
-		println(fmt.Sprintf("---[RESPONSE: %s]---", reqUrl))
+		fmt.Println(fmt.Sprintf("---[RESPONSE: %s]---", reqUrl))
 		if err != nil {
-			println("ERROR: " + err.Error())
+			fmt.Println("ERROR: " + err.Error())
 		} else {
-			println(body)
+			fmt.Println(body)
 		}
-		println("---[/RESPONSE]---")
+		fmt.Println("---[/RESPONSE]---")
 	}
-	println("---[/DEBUG]---")
+	fmt.Println("---[/DEBUG]---")
 }
 
 func printDebugLoggedIn(args *GlobalOptions, model NetgearModel, host string) {
@@ -66,19 +66,19 @@ func printDebugLoggedIn(args *GlobalOptions, model NetgearModel, host string) {
 		)
 	}
 	if len(reqUrls) > 0 {
-		println(fmt.Sprintf("---[DEBUG: model '%s']---", model))
+		fmt.Println(fmt.Sprintf("---[DEBUG: model '%s']---", model))
 		for _, reqUrl := range reqUrls {
 			body, err := doHttpRequestAndReadResponse(args, "GET", host, reqUrl, "")
-			println(fmt.Sprintf("---[RESPONSE: %s]---", reqUrl))
+			fmt.Println(fmt.Sprintf("---[RESPONSE: %s]---", reqUrl))
 			if err != nil {
-				println("ERROR: " + err.Error())
+				fmt.Println("ERROR: " + err.Error())
 			} else if checkIsLoginRequired(body) {
-				println("WARN: it seems the session token expired, please re-login")
+				fmt.Println("WARN: it seems the session token expired, please re-login")
 			} else {
-				println(body)
+				fmt.Println(body)
 			}
-			println("---[/RESPONSE]---")
+			fmt.Println("---[/RESPONSE]---")
 		}
-		println("---[/DEBUG]---")
+		fmt.Println("---[/DEBUG]---")
 	}
 }

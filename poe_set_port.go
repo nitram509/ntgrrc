@@ -10,15 +10,15 @@ import (
 	"strings"
 )
 
-type Setting string
+type PoeSettingKey string
 
 const (
-	PortPrio     Setting = "PortPrio"
-	PwrMode      Setting = "PwrMode"
-	LimitType    Setting = "LimitType"
-	PwrLimit     Setting = "PwrLimit"
-	DetecType    Setting = "DetecType"
-	LongerDetect Setting = "LongerDetect"
+	PortPrio     PoeSettingKey = "PortPrio"
+	PwrMode      PoeSettingKey = "PwrMode"
+	LimitType    PoeSettingKey = "LimitType"
+	PwrLimit     PoeSettingKey = "PwrLimit"
+	DetecType    PoeSettingKey = "DetecType"
+	LongerDetect PoeSettingKey = "LongerDetect"
 )
 
 type PoeSetPowerCommand struct {
@@ -183,6 +183,7 @@ func findHashInHtml(model NetgearModel, reader io.Reader) (string, error) {
 		// no hash present
 		return "", nil
 	}
+
 	doc, err := goquery.NewDocumentFromReader(reader)
 	if err != nil {
 		return "", err
@@ -208,7 +209,7 @@ func findMaxPwrLimitInHtml(reader io.Reader) (string, error) {
 	return limit, err
 }
 
-func comparePoeSettings(name Setting, defaultValue string, newValue string, poeExt *PoeExt) (string, error) {
+func comparePoeSettings(name PoeSettingKey, defaultValue string, newValue string, poeExt *PoeExt) (string, error) {
 	if len(newValue) == 0 {
 		return defaultValue, nil
 	}
@@ -216,19 +217,19 @@ func comparePoeSettings(name Setting, defaultValue string, newValue string, poeE
 	switch name {
 	case PortPrio:
 		portPrio := bidiMapLookup(newValue, portPrioMap)
-		if portPrio == "unknown" {
+		if portPrio == unknown {
 			return portPrio, errors.New("port priority could not be set. Accepted values are: " + valuesAsString(portPrioMap))
 		}
 		return portPrio, nil
 	case PwrMode:
 		pwrMode := bidiMapLookup(newValue, pwrModeMap)
-		if pwrMode == "unknown" {
+		if pwrMode == unknown {
 			return pwrMode, errors.New("power mode could not be set. Accepted values are: " + valuesAsString(pwrModeMap))
 		}
 		return pwrMode, nil
 	case LimitType:
 		limitType := bidiMapLookup(newValue, limitTypeMap)
-		if limitType == "unknown" {
+		if limitType == unknown {
 			return limitType, errors.New("limit type could not be set. Accepted values are: " + valuesAsString(limitTypeMap))
 		}
 		return limitType, nil
@@ -257,13 +258,13 @@ func comparePoeSettings(name Setting, defaultValue string, newValue string, poeE
 		return defaultValue, nil
 	case DetecType:
 		detecType := bidiMapLookup(newValue, detecTypeMap)
-		if detecType == "unknown" {
+		if detecType == unknown {
 			return detecType, errors.New("detection type could not be set. Accepted values are: " + valuesAsString(detecTypeMap))
 		}
 		return detecType, nil
 	case LongerDetect:
 		longerDetect := bidiMapLookup(newValue, longerDetectMap)
-		if longerDetect == "unknown" {
+		if longerDetect == unknown {
 			return longerDetect, errors.New("longer detection type value could not be set. Accepted values are: " + valuesAsString(longerDetectMap))
 		}
 		return longerDetect, nil

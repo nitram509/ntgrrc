@@ -1,8 +1,8 @@
 package main
 
 import (
-	"strings"
 	"fmt"
+	"strings"
 )
 
 func printMarkdownTable(header []string, content [][]string) {
@@ -33,7 +33,7 @@ func printMarkdownTable(header []string, content [][]string) {
 		line.WriteString(strings.Repeat("-", l+2)) // a single space for one suffix and one prefix
 		line.WriteString("|")
 	}
-	println(line.String())
+	fmt.Println(line.String())
 	line.Reset()
 
 	for _, row := range content {

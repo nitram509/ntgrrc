@@ -35,17 +35,17 @@ func isSupportedModel(modelName string) bool {
 func detectNetgearModel(args *GlobalOptions, host string) (NetgearModel, error) {
 	url := fmt.Sprintf("http://%s/", host)
 	if args.Verbose {
-		println("detecting Netgear switch model: " + url)
+		fmt.Println("detecting Netgear switch model: " + url)
 	}
 	resp, err := http.Get(url)
 	if err != nil {
 		return "", err
 	}
 	if args.Verbose {
-		println(fmt.Sprintf("HTTP response code %d", resp.StatusCode))
+		fmt.Println(fmt.Sprintf("HTTP response code %d", resp.StatusCode))
 	}
 	if resp.StatusCode != 200 {
-		println(fmt.Sprintf("Warning: response code was not 200; unusual, but will attempt detection anyway"))
+		fmt.Println(fmt.Sprintf("Warning: response code was not 200; unusual, but will attempt detection anyway"))
 	}
 	responseBody, err := io.ReadAll(resp.Body)
 	_ = resp.Body.Close()
@@ -57,7 +57,7 @@ func detectNetgearModel(args *GlobalOptions, host string) (NetgearModel, error) 
 		return "", errors.New("Can't auto-detect Netgear model from response. You may try using --model parameter ")
 	}
 	if args.Verbose {
-		println(fmt.Sprintf("Detected model %s", model))
+		fmt.Println(fmt.Sprintf("Detected model %s", model))
 	}
 	return model, nil
 }

@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+const unknown = "unknown"
+
 // bidiMapLookup bidirectional map lookup, will return either key or value depending on the input
 func bidiMapLookup(value string, mapName map[string]string) string {
 	if val, ok := mapName[value]; ok {
@@ -17,7 +19,7 @@ func bidiMapLookup(value string, mapName map[string]string) string {
 		}
 	}
 
-	return "unknown"
+	return unknown
 }
 
 // comma separated string list, alphabetically sorted

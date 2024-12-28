@@ -58,7 +58,7 @@ func promptForPassword(serverName string) (string, error) {
 	fmt.Printf("Please enter password for '%s' (input hidden) :> ", serverName)
 	// the int conversion is required for the windows build to succeed
 	password, err := term.ReadPassword(int(syscall.Stdin))
-	println()
+	fmt.Println()
 	return string(password), err
 }
 
@@ -72,7 +72,7 @@ func doLogin(args *GlobalOptions, host string, encryptedPwd string) error {
 		return errors.New("Unknown model not supported, please contact the developers ")
 	}
 	if args.Verbose {
-		println("login attempt: " + url)
+		fmt.Println("login attempt: " + url)
 	}
 
 	var formData string
@@ -88,7 +88,7 @@ func doLogin(args *GlobalOptions, host string, encryptedPwd string) error {
 	}
 	defer resp.Body.Close()
 	if args.Verbose {
-		println(resp.Status)
+		fmt.Println(resp.Status)
 	}
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
@@ -166,14 +166,14 @@ func getSeedValueFromSwitch(args *GlobalOptions, host string) (string, error) {
 		return "", errors.New("Unknown model not supported, please contact the developers ")
 	}
 	if args.Verbose {
-		println("fetch seed value from: " + url)
+		fmt.Println("fetch seed value from: " + url)
 	}
 	resp, err := http.Get(url)
 	if err != nil {
 		return "", err
 	}
 	if args.Verbose {
-		println(resp.Status)
+		fmt.Println(resp.Status)
 	}
 	defer resp.Body.Close()
 

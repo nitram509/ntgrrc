@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"io"
@@ -18,18 +19,53 @@ type PortSettingsCommand struct {
 }
 
 func (port *PortSettingsCommand) Run(args *GlobalOptions) error {
-
 	settings, _, err := requestPortSettings(args, port.Address)
 	if err != nil {
 		return err
 	}
-
 	prettyPrintPortSettings(args.OutputFormat, settings)
-
 	return nil
 }
 
-func prettyPrintPortSettings(format OutputFormat, settings []Port) {
+func requestPortSettings(args *GlobalOptions, host string) (portSettings []PortSetting, hash string, err error) {
+	model, _, err := readTokenAndModel2GlobalOptions(args, host)
+	if err != nil {
+		return portSettings, hash, err
+	}
+
+	var requestUrl string
+	if isModel30x(model) {
+		requestUrl = fmt.Sprintf("http://%s/dashboard.cgi", host)
+	} else if isModel316(model) {
+		requestUrl = fmt.Sprintf("http://%s/iss/specific/dashboard.html", host)
+	} else {
+		panic("model not supported")
+	}
+
+	dashboardData, err := requestPage(args, host, requestUrl)
+	if err != nil {
+		return portSettings, hash, err
+	}
+
+	if checkIsLoginRequired(dashboardData) {
+		return portSettings, hash, errors.New("no content. please, (re-)login first")
+	}
+
+	hash, err = findHashInHtml(model, strings.NewReader(dashboardData))
+	if err != nil {
+		return portSettings, hash, err
+	}
+
+	portSettings, err = findPortSettingsInHtml(model, strings.NewReader(dashboardData))
+
+	if err != nil {
+		return portSettings, hash, err
+	}
+
+	return portSettings, hash, err
+}
+
+func prettyPrintPortSettings(format OutputFormat, settings []PortSetting) {
 
 	var header = []string{"Port ID", "Port Name", "Speed", "Ingress Limit", "Egress Limit", "Flow Control"}
 	var content [][]string
@@ -59,7 +95,7 @@ func prettyPrintPortSettings(format OutputFormat, settings []Port) {
 
 }
 
-func findPortSettingsInHtml(model NetgearModel, reader io.Reader) ([]Port, error) {
+func findPortSettingsInHtml(model NetgearModel, reader io.Reader) ([]PortSetting, error) {
 	if isModel30x(model) {
 		return findPortSettingsInGs30xEPxHtml(reader)
 	}
@@ -69,7 +105,7 @@ func findPortSettingsInHtml(model NetgearModel, reader io.Reader) ([]Port, error
 	panic("model not supported")
 }
 
-func findPortSettingsInGs30xEPxHtml(reader io.Reader) (ports []Port, err error) {
+func findPortSettingsInGs30xEPxHtml(reader io.Reader) (ports []PortSetting, err error) {
 
 	doc, err := goquery.NewDocumentFromReader(reader)
 	if err != nil {
@@ -77,7 +113,7 @@ func findPortSettingsInGs30xEPxHtml(reader io.Reader) (ports []Port, err error) 
 	}
 
 	doc.Find("li.list_item").Each(func(i int, s *goquery.Selection) {
-		portCfg := Port{}
+		portCfg := PortSetting{}
 
 		id, _ := s.Find("input[type=hidden].port").Attr("value")
 		var id64, _ = strconv.ParseInt(id, 10, 8)
@@ -94,7 +130,7 @@ func findPortSettingsInGs30xEPxHtml(reader io.Reader) (ports []Port, err error) 
 	return ports, nil
 }
 
-func findPortSettingsInGs316EPxHtml(reader io.Reader) (ports []Port, err error) {
+func findPortSettingsInGs316EPxHtml(reader io.Reader) (ports []PortSetting, err error) {
 
 	doc, err := goquery.NewDocumentFromReader(reader)
 	if err != nil {
@@ -103,7 +139,7 @@ func findPortSettingsInGs316EPxHtml(reader io.Reader) (ports []Port, err error) 
 
 	doc.Find("div.dashboard-port-status").Each(func(i int, s *goquery.Selection) {
 		s.Find("span.port-number").Each(func(i int, selection *goquery.Selection) {
-			ports = append(ports, Port{})
+			ports = append(ports, PortSetting{})
 		})
 
 		s.Find("span.port-number").Each(func(i int, selection *goquery.Selection) {

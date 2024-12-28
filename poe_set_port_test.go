@@ -68,9 +68,9 @@ func TestFindMaxPoePowerLimit(t *testing.T) {
 
 func TestComparePoeSettingsUnknown(t *testing.T) {
 
-	for _, setting := range []Setting{PortPrio, PwrMode, LimitType, DetecType, LongerDetect} {
+	for _, setting := range []PoeSettingKey{PortPrio, PwrMode, LimitType, DetecType, LongerDetect} {
 		setting, _ := comparePoeSettings(setting, "defaultValue", "newValue", poeExt)
-		then.AssertThat(t, setting, is.EqualTo("unknown").Reason("when providing a value that does not exist, return unknown to the caller"))
+		then.AssertThat(t, setting, is.EqualTo(unknown).Reason("when providing a value that does not exist, return unknown to the caller"))
 	}
 }
 
