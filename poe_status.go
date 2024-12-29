@@ -33,7 +33,7 @@ type PoeStatusCommand struct {
 }
 
 func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
-	statuses, err := getPoeStatus(args, poe.Address)
+	statuses, err := requestPoeStatus(args, poe.Address)
 	if err != nil {
 		return err
 	}
@@ -42,7 +42,7 @@ func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
 
 }
 
-func getPoeStatus(args *GlobalOptions, address string) ([]PoePortStatus, error) {
+func requestPoeStatus(args *GlobalOptions, address string) ([]PoePortStatus, error) {
 	var result []PoePortStatus
 	statusPage, err := requestPoePortStatusPage(args, address)
 	if err != nil {

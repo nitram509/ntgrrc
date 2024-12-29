@@ -223,15 +223,15 @@ This means, separated by | (pipe) and optional suffixes with blanks.
 
 Use the ```--output-format=json``` flag, to get JSON output instead.
 
-```ntgrrc poe settings --address gs305ep```
+```ntgrrc poe settings --address gs316ep```
 
 ```markdown
-| Port ID | Port Power | Mode    | Priority | Limit Type | Limit (W) | Type     |
-|---------|------------|---------|----------|------------|-----------|----------|
-| 1       | disabled   | 802.3at | low      | user       | 30.0      | IEEE 802 |
-| 2       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
-| 3       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
-| 4       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
+| Port ID | Port Name        | Port Power | Mode        | Priority | Limit Type | Limit (W) | Type                 | Longer Detection Time |
+|---------|------------------|------------|-------------|----------|------------|-----------|----------------------|-----------------------|
+| 1       | AGER 31 SUR Tech | enabled    | Legacy      | High     | User       | 30.0      | IEEE802              | Disable               |
+| 2       | foobar           | enabled    | 802.3at     | Low      | User       | 30.0      | IEEE802              | Disable               |
+| 3       | zzz              | enabled    | 802.3at     | Low      | User       | 30.0      | 4pt 802.3af + Legacy | Disable               |
+| 4       | uuu              | enabled    | 802.3at     | Low      | User       | 30.0      | IEEE802              | Disable               |
 ```
 
 #### Status
@@ -244,12 +244,12 @@ Use the ```--output-format=json``` flag, to get JSON output instead.
 ```ntgrrc poe status --address gs305ep```
 
 ```markdown
-| Port ID | Status           | PortPwr class | Voltage (V) | Current (mA) | PortPwr (W) | Temp. (°C) | Error status |
-|---------|------------------|---------------|-------------|--------------|-------------|------------|--------------|
-| 1       | Delivering Power | 0             | 53          | 82           | 4.40        | 30         | No Error     |
-| 2       | Searching        |               | 0           | 0            | 0.00        | 30         | No Error     |
-| 3       | Searching        |               | 0           | 0            | 0.00        | 30         | No Error     |
-| 4       | Searching        |               | 0           | 0            | 0.00        | 30         | No Error     |
+| Port ID | Port Name | Status           | PortPwr class | Voltage (V) | Current (mA) | PortPwr (W) | Temp. (°C) | Error status |
+|---------|-----------|------------------|---------------|-------------|--------------|-------------|------------|--------------|
+| 1       | Camera    | Delivering Power | 0             | 53          | 82           | 4.40        | 30         | No Error     |
+| 2       |           | Searching        |               | 0           | 0            | 0.00        | 30         | No Error     |
+| 3       |           | Searching        |               | 0           | 0            | 0.00        | 30         | No Error     |
+| 4       |           | Searching        |               | 0           | 0            | 0.00        | 30         | No Error     |
 ```
 
 ### set Power Over Ethernet (POE)
@@ -265,10 +265,11 @@ Use the ```--output-format=json``` flag, to get JSON output instead.
 ```ntgrrc poe set -p 3 -p 4 --power enable --address gs305ep```
 
 ```markdown
-| Port ID | Port Power | Mode    | Priority | Limit Type | Limit (W) | Type     |
-|---------|------------|---------|----------|------------|-----------|----------|
-| 3       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
-| 4       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
+| Port ID | Port Name | Port Power | Mode        | Priority | Limit Type | Limit (W) | Type    | Longer Detection Time |
+|---------|-----------|------------|-------------|----------|------------|-----------|---------|-----------------------|
+| 3       |           | enabled    | Legacy      | High     | User       | 30.0      | IEEE802 | Disable               |
+| 4       |           | enabled    | 802.3at     | Low      | User       | 30.0      | IEEE802 | Disable               |
+
 ```
 
 #### Port Power Mode
@@ -280,10 +281,10 @@ Use the ```--output-format=json``` flag, to get JSON output instead.
 ```ntgrrc poe set -p 3 -p 5 --mode legacy --address gs305ep```
 
 ```markdown
-| Port ID | Port Power | Mode   | Priority | Limit Type | Limit (W) | Type     |
-|---------|------------|--------|----------|------------|-----------|----------|
-| 3       | enabled    | legacy | low      | user       | 30.0      | IEEE 802 |
-| 5       | disabled   | legacy | low      | user       | 30.0      | IEEE 802 |
+| Port ID | Port Name | Port Power | Mode        | Priority | Limit Type | Limit (W) | Type    | Longer Detection Time |
+|---------|-----------|------------|-------------|----------|------------|-----------|---------|-----------------------|
+| 3       |           | enabled    | Legacy      | High     | User       | 30.0      | IEEE802 | Disable               |
+| 4       |           | enabled    | Legacy      | Low      | User       | 30.0      | IEEE802 | Disable               |
 ```
 
 #### Port Priority
@@ -295,10 +296,10 @@ Use the ```--output-format=json``` flag, to get JSON output instead.
 ```ntgrrc poe set -p 3 -p 5 --priority critical --address gs305ep```
 
 ```markdown
-| Port ID | Port Power | Mode   | Priority | Limit Type | Limit (W) | Type     |
-|---------|------------|--------|----------|------------|-----------|----------|
-| 3       | enabled    | legacy | critical | user       | 30.0      | IEEE 802 |
-| 5       | disabled   | legacy | critical | user       | 30.0      | IEEE 802 |
+| Port ID | Port Name | Port Power | Mode        | Priority | Limit Type | Limit (W) | Type    | Longer Detection Time |
+|---------|-----------|------------|-------------|----------|------------|-----------|---------|-----------------------|
+| 3       |           | enabled    | Legacy      | critical | User       | 30.0      | IEEE802 | Disable               |
+| 5       |           | enabled    | Legacy      | critical | User       | 30.0      | IEEE802 | Disable               |
 ```
 
 #### Power Limit
@@ -310,10 +311,10 @@ Use the ```--output-format=json``` flag, to get JSON output instead.
 ```ntgrrc poe set -p 3 -p 5 --pwr-limit 5 --address gs305ep```
 
 ```markdown
-| Port ID | Port Power | Mode   | Priority | Limit Type | Limit (W) | Type     |
-|---------|------------|--------|----------|------------|-----------|----------|
-| 3       | enabled    | legacy | critical | user       | 5.0       | IEEE 802 |
-| 5       | disabled   | legacy | critical | user       | 5.0       | IEEE 802 |
+| Port ID | Port Name | Port Power | Mode        | Priority | Limit Type | Limit (W) | Type    | Longer Detection Time |
+|---------|-----------|------------|-------------|----------|------------|-----------|---------|-----------------------|
+| 3       |           | enabled    | Legacy      | critical | User       | 5.0       | IEEE802 | Disable               |
+| 5       |           | enabled    | Legacy      | critical | User       | 5.0       | IEEE802 | Disable               |
 ```
 
 #### Power Limit Type
@@ -325,10 +326,10 @@ Use the ```--output-format=json``` flag, to get JSON output instead.
 ```ntgrrc poe set -p 3 -p 5 --limit-type class --address gs305ep```
 
 ```markdown
-| Port ID | Port Power | Mode   | Priority | Limit Type | Limit (W) | Type     |
-|---------|------------|--------|----------|------------|-----------|----------|
-| 3       | enabled    | legacy | critical | class      | 16.2      | IEEE 802 |
-| 5       | disabled   | legacy | critical | class      | 30.0      | IEEE 802 |
+| Port ID | Port Name | Port Power | Mode        | Priority | Limit Type | Limit (W) | Type    | Longer Detection Time |
+|---------|-----------|------------|-------------|----------|------------|-----------|---------|-----------------------|
+| 3       |           | enabled    | Legacy      | critical | class      | 30.0      | IEEE802 | Disable               |
+| 5       |           | enabled    | Legacy      | critical | class      | 30.0      | IEEE802 | Disable               |
 ```
 
 #### Detection type
@@ -340,10 +341,10 @@ Use the ```--output-format=json``` flag, to get JSON output instead.
 ```ntgrrc poe set -p 3 -p 5 --detect-type "4pt 802.3af + Legacy" -a gs305ep```
 
 ```markdown
-| Port ID | Port Power | Mode   | Priority | Limit Type | Limit (W) | Type                 |
-|---------|------------|--------|----------|------------|-----------|----------------------|
-| 3       | enabled    | legacy | critical | user       | 30.0      | 4pt 802.3af + Legacy |
-| 5       | disabled   | legacy | critical | user       | 30.0      | 4pt 802.3af + Legacy |
+| Port ID | Port Name | Port Power | Mode        | Priority | Limit Type | Limit (W) | Type                 | Longer Detection Time |
+|---------|-----------|------------|-------------|----------|------------|-----------|----------------------|-----------------------|
+| 3       |           | enabled    | Legacy      | critical | User       | 30.0      | 4pt 802.3af + Legacy | Disable               |
+| 5       |           | enabled    | Legacy      | critical | User       | 30.0      | 4pt 802.3af + Legacy | Disable               |
 ```
 
 #### cycle Power Over Ethernet (POE)
@@ -357,8 +358,8 @@ Alternativly, you can achieve the same request with this
 ```ntgrrc poe cycle --address gs305ep --port=3,5```
 
 ```markdown
-| Port ID | Port Power | Mode    | Priority | Limit Type | Limit (W) | Type     |
-|---------|------------|---------|----------|------------|-----------|----------|
-| 3       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
-| 5       | enabled    | 802.3at | low      | user       | 30.0      | IEEE 802 |
+| Port ID | Port Name        | Status           | PortPwr class | Voltage (V) | Current (mA) | PortPwr (W) | Temp. (°C) | Error status |
+|---------|------------------|------------------|---------------|-------------|--------------|-------------|------------|--------------|
+| 3       | Camera           | Delivering Power |               | 54          | 24           | 1.30        | 30         | No Error     |
+| 5       | Sensor           | Searching        |               | 0           | 0            | 0.00        | 30         | Power Denied |
 ```

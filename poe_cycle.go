@@ -60,13 +60,14 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs30xEPx(args *GlobalOptions) error {
 		return errors.New(result)
 	}
 
-	settings, err = requestPoeConfiguration(args, poe.Address, poeExt)
+	statuses, err := requestPoeStatus(args, poe.Address)
 	if err != nil {
 		return err
 	}
+	statuses = filter(statuses, func(status PoePortStatus) bool {
+		return slices.Contains(poe.Ports, int(status.PortIndex))
+	})
 
-	changedPorts := collectChangedPoePortConfiguration(poe.Ports, settings)
-	prettyPrintPoePortSettings(args.model, args.OutputFormat, changedPorts)
 	return nil
 }
 
@@ -97,8 +98,7 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs316EPx(args *GlobalOptions) error {
 		return errors.New(result)
 	}
 
-	// hint in contrast to GS30x, we print PO status here, as this seems more useful
-	statuses, err := getPoeStatus(args, poe.Address)
+	statuses, err := requestPoeStatus(args, poe.Address)
 	if err != nil {
 		return err
 	}
