@@ -19,7 +19,7 @@ func storeToken(args *GlobalOptions, host string, token string) error {
 		return err
 	}
 	if args.Verbose {
-		println("Storing login token " + tokenFilename(args.TokenDir, host))
+		fmt.Println("Storing login token " + tokenFilename(args.TokenDir, host))
 	}
 	data := fmt.Sprintf("%s%s%s", args.model, separator, token)
 	return os.WriteFile(tokenFilename(args.TokenDir, host), []byte(data), 0644)
@@ -36,7 +36,7 @@ func readTokenAndModel2GlobalOptions(args *GlobalOptions, host string) (NetgearM
 		return args.model, args.token, nil
 	}
 	if args.Verbose {
-		println("reading token from: " + tokenFilename(args.TokenDir, host))
+		fmt.Println("reading token from: " + tokenFilename(args.TokenDir, host))
 	}
 	bytes, err := os.ReadFile(tokenFilename(args.TokenDir, host))
 	if errors.Is(err, fs.ErrNotExist) {

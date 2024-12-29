@@ -1,6 +1,13 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.12.0
+
+* Add support to show and change POE settings
+* Add show port status, when requesting port settings
+
+----
+
 ## v0.11.0
 
 * Add support poe reset (cycle power) for gs316xx (#70); many thanks to @electron1963 for testing and supporting this feature 

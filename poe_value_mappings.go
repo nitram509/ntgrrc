@@ -1,11 +1,16 @@
 package main
 
 import (
+	"errors"
+	"fmt"
 	"sort"
 	"strings"
 )
 
-// bidiMapLookup bidirectional map lookup, will return either key or value depending on the input
+const unknown = "unknown"
+
+// bidiMapLookup bidirectional map lookup, will return either key or value depending on the input.
+// In case of value not found, 'unknown' is returned
 func bidiMapLookup(value string, mapName map[string]string) string {
 	if val, ok := mapName[value]; ok {
 		return val
@@ -17,7 +22,7 @@ func bidiMapLookup(value string, mapName map[string]string) string {
 		}
 	}
 
-	return "unknown"
+	return unknown
 }
 
 // comma separated string list, alphabetically sorted
@@ -38,9 +43,23 @@ var pwrModeMap = map[string]string{
 }
 
 var portPrioMap = map[string]string{
+	// hint: this is only for GS30x
+	// in contrast, GS316 uses `1:low`, `2:high`, `3:critical`
 	"0": "low",
 	"2": "high",
 	"3": "critical",
+}
+
+func mapPoePrioGs316(prio string) (string, error) {
+	switch strings.ToLower(prio) {
+	case "low":
+		return "1", nil
+	case "high":
+		return "2", nil
+	case "critical":
+		return "3", nil
+	}
+	return "", errors.New(fmt.Sprintf("invalid port priority '%s'; valid values", valuesAsString(portPrioMap)))
 }
 
 var limitTypeMap = map[string]string{

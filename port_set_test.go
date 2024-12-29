@@ -9,7 +9,7 @@ import (
 )
 
 func TestFindHashInPortHtml(t *testing.T) {
-	hash, err := findHashInHtml("", strings.NewReader(loadTestFile("GS308EPP", "dashboard.cgi.html")))
+	hash, err := findHashInHtml(GS308EPP, strings.NewReader(loadTestFile("GS308EPP", "dashboard.cgi.html")))
 
 	then.AssertThat(t, err, is.Nil())
 	then.AssertThat(t, hash, is.EqualTo("4f11f5d64ef3fd75a92a9f2ad1de3060"))
@@ -17,9 +17,9 @@ func TestFindHashInPortHtml(t *testing.T) {
 
 func TestComparePortSettingsUnknown(t *testing.T) {
 
-	for _, setting := range []Setting{Speed, IngressRateLimit, EgressRateLimit, FlowControl} {
+	for _, setting := range []PortSettingKey{Speed, IngressRateLimit, EgressRateLimit, FlowControl} {
 		finalSetting, _ := comparePortSettings(setting, "defaultValue", "newValue")
-		then.AssertThat(t, finalSetting, is.EqualTo("unknown").Reason("when providing a value that does not exist, return unknown to the caller"))
+		then.AssertThat(t, finalSetting, is.EqualTo(unknown).Reason("when providing a value that does not exist, return unknown to the caller"))
 
 		finalSetting, err := comparePortSettings(setting, "defaultValue", "")
 		then.AssertThat(t, err, is.Nil())
@@ -80,12 +80,12 @@ func TestCompareSettingsSpeed(t *testing.T) {
 	// Check for an invalid speed and 'unknown'
 	speed, err = comparePortSettings(Speed, "invalid speed", "invalid speed")
 	then.AssertThat(t, err, is.Not(is.Nil()))
-	then.AssertThat(t, speed, is.EqualTo("unknown").Reason("invalid speeds should return an error message and be rejected"))
+	then.AssertThat(t, speed, is.EqualTo(unknown).Reason("invalid speeds should return an error message and be rejected"))
 
 }
 
 func TestCompareSettingsIngressEgress(t *testing.T) {
-	for _, setting := range []Setting{IngressRateLimit, EgressRateLimit} {
+	for _, setting := range []PortSettingKey{IngressRateLimit, EgressRateLimit} {
 		for key, value := range portRateLimitMap {
 			result, err := comparePortSettings(setting, value, value)
 			then.AssertThat(t, err, is.Nil())
@@ -100,7 +100,7 @@ func TestCompareSettingsIngressEgress(t *testing.T) {
 		// Check for an invalid limit
 		rateLimit, err = comparePortSettings(setting, "invalid", "invalid")
 		then.AssertThat(t, err, is.Not(is.Nil()))
-		then.AssertThat(t, rateLimit, is.EqualTo("unknown").Reason("an invalid ingress or egress limit cannot be set"))
+		then.AssertThat(t, rateLimit, is.EqualTo(unknown).Reason("an invalid ingress or egress limit cannot be set"))
 	}
 
 }
@@ -120,13 +120,13 @@ func TestCompareSettingsFlowControl(t *testing.T) {
 	// Check for invalid entry
 	portFlowControl, err = comparePortSettings(FlowControl, "invalid", "invalid")
 	then.AssertThat(t, err, is.Not(is.Nil()))
-	then.AssertThat(t, portFlowControl, is.EqualTo("unknown").Reason("an invalid flow control setting cannot be set"))
+	then.AssertThat(t, portFlowControl, is.EqualTo(unknown).Reason("an invalid flow control setting cannot be set"))
 
 }
 
 func TestCollectChangedPortConfiguration(t *testing.T) {
 	var ports = []int{1, 2}
-	var settings = []Port{
+	var settings = []PortSetting{
 		{
 			Index:            1,
 			Name:             "port 1",
@@ -147,4 +147,36 @@ func TestCollectChangedPortConfiguration(t *testing.T) {
 	changed := collectChangedPortConfiguration(ports, settings)
 	then.AssertThat(t, len(changed), is.EqualTo(2))
 	then.AssertThat(t, int(changed[1].Index), is.EqualTo(2))
+}
+
+func TestCreatePortSettingUpdatePayloadGs316ep(t *testing.T) {
+	token := "xyz123"
+	newName := "newName"
+	portSet := PortSetCommand{
+		Name:             &newName,
+		Ports:            []int{16},
+		Speed:            "10M half",
+		IngressRateLimit: "1 Mbit/s",
+		EgressRateLimit:  "16 Mbit/s",
+		FlowControl:      "On",
+	}
+	currentSetting := PortSetting{
+		Name: "oldName",
+	}
+	value, err := createPortSettingUpdatePayloadGs316ep(&portSet, currentSetting, token, "16")
+	then.AssertThat(t, err, is.Nil())
+
+	then.AssertThat(t, value.Encode(), is.StringContaining("Gambit=xyz123"))
+
+	then.AssertThat(t, value.Encode(), is.StringContaining("PORT_NO=16"))
+	then.AssertThat(t, value.Encode(), is.StringContaining("PORT_NAME=newName"))
+
+	then.AssertThat(t, value.Encode(), is.StringContaining("PORT_CTRL_MODE=2"))
+	then.AssertThat(t, value.Encode(), is.StringContaining("PORT_CTRL_SPEED=1"))
+	then.AssertThat(t, value.Encode(), is.StringContaining("PORT_CTRL_DUPLEX=2"))
+
+	then.AssertThat(t, value.Encode(), is.StringContaining("INGRESS=3"))
+	then.AssertThat(t, value.Encode(), is.StringContaining("EGRESS=7"))
+
+	then.AssertThat(t, value.Encode(), is.StringContaining("FLOW_CONTROL=4"))
 }

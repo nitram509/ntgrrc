@@ -22,7 +22,7 @@ func doHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, host s
 	}
 
 	if args.Verbose {
-		println(fmt.Sprintf("send HTTP %s request to: %s", httpMethod, requestUrl))
+		fmt.Println(fmt.Sprintf("send HTTP %s request to: %s", httpMethod, requestUrl))
 	}
 
 	if isModel316(model) {
@@ -54,7 +54,7 @@ func doHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, host s
 	}
 	defer resp.Body.Close()
 	if args.Verbose {
-		println(resp.Status)
+		fmt.Println(resp.Status)
 	}
 	bytes, err := io.ReadAll(resp.Body)
 	return string(bytes), err
@@ -62,7 +62,7 @@ func doHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, host s
 
 func doUnauthenticatedHttpRequestAndReadResponse(args *GlobalOptions, httpMethod string, requestUrl string, requestBody string) (string, error) {
 	if args.Verbose {
-		println("Fetching data from: " + requestUrl)
+		fmt.Println("Fetching data from: " + requestUrl)
 	}
 
 	req, err := http.NewRequest(httpMethod, requestUrl, strings.NewReader(requestBody))
@@ -77,10 +77,10 @@ func doUnauthenticatedHttpRequestAndReadResponse(args *GlobalOptions, httpMethod
 	}
 	defer resp.Body.Close()
 	if args.Verbose {
-		println(resp.Status)
+		fmt.Println(resp.Status)
 		for name, values := range resp.Header {
 			for _, value := range values {
-				println(fmt.Sprintf("Response header: '%s' -- '%s'", name, value))
+				fmt.Println(fmt.Sprintf("Response header: '%s' -- '%s'", name, value))
 			}
 		}
 	}

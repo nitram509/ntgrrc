@@ -52,11 +52,25 @@ func TestFindPortConfigInHtml(t *testing.T) {
 			expectedDetecType:      "2",
 			expectedPortName:       "",
 		},
+		{
+			model:                  "GS316EP",
+			fileName:               "poePortConf.html",
+			expectedSettingsLength: gs316NoPoePorts,
+			expectedPortIndex:      "",
+			expectedPort0Pwr:       false,
+			expectedPort1Pwr:       true,
+			expectedPwrMode:        "802.3at",
+			expectedPortPrio:       "Low",
+			expectedLimitType:      "User",
+			expectedPwrLimit:       "30.0",
+			expectedDetecType:      "IEEE802",
+			expectedPortName:       "AGER 31 SUR Tech",
+		},
 	}
 	for _, test := range tests {
 		t.Run(test.model, func(t *testing.T) {
 			// from type inference, settings is of type []PoePortSetting
-			settings, err := findPoeSettingsInHtml(strings.NewReader(loadTestFile(test.model, test.fileName)))
+			settings, err := findPoePortConfInHtml(NetgearModel(test.model), strings.NewReader(loadTestFile(test.model, test.fileName)))
 
 			then.AssertThat(t, err, is.Nil())
 			then.AssertThat(t, settings, has.Length[PoePortSetting](test.expectedSettingsLength))
@@ -98,12 +112,12 @@ func TestPrettyPrintSettings(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.model, func(t *testing.T) {
-			settings, err := findPoeSettingsInHtml(strings.NewReader(loadTestFile(test.model, test.fileName)))
+			settings, err := findPoePortConfInHtml(NetgearModel(test.model), strings.NewReader(loadTestFile(test.model, test.fileName)))
 
 			then.AssertThat(t, err, is.Nil())
 			then.AssertThat(t, settings, has.Length[PoePortSetting](test.expectedVal))
 
-			prettyPrintSettings(MarkdownFormat, settings)
+			prettyPrintPoePortSettings(NetgearModel(test.model), MarkdownFormat, settings)
 		})
 	}
 }
@@ -127,12 +141,12 @@ func TestPrettyPrintJsonSettings(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.model, func(t *testing.T) {
-			settings, err := findPoeSettingsInHtml(strings.NewReader(loadTestFile(test.model, test.fileName)))
+			settings, err := findPoePortConfInHtml(NetgearModel(test.model), strings.NewReader(loadTestFile(test.model, test.fileName)))
 
 			then.AssertThat(t, err, is.Nil())
 			then.AssertThat(t, settings, has.Length[PoePortSetting](test.expectedVal))
 
-			prettyPrintSettings(JsonFormat, settings)
+			prettyPrintPoePortSettings(NetgearModel(test.model), JsonFormat, settings)
 		})
 	}
 }

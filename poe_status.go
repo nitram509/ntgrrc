@@ -24,7 +24,7 @@ type PoePortStatus struct {
 type PoeCommand struct {
 	PoeStatusCommand       PoeStatusCommand       `cmd:"" name:"status" help:"show current PoE status for all ports" default:"1"`
 	PoeShowSettingsCommand PoeShowSettingsCommand `cmd:"" name:"settings" help:"show current PoE settings for all ports"`
-	PoeSetPowerCommand     PoeSetPowerCommand     `cmd:"" name:"set" help:"set new PoE settings per each PORT number"`
+	PoeSetPowerCommand     PoeSetConfigCommand    `cmd:"" name:"set" help:"set new PoE settings per each PORT number"`
 	PoeCyclePowerCommand   PoeCyclePowerCommand   `cmd:"" name:"cycle" help:"power cycle one or more PoE ports"`
 }
 
@@ -37,7 +37,7 @@ func (poe *PoeStatusCommand) Run(args *GlobalOptions) error {
 	if err != nil {
 		return err
 	}
-	prettyPrintStatus(args.OutputFormat, statuses)
+	prettyPrintPoePortStatus(args.OutputFormat, statuses)
 	return nil
 
 }
@@ -58,7 +58,7 @@ func getPoeStatus(args *GlobalOptions, address string) ([]PoePortStatus, error) 
 	return result, nil
 }
 
-func prettyPrintStatus(format OutputFormat, statuses []PoePortStatus) {
+func prettyPrintPoePortStatus(format OutputFormat, statuses []PoePortStatus) {
 	var header = []string{"Port ID", "Port Name", "Status", "PortPwr class", "Voltage (V)", "Current (mA)", "PortPwr (W)", "Temp. (°C)", "Error status"}
 	var content [][]string
 	for _, status := range statuses {

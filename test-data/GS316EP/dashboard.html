@@ -34,7 +34,7 @@
 <div class="db-content data-cover sys-content extend">
 <div class="info-row">
   <div class="info-col">
-    <p class="light-title">Firmware Version</p><p class="bold-title">1.0.3.7</p>
+    <p class="light-title">Firmware Version</p><p class="bold-title">1.0.4.4</p>
   </div>
   <div class="info-col">
     <p class="light-title">Check for firmware on</p>
@@ -44,18 +44,18 @@
 <div class="info-row">
   <div class="info-col text-area">
     <label class="label-1 light-title" style="margin-bottom: 0;">Switch Name</label>
-    <input type="text" name="switchName" class="input-1 bold-title" value="GS316EPP" size="25" maxlength="20" data-save data-on="input" style="max-width: 220px; height:21px; line-height:21px; font-size:14px;">
+    <input type="text" name="switchName" class="input-1 bold-title" value="GS316EP" size="25" maxlength="20" data-save data-on="input" style="max-width: 220px; height:21px; line-height:21px; font-size:14px;">
   </div>
   <div class="info-col">
-    <p class="light-title">MAC Address</p><p class="bold-title">E0:46:EE:15:56:C3</p>
+    <p class="light-title">MAC Address</p><p class="bold-title">94:18:65:80:7B:6E</p>
   </div>
 </div>
 <div class="info-row">
   <div class="info-col">
-    <p class="light-title">Serial Number</p><p class="bold-title">6LA62B51A0094</p>
+    <p class="light-title">Serial Number</p><p class="bold-title">6SS52B5E00A3D</p>
   </div>
   <div class="info-col">
-    <p class="light-title">Model Number</p><p class="bold-title" id="model_name">GS316EPP</p>
+    <p class="light-title">Model Number</p><p class="bold-title" id="model_name">GS316EP</p>
   </div>
 </div>
 <div class="info-row"><div class="info-col">
@@ -140,7 +140,7 @@
 
 <div class=" text-area ipsec">
     <label class="label-1">IP Address</label>
-    <input data-save type="text" name="ip" class="input-1 bold-title hideWhenDhcp" value="192.168.1.224" size="15" maxlength="15" data-on="input" >
+    <input data-save type="text" name="ip" class="input-1 bold-title hideWhenDhcp" value="192.168.0.239" size="15" maxlength="15" data-on="input" >
     <input type="text" class="input-1 ip-description" value="To be established after changes applied." disabled="disabled" trans="trans" style="display:none;">
 </div>
 <div class=" text-area ipsec hideWhenDhcp">
@@ -149,11 +149,11 @@
 </div>
 <div class=" text-area ipsec hideWhenDhcp">
     <label class="label-1">Gateway Address</label>
-    <input data-save type="text" name="gatewayAddress" class="input-1 bold-title" value="192.168.1.1" size="15" maxlength="15" data-on="input" >
+    <input data-save type="text" name="gatewayAddress" class="input-1 bold-title" value="192.168.0.254" size="15" maxlength="15" data-on="input" >
 </div>
 <div class=" text-area ipsec hideWhenDhcp">
   <label class="label-1">Primary DNS Server Address</label>
-  <input data-save type="text" name="priDnsServAddr" class="input-1 bold-title" value="192.168.1.1" size="16" maxlength="16" data-on="input">
+  <input data-save type="text" name="priDnsServAddr" class="input-1 bold-title" value="192.168.0.254" size="16" maxlength="16" data-on="input">
 </div>
 <div class=" text-area ipsec hideWhenDhcp">
   <label class="label-1">Secondary DNS Server Address</label>
@@ -256,7 +256,7 @@
     </div>
     <div class="text-area timesec">
       <label class="label-1">System Uptime</label>
-      <span>5 hrs, 20 mins, 4 secs</span>
+      <span>2 hrs, 48 mins, 18 secs</span>
     </div>
     <div class="control-buttons-1">
         <a class="anchor-1 disable-btn" href="javascript:void(0)">CANCEL</a>
@@ -284,11 +284,11 @@
     <h4 class="panel-title">
       <a class="collapsed accordion-icon">
         <span class="port-number">1</span>
-
-        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>port name 1</span></span>
-
-        <span class='status-on-port port-connected'>CONNECTED</span>
-
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>AGER 31 SUR Tech</span></span>
+        
+        <span class='status-on-port'>AVAILABLE</span>
+        
         <span class="accordion-arrow arrow-down">
           <span class="icon-I-arrow-down"></span>
         </span>
@@ -302,12 +302,12 @@
 <div class="info-col">
   <p class="light-title">Speed</p>
   <p class="bold-title speed-text">Auto</p>
-
+  
 </div>
 <div class="info-col">
   <p class="light-title">Linked Speed</p>
-  <p class="bold-title link-speed-text">1000M Full</p>
-
+  <p class="bold-title link-speed-text">No Speed</p>
+  
 </div>
 </div>
 <div class="info-row">
@@ -319,14 +319,14 @@
 <div class="info-col">
   <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
   <p class="bold-title egress-text">No Limit</p>
-
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Flow Control</p>
   <p class="bold-title flow-text">OFF</p>
-
+  
 </div>
 </div>
 
@@ -536,11 +536,11 @@
     <h4 class="panel-title">
       <a class="collapsed accordion-icon">
         <span class="port-number">2</span>
-
-        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>nas</span></span>
-
-        <span class='status-on-port port-connected'>CONNECTED</span>
-
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>xxx</span></span>
+        
+        <span class='status-on-port port-connected slow-color'>CONNECTED</span>
+        
         <span class="accordion-arrow arrow-down">
           <span class="icon-I-arrow-down"></span>
         </span>
@@ -553,32 +553,32 @@
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Speed</p>
-  <p class="bold-title speed-text">Auto</p>
-
+  <p class="bold-title speed-text">10M Half</p>
+  
 </div>
 <div class="info-col">
   <p class="light-title">Linked Speed</p>
-  <p class="bold-title link-speed-text">1000M Full</p>
-
+  <p class="bold-title link-speed-text">10M Half</p>
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
-  <p class="bold-title ingress-text">No Limit</p>
+  <p class="bold-title ingress-text">128 Mbit/s</p>
   <! PARAM STOP>
 </div>
 <div class="info-col">
   <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
-  <p class="bold-title egress-text">No Limit</p>
-
+  <p class="bold-title egress-text">8 Mbit/s</p>
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Flow Control</p>
-  <p class="bold-title flow-text">OFF</p>
-
+  <p class="bold-title flow-text">ON</p>
+  
 </div>
 </div>
 
@@ -788,11 +788,11 @@
     <h4 class="panel-title">
       <a class="collapsed accordion-icon">
         <span class="port-number">3</span>
-
-        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
-
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>zzz</span></span>
+        
         <span class='status-on-port'>AVAILABLE</span>
-
+        
         <span class="accordion-arrow arrow-down">
           <span class="icon-I-arrow-down"></span>
         </span>
@@ -805,32 +805,32 @@
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Speed</p>
-  <p class="bold-title speed-text">Auto</p>
-
+  <p class="bold-title speed-text">10M Half</p>
+  
 </div>
 <div class="info-col">
   <p class="light-title">Linked Speed</p>
   <p class="bold-title link-speed-text">No Speed</p>
-
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
-  <p class="bold-title ingress-text">No Limit</p>
+  <p class="bold-title ingress-text">1 Mbit/s</p>
   <! PARAM STOP>
 </div>
 <div class="info-col">
   <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
-  <p class="bold-title egress-text">No Limit</p>
-
+  <p class="bold-title egress-text">32 Mbit/s</p>
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Flow Control</p>
-  <p class="bold-title flow-text">OFF</p>
-
+  <p class="bold-title flow-text">ON</p>
+  
 </div>
 </div>
 
@@ -1040,11 +1040,11 @@
     <h4 class="panel-title">
       <a class="collapsed accordion-icon">
         <span class="port-number">4</span>
-
-        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
-
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>uuu</span></span>
+        
         <span class='status-on-port'>AVAILABLE</span>
-
+        
         <span class="accordion-arrow arrow-down">
           <span class="icon-I-arrow-down"></span>
         </span>
@@ -1057,13 +1057,13 @@
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Speed</p>
-  <p class="bold-title speed-text">Auto</p>
-
+  <p class="bold-title speed-text">10M Full</p>
+  
 </div>
 <div class="info-col">
   <p class="light-title">Linked Speed</p>
   <p class="bold-title link-speed-text">No Speed</p>
-
+  
 </div>
 </div>
 <div class="info-row">
@@ -1075,14 +1075,14 @@
 <div class="info-col">
   <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
   <p class="bold-title egress-text">No Limit</p>
-
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Flow Control</p>
   <p class="bold-title flow-text">OFF</p>
-
+  
 </div>
 </div>
 
@@ -1292,11 +1292,11 @@
     <h4 class="panel-title">
       <a class="collapsed accordion-icon">
         <span class="port-number">5</span>
-
+        
         <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
-
-        <span class='status-on-port'>AVAILABLE</span>
-
+        
+        <span class='status-on-port'>DISABLED</span>
+        
         <span class="accordion-arrow arrow-down">
           <span class="icon-I-arrow-down"></span>
         </span>
@@ -1309,13 +1309,13 @@
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Speed</p>
-  <p class="bold-title speed-text">Auto</p>
-
+  <p class="bold-title speed-text">Disable</p>
+  
 </div>
 <div class="info-col">
   <p class="light-title">Linked Speed</p>
   <p class="bold-title link-speed-text">No Speed</p>
-
+  
 </div>
 </div>
 <div class="info-row">
@@ -1327,14 +1327,14 @@
 <div class="info-col">
   <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
   <p class="bold-title egress-text">No Limit</p>
-
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Flow Control</p>
-  <p class="bold-title flow-text">OFF</p>
-
+  <p class="bold-title flow-text">ON</p>
+  
 </div>
 </div>
 
@@ -1544,11 +1544,11 @@
     <h4 class="panel-title">
       <a class="collapsed accordion-icon">
         <span class="port-number">6</span>
-
+        
         <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
-
+        
         <span class='status-on-port'>AVAILABLE</span>
-
+        
         <span class="accordion-arrow arrow-down">
           <span class="icon-I-arrow-down"></span>
         </span>
@@ -1562,12 +1562,12 @@
 <div class="info-col">
   <p class="light-title">Speed</p>
   <p class="bold-title speed-text">Auto</p>
-
+  
 </div>
 <div class="info-col">
   <p class="light-title">Linked Speed</p>
   <p class="bold-title link-speed-text">No Speed</p>
-
+  
 </div>
 </div>
 <div class="info-row">
@@ -1579,14 +1579,14 @@
 <div class="info-col">
   <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
   <p class="bold-title egress-text">No Limit</p>
-
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Flow Control</p>
   <p class="bold-title flow-text">OFF</p>
-
+  
 </div>
 </div>
 
@@ -1796,11 +1796,11 @@
     <h4 class="panel-title">
       <a class="collapsed accordion-icon">
         <span class="port-number">7</span>
-
-        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
-
+        
+        <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'>Ubiquity</span></span>
+        
         <span class='status-on-port'>AVAILABLE</span>
-
+        
         <span class="accordion-arrow arrow-down">
           <span class="icon-I-arrow-down"></span>
         </span>
@@ -1813,32 +1813,32 @@
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Speed</p>
-  <p class="bold-title speed-text">Auto</p>
-
+  <p class="bold-title speed-text">100M Half</p>
+  
 </div>
 <div class="info-col">
   <p class="light-title">Linked Speed</p>
   <p class="bold-title link-speed-text">No Speed</p>
-
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title hid-txt" title="Ingress Port Limit">Ingress Port Limit</p>
-  <p class="bold-title ingress-text">No Limit</p>
+  <p class="bold-title ingress-text">128 Mbit/s</p>
   <! PARAM STOP>
 </div>
 <div class="info-col">
   <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
-  <p class="bold-title egress-text">No Limit</p>
-
+  <p class="bold-title egress-text">16 Mbit/s</p>
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Flow Control</p>
   <p class="bold-title flow-text">OFF</p>
-
+  
 </div>
 </div>
 
@@ -2048,11 +2048,11 @@
     <h4 class="panel-title">
       <a class="collapsed accordion-icon">
         <span class="port-number">8</span>
-
+        
         <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
-
+        
         <span class='status-on-port'>AVAILABLE</span>
-
+        
         <span class="accordion-arrow arrow-down">
           <span class="icon-I-arrow-down"></span>
         </span>
@@ -2066,12 +2066,12 @@
 <div class="info-col">
   <p class="light-title">Speed</p>
   <p class="bold-title speed-text">Auto</p>
-
+  
 </div>
 <div class="info-col">
   <p class="light-title">Linked Speed</p>
   <p class="bold-title link-speed-text">No Speed</p>
-
+  
 </div>
 </div>
 <div class="info-row">
@@ -2083,14 +2083,14 @@
 <div class="info-col">
   <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
   <p class="bold-title egress-text">No Limit</p>
-
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Flow Control</p>
   <p class="bold-title flow-text">OFF</p>
-
+  
 </div>
 </div>
 
@@ -2300,11 +2300,11 @@
     <h4 class="panel-title">
       <a class="collapsed accordion-icon">
         <span class="port-number">9</span>
-
+        
         <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
-
+        
         <span class='status-on-port'>AVAILABLE</span>
-
+        
         <span class="accordion-arrow arrow-down">
           <span class="icon-I-arrow-down"></span>
         </span>
@@ -2318,12 +2318,12 @@
 <div class="info-col">
   <p class="light-title">Speed</p>
   <p class="bold-title speed-text">Auto</p>
-
+  
 </div>
 <div class="info-col">
   <p class="light-title">Linked Speed</p>
   <p class="bold-title link-speed-text">No Speed</p>
-
+  
 </div>
 </div>
 <div class="info-row">
@@ -2335,14 +2335,14 @@
 <div class="info-col">
   <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
   <p class="bold-title egress-text">No Limit</p>
-
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Flow Control</p>
   <p class="bold-title flow-text">OFF</p>
-
+  
 </div>
 </div>
 
@@ -2552,11 +2552,11 @@
     <h4 class="panel-title">
       <a class="collapsed accordion-icon">
         <span class="port-number">10</span>
-
+        
         <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
-
+        
         <span class='status-on-port'>AVAILABLE</span>
-
+        
         <span class="accordion-arrow arrow-down">
           <span class="icon-I-arrow-down"></span>
         </span>
@@ -2570,12 +2570,12 @@
 <div class="info-col">
   <p class="light-title">Speed</p>
   <p class="bold-title speed-text">Auto</p>
-
+  
 </div>
 <div class="info-col">
   <p class="light-title">Linked Speed</p>
   <p class="bold-title link-speed-text">No Speed</p>
-
+  
 </div>
 </div>
 <div class="info-row">
@@ -2587,14 +2587,14 @@
 <div class="info-col">
   <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
   <p class="bold-title egress-text">No Limit</p>
-
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Flow Control</p>
   <p class="bold-title flow-text">OFF</p>
-
+  
 </div>
 </div>
 
@@ -2804,11 +2804,11 @@
     <h4 class="panel-title">
       <a class="collapsed accordion-icon">
         <span class="port-number">11</span>
-
+        
         <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
-
+        
         <span class='status-on-port'>AVAILABLE</span>
-
+        
         <span class="accordion-arrow arrow-down">
           <span class="icon-I-arrow-down"></span>
         </span>
@@ -2822,12 +2822,12 @@
 <div class="info-col">
   <p class="light-title">Speed</p>
   <p class="bold-title speed-text">Auto</p>
-
+  
 </div>
 <div class="info-col">
   <p class="light-title">Linked Speed</p>
   <p class="bold-title link-speed-text">No Speed</p>
-
+  
 </div>
 </div>
 <div class="info-row">
@@ -2839,14 +2839,14 @@
 <div class="info-col">
   <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
   <p class="bold-title egress-text">No Limit</p>
-
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Flow Control</p>
   <p class="bold-title flow-text">OFF</p>
-
+  
 </div>
 </div>
 
@@ -3056,11 +3056,11 @@
     <h4 class="panel-title">
       <a class="collapsed accordion-icon">
         <span class="port-number">12</span>
-
+        
         <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
-
+        
         <span class='status-on-port'>AVAILABLE</span>
-
+        
         <span class="accordion-arrow arrow-down">
           <span class="icon-I-arrow-down"></span>
         </span>
@@ -3074,12 +3074,12 @@
 <div class="info-col">
   <p class="light-title">Speed</p>
   <p class="bold-title speed-text">Auto</p>
-
+  
 </div>
 <div class="info-col">
   <p class="light-title">Linked Speed</p>
   <p class="bold-title link-speed-text">No Speed</p>
-
+  
 </div>
 </div>
 <div class="info-row">
@@ -3091,14 +3091,14 @@
 <div class="info-col">
   <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
   <p class="bold-title egress-text">No Limit</p>
-
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Flow Control</p>
   <p class="bold-title flow-text">OFF</p>
-
+  
 </div>
 </div>
 
@@ -3308,11 +3308,11 @@
     <h4 class="panel-title">
       <a class="collapsed accordion-icon">
         <span class="port-number">13</span>
-
+        
         <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
-
+        
         <span class='status-on-port'>AVAILABLE</span>
-
+        
         <span class="accordion-arrow arrow-down">
           <span class="icon-I-arrow-down"></span>
         </span>
@@ -3326,12 +3326,12 @@
 <div class="info-col">
   <p class="light-title">Speed</p>
   <p class="bold-title speed-text">Auto</p>
-
+  
 </div>
 <div class="info-col">
   <p class="light-title">Linked Speed</p>
   <p class="bold-title link-speed-text">No Speed</p>
-
+  
 </div>
 </div>
 <div class="info-row">
@@ -3343,14 +3343,14 @@
 <div class="info-col">
   <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
   <p class="bold-title egress-text">No Limit</p>
-
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Flow Control</p>
   <p class="bold-title flow-text">OFF</p>
-
+  
 </div>
 </div>
 
@@ -3560,11 +3560,11 @@
     <h4 class="panel-title">
       <a class="collapsed accordion-icon">
         <span class="port-number">14</span>
-
+        
         <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
-
+        
         <span class='status-on-port'>AVAILABLE</span>
-
+        
         <span class="accordion-arrow arrow-down">
           <span class="icon-I-arrow-down"></span>
         </span>
@@ -3578,12 +3578,12 @@
 <div class="info-col">
   <p class="light-title">Speed</p>
   <p class="bold-title speed-text">Auto</p>
-
+  
 </div>
 <div class="info-col">
   <p class="light-title">Linked Speed</p>
   <p class="bold-title link-speed-text">No Speed</p>
-
+  
 </div>
 </div>
 <div class="info-row">
@@ -3595,14 +3595,14 @@
 <div class="info-col">
   <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
   <p class="bold-title egress-text">No Limit</p>
-
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Flow Control</p>
   <p class="bold-title flow-text">OFF</p>
-
+  
 </div>
 </div>
 
@@ -3812,11 +3812,11 @@
     <h4 class="panel-title">
       <a class="collapsed accordion-icon">
         <span class="port-number">15</span>
-
+        
         <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
-
-        <span class='status-on-port'>AVAILABLE</span>
-
+        
+        <span class='status-on-port port-connected'>CONNECTED</span>
+        
         <span class="accordion-arrow arrow-down">
           <span class="icon-I-arrow-down"></span>
         </span>
@@ -3830,12 +3830,12 @@
 <div class="info-col">
   <p class="light-title">Speed</p>
   <p class="bold-title speed-text">Auto</p>
-
+  
 </div>
 <div class="info-col">
   <p class="light-title">Linked Speed</p>
-  <p class="bold-title link-speed-text">No Speed</p>
-
+  <p class="bold-title link-speed-text">1000M Full</p>
+  
 </div>
 </div>
 <div class="info-row">
@@ -3847,14 +3847,14 @@
 <div class="info-col">
   <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
   <p class="bold-title egress-text">No Limit</p>
-
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Flow Control</p>
   <p class="bold-title flow-text">OFF</p>
-
+  
 </div>
 </div>
 
@@ -4064,11 +4064,11 @@
     <h4 class="panel-title">
       <a class="collapsed accordion-icon">
         <span class="port-number">16</span>
-
+        
         <span class="port-name" untrans>&nbsp;-&nbsp;<span class='name'></span></span>
-
+        
         <span class='status-on-port'>AVAILABLE</span>
-
+        
         <span class="accordion-arrow arrow-down">
           <span class="icon-I-arrow-down"></span>
         </span>
@@ -4082,12 +4082,12 @@
 <div class="info-col">
   <p class="light-title">Speed</p>
   <p class="bold-title speed-text">Auto</p>
-
+  
 </div>
 <div class="info-col">
   <p class="light-title">Linked Speed</p>
   <p class="bold-title link-speed-text">No Speed</p>
-
+  
 </div>
 </div>
 <div class="info-row">
@@ -4099,14 +4099,14 @@
 <div class="info-col">
   <p class="light-title hid-txt" title="Egress Port Limit">Egress Port Limit</p>
   <p class="bold-title egress-text">No Limit</p>
-
+  
 </div>
 </div>
 <div class="info-row">
 <div class="info-col">
   <p class="light-title">Flow Control</p>
   <p class="bold-title flow-text">OFF</p>
-
+  
 </div>
 </div>
 
@@ -4359,4 +4359,3 @@ if (window.totalPorts > 10) {
   });
 }
 </script>
-

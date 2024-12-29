@@ -19,6 +19,8 @@ func TestFindPortSettingsInHtml(t *testing.T) {
 		expectedIngressRateLimit string
 		expectedEgressRateLimit  string
 		expectedFlowControl      string
+		expectedLinkSpeed        string
+		expectedPortStatus       string
 	}{
 		{
 			model:                    "GS308EPP",
@@ -30,17 +32,21 @@ func TestFindPortSettingsInHtml(t *testing.T) {
 			expectedIngressRateLimit: "1",
 			expectedEgressRateLimit:  "1",
 			expectedFlowControl:      "2",
+			expectedLinkSpeed:        "1000M full",
+			expectedPortStatus:       "UP",
 		},
 		{
 			model:                    "GS316EP",
 			fileName:                 "dashboard.html",
 			expectedSettingsLength:   16,
 			expectedIndex:            1,
-			expectedName:             "port name 1",
+			expectedName:             "AGER 31 SUR Tech",
 			expectedSpeed:            "Auto",
 			expectedIngressRateLimit: "No Limit",
 			expectedEgressRateLimit:  "No Limit",
 			expectedFlowControl:      "OFF",
+			expectedLinkSpeed:        "No Speed",
+			expectedPortStatus:       "AVAILABLE",
 		},
 	}
 	for _, test := range tests {
@@ -48,7 +54,7 @@ func TestFindPortSettingsInHtml(t *testing.T) {
 			portSetting, err := findPortSettingsInHtml(NetgearModel(test.model), strings.NewReader(loadTestFile(test.model, test.fileName)))
 
 			then.AssertThat(t, err, is.Nil())
-			then.AssertThat(t, portSetting, has.Length[Port](test.expectedSettingsLength))
+			then.AssertThat(t, portSetting, has.Length[PortSetting](test.expectedSettingsLength))
 			setting := portSetting[0]
 			then.AssertThat(t, setting.Index, is.EqualTo(test.expectedIndex))
 			then.AssertThat(t, setting.Name, is.EqualTo(test.expectedName))
@@ -56,6 +62,8 @@ func TestFindPortSettingsInHtml(t *testing.T) {
 			then.AssertThat(t, setting.IngressRateLimit, is.EqualTo(test.expectedIngressRateLimit))
 			then.AssertThat(t, setting.EgressRateLimit, is.EqualTo(test.expectedEgressRateLimit))
 			then.AssertThat(t, setting.FlowControl, is.EqualTo(test.expectedFlowControl))
+			then.AssertThat(t, setting.LinkSpeed, is.EqualTo(test.expectedLinkSpeed))
+			then.AssertThat(t, setting.PortStatus, is.EqualTo(test.expectedPortStatus))
 		})
 	}
 

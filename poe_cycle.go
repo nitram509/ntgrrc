@@ -66,14 +66,14 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs30xEPx(args *GlobalOptions) error {
 	}
 
 	changedPorts := collectChangedPoePortConfiguration(poe.Ports, settings)
-	prettyPrintSettings(args.OutputFormat, changedPorts)
+	prettyPrintPoePortSettings(args.model, args.OutputFormat, changedPorts)
 	return nil
 }
 
 func (poe *PoeCyclePowerCommand) cyclePowerGs316EPx(args *GlobalOptions) error {
 	for _, switchPort := range poe.Ports {
-		if switchPort < 1 || switchPort > 15 {
-			return errors.New(fmt.Sprintf("given port id %d, doesn't fit in range 1..15", switchPort))
+		if switchPort < 1 || switchPort > gs316NoPoePorts {
+			return errors.New(fmt.Sprintf("given port id %d, doesn't fit in range 1..%d", switchPort, gs316NoPoePorts))
 		}
 	}
 
@@ -91,7 +91,7 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs316EPx(args *GlobalOptions) error {
 		return err
 	}
 	if args.Verbose {
-		println(result)
+		fmt.Println(result)
 	}
 	if result != "SUCCESS" {
 		return errors.New(result)
@@ -105,14 +105,13 @@ func (poe *PoeCyclePowerCommand) cyclePowerGs316EPx(args *GlobalOptions) error {
 	statuses = filter(statuses, func(status PoePortStatus) bool {
 		return slices.Contains(poe.Ports, int(status.PortIndex))
 	})
-	prettyPrintStatus(args.OutputFormat, statuses)
+	prettyPrintPoePortStatus(args.OutputFormat, statuses)
 	return nil
 }
 
 func createPortResetPayloadGs316EPx(poePorts []int) string {
 	result := strings.Builder{}
-	const maxPorts = 15 // the port 16 can't be reset
-	for i := 0; i < maxPorts; i++ {
+	for i := 0; i < gs316NoPoePorts; i++ {
 		written := false
 		for _, p := range poePorts {
 			if p-1 == i {

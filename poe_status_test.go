@@ -52,7 +52,7 @@ func TestFindPortStatusInHtml(t *testing.T) {
 		{
 			model:                        "GS316EP",
 			fileName:                     "poePortStatus_GetData_true.html",
-			expectedNumberOfStatuses:     15,
+			expectedNumberOfStatuses:     gs316NoPoePorts,
 			expectedPoePowerClass:        "2",
 			expectedPoePortStatus:        "Delivering Power",
 			expectedVoltageInVolt:        54,
@@ -108,8 +108,8 @@ func TestPrettyPrintMarkdownStatus(t *testing.T) {
 		},
 		{
 			model:       "GS316EP",
-			fileName:    "poePortStatus.html",
-			expectedVal: 15,
+			fileName:    "poePortStatus_GetData_true.html",
+			expectedVal: gs316NoPoePorts,
 		},
 	}
 	for _, test := range tests {
@@ -119,7 +119,7 @@ func TestPrettyPrintMarkdownStatus(t *testing.T) {
 			then.AssertThat(t, err, is.Nil())
 			then.AssertThat(t, statuses, has.Length[PoePortStatus](test.expectedVal))
 
-			prettyPrintStatus(MarkdownFormat, statuses)
+			prettyPrintPoePortStatus(MarkdownFormat, statuses)
 		})
 	}
 }
@@ -142,8 +142,8 @@ func TestPrettyPrintJsonStatus(t *testing.T) {
 		},
 		{
 			model:       "GS316EP",
-			fileName:    "poePortStatus.html",
-			expectedVal: 15,
+			fileName:    "poePortStatus_GetData_true.html",
+			expectedVal: gs316NoPoePorts,
 		},
 	}
 	for _, test := range tests {
@@ -153,7 +153,7 @@ func TestPrettyPrintJsonStatus(t *testing.T) {
 			then.AssertThat(t, err, is.Nil())
 			then.AssertThat(t, statuses, has.Length[PoePortStatus](test.expectedVal))
 
-			prettyPrintStatus(JsonFormat, statuses)
+			prettyPrintPoePortStatus(JsonFormat, statuses)
 		})
 	}
 }
