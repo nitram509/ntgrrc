@@ -118,12 +118,12 @@ Use the ```--output-format=json``` flag, to get JSON output instead.
 ```ntgrrc port settings --address gs305ep```
 
 ```markdown
-| Port ID | Port Name | Speed | Ingress Limit | Egress Limit | Flow Control |
-|---------|-----------|-------|---------------|--------------|--------------|
-| 1       |           | Auto  | No Limit      | No Limit     | Off          |
-| 2       |           | Auto  | No Limit      | No Limit     | On           |
-| 3       |           | Auto  | No Limit      | No Limit     | On           |
-| 4       |           | Auto  | No Limit      | No Limit     | On           |
+| Port ID | Port Name | Speed | Ingress Limit | Egress Limit | Flow Control | Port Status | Link Speed |
+|---------|-----------|-------|---------------|--------------|--------------|-------------|------------|
+| 1       | XYZ       | Auto  | No Limit      | No Limit     | Off          | AVAILABLE   | No Speed   |
+| 2       |           | Auto  | No Limit      | No Limit     | On           | CONNECTED   | 100M Half  |
+| 3       |           | Auto  | No Limit      | No Limit     | On           | DISABLED    | No Speed   |
+| 4       |           | Auto  | 1 Mbit/s      | No Limit     | On           | AVAILABLE   | No Speed   |
 ```
 
 ### set port settings
