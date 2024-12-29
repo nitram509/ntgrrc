@@ -10,6 +10,8 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
+const gs316NoPoePorts = 15
+
 type PoePortSetting struct {
 	PortIndex    int8
 	PortName     string
@@ -137,28 +139,18 @@ func findPortPortConfInHtmlGs30x(reader io.Reader) ([]PoePortSetting, error) {
 	var configs []PoePortSetting
 	doc.Find("li.poePortSettingListItem").Each(func(i int, s *goquery.Selection) {
 		config := PoePortSetting{}
-
 		id, _ := s.Find("input[type=hidden].port").Attr("value")
 		var id64, _ = strconv.ParseInt(id, 10, 8)
 		config.PortIndex = int8(id64)
-
 		config.PortName, _ = s.Find("input[type=hidden].portName").Attr("value")
-
 		portWr, exists := s.Find("input#hidPortPwr").Attr("value")
 		config.PortPwr = exists && portWr == "1"
-
 		config.PwrMode, _ = s.Find("input#hidPwrMode").Attr("value")
-
 		config.PortPrio, _ = s.Find("input#hidPortPrio").Attr("value")
-
 		config.LimitType, _ = s.Find("input#hidLimitType").Attr("value")
-
 		config.PwrLimit, _ = s.Find("input.pwrLimit").Attr("value")
-
 		config.DetecType, _ = s.Find("input#hidDetecType").Attr("value")
-
 		config.LongerDetect, _ = s.Find("input.longerDetect").Attr("value")
-
 		configs = append(configs, config)
 	})
 	return configs, nil

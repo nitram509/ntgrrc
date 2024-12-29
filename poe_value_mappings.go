@@ -1,6 +1,8 @@
 package main
 
 import (
+	"errors"
+	"fmt"
 	"sort"
 	"strings"
 )
@@ -41,9 +43,23 @@ var pwrModeMap = map[string]string{
 }
 
 var portPrioMap = map[string]string{
+	// hint: this is only for GS30x
+	// in contrast, GS316 uses `1:low`, `2:high`, `3:critical`
 	"0": "low",
 	"2": "high",
 	"3": "critical",
+}
+
+func mapPoePrioGs316(prio string) (string, error) {
+	switch strings.ToLower(prio) {
+	case "low":
+		return "1", nil
+	case "high":
+		return "2", nil
+	case "critical":
+		return "3", nil
+	}
+	return "", errors.New(fmt.Sprintf("invalid port priority '%s'; valid values", valuesAsString(portPrioMap)))
 }
 
 var limitTypeMap = map[string]string{

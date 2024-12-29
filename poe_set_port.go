@@ -6,6 +6,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"io"
 	"net/url"
+	"slices"
 	"strconv"
 	"strings"
 )
@@ -21,14 +22,14 @@ const (
 	LongerDetect PoeSettingKey = "LongerDetect"
 )
 
-type PoeSetPowerCommand struct {
+type PoeSetConfigCommand struct {
 	Address      string `required:"" help:"the Netgear switch's IP address or host name to connect to" short:"a"`
 	Ports        []int  `required:"" help:"port number (starting with 1), use multiple times for setting multiple ports at once" short:"p" name:"port"`
 	PortPwr      string `optional:"" help:"power state for port [enable, disable]" short:"s" name:"power"`
 	PwrMode      string `optional:"" help:"power mode [802.3af, legacy, pre-802.3at, 802.3at]" short:"m" name:"mode"`
 	PortPrio     string `optional:"" help:"priority [low, high, critical]" short:"r" name:"priority"`
 	LimitType    string `optional:"" help:"power limit type [none, class, user]" short:"t" name:"limit-type"`
-	PwrLimit     string `optional:"" help:"power limit (W)" short:"l" name:"pwr-limit"`
+	PwrLimit     string `optional:"" help:"power limit (W) [e.g. '30.0']" short:"l" name:"pwr-limit"`
 	DetecType    string `optional:"" help:"detection type [IEEE 802, legacy, 4pt 802.3af + Legacy]" short:"e" name:"detect-type"`
 	LongerDetect string `optional:"" help:"longer detection time [enable, disable]" name:"longer-detection-time"`
 }
@@ -38,70 +39,86 @@ type PoeExt struct {
 	PortMaxPower string
 }
 
-func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
-	err := ensureModelIs30x(args, poe.Address)
-	if err != nil {
-		return err
+func (poe *PoeSetConfigCommand) Run(args *GlobalOptions) error {
+	model := args.model
+	if len(model) == 0 {
+		var err error
+		model, _, err = readTokenAndModel2GlobalOptions(args, poe.Address)
+		if err != nil {
+			return err
+		}
+	}
+	args.model = model // TODO: make the invariant of this variable consistent in the whole app
+
+	if isModel30x(model) {
+		return poe.runPoeSetConfigGs30x(args)
+	}
+	if isModel316(model) {
+		return poe.runPoeSetConfigGs316(args)
 	}
 
+	panic(fmt.Sprintf("model %s not supported", model))
+}
+
+func (poe *PoeSetConfigCommand) runPoeSetConfigGs30x(args *GlobalOptions) error {
 	poeExt := &PoeExt{}
 	var adminMode string
 
-	settings, err := requestPoeConfiguration(args, poe.Address, poeExt)
+	currentPoeConfigs, err := requestPoeConfiguration(args, poe.Address, poeExt)
 	if err != nil {
 		return err
 	}
 
-	for _, switchPort := range poe.Ports {
-		if switchPort > len(settings) || switchPort < 1 {
-			return errors.New(fmt.Sprintf("given port id %d, doesn't fit in range 1..%d", switchPort, len(settings)))
+	for _, portId := range poe.Ports {
+		if portId > len(currentPoeConfigs) || portId < 1 {
+			return errors.New(fmt.Sprintf("given port id %d, doesn't fit in range 1..%d", portId, len(currentPoeConfigs)))
 		}
 
-		portSetting := settings[switchPort-1]
+		poeConfig := currentPoeConfigs[portId-1]
 
 		if poe.PortPwr == "enabled" || poe.PortPwr == "enable" {
 			adminMode = "1"
 		} else if poe.PortPwr == "disabled" || poe.PortPwr == "disable" {
 			adminMode = "0"
 		} else {
-			if portSetting.PortPwr {
+			if poeConfig.PortPwr {
 				adminMode = "1"
 			} else {
 				adminMode = "0"
 			}
 		}
 
-		portPrio, err := comparePoeSettings(PortPrio, portSetting.PortPrio, poe.PortPrio, poeExt)
+		portPrio, err := comparePoeSettings(PortPrio, poeConfig.PortPrio, poe.PortPrio, poeExt)
 		if err != nil {
 			return err
 		}
 
-		pwrMode, err := comparePoeSettings(PwrMode, portSetting.PwrMode, poe.PwrMode, poeExt)
+		pwrMode, err := comparePoeSettings(PwrMode, poeConfig.PwrMode, poe.PwrMode, poeExt)
 		if err != nil {
 			return err
 		}
 
-		pwrLimitType, err := comparePoeSettings(LimitType, portSetting.LimitType, poe.LimitType, poeExt)
+		pwrLimitType, err := comparePoeSettings(LimitType, poeConfig.LimitType, poe.LimitType, poeExt)
 		if err != nil {
 			return err
 		}
 
-		pwrLimit, err := comparePoeSettings(PwrLimit, portSetting.PwrLimit, poe.PwrLimit, poeExt)
+		pwrLimit, err := comparePoeSettings(PwrLimit, poeConfig.PwrLimit, poe.PwrLimit, poeExt)
 		if err != nil {
 			return err
 		}
 
-		detecType, err := comparePoeSettings(DetecType, portSetting.DetecType, poe.DetecType, poeExt)
+		detecType, err := comparePoeSettings(DetecType, poeConfig.DetecType, poe.DetecType, poeExt)
 		if err != nil {
 			return err
 		}
 
-		longerDetect, err := comparePoeSettings(LongerDetect, portSetting.LongerDetect, poe.LongerDetect, poeExt)
+		longerDetect, err := comparePoeSettings(LongerDetect, poeConfig.LongerDetect, poe.LongerDetect, poeExt)
 
 		poeSettings := url.Values{
 			"hash":           {poeExt.Hash},
 			"ACTION":         {"Apply"},
-			"portID":         {strconv.Itoa(int(switchPort - 1))},
+			"portID":         {strconv.Itoa(int(portId - 1))},
 			"ADMIN_MODE":     {adminMode},
 			"PORT_PRIO":      {portPrio},
 			"POW_MOD":        {pwrMode},
@@ -121,13 +138,128 @@ func (poe *PoeSetPowerCommand) Run(args *GlobalOptions) error {
 		}
 	}
 
-	settings, err = requestPoeConfiguration(args, poe.Address, poeExt)
-
-	changedPorts := collectChangedPoePortConfiguration(poe.Ports, settings)
-
+	updatedPoeConfigs, err := requestPoeConfiguration(args, poe.Address, poeExt)
+	changedPorts := collectChangedPoePortConfiguration(poe.Ports, updatedPoeConfigs)
 	prettyPrintPoePortSettings(args.model, args.OutputFormat, changedPorts)
-
 	return err
+}
+
+func (poe *PoeSetConfigCommand) runPoeSetConfigGs316(args *GlobalOptions) error {
+	_, token, err := readTokenAndModel2GlobalOptions(args, poe.Address)
+	if err != nil {
+		return err
+	}
+
+	for _, portId := range poe.Ports {
+		if portId < 1 || portId > gs316NoPoePorts {
+			return errors.New(fmt.Sprintf("given port id %d, doesn't fit in range 1..%d", portId, gs316NoPoePorts))
+		}
+
+		newPoeConfig, err := poe.createPoeSetConfigPayloadGs316(token, portId)
+		if err != nil {
+			return err
+		}
+
+		urlStr := fmt.Sprintf("http://%s/iss/specific/poePortConf.html", poe.Address)
+		result, err := postPage(args, poe.Address, urlStr, newPoeConfig)
+		if err != nil {
+			return err
+		}
+
+		if result != "SUCCESS" {
+			return errors.New(result)
+		}
+	}
+
+	poeExt := &PoeExt{}
+	updatedPoeConf, err := requestPoeConfiguration(args, poe.Address, poeExt)
+	updatedPoeConf = filter(updatedPoeConf, func(status PoePortSetting) bool {
+		return slices.Contains(poe.Ports, int(status.PortIndex))
+	})
+	prettyPrintPoePortSettings(args.model, args.OutputFormat, updatedPoeConf)
+	return err
+}
+
+func (poe *PoeSetConfigCommand) createPoeSetConfigPayloadGs316(token string, portId int) (string, error) {
+	// it seems the ORDER IS IMPORTANT, so we craft the payload by hand.
+	newPoeConfig := fmt.Sprintf("Gambit=%s&TYPE=%s&PORT_NO=%s", token, "submitPoe", strconv.Itoa(portId))
+
+	if poe.PwrLimit != "" {
+		poe.LimitType = "user" // must be set, else nothing happens
+		pwrLimit, err := strconv.ParseFloat(poe.PwrLimit, 64)
+		if err != nil {
+			return "", fmt.Errorf("invalid power limit value: '%s', allowed are: 3.0, 3.2, 3.4, 3.6, and so on", poe.PwrLimit)
+		}
+		newPoeConfig += fmt.Sprintf("&POWER_LIMIT_VALUE=%s", strconv.Itoa(int(pwrLimit*10)))
+	} else {
+		newPoeConfig += fmt.Sprintf("&POWER_LIMIT_VALUE=%s", "NOTSET")
+	}
+
+	if poe.PortPrio != "" {
+		portPrio, err := mapPoePrioGs316(poe.PortPrio)
+		if err != nil {
+			return "", err
+		}
+		newPoeConfig += fmt.Sprintf("&PRIORITY=%s", portPrio)
+	} else {
+		newPoeConfig += fmt.Sprintf("&PRIORITY=%s", "NOTSET")
+	}
+
+	if poe.PwrMode != "" {
+		pwerMode := bidiMapLookup(strings.ToLower(poe.PwrMode), pwrModeMap)
+		if pwerMode == unknown {
+			return "", errors.New(fmt.Sprintf("power mode %s not supported; allowed values: %s", poe.PwrMode, valuesAsString(pwrModeMap)))
+		}
+		newPoeConfig += fmt.Sprintf("&POWER_MODE=%s", pwerMode)
+	} else {
+		newPoeConfig += fmt.Sprintf("&POWER_MODE=%s", "NOTSET")
+	}
+
+	if poe.LimitType != "" {
+		limitType := bidiMapLookup(poe.LimitType, limitTypeMap)
+		if limitType == unknown {
+			return "", errors.New(fmt.Sprintf("limit type %s not supported; allowed values: %s", poe.LimitType, valuesAsString(limitTypeMap)))
+		}
+		newPoeConfig += fmt.Sprintf("&POWER_LIMIT_TYPE=%s", limitType)
+	} else {
+		newPoeConfig += fmt.Sprintf("&POWER_LIMIT_TYPE=%s", "NOTSET")
+	}
+
+	if poe.DetecType != "" {
+		if poe.DetecType == "IEEE802" {
+			// the GS316EP series does not use a space,
+			// hence we created make it compatible to GS30x, by adding a space
+			poe.DetecType = "IEEE 802"
+		}
+		detecType := bidiMapLookup(poe.DetecType, detecTypeMap)
+		if detecType == unknown {
+			return "", errors.New(fmt.Sprintf("detection type %s not supported; allowed values: %s", poe.DetecType, valuesAsString(detecTypeMap)))
+		}
+		newPoeConfig += fmt.Sprintf("&DETECTION=%s", detecType)
+	} else {
+		newPoeConfig += fmt.Sprintf("&DETECTION=%s", "NOTSET")
+	}
+
+	if poe.PortPwr != "" {
+		adminState := "0"
+		if strings.Contains(strings.ToLower(poe.PortPwr), "enable") {
+			adminState = "1"
+		}
+		newPoeConfig += fmt.Sprintf("&ADMIN_STATE=%s", adminState)
+	} else {
+		newPoeConfig += fmt.Sprintf("&ADMIN_STATE=%s", "NOTSET")
+	}
+
+	if poe.LongerDetect != "" {
+		disconnectType := bidiMapLookup(poe.LongerDetect, longerDetectMap)
+		if disconnectType == unknown {
+			return "", errors.New(fmt.Sprintf("detection type %s not supported; allowed values: %s", poe.LongerDetect, valuesAsString(longerDetectMap)))
+		}
+		newPoeConfig += fmt.Sprintf("&DISCONNECT_TYPE=%s", disconnectType)
+	} else {
+		newPoeConfig += fmt.Sprintf("&DISCONNECT_TYPE=%s", "NOTSET")
+	}
+	return newPoeConfig, nil
 }
 
 func collectChangedPoePortConfiguration(poePorts []int, settings []PoePortSetting) (changedPorts []PoePortSetting) {
@@ -160,12 +292,12 @@ func requestPoeConfiguration(args *GlobalOptions, host string, poeExt *PoeExt) (
 		return settings, err
 	}
 
-	poeExt.Hash, err = findHashInHtml("", strings.NewReader(settingsPage))
+	poeExt.Hash, err = findHashInHtml(args.model, strings.NewReader(settingsPage))
 	if err != nil {
 		return settings, err
 	}
 
-	poeExt.PortMaxPower, err = findMaxPwrLimitInHtml(strings.NewReader(settingsPage))
+	poeExt.PortMaxPower, err = findMaxPwrLimitInHtml(args.model, strings.NewReader(settingsPage))
 	if err != nil {
 		return settings, err
 	}
@@ -196,7 +328,10 @@ func findHashInHtml(model NetgearModel, reader io.Reader) (string, error) {
 	return hash, err
 }
 
-func findMaxPwrLimitInHtml(reader io.Reader) (string, error) {
+func findMaxPwrLimitInHtml(model NetgearModel, reader io.Reader) (string, error) {
+	if isModel316(model) {
+		return "", nil
+	}
 	doc, err := goquery.NewDocumentFromReader(reader)
 	if err != nil {
 		return "", err

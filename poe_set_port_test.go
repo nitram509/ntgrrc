@@ -31,7 +31,7 @@ func TestFindHashInHtml(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.model, func(t *testing.T) {
-			hash, err := findHashInHtml("", strings.NewReader(loadTestFile(test.model, test.fileName)))
+			hash, err := findHashInHtml(NetgearModel(test.model), strings.NewReader(loadTestFile(test.model, test.fileName)))
 
 			then.AssertThat(t, err, is.Nil())
 			then.AssertThat(t, hash, is.EqualTo(test.expectedVal))
@@ -58,7 +58,7 @@ func TestFindMaxPoePowerLimit(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.model, func(t *testing.T) {
-			pwrLimit, err := findMaxPwrLimitInHtml(strings.NewReader(loadTestFile(test.model, test.fileName)))
+			pwrLimit, err := findMaxPwrLimitInHtml(NetgearModel(test.model), strings.NewReader(loadTestFile(test.model, test.fileName)))
 
 			then.AssertThat(t, err, is.Nil())
 			then.AssertThat(t, pwrLimit, is.EqualTo(test.expectedVal))
@@ -224,4 +224,62 @@ func TestCollectChangedPoePortConfiguration(t *testing.T) {
 	then.AssertThat(t, len(changed), is.EqualTo(2))
 	then.AssertThat(t, int(changed[1].PortIndex), is.EqualTo(2))
 	then.AssertThat(t, changed[0].PortName, is.EqualTo("port 1"))
+}
+
+func TestCreatePoeSetConfigPayloadGs316_all_fields(t *testing.T) {
+	poe := PoeSetConfigCommand{
+		Address:      "192.168.0.239",
+		Ports:        []int{1},
+		PortPwr:      "enable",
+		PwrMode:      "legacy",
+		PortPrio:     "high",
+		LimitType:    "legacy",
+		PwrLimit:     "17.4",
+		DetecType:    "IEEE 802",
+		LongerDetect: "disable",
+	}
+	token := "xyz123"
+	portId := 1
+
+	payload, err := poe.createPoeSetConfigPayloadGs316(token, portId)
+
+	then.AssertThat(t, err, is.Nil())
+	then.AssertThat(t, payload, is.StringContaining("Gambit=xyz"))
+	then.AssertThat(t, payload, is.StringContaining("TYPE=submitPoe"))
+	then.AssertThat(t, payload, is.StringContaining("PORT_NO=1"))
+	then.AssertThat(t, payload, is.StringContaining("PRIORITY=2"))
+	then.AssertThat(t, payload, is.StringContaining("POWER_MODE=1"))
+	then.AssertThat(t, payload, is.StringContaining("POWER_LIMIT_TYPE=2"))
+	then.AssertThat(t, payload, is.StringContaining("DETECTION=2"))
+	then.AssertThat(t, payload, is.StringContaining("ADMIN_STATE=1"))
+	then.AssertThat(t, payload, is.StringContaining("DISCONNECT_TYPE=2"))
+}
+
+func TestCreatePoeSetConfigPayloadGs316_just_mandatory_no_optional_fields(t *testing.T) {
+	poe := PoeSetConfigCommand{
+		Address:      "192.168.0.239",
+		Ports:        []int{1},
+		PortPwr:      "",
+		PwrMode:      "",
+		PortPrio:     "",
+		LimitType:    "",
+		PwrLimit:     "",
+		DetecType:    "",
+		LongerDetect: "",
+	}
+	token := "xyz123"
+	portId := 2
+
+	payload, err := poe.createPoeSetConfigPayloadGs316(token, portId)
+
+	then.AssertThat(t, err, is.Nil())
+	then.AssertThat(t, payload, is.StringContaining("Gambit=xyz"))
+	then.AssertThat(t, payload, is.StringContaining("TYPE=submitPoe"))
+	then.AssertThat(t, payload, is.StringContaining("PORT_NO=2"))
+	then.AssertThat(t, payload, is.StringContaining("PRIORITY=NOTSET"))
+	then.AssertThat(t, payload, is.StringContaining("POWER_MODE=NOTSET"))
+	then.AssertThat(t, payload, is.StringContaining("POWER_LIMIT_TYPE=NOTSET"))
+	then.AssertThat(t, payload, is.StringContaining("DETECTION=NOTSET"))
+	then.AssertThat(t, payload, is.StringContaining("ADMIN_STATE=NOTSET"))
+	then.AssertThat(t, payload, is.StringContaining("DISCONNECT_TYPE=NOTSET"))
 }

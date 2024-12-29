@@ -55,7 +55,7 @@ func TestFindPortConfigInHtml(t *testing.T) {
 		{
 			model:                  "GS316EP",
 			fileName:               "poePortConf.html",
-			expectedSettingsLength: 15,
+			expectedSettingsLength: gs316NoPoePorts,
 			expectedPortIndex:      "",
 			expectedPort0Pwr:       false,
 			expectedPort1Pwr:       true,
@@ -117,7 +117,7 @@ func TestPrettyPrintSettings(t *testing.T) {
 			then.AssertThat(t, err, is.Nil())
 			then.AssertThat(t, settings, has.Length[PoePortSetting](test.expectedVal))
 
-			prettyPrintPoePortSettings(MarkdownFormat, settings)
+			prettyPrintPoePortSettings(NetgearModel(test.model), MarkdownFormat, settings)
 		})
 	}
 }
@@ -146,7 +146,7 @@ func TestPrettyPrintJsonSettings(t *testing.T) {
 			then.AssertThat(t, err, is.Nil())
 			then.AssertThat(t, settings, has.Length[PoePortSetting](test.expectedVal))
 
-			prettyPrintPoePortSettings(JsonFormat, settings)
+			prettyPrintPoePortSettings(NetgearModel(test.model), JsonFormat, settings)
 		})
 	}
 }
