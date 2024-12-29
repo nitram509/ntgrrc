@@ -108,7 +108,7 @@ func TestPrettyPrintMarkdownStatus(t *testing.T) {
 		},
 		{
 			model:       "GS316EP",
-			fileName:    "poePortStatus.html",
+			fileName:    "poePortStatus_GetData_true.html",
 			expectedVal: gs316NoPoePorts,
 		},
 	}
@@ -142,7 +142,7 @@ func TestPrettyPrintJsonStatus(t *testing.T) {
 		},
 		{
 			model:       "GS316EP",
-			fileName:    "poePortStatus.html",
+			fileName:    "poePortStatus_GetData_true.html",
 			expectedVal: gs316NoPoePorts,
 		},
 	}
