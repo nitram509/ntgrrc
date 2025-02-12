@@ -4,9 +4,9 @@ jobs:
   test:
     strategy:
       matrix:
-        os: [ ubuntu-latest-arm, windows-latest ]
+        os: [ ubuntu-24.04-arm, windows-latest ]
         include:
-          - os: ubuntu-latest-arm
+          - os: ubuntu-24.04-arm
             upload-coverage: true
     runs-on: ${{ matrix.os }}
     name: "go test"
