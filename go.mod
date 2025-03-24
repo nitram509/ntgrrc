@@ -5,7 +5,7 @@ toolchain go1.24.1
 
 require (
 	github.com/PuerkitoBio/goquery v1.10.2
-	github.com/alecthomas/kong v1.8.1
+	github.com/alecthomas/kong v1.9.0
 	github.com/corbym/gocrest v1.1.2
 	golang.org/x/term v0.30.0
 )
