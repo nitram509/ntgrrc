@@ -32,9 +32,11 @@ func tokenFilename(configDir string, host string) string {
 }
 
 func readTokenAndModel2GlobalOptions(args *GlobalOptions, host string) (NetgearModel, string, error) {
-	if len(args.model) > 0 {
+
+	if len(args.model) > 0 && len(args.token) > 0 {
 		return args.model, args.token, nil
 	}
+
 	if args.Verbose {
 		fmt.Println("reading token from: " + tokenFilename(args.TokenDir, host))
 	}
