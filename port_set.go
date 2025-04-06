@@ -50,6 +50,8 @@ func (portSet *PortSetCommand) Run(args *GlobalOptions) error {
 		if err != nil {
 			return err
 		}
+		args.model = model
+
 	}
 	if isModel30x(model) {
 		return portSet.runPortSetGs30xEPx(args)
