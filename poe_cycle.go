@@ -22,6 +22,8 @@ func (poe *PoeCyclePowerCommand) Run(args *GlobalOptions) error {
 		if err != nil {
 			return err
 		}
+		args.model = model
+
 	}
 	if isModel30x(model) {
 		return poe.cyclePowerGs30xEPx(args)
