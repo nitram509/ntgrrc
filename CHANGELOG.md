@@ -1,6 +1,12 @@
 
 # ntgrrc (Netgear Remote Control) CHANGELOG
 
+## v0.12.1
+
+* Fix error using "poe cycle" (#91); many thanks to @demel42 for reporting and @davidk for fixing the issue.
+
+----
+
 ## v0.12.0
 
 * Add support to show and change POE settings
