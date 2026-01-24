@@ -10,6 +10,7 @@ func (HelpAllFlag) BeforeApply(ctx *kong.Context) error {
 	err := kong.DefaultHelpPrinter(kong.HelpOptions{
 		Compact:             false,
 		NoExpandSubcommands: false,
+		ValueFormatter:      kong.DefaultHelpValueFormatter,
 	}, ctx)
 	if err != nil {
 		return err
