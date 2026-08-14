@@ -25,6 +25,7 @@ A green tick means it was successfully tested.
 | V1.0.3.4  | -          | -        | -        | ✅          |
 | V1.0.3.7  | -          | -        | -        | ✅          |
 | V1.0.4.4  | -          | -        | -        | ✅          |
+| V2.0.0.11 | -          | -        | ✅       | -           |
 
 Legend: \
 ✅ = successfully tested \
