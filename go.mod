@@ -5,7 +5,7 @@ go 1.26.0
 require (
 	github.com/PuerkitoBio/goquery v1.13.0
 	github.com/alecthomas/kong v1.16.1
-	github.com/corbym/gocrest v1.2.1
+	github.com/corbym/gocrest v1.3.0
 	golang.org/x/term v0.46.0
 )
 
