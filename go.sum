@@ -8,8 +8,8 @@ github.com/alecthomas/repr v0.5.2 h1:SU73FTI9D1P5UNtvseffFSGmdNci/O6RsqzeXJtP0Qs
 github.com/alecthomas/repr v0.5.2/go.mod h1:Fr0507jx4eOXV7AlPV6AVZLYrLIuIeSOWtW57eE/O/4=
 github.com/andybalholm/cascadia v1.3.4 h1:vM2lgh0Vru9Vwyfm4cQqWP2HHMW0u0+2PAW7Q38Qufg=
 github.com/andybalholm/cascadia v1.3.4/go.mod h1:BLRmbRjpEtNKieZOCCvYj4RqN+KRA41GBe/5O+G93kM=
-github.com/corbym/gocrest v1.2.1 h1:rQ0lRgTpXD7zrCWDOlmhSH76SBGWLGErWlA4EAfzGhw=
-github.com/corbym/gocrest v1.2.1/go.mod h1:ee2ehptr3v4yPmxQzuPB0v5EMF9fUcgWfY4oDsBlAPI=
+github.com/corbym/gocrest v1.3.0 h1:tAVoXQFa2knr2AIzWDk72DthKlQxMCD9hCjutC40V9k=
+github.com/corbym/gocrest v1.3.0/go.mod h1:ee2ehptr3v4yPmxQzuPB0v5EMF9fUcgWfY4oDsBlAPI=
 github.com/hexops/gotextdiff v1.0.3 h1:gitA9+qJrrTCsiCl7+kh75nPqQt1cx4ZkudSTLoUqJM=
 github.com/hexops/gotextdiff v1.0.3/go.mod h1:pSWU5MAI3yDq+fZBTazCSJysOMbxWL1BSow5/V2vxeg=
 golang.org/x/net v0.58.0 h1:ynWG7rqYi4ccpTEuPZ2QGWHktVEM9DMCj9yzDE0Q7To=
